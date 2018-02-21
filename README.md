@@ -5,3 +5,4 @@ Skapad av:
 - Eirik Funnemark
 - Felicia Dahlström
 - Sophie Lindberg
+- Herman Svensk

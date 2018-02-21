@@ -1,0 +1,11 @@
+<div id="user-list" class="list-group">
+    {% for user in users %}
+        <a href="#" data-user-id="{{ user.id }}" class="list-group-item list-group-item-action flex-column align-items-start user">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ user.username }}</h5>
+                <small>{{ user.email }}</small>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+<div id="user-div"></div>

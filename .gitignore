@@ -221,3 +221,6 @@ $RECYCLE.BIN/
 /.idea/misc.xml
 /.idea/baljangavan-app.iml
 /.idea/encodings.xml
+/.idea/vcs.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/app.db

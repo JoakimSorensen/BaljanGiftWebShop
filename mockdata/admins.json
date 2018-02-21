@@ -1,0 +1,10 @@
+[
+  {"username": "filip", "email": "filip@baljangavan.se", "password": "filip1337"},
+  {"username": "felicia", "email": "felicia@baljangavan.se", "password": "felicia1337"},
+  {"username": "herman", "email": "herman@baljangavan.se", "password": "herman1337"},
+  {"username": "eirik", "email": "eirik@baljangavan.se", "password": "eirik1337"},
+  {"username": "marcus", "email": "marcus@baljangavan.se", "password": "marcus1337"},
+  {"username": "sophie", "email": "sophie@baljangavan.se", "password": "sophie1337"},
+  {"username": "tomas", "email": "tomas@baljangavan.se", "password": "tomas1337"},
+  {"username": "joakim", "email": "joakim@baljangavan.se", "password": "joakim1337"}
+]

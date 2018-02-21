@@ -7,3 +7,4 @@ Skapad av:
 - Sophie Lindberg
 - Herman Svensk
 - Marcus Olsson
+- Tomas Gudmundsson

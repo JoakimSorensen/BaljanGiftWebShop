@@ -23,3 +23,8 @@ def about():
 def users():
     all_users = User.query.all()
     return render_template('users.html', users=all_users)
+
+
+@app.route('/products')
+def products():
+    return render_template('products.html')

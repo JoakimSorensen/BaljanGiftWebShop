@@ -13,9 +13,7 @@ def _create_admin_users():
         username = admin_dict['username']
         email = admin_dict['email']
         password = admin_dict['password']
-        user = User(username=username, email=email)
+        user = User.add(username=username, email=email)
         user.set_password(password)
         if username == "joakim":
-            user.is_admin = True
-        db.session.add(user)
-        db.session.commit()
+            user.set_admin(True)

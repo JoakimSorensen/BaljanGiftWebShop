@@ -65,7 +65,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.username.data).first()
 
-        if not user: 
+        if not user:
             user = User.query.filter_by(username=form.username.data).first()
 
         if not user or not user.check_password(form.password.data):
@@ -74,9 +74,9 @@ def login():
             return render_template('adminlogin.html', title='Sign In', form=form)
         elif not user.is_admin:
             abort(401)
-        login_user(user, remember=form.remember_me.data)	
+        login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
-		
+
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
@@ -99,5 +99,4 @@ def page_not_found(error):
     Custom view for unauthorized 401.
     Returns the 401-unauth.html.
     """
-        return render_template('401-unauth.html'), 401
-
+    return render_template('401-unauth.html'), 401

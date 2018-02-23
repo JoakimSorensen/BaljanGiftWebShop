@@ -1,5 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+.footer {
+    border-top: 1.5px dashed #787878;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #FFFFFF;
+}
+
+ul {
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+}
+
+ul li a{
+    font-family: "Helvetica Neue";
+    color: black;
+}
+
+</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,6 +81,27 @@
 				{% endif %}
             </ul>
         </nav>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" align="left">
+                    <h4>Mer info</h4>
+                        <ul class="footer-list">
+                            <li><a>Vilka är vi?</a></li>
+                            <li><a>Vanliga frågor</a></li>
+                            <li><a>Kontakt</a></li>
+                        </ul>
+                </div>
+                <div class="col-lg-6" align="left">
+                    <h4>Om Baljangåvan</h4>
+                        <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver göra är att skriva mottagarens nummer så löser vi resten. </p>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 {% endblock %}
 

@@ -100,3 +100,9 @@ def page_not_found(error):
     Returns the 401-unauth.html.
     """
     return render_template('401-unauth.html'), 401
+
+
+@app.route('/products')
+def products():
+    return render_template('products.html')
+

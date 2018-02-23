@@ -28,3 +28,9 @@ def users():
 @app.route('/products')
 def products():
     return render_template('products.html')
+
+
+@app.route('/card')
+def card():
+    return render_template('card.html')
+

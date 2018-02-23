@@ -1,3 +1,4 @@
+from server import db
 from server.models import User
 from utils import load_json_from_relative_path
 
@@ -11,4 +12,8 @@ def _create_admin_users():
     for admin_dict in admin_dicts:
         username = admin_dict['username']
         email = admin_dict['email']
-        User.add(username=username, email=email)
+        password = admin_dict['password']
+        user = User.add(username=username, email=email)
+        user.set_password(password)
+        if username == "joakim":
+            user.set_admin(True)

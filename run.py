@@ -13,6 +13,7 @@ def reset_db():
     # Create mock data in the database
     mockdata.create_mock_data()
 
+
 if __name__ == '__main__':
     reset_db()
     app.run(debug=True, use_reloader=True)

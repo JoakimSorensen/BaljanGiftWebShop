@@ -21,6 +21,82 @@ ul li a{
     font-family: "Helvetica Neue";
     color: black;
 }
+</style>
+
+<style>
+body {
+  margin: 0;
+  background: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+header{
+    background: #55d6aa;
+}
+
+header::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.logo{
+    float: left;
+    padding: 10px 0;
+}
+
+nav{
+    float: right;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li{
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 23px;
+    position: relative;
+}
+
+nav a{
+    color: #032a44;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+nav a:hover{
+    color: #000;
+
+}
+
+nav a:before{
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: #032a44;
+    position: absolute;
+    top: 0;
+    width: 0%;
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before{
+    width: 100%;
+
+}
+
+
 
 </style>
 <head>
@@ -31,7 +107,7 @@ ul li a{
     <title>Bootstrap 101 Template</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="products.css">
@@ -52,10 +128,11 @@ ul li a{
 {% block nav %}
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
-    <div class="masthead">
-        <h3 class="text-muted">Baljangåvan</h3>
+    <div class="container">
+        <h3>Baljangåvan</h3>
+
         <nav>
-            <ul class="nav nav-justified">
+            <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
                     <a data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
@@ -67,16 +144,16 @@ ul li a{
 				</li>
 				{% else %}
 				<li>
-                    <a data-toggle="tooltip" title="Se våra produkter" href="#" class="nav-button"
+                    <a href="#" class="nav-button"
                        id="products">Produkter</a>
                 </li>
                 <li>
-                    <a data-toggle="tooltip" title="Se våra användare" href="#" class="nav-button"
+                    <a href="#" class="nav-button"
                        id="users">Användare</a>
                 </li>
                 <li>
-                    <a data-toggle="tooltip" title="Få mer information om oss" href="#" class="nav-button"
-                       id="about">Om</a>
+                    <a href="#" class="nav-button"
+                       id="about">Om Baljangåvan</a>
                 </li>
 				{% endif %}
             </ul>

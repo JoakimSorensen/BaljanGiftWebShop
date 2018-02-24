@@ -37,7 +37,8 @@ body {
 }
 
 header{
-    background: #55d6aa;
+    height: 100px;
+    background: #38A7E5;
 }
 
 header::after{
@@ -49,6 +50,7 @@ header::after{
 .logo{
     float: left;
     padding: 10px 0;
+
 }
 
 nav{
@@ -64,34 +66,34 @@ nav ul{
 nav li{
     display: inline-block;
     margin-left: 70px;
-    padding-top: 23px;
+    padding-top: 40px;
     position: relative;
 }
 
-nav a{
-    color: #032a44;
+nav b{
+    color: #E7008A;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 18px;
 }
-nav a:hover{
+nav b:hover{
     color: #000;
-
+    cursor: pointer;
 }
 
-nav a:before{
+nav b:before{
     content: '';
     display: block;
     height: 5px;
     width: 100%;
-    background-color: #032a44;
+    background-color: #E7008A;
     position: absolute;
-    top: 0;
+    top: 20px;
     width: 0%;
     transition: all ease-in-out 250ms;
 }
 
-nav a:hover::before{
+nav b:hover::before{
     width: 100%;
 
 }
@@ -128,8 +130,9 @@ nav a:hover::before{
 {% block nav %}
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
+    <header>
     <div class="container">
-        <h3>Baljangåvan</h3>
+        <img src="static/baljan_rosa_text.png" alt="logo" class="logo" style="width: 250px"/>
 
         <nav>
             <ul>
@@ -139,26 +142,27 @@ nav a:hover::before{
                        id="admin-users">Användare</a>
 				</li>
                 <li>
-					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}" 
+					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
 						class="nav-button" id="back">Tillbaka</a>
 				</li>
 				{% else %}
 				<li>
-                    <a href="#" class="nav-button"
-                       id="products">Produkter</a>
+                    <b href="#" class="nav-button" style="color: #E7008A"
+                       id="products">Produkter</b>
                 </li>
                 <li>
-                    <a href="#" class="nav-button"
-                       id="users">Användare</a>
+                    <b href="#" class="nav-button" style="color: #E7008A"
+                       id="users">Användare</b>
                 </li>
                 <li>
-                    <a href="#" class="nav-button"
-                       id="about">Om Baljangåvan</a>
+                    <b href="#" class="nav-button" style="color: #E7008A"
+                       id="about">Om Baljangåvan</b>
                 </li>
 				{% endif %}
             </ul>
         </nav>
     </div>
+    </header>
 
     <div class="footer">
         <div class="container">

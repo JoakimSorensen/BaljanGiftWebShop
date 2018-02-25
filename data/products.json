@@ -1,0 +1,6 @@
+[
+  {"id": "1", "name": "Chokladboll", "price": "6", "allergen": "gluten", "image": "test"},
+  {"id": "2", "name": "Kaffe", "price": "8", "allergen": "", "image": "test"},
+  {"id": "3", "name": "Te", "price": "8", "allergen": "", "image": "test"},
+  {"id": "4", "name": "Biskvi", "price": "6", "allergen": "madel", "image": "test"}
+]

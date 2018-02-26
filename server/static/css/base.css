@@ -1,0 +1,106 @@
+.footer {
+    border-top: 3px solid #E7008A;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background: #38A7E5;
+
+}
+
+ul {
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+}
+
+ul li a{
+    font-family: "Helvetica Neue";
+    color: black;
+}
+
+ul li a:hover{
+    cursor:pointer;
+}
+
+body {
+  margin: 0;
+  background: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+header{
+    height: 80px;
+    background: #38A7E5;
+    border-bottom: 3px solid #E7008A;
+}
+
+header::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.logo_text{
+    float: left;
+    padding: 10px 0;
+
+}
+
+.logo_gift{
+    float: left;
+    padding: 15px 0;
+
+}
+
+nav{
+    float: right;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li{
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 40px;
+    position: relative;
+}
+
+nav b{
+    color: #E7008A;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+nav b:hover{
+    color: #000;
+    cursor: pointer;
+}
+
+nav b:before{
+    content: '';
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: #E7008A;
+    position: absolute;
+    top: 27px;
+    width: 0%;
+    transition: all ease-in-out 250ms;
+}
+
+nav b:hover::before {
+    width: 100%;
+}
+

@@ -16,23 +16,21 @@ def create_data():
 def _create_products():
     product_dicts = load_json_from_relative_path(__file__, 'products.json')
     for product_dict in product_dicts:
-        id = product_dict['id']
         name = product_dict['name']
         price = product_dict['price']
         allergen = product_dict['allergen']
         image = product_dict['image']
-        Product.add(id=id, name=name, price=price, allergen=allergen, image=image)
+        Product.add(name=name, price=price, allergen=allergen, image=image)
 
 
 def _create_gift_boxes():
     boxes_dicts = load_json_from_relative_path(__file__, 'gift_boxes.json')
     for box_dict in boxes_dicts:
-        id = box_dict['id']
         name = box_dict['name']
         price = box_dict['price']
         description = box_dict['description']
         image = box_dict['image']
-        GiftBox.add(id=id, name=name, price=price, description=description, image=image)
+        GiftBox.add(name=name, price=price, description=description, image=image)
 
 
 def _create_credit_card():
@@ -55,8 +53,7 @@ def _create_box_content():
 def _create_payment():
     payment_dicts = load_json_from_relative_path(__file__, 'payments.json')
     for payment_dict in payment_dicts:
-        id = payment_dict['id']
         time = payment_dict['time']
         credit_card = payment_dict['credit_card']
         swish_nr = payment_dict['swish_nr']
-        Payment.add(id=id, time=time, credit_card=credit_card, swish_nr=swish_nr)
+        Payment.add(time=time, credit_card=credit_card, swish_nr=swish_nr)

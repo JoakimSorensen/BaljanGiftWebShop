@@ -3,7 +3,6 @@ from server.models.shared_model import SharedModel
 
 
 class Order(SharedModel):
-    id = db.Column(db.Integer, index=True, unique=True)
     date = db.Column(db.TIMESTAMP, index=True)
     price = db.Column(db.Integer, index=True)
     status = db.Column(db.Interval, index=True)
@@ -12,6 +11,6 @@ class Order(SharedModel):
     giftbox = db.Column(db.Integer, index=True, unique=True)
 
     mutable_fields = set()
-    required_fields = {id, date, price, status, receiver, buyer, giftbox}
+    required_fields = {date, price, status, receiver, buyer, giftbox}
     excluded_fields = set()
 

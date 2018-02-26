@@ -3,7 +3,6 @@ from server.models.shared_model import SharedModel
 
 
 class Payment(SharedModel):
-    id = db.Column(db.Text, index=True, primary_key=True)
     time = db.Column(db.Text, index=True)
     credit_card = db.Column(db.BigInteger)
     swish_nr = db.Column(db.BigInteger)

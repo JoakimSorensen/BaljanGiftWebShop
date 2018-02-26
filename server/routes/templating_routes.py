@@ -106,3 +106,7 @@ def page_not_found(error):
 def products():
     return render_template('products.html')
 
+
+@app.route('/guide')
+def guide():
+    return render_template('guide.html')

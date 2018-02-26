@@ -2,7 +2,7 @@ from server import db
 from server.models.shared_model import SharedModel
 
 
-class Buyer(SharedModel):
+class Order(SharedModel):
     id = db.Column(db.Integer, index=True, unique=True)
     date = db.Column(db.TIMESTAMP, index=True)
     price = db.Column(db.Integer, index=True)

@@ -1,8 +1,7 @@
-$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('#card1').on('click', handleColClick)
-});
+    $('.col-md-4').on('click', handleColClick);
+
 
 function handleColClick(event) {
 

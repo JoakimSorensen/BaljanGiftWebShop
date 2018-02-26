@@ -1,15 +1,6 @@
-<div>
-    Detta är en sida om produkter.
-</div>
 
 <style>
 
-
-
-    .col-md-4 { transition: all .2s ease-in-out;}
-.col-md-4:hover { transform: scale(1.1); }
-
-img {border-radius: 10px;}
 
 .hovereffect {
   width: 100%;
@@ -95,16 +86,19 @@ img {border-radius: 10px;}
 
 
 <div class="container" id="list-container">
+    <div>
+    Detta är en sida om produkter.
+</div>
+
   <h2>Alla produkter</h2>
   <div class="row">
-    <div class="col-md-4" data-toggle="tooltip" title="Se våra produkter">
-      <div class="hovereffect" >
-          <a id="card1" target="_blank">
+    <div class="col-md-4">
+      <div class="hovereffect">
+          <a href="#" target="_blank">
             <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
+             <div class="overlay" onclick="return false">
                  <h2>Mer info!</h2>
                     <p>
-                        <a href="#"></a>
                     </p>
              </div>
           </a>
@@ -116,8 +110,9 @@ img {border-radius: 10px;}
       <div class="col-md-4">
       <div class="hovereffect">
           <a href="#" target="_blank">
-            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
+            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="thefront" style="width:100%">
+
+             <div class="overlay" onclick="return false">
                  <h2>Mer info!</h2>
                     <p>
                         <a href="#"></a>
@@ -133,7 +128,7 @@ img {border-radius: 10px;}
       <div class="hovereffect">
           <a href="#" target="_blank">
             <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
+             <div class="overlay" onclick="return false">
                  <h2>Mer info!</h2>
                     <p>
                         <a href="#"></a>
@@ -145,8 +140,6 @@ img {border-radius: 10px;}
             <p>Gott kaffe.</p>
         </div>
     </div>
-
-
   </div>
 
   <div class="row">
@@ -154,7 +147,7 @@ img {border-radius: 10px;}
       <div class="hovereffect">
           <a href="#" target="_blank">
             <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
+             <div class="overlay" onclick="return false">
                  <h2>Mer info!</h2>
                     <p>
                         <a href="#"></a>
@@ -170,7 +163,7 @@ img {border-radius: 10px;}
          <div class="hovereffect">
           <a href="#" target="_blank">
             <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
+             <div class="overlay" onclick="return false">
                  <h2>Mer info!</h2>
                     <p>
                         <a href="#"></a>
@@ -187,7 +180,7 @@ img {border-radius: 10px;}
         <div class="hovereffect">
             <a href="#" target="_blank">
                 <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-                 <div class="overlay">
+                 <div class="overlay" onclick="return false">
                  <h2>Mer info!</h2>
                     <p>
                         <a href="#"></a>
@@ -204,7 +197,24 @@ img {border-radius: 10px;}
   </div>
 </div>
 
-<script src="/static/js/products.js"></script>
+<script>
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.overlay').on('click', handleColClick);
 
 
+    function handleColClick(event) {
 
+    var url = "/" + "card";
+    $('#list-container').load(url, function() {
+        bindEventHandlers(event)
+    });
+    }
+
+    function bindEventHandlers(event) {
+    // TODO: Bind the proper event handlers based on which "module" is activated, based on the event or something
+    bindUserClick();
+    }
+
+
+</script>

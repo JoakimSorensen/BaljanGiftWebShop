@@ -1,75 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-    box-sizing: border-box;
-}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
 
-/* Style the header */
-.header {
-    background-color: #f1f1f1;
-    padding: 30px;
-    text-align: center;
-    font-size: 35px;
-}
+        }
 
-/* Create three equal columns that floats next to each other */
-.column {
-    float: left;
-    width: 33.33%;
-    padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
-}
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
 
-/* Style the footer */
-.footer {
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-}
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-    .column {
-        width: 100%;
-    }
-}
-</style>
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        .header {
+            padding: 10px;
+            text-align: center;
+            font-size: 35px;
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            font-size: 18px;
+
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Style the footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<h2>CSS Template using Float</h2>
-<p></p>
-<p></p>
-
-<div class="header">
-  <h2>Header</h2>
-</div>
-
 <div class="row">
-  <div class="column" style="background-color:#aaa;">Column1</div>
-  <div class="column" style="background-color:#bbb;">Column2</div>
-  <div class="column" style="background-color:#ccc;">Column3</div>
+    <div class="column">
+        <div class="header">
+            <h2>Chokladboll med kaffe</h2>
+        </div>
+        Baljans storsäljare Chokladbollen med en kopp kaffe. Blabla bla bla blalbalbla Blabla bla bla blalbalbla Blabla
+        bla bla blalbalbla Blabla. Blabla bla bla blalbalbla Blabla bla bla blalbalbla Blabla bla bla blalbalbla
+        <label class="container">Glutenfri
+            <input type="checkbox" checked="checked" onclick="return false;">
+            <span class="checkmark"></span>
+        </label>
+
+        <label class="container">Laktosfri
+            <input type="checkbox" onclick="return false;">
+            <span class="checkmark"></span>
+        </label>
+
+
+    </div>
+
+    <div class="column">
+        <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image"
+             style="width:80%">
+
+
+    </div>
+
 </div>
 
-<div class="footer">
-  <p>Footer</p>
-</div>
 
 </body>
 </html>

@@ -11,7 +11,6 @@ class Order(SharedModel):
     buyer = db.Column(db.Integer, index=True, unique=True)
     giftbox = db.Column(db.Integer, index=True, unique=True)
 
-
     mutable_fields = set()
     required_fields = {id, date, price, status, receiver, buyer, giftbox}
     excluded_fields = set()

@@ -51,6 +51,7 @@ def _create_box_content():
         product = content_dict['product']
         BoxContent.add(gift_box=gift_box, product=product)
 
+
 def _create_payment():
     payment_dicts = load_json_from_relative_path(__file__, 'payments.json')
     for payment_dict in payment_dicts:

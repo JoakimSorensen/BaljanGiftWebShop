@@ -1,11 +1,13 @@
 .footer {
     border-top: 3px solid #E7008A;
     position: relative;
+    width: 100%;
     right: 0;
     bottom: 0;
     left: 0;
     padding: 1rem;
     background: #38A7E5;
+    display: inline-block;
 
 }
 

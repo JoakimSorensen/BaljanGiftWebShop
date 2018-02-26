@@ -2,13 +2,15 @@
 <html lang="en">
 <style>
 .footer {
-    border-top: 1.5px dashed #787878;
-    position: relative;
+    border-top: 3px solid #E7008A;
+    position: absolute;
+    height: 120px;
     right: 0;
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background-color: #FFFFFF;
+    background: #38A7E5;
+
 }
 
 ul {
@@ -20,6 +22,10 @@ ul {
 ul li a{
     font-family: "Helvetica Neue";
     color: black;
+}
+
+ul li a:hover{
+    cursor:pointer;
 }
 </style>
 
@@ -39,6 +45,7 @@ body {
 header{
     height: 80px;
     background: #38A7E5;
+    border-bottom: 3px solid #E7008A;
 }
 
 header::after{
@@ -161,11 +168,7 @@ nav b:hover::before{
                 </li>
                 <li>
                     <b href="#" class="nav-button" style="color: #E7008A"
-                       id="users">Användare</b>
-                </li>
-                <li>
-                    <b href="#" class="nav-button" style="color: #E7008A"
-                       id="about">Om Baljangåvan</b>
+                       id="users">Såhär funkar det!</b>
                 </li>
 				{% endif %}
             </ul>

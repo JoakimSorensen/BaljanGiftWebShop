@@ -3,7 +3,7 @@ from server.models.shared_model import SharedModel
 
 
 class CreditCard(SharedModel):
-    card_number = db.Column(db.Text, index=True, unique=True)
+    card_number = db.Column(db.BigInteger, index=True, unique=True)
     card_holder = db.Column(db.Text, index=True)
     cvc = db.Column(db.Integer, index=True)
 

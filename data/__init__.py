@@ -2,6 +2,7 @@ from server.models import Product
 from server.models import GiftBox
 from server.models import CreditCard
 from server.models import BoxContent
+from server.models import Payment
 from utils import load_json_from_relative_path
 
 
@@ -49,3 +50,12 @@ def _create_box_content():
         gift_box = content_dict['gift_box']
         product = content_dict['product']
         BoxContent.add(gift_box=gift_box, product=product)
+
+def _create_payment():
+    payment_dicts = load_json_from_relative_path(__file__, 'payments.json')
+    for payment_dict in payment_dicts:
+        id = payment_dict['id']
+        time = payment_dict['time']
+        credit_card = payment_dict['credit_card']
+        swish_nr = payment_dict['swish_nr']
+        Payment.add(id=id, time=time, credit_card=credit_card, swish_nr=swish_nr)

@@ -1,5 +1,11 @@
 from server import db
+
 from server.models.shared_model import SharedModel
+
+
+class GiftBoxProduct(SharedModel):
+    gift_box_id = db.Column(db.Integer, db.ForeignKey('gift_box.id'), primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
 
 
 class GiftBox(SharedModel):
@@ -12,3 +18,4 @@ class GiftBox(SharedModel):
     required_fields = {name, price}
     excluded_fields = set()
 
+    products = db.relationship(GiftBoxProduct, primaryjoin='GiftBox.id==GiftBoxProduct.gift_box_id')

@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <link rel="stylesheet" type="text/css" href="products.css">
+
+
     <!-- Latest compiled and minified JavaScript -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -30,6 +33,20 @@
         <h3 class="text-muted">Baljangåvan</h3>
         <nav>
             <ul class="nav nav-justified">
+				{% if not current_user.is_anonymous %}
+                <li>
+                    <a data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
+                       id="admin-users">Användare</a>
+				</li>
+                <li>
+					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}" 
+						class="nav-button" id="back">Tillbaka</a>
+				</li>
+				{% else %}
+				<li>
+                    <a data-toggle="tooltip" title="Se våra produkter" href="#" class="nav-button"
+                       id="products">Produkter</a>
+                </li>
                 <li>
                     <a data-toggle="tooltip" title="Se våra användare" href="#" class="nav-button"
                        id="users">Användare</a>
@@ -38,6 +55,7 @@
                     <a data-toggle="tooltip" title="Få mer information om oss" href="#" class="nav-button"
                        id="about">Om</a>
                 </li>
+				{% endif %}
             </ul>
         </nav>
     </div>
@@ -58,5 +76,6 @@
         crossorigin="anonymous"></script>
 <script src="/static/js/base.js"></script>
 <script src="/static/js/users.js"></script>
+
 </body>
 </html>

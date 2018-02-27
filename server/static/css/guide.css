@@ -19,7 +19,8 @@
         width: 256px;
     }
 
-   .middle {
-        vertical-align: middle;
-        height: 256px;
+   .rect {
+       height: 88px;
+       position: absolute;
+       width: 50px;
     }

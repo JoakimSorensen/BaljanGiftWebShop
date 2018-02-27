@@ -1,5 +1,0 @@
-[
-  {"card_number": "1234", "card_holder": "Felleman", "cvc": "111"},
-  {"card_number": "2345", "card_holder": "Dalleman", "cvc": "112"},
-  {"card_number": "3456", "card_holder": "Felledalle", "cvc": "911"}
-]

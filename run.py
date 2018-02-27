@@ -1,5 +1,4 @@
 import mockdata
-import data
 from server import app
 
 
@@ -13,9 +12,6 @@ def reset_db():
 
     # Create mock data in the database
     mockdata.create_mock_data()
-
-    # Create data in the database
-    data.create_data()
 
 
 if __name__ == '__main__':

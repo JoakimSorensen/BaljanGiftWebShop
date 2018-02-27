@@ -1,7 +1,0 @@
-[
-  {"id": "1", "name": "Klassikern", "price": "39", "description": "Det självklara valet", "image": "test"},
-  {"id": "2", "name": "Vardagslyx", "price": "59", "description": "När det ska vara extra allt", "image": "test"},
-  {"id": "3", "name": "Hjärtegull", "price": "49", "description": "Den perfekta kärlekshälsningen", "image": "test"},
-  {"id": "4", "name": "Jul i stugorna", "price": "39", "description": "Julfeeling på låda", "image": "test"},
-  {"id": "5", "name": "Tantvarning", "price": "49", "description": "Biskvier och te, bara bokklubben som saknas", "image": "test"}
-]

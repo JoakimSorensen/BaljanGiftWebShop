@@ -4,8 +4,13 @@ from server.models.shared_model import SharedModel
 
 
 class GiftBoxProduct(SharedModel):
-    gift_box_id = db.Column(db.Integer, db.ForeignKey('gift_box.id'), primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), primary_key=True)
+
+    gift_box_id = db.Column(db.Integer, db.ForeignKey('gift_box.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+
+    mutable_fields = set()
+    required_fields = set()
+    excluded_fields = set()
 
 
 class GiftBox(SharedModel):

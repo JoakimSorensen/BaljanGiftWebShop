@@ -5,64 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
-        .container {
-            display: block;
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            font-size: 22px;
-
-        }
-
-        /* Hide the browser's default checkbox */
-        .container input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        /* Create a custom checkbox */
         .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 25px;
-            width: 25px;
-            background-color: #eee;
-        }
+            display: inline-block;
 
-        /* When the checkbox is checked, add a blue background */
-        .container input:checked ~ .checkmark {
-            background-color: #2196F3;
-        }
-
-        /* Create the checkmark/indicator (hidden when not checked) */
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-
-        }
-
-        /* Show the checkmark when checked */
-        .container input:checked ~ .checkmark:after {
+        &:after {
+            /*Add another block-level blank space*/
+            content: '';
             display: block;
 
-        }
+            /*Make it a small rectangle so the border will create an L-shape*/
+            width: 3px;
+            height: 6px;
 
-        /* Style the checkmark/indicator */
-        .container .checkmark:after {
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            -webkit-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
+            /*Add a white border on the bottom and left, creating that 'L' */
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+
+            /*Rotate the L 45 degrees to turn it into a checkmark*/
             transform: rotate(45deg);
-            background-color: #7CFC00;
+        }
 
         }
 
@@ -121,15 +82,9 @@
         </div>
         Baljans storsäljare Chokladbollen med en kopp kaffe. Blabla bla bla blalbalbla Blabla bla bla blalbalbla Blabla
         bla bla blalbalbla Blabla. Blabla bla bla blalbalbla Blabla bla bla blalbalbla Blabla bla bla blalbalbla
-        <label class="container">Glutenfri
-            <input type="checkbox" checked="checked" onclick="return false;">
-            <span class="checkmark"></span>
-        </label>
+        <p>&#10003; Glutenfri
+        <p>&#10005; Laktosfri
 
-        <label class="container">Laktosfri
-            <input type="checkbox" onclick="return false;">
-            <span class="checkmark"></span>
-        </label>
 
 
     </div>
@@ -142,6 +97,18 @@
     </div>
 
 </div>
+<form action="your-server-side-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-amount="10"
+    data-name="Stripe.com"
+    data-description="Example charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-zip-code="true">
+  </script>
+</form>
 
 
 </body>

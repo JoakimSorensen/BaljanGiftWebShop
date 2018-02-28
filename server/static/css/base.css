@@ -62,6 +62,18 @@ header::after{
 
 }
 
+.logo_text:hover{
+    cursor: pointer;
+}
+
+.logo_gift:hover{
+    cursor: pointer;
+}
+
+img:hover{
+    cursor:pointer;
+}
+
 nav{
     float: right;
 }

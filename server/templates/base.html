@@ -33,7 +33,17 @@
         <h3 class="text-muted">Baljangåvan</h3>
         <nav>
             <ul class="nav nav-justified">
+				{% if not current_user.is_anonymous %}
                 <li>
+                    <a data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
+                       id="admin-users">Användare</a>
+				</li>
+                <li>
+					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
+						class="nav-button" id="back">Tillbaka</a>
+				</li>
+				{% else %}
+				<li>
                     <a data-toggle="tooltip" title="Se våra produkter" href="#" class="nav-button"
                        id="products">Produkter</a>
                 </li>
@@ -45,10 +55,7 @@
                     <a data-toggle="tooltip" title="Få mer information om oss" href="#" class="nav-button"
                        id="about">Om</a>
                 </li>
-                <li>
-                    <a data-toggle="tooltip" title="Se våra produkter" href="#" class="nav-button"
-                       id="card">Card</a>
-                </li>
+				{% endif %}
             </ul>
         </nav>
     </div>

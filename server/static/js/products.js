@@ -1,18 +1,20 @@
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('.col-md-4').on('click', handleColClick);
+    $('.overlay').on('click', handleColClick);
 
 
-function handleColClick(event) {
+    function handleColClick(event) {
+        var url = "/" + "card";
 
-    var url = "/" + "card";
-    $('#list-container').load(url, function() {
-        bindEventHandlers(event)
-    });
-}
+        $('#list-container').fadeOut(function () {
+            $('#list-container').load(url, function () {
+                bindEventHandlers(event);
+                $('#list-container').fadeIn();
+            });
+        });
+    }
 
-function bindEventHandlers(event) {
-    // TODO: Bind the proper event handlers based on which "module" is activated, based on the event or something
-    bindUserClick();
-}
-
+    function bindEventHandlers(event) {
+        // TODO: Bind the proper event handlers based on which "module" is activated, based on the event or something
+        bindUserClick();
+    }

@@ -71,7 +71,7 @@ h2.label{
   -webkit-filter: brightness(0.6);
 }
 
-.hovereffect h2.label{
+.hovereffect h2{
   text-transform: uppercase;
   text-align: center;
   position: relative;
@@ -91,7 +91,7 @@ h2.label{
   text-transform: uppercase;
   text-align: center;
   position: relative;
-  font-size: 30px !important;
+  font-size: 50px !important;
   background-color: transparent;
   color: #FFF;
   padding-top: 5px;
@@ -102,7 +102,6 @@ h2.label{
   -webkit-transform: translate3d(0,-100%,0);
   transform: translate3d(0,-100%,0);
 }
-
 
 
 .hovereffect a, .hovereffect p {

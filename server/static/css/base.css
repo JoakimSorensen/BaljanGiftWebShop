@@ -1,6 +1,7 @@
 .footer {
     border-top: 3px solid #E7008A;
-    position: relative;
+    position: absolute !important;
+    height: 100px;
     width: 100%;
     right: 0;
     bottom: 0;
@@ -26,15 +27,15 @@ ul li a:hover{
     cursor:pointer;
 }
 
-body {
+html, body {
   margin: 0;
-  background: #222;
   font-family: 'Work Sans', sans-serif;
   font-weight: 300;
+  background-color: #FFFFFF;
 }
 
 .container{
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 

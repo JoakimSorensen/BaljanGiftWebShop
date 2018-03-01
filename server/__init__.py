@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 login = LoginManager(app)
 login.login_view = 'login'
 
-csrf = CSRFProtect()
-csrf.init_app(app)
+#csrf = CSRFProtect()
+#csrf.init_app(app)
 
 from server import routes, models

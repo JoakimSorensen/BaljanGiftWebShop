@@ -36,13 +36,12 @@ function presentUserData(userData) {
 
         $("<button>Redigera användare</button>").on("click", function(e) {
             e.preventDefault();
-			var url = "/edit_user";
-			$.post(url, {id : userData['id']}, function(status) {
-				alert("In post with status: " + status);
-			});
-			$("#main-container").load(url, {id : userData['id']}, function(status) {
-				alert("Status: " + status);
-			});
+			$('#user-div').empty();
+			presentUserDataEditable(userData);
+			//var url = "/edit_user";
+			//$("#main-container").load(url, {id : userData['id']}, function(status) {
+			//	alert("Status: " + status);
+			//});
         }).appendTo("#btn-div");
 
         $("<button>Tillbaka till användarlistan</button>").on("click", function(e) {
@@ -50,6 +49,39 @@ function presentUserData(userData) {
             $("#user-div").empty();
             $("#user-list").show();
   		}).appendTo("#btn-div");
+}
+
+function presentUserDataEditable(userData) {
+    var items = [];
+        $.each( userData, function( key, val ) {
+			if(key != "created" && key != "modified") {
+            	items.push( "<label id='" + key + "'>"+ key + ": </label>" );
+				if(key == "email") {
+					items.push("<input type=\"email\" class=\"form-control\" id=" + key + "-input"
+						+ " value=" + val + ">");
+				} else if(key == "is_admin") {
+					items.push("<input type=\"checkbox\" id=" + key + "-input"
+						+ " value=" + val + "><br>");
+				
+				} else {
+					items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input"  
+						+ " value=" + val + ">");
+				}
+			}
+        });
+
+        $( "<ul/>", {
+            "class": "user-info",
+            html: items.join( "" )
+        }).appendTo( "#user-div" );
+
+        $("<button>Spara ändringar</button>").on("click", function(e) {
+            e.preventDefault();
+			alert("Ändringar sparade!");
+			$("#admin-users").click();
+            $("#user-div").empty();
+            $("#user-list").show();
+        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
 }
 
 $.delete = function(url, data, callback, type){

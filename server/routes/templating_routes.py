@@ -62,6 +62,32 @@ def add_user():
     return render_template('edituser.html', form=form)
 
 
+@app.route('/edit-user', methods=['GET', 'POST'])
+@login_required
+def edit_user():
+    if request.method == "POST":
+        user_id = request.form.get('id')
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        is_admin = request.form.get('is_admin')
+        user = User.query.filter_by(id=user_id).first()
+        if username: 
+            print("change username")
+            user.set_username(username)
+        if email: 
+            print("change email")
+            user.set_email(email)
+        if password: 
+            print("change password")
+            user.set_password(password)
+        if is_admin is not None:
+            print("is_admin = ", is_admin)
+            user.set_admin(bool(is_admin))
+        return redirect(url_for('admin'))
+    return render_template('edituser.html', form=form)
+
+
 @app.route('/delete_user', methods=['DELETE'])
 @login_required
 def delete_user():
@@ -139,42 +165,4 @@ def forbidden(error):
     Returns the 403-forbidden.html.
     """
     return render_template('403-forbidden.html'), 403
-
-
-#--------------------------------------#
-#----------- Depricated ---------------#
-#--------------------------------------#
-@app.route('/edit_user', methods=['GET', 'POST'])
-@login_required
-def edit_user():
-    """
-    Does not work due to
-    usrf bug
-    """
-    form = EditUserForm()
-    print(form.errors)
-
-    if form.is_submitted():
-        print("submitted")
-    if form.validate():
-        print("valid")
-    print(form.errors)
-    
-    if request.method == "POST":
-        user = User.query.filter_by(id=request.form.get('id')).first()
-        print("user_id = ", user.id)
-        if form.validate_on_submit():
-            print("in on validate")
-            if form.username.data: 
-                print("change username")
-                user.set_username(form.username.data)
-            if form.email.data: 
-                print("change email")
-                user.set_email(form.email.data)
-            if form.password.data: 
-                print("change password")
-                user.set_password(form.password.data)
-            user.set_admin(form.is_admin.data)
-            return redirect(url_for('admin'))
-    return render_template('edituser.html', form=form)
 

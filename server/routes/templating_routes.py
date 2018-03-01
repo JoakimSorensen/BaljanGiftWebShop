@@ -109,10 +109,9 @@ def products():
     return render_template('products.html', GiftBoxes=all_giftboxes)
 
 
-@app.route('/card/<int:giftbox_id>')
-def card(giftbox_id):
-    giftbox = GiftBox.query.get(giftbox_id)
-
-    return render_template('card.html', giftbox=giftbox)
+@app.route('/card/<int:gift_box_id>')
+def card(gift_box_id):
+    gift_box = GiftBox.query.get(gift_box_id)
+    return render_template('card.html', gift_box=gift_box)
 
 

@@ -107,6 +107,16 @@ def products():
     return render_template('products.html')
 
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
 @app.route('/guide')
 def guide():
     return render_template('guide.html')

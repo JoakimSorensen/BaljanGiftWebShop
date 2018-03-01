@@ -1,0 +1,6 @@
+[
+  {"name": "Chokladboll", "price": "6", "allergen": "gluten", "image": "/images/products/chokladboll.png"},
+  {"name": "Kaffe", "price": "8", "allergen": "", "image": "/images/products/kaffe.png"},
+  {"name": "Te", "price": "8", "allergen": "", "image": "/images/products/te.png"},
+  {"name": "Biskvi", "price": "6", "allergen": "madel", "image": "/images/products/biskvi.png"}
+]

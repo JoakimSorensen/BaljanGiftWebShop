@@ -115,3 +115,17 @@ def card(gift_box_id):
     return render_template('card.html', gift_box=gift_box)
 
 
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/guide')
+def guide():
+    return render_template('guide.html')

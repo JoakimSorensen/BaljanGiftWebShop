@@ -5,7 +5,6 @@
 
 }
 
-
 .hovereffect {
     transition: transform .2s; /* Animation */
 }
@@ -77,6 +76,23 @@
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
 }
+
+.hovereffect h2.price{
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    font-size: 50px !important;
+    background-color: transparent;
+    color: #FFF;
+    padding-top: 5px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: translate3d(0,-100%,0);
+    transform: translate3d(0,-100%,0);
+}
+
 
 .hovereffect a, .hovereffect p {
     color: #FFF;

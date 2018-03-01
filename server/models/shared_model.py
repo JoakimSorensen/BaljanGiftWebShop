@@ -56,7 +56,7 @@ class SharedModel(db.Model):
             func(instance, previous_state)
 
     # Common required fields
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     created = db.Column(db.DateTime(timezone=True), default=db.func.now())
     modified = db.Column(db.DateTime(timezone=True), default=db.func.now(), onupdate=db.func.now())
 

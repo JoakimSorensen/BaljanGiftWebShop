@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Klassikern",
+    "price": "39",
+    "description": "Det självklara valet",
+    "image": "/images/giftboxes/klassikern.png",
+    "products": ["Chokladboll", "Kaffe"]
+  },
+  {
+    "name": "Vardagslyx",
+    "price": "59",
+    "description": "När det ska vara extra allt",
+    "image": "/images/giftboxes/vardagslyx.png",
+    "products": ["Chokladboll", "Kaffe", "Te", "Biskvi"]
+  },
+  {
+    "name": "Hjärtegull",
+    "price": "49",
+    "description": "Den perfekta kärlekshälsningen",
+    "image": "/images/giftboxes/hjartegull.png",
+    "products": ["Chokladboll", "Biskvi"]
+  },
+  {
+    "name": "Jul i stugorna",
+    "price": "39",
+    "description": "Julfeeling på låda",
+    "image": "/images/giftboxes/julistugorna.png",
+    "products": ["Te"]
+  },
+  {
+    "name": "Tantvarning",
+    "price": "49",
+    "description": "Biskvier och te, bara bokklubben som saknas",
+    "image": "tantvarning.png",
+    "products": ["Te", "Biskvi"]
+  }
+]

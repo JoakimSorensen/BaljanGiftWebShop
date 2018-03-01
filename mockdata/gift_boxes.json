@@ -3,35 +3,42 @@
     "name": "Klassikern",
     "price": "39",
     "description": "Det självklara valet",
-    "image": "/images/giftboxes/klassikern.png",
+    "image": "http://open.imagebank.lantmannen.com/Lantmannen%20Unibake/pimimage/6224.jpg",
     "products": ["Chokladboll", "Kaffe"]
   },
   {
     "name": "Vardagslyx",
     "price": "59",
     "description": "När det ska vara extra allt",
-    "image": "/images/giftboxes/vardagslyx.png",
+    "image": "http://www.delicato.se/produkt/big/13_x.jpg",
     "products": ["Chokladboll", "Kaffe", "Te", "Biskvi"]
   },
   {
     "name": "Hjärtegull",
     "price": "49",
     "description": "Den perfekta kärlekshälsningen",
-    "image": "/images/giftboxes/hjartegull.png",
+    "image": "https://mittkok.expressen.se/wp-content/uploads/2017/01/kaffe-wp-1-636x358.jpg",
     "products": ["Chokladboll", "Biskvi"]
   },
   {
     "name": "Jul i stugorna",
     "price": "39",
     "description": "Julfeeling på låda",
-    "image": "/images/giftboxes/julistugorna.png",
+    "image": "https://files.allers.se/uploads/2016/11/varfor-heter-det-pepparkaka.jpg",
     "products": ["Te"]
   },
   {
     "name": "Tantvarning",
     "price": "49",
     "description": "Biskvier och te, bara bokklubben som saknas",
-    "image": "tantvarning.png",
+    "image": "http://cdn3.cdnme.se/4630687/9-3/citronbiskvier_mm_023_570291c3ddf2b30af5f8d134.jpg",
+    "products": ["Te", "Biskvi"]
+  },
+  {
+    "name": "Inga gränser",
+    "price": "49",
+    "description": "Biskvier och te, bara bokklubben som saknas",
+    "image": "http://media.renewmag.se/2014/03/semla-.jpg",
     "products": ["Te", "Biskvi"]
   }
 ]

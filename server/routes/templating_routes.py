@@ -8,7 +8,7 @@ from server import app
 # Templating routes
 # --–---------------------
 from server.forms import AdminLoginForm
-from server.models import User
+from server.models import User, Product, GiftBox
 
 
 @app.route('/')
@@ -104,11 +104,16 @@ def page_not_found(error):
 
 @app.route('/products')
 def products():
-    return render_template('products.html')
+    all_giftboxes = GiftBox.query.all()
+
+    return render_template('products.html', GiftBoxes=all_giftboxes)
 
 
-@app.route('/card')
-def card():
-    return render_template('card.html')
+@app.route('/card/<int:giftbox_id>')
+def card(giftbox_id):
+    print("now we here")
+    giftbox = GiftBox.query.get(giftbox_id)
+
+    return render_template('card.html', giftbox=giftbox)
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,13 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="products.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="static/css/products.css">
+    <link rel="stylesheet" type="text/css" href="static/css/guide.css" >
+
 
 
     <!-- Latest compiled and minified JavaScript -->
@@ -24,41 +28,43 @@
 
     <![endif]-->
 </head>
-<body>
+<body style="background-color: #FFFFFF">
 
 {% block nav %}
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
-    <div class="masthead">
-        <h3 class="text-muted">Baljangåvan</h3>
+    <header>
+    <div class="container">
+        <img src="static/baljan_rosa_text.png" alt="logo_text" class="logo_text" id="products" style="width: 250px"/>
+        <img src="static/paket3.png" alt="logo_gift" class="logo_gift" id="products" style="width: 50px"/>
+
+
         <nav>
-            <ul class="nav nav-justified">
+            <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
                     <a data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
                        id="admin-users">Användare</a>
 				</li>
                 <li>
-					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}" 
+					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
 						class="nav-button" id="back">Tillbaka</a>
 				</li>
 				{% else %}
 				<li>
-                    <a data-toggle="tooltip" title="Se våra produkter" href="#" class="nav-button"
-                       id="products">Produkter</a>
+                    <b href="#" class="nav-button" style="color: #E7008A"
+                       id="products">Produkter</b>
                 </li>
                 <li>
-                    <a data-toggle="tooltip" title="Se våra användare" href="#" class="nav-button"
-                       id="users">Användare</a>
-                </li>
-                <li>
-                    <a data-toggle="tooltip" title="Få mer information om oss" href="#" class="nav-button"
-                       id="about">Om</a>
+                    <b href="#" class="nav-button" style="color: #E7008A"
+                       id="guide">Såhär funkar det!</b>
                 </li>
 				{% endif %}
             </ul>
         </nav>
     </div>
+    </header>
+
 {% endblock %}
 
 <div class="container" id="main-container">
@@ -67,6 +73,25 @@
     {% endblock %}
 
 </div> <!-- /container -->
+
+<div class="footer" style="position: fixed">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" align="left">
+                    <h4>Mer info</h4>
+                        <ul class="footer-list">
+                            <li><a href="#" class="nav-button" id="about">Vilka är vi?</a></li>
+                            <li><a href="#" class="nav-button" id="faq">Vanliga frågor</a></li>
+                            <li><a href="#" class="nav-button" id="contact">Kontakt</a></li>
+                        </ul>
+                </div>
+                <div class="col-lg-6" align="left">
+                    <h4>Om Baljangåvan</h4>
+                        <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver göra är att skriva mottagarens nummer så löser vi resten. </p>
+                </div>
+            </div>
+        </div>
+ </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

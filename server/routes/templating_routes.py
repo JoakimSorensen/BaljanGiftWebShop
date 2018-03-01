@@ -73,16 +73,12 @@ def edit_user():
         is_admin = request.form.get('is_admin')
         user = User.query.filter_by(id=user_id).first()
         if username: 
-            print("change username")
             user.set_username(username)
         if email: 
-            print("change email")
             user.set_email(email)
         if password: 
-            print("change password")
             user.set_password(password)
         if is_admin is not None:
-            print("is_admin = ", is_admin)
             user.set_admin(bool(is_admin))
         return redirect(url_for('admin'))
     return render_template('edituser.html', form=form)
@@ -144,6 +140,21 @@ def logout_admin():
 @app.route('/products')
 def products():
     return render_template('products.html')
+
+
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/guide')
+def guide():
+    return render_template('guide.html')
 
 
 #--------------------------------------#

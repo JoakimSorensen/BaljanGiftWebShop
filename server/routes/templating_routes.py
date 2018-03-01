@@ -62,7 +62,7 @@ def add_user():
     return render_template('edituser.html', form=form)
 
 
-@app.route('/edit-user', methods=['GET', 'POST'])
+@app.route('/edit_user', methods=['GET', 'POST'])
 @login_required
 def edit_user():
     if request.method == "POST":

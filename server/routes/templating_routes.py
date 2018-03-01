@@ -117,3 +117,6 @@ def contact():
     return render_template('contact.html')
 
 
+@app.route('/guide')
+def guide():
+    return render_template('guide.html')

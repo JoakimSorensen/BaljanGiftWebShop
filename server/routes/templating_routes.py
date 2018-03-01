@@ -8,7 +8,7 @@ from server import app
 # Templating routes
 # --–---------------------
 from server.forms import AdminLoginForm
-from server.models import User
+from server.models import User, Product, GiftBox
 
 
 @app.route('/')
@@ -86,7 +86,7 @@ def login():
 @app.route('/logout')
 def logout_admin():
     """
-    Logout the current_user, 
+    Logout the current_user,
     used for administrator.
     """
     logout_user()
@@ -104,7 +104,16 @@ def page_not_found(error):
 
 @app.route('/products')
 def products():
-    return render_template('products.html')
+    all_giftboxes = GiftBox.query.all()
+
+    return render_template('products.html', GiftBoxes=all_giftboxes)
+
+
+@app.route('/card/<int:gift_box_id>')
+def card(gift_box_id):
+    gift_box = GiftBox.query.get(gift_box_id)
+    return render_template('card.html', gift_box=gift_box)
+
 
 
 @app.route('/faq')

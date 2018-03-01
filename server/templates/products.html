@@ -1,110 +1,28 @@
+<link href="/static/css/products.css" rel="stylesheet" type="text/css">
 
-<div class="container" style="width: 100%">
-  <h2>Alla produkter</h2>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="hovereffect">
-          <a href="#" target="_blank">
-            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
-                 <h2>Mer info!</h2>
-                    <p>
-                        <a href="#"></a>
-                    </p>
-             </div>
-          </a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="hovereffect">
-          <a href="#" target="_blank">
-            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
-                 <h2>Mer info!</h2>
-                    <p>
-                        <a href="#"></a>
-                    </p>
-             </div>
-          </a>
-      </div>
-        <div class="caption">
-            <p style="color: #FFFFFF">Gott kaffe.</p>
-        </div>
-    </div>
-     <div class="col-md-4">
-      <div class="hovereffect">
-          <a href="#" target="_blank">
-            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
-                 <h2>Mer info!</h2>
-                    <p>
-                        <a href="#"></a>
-                    </p>
-             </div>
-          </a>
-      </div>
-        <div class="caption">
-            <p style="color: #FFFFFF">Gott kaffe.</p>
-        </div>
+
+<div class="container" id="list-container">
+    <div>
+        Detta är en sida om produkter.
     </div>
 
-
-  </div>
-
-  <div class="row">
-      <div class="col-md-4">
-      <div class="hovereffect">
-          <a href="#" target="_blank">
-            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
-                 <h2>Mer info!</h2>
-                    <p>
-                        <a href="#"></a>
-                    </p>
-             </div>
-          </a>
-      </div>
-        <div class="caption">
-            <p style="color: #FFFFFF">Gott kaffe.</p>
+    <h2 style="margin-bottom: 30px">Alla produkter</h2>
+    {% for giftbox in GiftBoxes %}
+        <div class="col-md-4" onclick="loadcard('{{giftbox.id}}')" >
+            <div class="hovereffect">
+                <a href="#" target="_blank">
+                    <img src={{ giftbox.image }} alt="Lights" class="image"
+                         style="width:350px; height:250px; margin-bottom: 30px;border-radius: 25px;">
+                    <div class="overlay" onclick="return false">
+                        <h2>{{ giftbox.name }}</h2>
+                        <p>
+                        </p>
+                    </div>
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="col-md-4">
-         <div class="hovereffect">
-          <a href="#" target="_blank">
-            <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-             <div class="overlay">
-                 <h2>Mer info!</h2>
-                    <p>
-                        <a href="#"></a>
-                    </p>
-             </div>
-          </a>
-      </div>
-        <div class="caption">
-            <p style="color: #FFFFFF">Gott kaffe.</p>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="hovereffect">
-            <a href="#" target="_blank">
-                <img src="http://www.2chai.com/wp-content/uploads/2018/01/coffee.jpg" alt="Lights" class="image" style="width:100%">
-                 <div class="overlay">
-                 <h2>Mer info!</h2>
-                    <p>
-                        <a href="#"></a>
-                    </p>
-             </div>
-            </a>
-        </div>
-        <div class="caption">
-            <p style="color: #FFFFFF">Gott kaffe.</p>
-        </div>
-      </div>
-
-
-  </div>
+    {% endfor %}
+</div>
 </div>
 
-
-
+<script src="/static/js/products.js"></script>

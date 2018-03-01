@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('.nav-button').on('click', handleNavBarClick)
+    $('.nav-button').on('click', handleNavBarClick);
 });
 
 function handleNavBarClick(event) {

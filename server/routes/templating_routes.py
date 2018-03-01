@@ -7,7 +7,7 @@ from server import app
 # --–---------------------
 # Templating routes
 # --–---------------------
-from server.forms import AdminLoginForm
+from server.forms import AdminLoginForm, EditUserForm, RegistrationForm
 from server.models import User
 
 
@@ -28,7 +28,7 @@ def users():
     return render_template('users.html', users=all_users)
 
 
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
     """
@@ -48,6 +48,61 @@ def admin_users():
     """
     all_users = User.query.all()
     return render_template('users.html', users=all_users)
+
+
+@app.route('/edit_user', methods=['GET', 'POST'])
+@login_required
+def edit_user():
+    form = EditUserForm()
+    print(form.errors)
+
+    if form.is_submitted():
+        print("submitted")
+    if form.validate():
+        print("valid")
+    print(form.errors)
+    
+    print("yahuuu")
+    print("Request method: ", request.method, "\nRequest args: ", request.args)
+    if request.method == "POST":
+        user = User.query.filter_by(id=request.args.get('id')).first()
+        print("user_id = ", user.id)
+        if form.validate_on_submit():
+            print("in on validate")
+            if form.username.data: 
+                print("change username")
+                user.set_username(form.username.data)
+            if form.email.data: 
+                print("change email")
+                user.set_email(form.email.data)
+            if form.password.data: 
+                print("change password")
+                user.set_password(form.password.data)
+            user.set_admin(form.is_admin.data)
+            return redirect(url_for('admin'))
+    return render_template('edituser.html', form=form)
+
+
+@app.route('/add_user', methods=['GET', 'POST'])
+@login_required
+def add_user():
+    form = RegistrationForm()
+    print("user_id = ", user_id)
+    if form.validate_on_submit():
+        user = User.add(username=form.username.data, email=form.email.data, is_admin=form.is_admin.data)
+        user.set_password(form.password.data)
+        return redirect(url_for('admin'))
+    return render_template('edituser.html', form=form)
+
+
+@app.route('/delete_user', methods=['DELETE'])
+@login_required
+def delete_user():
+    user_id = request.form.get('id')
+    if not int(user_id) == current_user.id:
+        User.delete(user_id)
+        return "success"
+    return abort(403)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -93,6 +148,14 @@ def logout_admin():
     return redirect(url_for('index'))
 
 
+@app.route('/products')
+def products():
+    return render_template('products.html')
+
+
+#--------------------------------------#
+#----------- Error Handlers -----------#
+#--------------------------------------#
 @app.errorhandler(401)
 def page_not_found(error):
     """
@@ -102,7 +165,11 @@ def page_not_found(error):
     return render_template('401-unauth.html'), 401
 
 
-@app.route('/products')
-def products():
-    return render_template('products.html')
+@app.errorhandler(403)
+def forbidden(error):
+    """
+    Custom view for forbidden 403.
+    Returns the 403-forbidden.html.
+    """
+    return render_template('403-forbidden.html'), 403
 

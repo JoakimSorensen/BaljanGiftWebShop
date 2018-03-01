@@ -15,7 +15,7 @@ class User(UserMixin, SharedModel):
     password_hash = db.Column(db.Text)
     is_admin = db.Column(db.Boolean, default=False)
 
-    mutable_fields = {password_hash, is_admin}
+    mutable_fields = {username, email, password_hash, is_admin}
     required_fields = {username, email}
     excluded_fields = {password_hash}
 
@@ -28,4 +28,12 @@ class User(UserMixin, SharedModel):
 
     def set_admin(self, is_admin):
         self.is_admin = is_admin
+        db.session.commit()
+
+    def set_username(self, username):
+        self.username = username
+        db.session.commit()
+
+    def set_email(self, email):
+        self.email = email
         db.session.commit()

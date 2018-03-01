@@ -2,10 +2,6 @@
 
 
 <div class="container" id="list-container">
-    <div>
-        Detta är en sida om produkter.
-    </div>
-
     <h2 style="margin-bottom: 30px">Alla produkter</h2>
     {% for giftbox in GiftBoxes %}
         <div class="col-md-4" onclick="loadcard('{{giftbox.id}}')" >

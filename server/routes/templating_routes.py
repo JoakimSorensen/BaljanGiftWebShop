@@ -111,7 +111,6 @@ def products():
 
 @app.route('/card/<int:giftbox_id>')
 def card(giftbox_id):
-    print("now we here")
     giftbox = GiftBox.query.get(giftbox_id)
 
     return render_template('card.html', giftbox=giftbox)

@@ -43,12 +43,16 @@
             <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
-                    <a data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
-                       id="admin-users">Användare</a>
+                    <b data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
+                       style="color: #E7008A" id="admin-users">Användare</b>
 				</li>
                 <li>
-					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
-						class="nav-button" id="back">Tillbaka</a>
+                    <b data-toggle="tooltip" title="Redigera gåvor" href="#" class="nav-button"
+                       style="color: #E7008A" id="admin-giftboxs">Gåvor</b>
+				</li>
+                <li>
+					<b data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
+						class="nav-button" style="color: #E7008A" id="logout">Tillbaka</b>
 				</li>
 				{% else %}
 				<li>

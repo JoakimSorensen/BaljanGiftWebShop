@@ -1,6 +1,6 @@
 from flask import jsonify
 from server import app
-from server.models import User
+from server.models import User, GiftBox
 
 
 @app.route('/api/v1/users')
@@ -17,3 +17,5 @@ def user_with_id(id_):
         return jsonify(user.to_dict())
 
     return jsonify({"error": "No user with ID: {id_}".format(id_=id_)}), 404
+
+

@@ -9,6 +9,7 @@ from server import app
 # --–---------------------
 from server.forms import AdminLoginForm, EditUserForm, RegistrationForm
 from server.models import User
+from server.models import User, Product, GiftBox
 
 
 @app.route('/')
@@ -29,6 +30,7 @@ def users():
 
 
 @app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin/', methods=['GET', 'POST'])
 @login_required
 def admin():
     """
@@ -48,6 +50,17 @@ def admin_users():
     """
     all_users = User.query.all()
     return render_template('users.html', users=all_users)
+
+
+@app.route('/admin-giftboxs')
+@login_required
+def amdin_giftboxs():
+    """
+    Returns a list of all
+    giftbox in admin_gigiftbox.html.
+    """
+    all_giftbox = GiftBox.query.all()
+    return render_template('admin_giftbox.html', giftboxs=all_giftbox)
 
 
 @app.route('/add_user', methods=['GET', 'POST'])
@@ -130,7 +143,7 @@ def login():
 @app.route('/logout')
 def logout_admin():
     """
-    Logout the current_user, 
+    Logout the current_user,
     used for administrator.
     """
     logout_user()
@@ -139,7 +152,16 @@ def logout_admin():
 
 @app.route('/products')
 def products():
-    return render_template('products.html')
+    all_giftboxes = GiftBox.query.all()
+
+    return render_template('products.html', GiftBoxes=all_giftboxes)
+
+
+@app.route('/card/<int:gift_box_id>')
+def card(gift_box_id):
+    gift_box = GiftBox.query.get(gift_box_id)
+    return render_template('card.html', gift_box=gift_box)
+
 
 
 @app.route('/faq')

@@ -3,35 +3,35 @@
     "name": "Afternoon Tea",
     "price": "29",
     "description": "Det självklara valet",
-    "image": "static/products/afternoon_tea.jpg",
+    "image": "static/products/afternoon_tea.jpeg",
     "products": ["Te"]
   },
   {
     "name": "Klassiker",
     "price": "39",
     "description": "När det ska vara extra allt",
-    "image": "static/products/klassiker.jpg",
+    "image": "static/products/klassiker.jpeg",
     "products": ["Dammsugare", "Kaffe"]
   },
   {
     "name": "Hjärtegull",
     "price": "49",
     "description": "Den perfekta kärlekshälsningen",
-    "image": "static/products/dejt.jpg",
+    "image": "static/products/dejt.jpeg",
     "products": ["Chokladboll", "Biskvi"]
   },
   {
     "name": "Freddes favorit",
     "price": "39",
     "description": "När man är sötsugen",
-    "image": "static/products/freddes_favvo.jpg",
+    "image": "static/products/freddes_favvo.jpeg",
     "products": ["Dammsugare", "Chokladboll"]
   },
   {
     "name": "Tentapluggaren",
     "price": "49",
     "description": "Håll ut",
-    "image": "static/products/tentapluggaren.jpg",
+    "image": "static/products/tentapluggaren.jpeg",
     "products": ["Te", "Biskvi"]
   },
   {

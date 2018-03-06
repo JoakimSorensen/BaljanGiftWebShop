@@ -7,7 +7,8 @@ from server import app
 # --–---------------------
 # Templating routes
 # --–---------------------
-from server.forms import AdminLoginForm
+from server.forms import AdminLoginForm, EditUserForm, RegistrationForm
+from server.models import User
 from server.models import User, Product, GiftBox
 
 
@@ -29,6 +30,7 @@ def users():
 
 
 @app.route('/admin')
+@app.route('/admin/')
 @login_required
 def admin():
     """
@@ -48,6 +50,61 @@ def admin_users():
     """
     all_users = User.query.all()
     return render_template('users.html', users=all_users)
+
+
+@app.route('/admin-giftboxs')
+@login_required
+def amdin_giftboxs():
+    """
+    Returns a list of all
+    giftbox in admin_gigiftbox.html.
+    """
+    all_giftbox = GiftBox.query.all()
+    return render_template('admin_giftbox.html', giftboxs=all_giftbox)
+
+
+@app.route('/add_user', methods=['GET', 'POST'])
+@login_required
+def add_user():
+    form = RegistrationForm()
+    print("user_id = ", user_id)
+    if form.validate_on_submit():
+        user = User.add(username=form.username.data, email=form.email.data, is_admin=form.is_admin.data)
+        user.set_password(form.password.data)
+        return redirect(url_for('admin'))
+    return render_template('edituser.html', form=form)
+
+
+@app.route('/edit_user', methods=['GET', 'POST'])
+@login_required
+def edit_user():
+    if request.method == "POST":
+        user_id = request.form.get('id')
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        is_admin = request.form.get('is_admin')
+        user = User.query.filter_by(id=user_id).first()
+        if username: 
+            user.set_username(username)
+        if email: 
+            user.set_email(email)
+        if password: 
+            user.set_password(password)
+        if is_admin is not None:
+            user.set_admin(bool(is_admin))
+        return redirect(url_for('admin'))
+    return render_template('edituser.html', form=form)
+
+
+@app.route('/delete_user', methods=['DELETE'])
+@login_required
+def delete_user():
+    user_id = request.form.get('id')
+    if not int(user_id) == current_user.id:
+        User.delete(user_id)
+        return "success"
+    return abort(403)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -93,15 +150,6 @@ def logout_admin():
     return redirect(url_for('index'))
 
 
-@app.errorhandler(401)
-def page_not_found(error):
-    """
-    Custom view for unauthorized 401.
-    Returns the 401-unauth.html.
-    """
-    return render_template('401-unauth.html'), 401
-
-
 @app.route('/products')
 def products():
     all_giftboxes = GiftBox.query.all()
@@ -129,3 +177,25 @@ def contact():
 @app.route('/guide')
 def guide():
     return render_template('guide.html')
+
+
+#--------------------------------------#
+#----------- Error Handlers -----------#
+#--------------------------------------#
+@app.errorhandler(401)
+def page_not_found(error):
+    """
+    Custom view for unauthorized 401.
+    Returns the 401-unauth.html.
+    """
+    return render_template('401-unauth.html'), 401
+
+
+@app.errorhandler(403)
+def forbidden(error):
+    """
+    Custom view for forbidden 403.
+    Returns the 403-forbidden.html.
+    """
+    return render_template('403-forbidden.html'), 403
+

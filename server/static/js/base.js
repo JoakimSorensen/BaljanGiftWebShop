@@ -1,12 +1,10 @@
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
+    $('.nav-button').on('click', handleNavBarClick);
     $('.nav-button').on('click', handleNavBarClick)
     $('.logo_text').on('click', handleNavBarClick)
     $('.logo_gift').on('click', handleNavBarClick)
-
-
-
 });
 
 function handleNavBarClick(event) {

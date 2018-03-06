@@ -30,7 +30,6 @@ def users():
 
 
 @app.route('/admin')
-@app.route('/admin/')
 @login_required
 def admin():
     """

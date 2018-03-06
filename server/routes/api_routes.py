@@ -1,6 +1,6 @@
 from flask import jsonify
 from server import app
-from server.models import User, GiftBox
+from server.models import User
 
 
 @app.route('/api/v1/users')

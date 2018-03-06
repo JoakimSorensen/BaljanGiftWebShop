@@ -1,37 +1,37 @@
 [
   {
-    "name": "Klassikern",
-    "price": "39",
+    "name": "Afternoon Tea",
+    "price": "29",
     "description": "Det självklara valet",
-    "image": "http://open.imagebank.lantmannen.com/Lantmannen%20Unibake/pimimage/6224.jpg",
-    "products": ["Chokladboll", "Kaffe"]
+    "image": "static/products/afternoon_tea.jpg",
+    "products": ["Te"]
   },
   {
-    "name": "Vardagslyx",
-    "price": "59",
+    "name": "Klassiker",
+    "price": "39",
     "description": "När det ska vara extra allt",
-    "image": "http://www.delicato.se/produkt/big/13_x.jpg",
-    "products": ["Chokladboll", "Kaffe", "Te", "Biskvi"]
+    "image": "static/products/klassiker.jpg",
+    "products": ["Dammsugare", "Kaffe"]
   },
   {
     "name": "Hjärtegull",
     "price": "49",
     "description": "Den perfekta kärlekshälsningen",
-    "image": "https://mittkok.expressen.se/wp-content/uploads/2017/01/kaffe-wp-1-636x358.jpg",
+    "image": "static/products/dejt.jpg",
     "products": ["Chokladboll", "Biskvi"]
   },
   {
-    "name": "Jul i stugorna",
+    "name": "Freddes favorit",
     "price": "39",
-    "description": "Julfeeling på låda",
-    "image": "https://files.allers.se/uploads/2016/11/varfor-heter-det-pepparkaka.jpg",
-    "products": ["Te"]
+    "description": "När man är sötsugen",
+    "image": "static/products/freddes_favvo.jpg",
+    "products": ["Dammsugare", "Chokladboll"]
   },
   {
-    "name": "Tantvarning",
+    "name": "Tentapluggaren",
     "price": "49",
-    "description": "Biskvier och te, bara bokklubben som saknas",
-    "image": "http://cdn3.cdnme.se/4630687/9-3/citronbiskvier_mm_023_570291c3ddf2b30af5f8d134.jpg",
+    "description": "Håll ut",
+    "image": "static/products/tentapluggaren.jpg",
     "products": ["Te", "Biskvi"]
   },
   {

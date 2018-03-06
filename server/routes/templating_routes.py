@@ -29,8 +29,8 @@ def users():
     return render_template('users.html', users=all_users)
 
 
-@app.route('/admin', methods=['GET', 'POST'])
-@app.route('/admin/', methods=['GET', 'POST'])
+@app.route('/admin')
+@app.route('/admin/')
 @login_required
 def admin():
     """

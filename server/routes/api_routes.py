@@ -1,6 +1,6 @@
-from flask import jsonify
+from flask import jsonify, request
 from server import app
-from server.models import User, GiftBox
+from server.models import User
 
 
 @app.route('/api/v1/users')
@@ -8,6 +8,17 @@ def all_users():
     users = User.query.all()
     users_dicts = [user.to_dict() for user in users]
     return jsonify(users_dicts)
+
+
+@app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
+def payment_completed():
+    return jsonify(
+        {
+            "status": "ok",
+            "message": "Payment accepted",
+            "data": dict(request.args)
+        }
+    )
 
 
 @app.route('/api/v1/users/<int:id_>')

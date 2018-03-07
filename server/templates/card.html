@@ -153,7 +153,7 @@
         <p>Fyll i följande formulär:</p>
 
     <div class="container">
-        <form action="/action_page.php">
+        <form action="/api/v1/payment_completed">
             <div class="row">
                 <div class="col-25">
                     <label for="name">Ditt namn</label>
@@ -183,7 +183,7 @@
                 </div>
             </div>
             <div class="row" float="right">
-                <form action="your-server-side-code" method="POST">
+                <form action="/api/v1/payment_completed" method="POST">
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"

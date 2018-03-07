@@ -11,9 +11,26 @@ function handleColClick(event) {
     });
 }
 
-function loadcard(ide) {
-    $('#list-container').fadeOut(function () {
+$('#myModal').on('show.bs.modal', function (e) {
+     ide = e.relatedTarget.id;
+    $('.modal-body').load('/card/' + ide);
+});
 
+/*
+Lär ej behövas detta:
+*/
+/*function loadcard(ide) {
+    $('#list-container').fadeOut(function () {
+$('#myModal').on('show.bs.modal', function (e) {
+     ide = e.relatedTarget.id;
+    $('.modal-body').load('/card/' + ide);
+});
+
+/*
+Lär ej behövas detta:
+*/
+/*function loadcard(ide) {
+    $('#list-container').fadeOut(function () {
         $('#list-container').load('/card/' + ide, function () {
             $('#list-container').fadeIn();
         });

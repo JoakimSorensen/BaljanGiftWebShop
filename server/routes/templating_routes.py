@@ -1,3 +1,4 @@
+import datetime
 from flask import abort, render_template, redirect, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -9,7 +10,7 @@ from server import app
 # --–---------------------
 from server.forms import AdminLoginForm, EditUserForm, RegistrationForm
 from server.models import User
-from server.models import User, Product, GiftBox
+from server.models import User, Order, Product, GiftBox
 
 
 @app.route('/')
@@ -135,6 +136,13 @@ def card(gift_box_id):
     gift_box = GiftBox.query.get(gift_box_id)
     return render_template('card.html', gift_box=gift_box)
 
+
+@app.route('/order/<int:order_id>')
+def order_view(order_id):
+    order = Order.query.get(order_id)
+    status = order.date + order.status
+    print("status: ", status)
+    return render_template('order.html', order=order)
 
 
 @app.route('/faq')

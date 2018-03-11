@@ -29,8 +29,7 @@ def users():
     return render_template('users.html', users=all_users)
 
 
-@app.route('/admin')
-@app.route('/admin/')
+@app.route('/baljan', strict_slashes=False)
 @login_required
 def admin():
     """
@@ -75,36 +74,10 @@ def add_user():
     return render_template('edituser.html', form=form)
 
 
-@app.route('/edit_user', methods=['GET', 'POST'])
+@app.route('/edit_user')
 @login_required
-def edit_user():
-    if request.method == "POST":
-        user_id = request.form.get('id')
-        username = request.form.get('username')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        is_admin = request.form.get('is_admin')
-        user = User.query.filter_by(id=user_id).first()
-        if username: 
-            user.set_username(username)
-        if email: 
-            user.set_email(email)
-        if password: 
-            user.set_password(password)
-        if is_admin is not None:
-            user.set_admin(bool(is_admin))
-        return redirect(url_for('admin'))
+def render_edit_user():
     return render_template('edituser.html', form=form)
-
-
-@app.route('/delete_user', methods=['DELETE'])
-@login_required
-def delete_user():
-    user_id = request.form.get('id')
-    if not int(user_id) == current_user.id:
-        User.delete(user_id)
-        return "success"
-    return abort(403)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -135,7 +108,7 @@ def login():
         next_page = request.args.get('next')
 
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
+            next_page = url_for('admin')
         return redirect(next_page)
     return render_template('adminlogin.html', title='Sign In', form=form)
 

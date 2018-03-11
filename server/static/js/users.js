@@ -28,7 +28,7 @@ function presentUserData(userData) {
 
         $("<button>Ta bort användare</button>").on("click", function(e) {
             e.preventDefault();
-			$.delete("/delete_user", {id : userData['id']});
+			$.delete("api/v1/delete_user", {id : userData['id']});
 			$("#admin-users").click();
             $("#user-div").empty();
             $("#user-list").show();
@@ -81,7 +81,7 @@ function presentUserDataEditable(userData) {
 			if($("#password-input").val() != $("#password2-input").val()) {
 				alert("Lösenorden måste stämma överens!");
 			} else {
-				$.post("/edit_user", 
+				$.post("api/v1/edit_user", 
 					{id: userData['id'], 
 						username: $("#username-input").val(), 
 						email: $("#email-input").val(), 

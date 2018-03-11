@@ -134,6 +134,7 @@
         </div>
         <p>{{ gift_box.description }}</p>
         <p> Pris: {{ gift_box.price }}kr </p>
+		<p> Allergen: {{ gift_box.allergen }} </p>
         <p>&#10003; Glutenfri
         <p>&#10005; Laktosfri
 
@@ -154,12 +155,35 @@
 
     <div class="container">
         <form action="/api/v1/payment_completed">
+            <div hidden class="row">
+                <div class="col-75">
+					<input type="text" id="giftbox" name="giftbox" value={{gift_box.id}}>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-25">
                     <label for="name">Ditt namn</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="name" name="name" placeholder="Ditt namn">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="rec-name">Mottagarens namn</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="rec-name" name="rec-name" placeholder="Mottagarens namn">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="liuid">Mottagarens LiU ID</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="liuid" name="liuid" placeholder="Mottagarens LiU ID">
                 </div>
             </div>
 
@@ -192,7 +216,7 @@
                             data-description="Example charge"
                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                             data-locale="auto"
-                            data-zip-code="true">
+                            data-zip-code="false">
                     </script>
                 </form>
             </div>

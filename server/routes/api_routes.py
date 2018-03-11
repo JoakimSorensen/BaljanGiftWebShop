@@ -1,7 +1,9 @@
-from flask import jsonify, request
+import datetime
+
+from flask import jsonify, redirect, request, url_for
 from flask_login import current_user, login_required
 from server import app
-from server.models import User
+from server.models import Buyer, GiftBox, Receiver, Order, User
 
 
 @app.route('/api/v1/users')
@@ -13,13 +15,18 @@ def all_users():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
-    return jsonify(
-        {
-            "status": "ok",
-            "message": "Payment accepted",
-            "data": dict(request.args)
-        }
-    )
+    buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
+    receiver = Receiver.add(name=request.values["rec-name"], phone=request.values["phonenumber"], 
+                            liu_id=request.values["liuid"])
+    giftbox = GiftBox.query.get(request.values["giftbox"])
+    order = Order.add(price=giftbox.price, 
+                        giftbox_id = giftbox.id, 
+                        date=datetime.datetime.now(), 
+                        status=datetime.timedelta(days=14), 
+                        buyer_id=buyer.id, 
+                        receiver_id=receiver.id)
+    return redirect(url_for('order_view', order_id=order.id))
+    #return jsonify(dict(request.args))
 
 
 @app.route('/api/v1/users/<int:id_>')

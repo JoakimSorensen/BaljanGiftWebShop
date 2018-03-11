@@ -1,3 +1,4 @@
+import datetime
 from flask import abort, render_template, redirect, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -139,7 +140,8 @@ def card(gift_box_id):
 @app.route('/order/<int:order_id>')
 def order_view(order_id):
     order = Order.query.get(order_id)
-    return render_template('order.html', order=order)
+    is_active = (datetime.datetime.now() < (order.date + order.status))
+    return render_template('order.html', order=order, is_active=is_active)
 
 
 @app.route('/faq')

@@ -140,9 +140,8 @@ def card(gift_box_id):
 @app.route('/order/<int:order_id>')
 def order_view(order_id):
     order = Order.query.get(order_id)
-    status = order.date + order.status
-    print("status: ", status)
-    return render_template('order.html', order=order)
+    is_active = (datetime.datetime.now() < (order.date + order.status))
+    return render_template('order.html', order=order, is_active=is_active)
 
 
 @app.route('/faq')

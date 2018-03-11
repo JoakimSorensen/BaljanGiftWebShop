@@ -35,7 +35,7 @@ Lär ej behövas detta:
             $('#list-container').fadeIn();
         });
     })
-}
+}*/
 
 function bindEventHandlers(event) {
     // TODO: Bind the proper event handlers based on which "module" is activated, based on the event or something

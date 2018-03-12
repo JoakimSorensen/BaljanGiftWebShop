@@ -63,11 +63,21 @@ def amdin_giftboxs():
     return render_template('admin_giftbox.html', giftboxs=all_giftbox)
 
 
+@app.route('/admin-orders')
+@login_required
+def amdin_orders():
+    """
+    Returns a list of all
+    orders in admin_order.html.
+    """
+    all_orders = Order.query.all()
+    return render_template('admin_order.html', orders=all_orders)
+
+
 @app.route('/add_user', methods=['GET', 'POST'])
 @login_required
 def add_user():
     form = RegistrationForm()
-    print("user_id = ", user_id)
     if form.validate_on_submit():
         user = User.add(username=form.username.data, email=form.email.data, is_admin=form.is_admin.data)
         user.set_password(form.password.data)

@@ -1,0 +1,15 @@
+<script src="/static/js/admin_order.js"></script>
+<div id="order-list" class="list-group">
+    {% for order in orders %}
+        <a href="#" data-order-id="{{ order.id }}" class="list-group-item list-group-item-action flex-column align-items-start order">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ order.date }}</h5>
+				<small>{{ order.price }}</small><br>
+                <small>{{ order.status }} kr</small>
+                <small>{{ order.buyer }} kr</small>
+                <small>{{ order.receiver }} kr</small>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+<div id="order-div"></div>

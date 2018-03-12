@@ -1,55 +1,55 @@
 function bindUserClick() {
-    $('.giftbox').on('click', handleUserClick);
+    $('.order').on('click', handleUserClick);
 }
 
 function handleUserClick(event) {
-    var giftbox_id = $(this).data('giftbox-id');
-    fetchUser(giftbox_id, presentUserData);
+    var order_id = $(this).data('order-id');
+    fetchUser(order_id, presentUserData);
 }
 
-function fetchUser(giftbox_id, completionHandler) {
-    var url = "api/v1/giftbox/" + giftbox_id;
+function fetchUser(order_id, completionHandler) {
+    var url = "api/v1/order/" + order_id;
     $.getJSON(url, function(data) {
         completionHandler(data)
     });
 }
 
-function presentUserData(giftboxData) {
-    $( "#giftbox-list" ).hide();
+function presentUserData(orderData) {
+    $( "#order-list" ).hide();
     var items = [];
-        $.each( giftboxData, function( key, val ) {
+        $.each( orderData, function( key, val ) {
             items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
         });
 
         $( "<ul/>", {
-            "class": "giftbox-info",
+            "class": "order-info",
             html: items.join( "" )
-        }).appendTo( "#giftbox-div" );
+        }).appendTo( "#order-div" );
 
-        $("<button>Ta bort gåva</button>").on("click", function(e) {
+        $("<button>Ta bort order</button>").on("click", function(e) {
             e.preventDefault();
-			$.delete("api/v1/delete_giftbox", {id : giftboxData['id']});
-			$("#admin-giftboxs").click();
-            $("#giftbox-div").empty();
-            $("#giftbox-list").show();
-        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");
+			$.delete("api/v1/delete_order", {id : orderData['id']});
+			$("#admin-orders").click();
+            $("#order-div").empty();
+            $("#order-list").show();
+        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
 
-        $("<button>Redigera gåva</button>").on("click", function(e) {
+        $("<button>Redigera order</button>").on("click", function(e) {
             e.preventDefault();
-			$('#giftbox-div').empty();
-			presentUserDataEditable(giftboxData);
+			$('#order-div').empty();
+			presentUserDataEditable(orderData);
         }).appendTo("#btn-div");
 
-        $("<button>Tillbaka till gåvolistan</button>").on("click", function(e) {
+        $("<button>Tillbaka till orderlistan</button>").on("click", function(e) {
             e.preventDefault();
-            $("#giftbox-div").empty();
-            $("#giftbox-list").show();
+            $("#order-div").empty();
+            $("#order-list").show();
   		}).appendTo("#btn-div");
 }
 
-function presentUserDataEditable(giftboxData) {
+function presentUserDataEditable(orderData) {
     var items = [];
-        $.each( giftboxData, function( key, val ) {
+        $.each( orderData, function( key, val ) {
 			if(key != "created" && key != "modified" && key != "id") {
             	items.push( "<label id=" + key + ">"+ key + ": </label>" );
 				items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input"  
@@ -59,14 +59,14 @@ function presentUserDataEditable(giftboxData) {
 		
 
         $( "<ul/>", {
-            "class": "giftbox-info",
+            "class": "order-info",
             html: items.join( "" )
-        }).appendTo( "#giftbox-div" );
+        }).appendTo( "#order-div" );
 
         $("<button>Spara ändringar</button>").on("click", function(e) {
             e.preventDefault();
-				$.post("api/v1/edit_giftbox", 
-					{id: giftboxData['id'], 
+				$.post("api/v1/edit_order", 
+					{id: orderData['id'], 
 						description: $("#description-input").val(), 
 						image: $("#image-input").val(), 
 						name: $("#name-input").val(), 
@@ -79,15 +79,15 @@ function presentUserDataEditable(giftboxData) {
 						}
 					});
 
-				$("#admin-giftboxs").click();
-            	$("#giftbox-div").empty();
-            	$("#giftbox-list").show();
-        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");
+				$("#admin-orders").click();
+            	$("#order-div").empty();
+            	$("#order-list").show();
+        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
         
 	$("<button>Avbryt</button>").on("click", function(e) {
             e.preventDefault();
-            $("#giftbox-div").empty();
-            $("#giftbox-list").show();
+            $("#order-div").empty();
+            $("#order-list").show();
   		}).appendTo("#btn-div");
 }
 

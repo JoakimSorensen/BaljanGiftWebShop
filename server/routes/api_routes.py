@@ -20,6 +20,13 @@ def all_giftboxes():
     return jsonify(giftboxes_dicts)
 
 
+@app.route('/api/v1/order')
+def all_orders():
+    orders = Order.query.all()
+    orders_dicts = [orders.to_dict() for order in orders]
+    return jsonify(orders_dicts)
+
+
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
@@ -33,7 +40,6 @@ def payment_completed():
                         buyer_id=buyer.id, 
                         receiver_id=receiver.id)
     return redirect(url_for('order_view', order_id=order.id))
-    #return jsonify(dict(request.args))
 
 
 @app.route('/api/v1/users/<int:id_>')
@@ -54,6 +60,18 @@ def giftbox_with_id(id_):
     return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
 
 
+@app.route('/api/v1/order/<int:id_>')
+def order_with_id(id_):
+    order = Order.query.get(id_)
+    is_active = (datetime.datetime.now() < (order.date + order.status))
+    if order is not None:
+        order_dict = order.to_dict()
+        order_dict['active'] = is_active
+        return jsonify(order_dict)
+
+    return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
+
+
 @app.route('/api/v1/delete_user', methods=['DELETE'])
 @login_required
 def delete_user():
@@ -64,12 +82,19 @@ def delete_user():
     return abort(403)
 
 
-
 @app.route('/api/v1/delete_giftbox', methods=['DELETE'])
 @login_required
 def delete_giftbox():
     giftbox_id = request.form.get('id')
     GiftBox.delete(giftbox_id)
+    return "success"
+
+
+@app.route('/api/v1/delete_order', methods=['DELETE'])
+@login_required
+def delete_order():
+    orer_id = request.form.get('id')
+    Order.delete(order_id)
     return "success"
 
 

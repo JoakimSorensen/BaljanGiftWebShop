@@ -1,5 +1,5 @@
 import datetime
-
+import pytimeparse
 from flask import jsonify, redirect, request, url_for
 from flask_login import current_user, login_required
 from server import app
@@ -93,7 +93,7 @@ def delete_giftbox():
 @app.route('/api/v1/delete_order', methods=['DELETE'])
 @login_required
 def delete_order():
-    orer_id = request.form.get('id')
+    order_id = request.form.get('id')
     Order.delete(order_id)
     return "success"
 
@@ -137,5 +137,36 @@ def edit_giftbox():
             giftbox.set_price(price)
         if image:
             giftbox.set_image(image)
+        return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/edit_order', methods=['GET', 'POST'])
+@login_required
+def edit_order():
+    if request.method == "POST":
+        order_id = request.form.get('id')
+        buyer = request.form.get('buyer')
+        buyer_id = request.form.get('buyer_id')
+        price = request.form.get('price')
+        date = datetime.datetime.strptime(request.form.get('date'), "%a %b %d %H:%M:%S %Y")
+        status = datetime.timedelta(pytimeparse.parse(request.form.get('status_')))
+        receiver = request.form.get('receiver')
+        receiver_id = request.form.get('receiver_id')
+        giftbox = request.form.get('giftbox')
+        giftbox_id = request.form.get('giftbox_id')
+
+        order = Order.query.filter_by(id=order_id).first()
+        if buyer_id: 
+            order.set_buyer(buyer_id)
+        if receiver_id: 
+            order.set_receiver(receiver_id)
+        if price: 
+            order.set_price(price)
+        if date:
+            order.set_date(date)
+        if status:
+            order.set_status(status)
+        if giftbox_id:
+            order.set_giftbox(giftbox_id)
         return redirect(url_for('admin'))
 

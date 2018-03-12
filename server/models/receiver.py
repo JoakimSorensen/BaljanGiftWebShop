@@ -11,3 +11,6 @@ class Receiver(SharedModel):
     required_fields = {liu_id, name, phone}
     excluded_fields = set()
 
+    def __repr__(self):
+        return self.name
+

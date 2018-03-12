@@ -67,9 +67,14 @@ function presentUserDataEditable(orderData) {
             e.preventDefault();
 				$.post("api/v1/edit_order", 
 					{id: orderData['id'], 
-						description: $("#description-input").val(), 
-						image: $("#image-input").val(), 
-						name: $("#name-input").val(), 
+						buyer: $("#buyer-input").val(), 
+						buyer_id: $("#buyer_id-input").val(), 
+						date: $("#date-input").val(), 
+						giftbox: $("#giftbox-input").val(), 
+						giftbox_id: $("#giftbox_id-input").val(), 
+						receiver: $("#receiver-input").val(), 
+						giftbox_id: $("#receiver_id-input").val(), 
+						status_: $("#status-input").val(), 
 						price: $("#price-input").val(), 
 						}, function(data, status) {
 						if (status == "success") {

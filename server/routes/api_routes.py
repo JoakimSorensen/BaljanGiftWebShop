@@ -13,6 +13,13 @@ def all_users():
     return jsonify(users_dicts)
 
 
+@app.route('/api/v1/giftbox')
+def all_giftboxes():
+    giftboxes = GiftBox.query.all()
+    giftboxes_dicts = [giftboxes.to_dict() for giftbox in giftboxes]
+    return jsonify(giftboxes_dicts)
+
+
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
@@ -38,6 +45,15 @@ def user_with_id(id_):
     return jsonify({"error": "No user with ID: {id_}".format(id_=id_)}), 404
 
 
+@app.route('/api/v1/giftbox/<int:id_>')
+def giftbox_with_id(id_):
+    giftbox = GiftBox.query.get(id_)
+    if giftbox is not None:
+        return jsonify(giftbox.to_dict())
+
+    return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
+
+
 @app.route('/api/v1/delete_user', methods=['DELETE'])
 @login_required
 def delete_user():
@@ -47,6 +63,14 @@ def delete_user():
         return "success"
     return abort(403)
 
+
+
+@app.route('/api/v1/delete_giftbox', methods=['DELETE'])
+@login_required
+def delete_giftbox():
+    giftbox_id = request.form.get('id')
+    GiftBox.delete(giftbox_id)
+    return "success"
 
 
 @app.route('/api/v1/edit_user', methods=['GET', 'POST'])
@@ -68,3 +92,25 @@ def edit_user():
         if is_admin is not None:
             user.set_admin(bool(is_admin))
         return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/edit_giftbox', methods=['GET', 'POST'])
+@login_required
+def edit_giftbox():
+    if request.method == "POST":
+        giftbox_id = request.form.get('id')
+        giftbox_name = request.form.get('name')
+        description = request.form.get('description')
+        price = request.form.get('price')
+        image = request.form.get('image')
+        giftbox = GiftBox.query.filter_by(id=giftbox_id).first()
+        if giftbox_name: 
+            giftbox.set_name(giftbox_name)
+        if description: 
+            giftbox.set_description(description)
+        if price: 
+            giftbox.set_price(price)
+        if image:
+            giftbox.set_image(image)
+        return redirect(url_for('admin'))
+

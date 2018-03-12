@@ -1,64 +1,57 @@
 function bindUserClick() {
-    $('.user').on('click', handleUserClick);
+    $('.giftbox').on('click', handleUserClick);
 }
 
 function handleUserClick(event) {
-    var user_id = $(this).data('user-id');
-    fetchUser(user_id, presentUserData);
+    var giftbox_id = $(this).data('giftbox-id');
+    fetchUser(giftbox_id, presentUserData);
 }
 
-function fetchUser(user_id, completionHandler) {
-    var url = "api/v1/users/" + user_id;
+function fetchUser(giftbox_id, completionHandler) {
+    var url = "api/v1/giftbox/" + giftbox_id;
     $.getJSON(url, function(data) {
         completionHandler(data)
     });
 }
 
-function presentUserData(userData) {
-    $( "#user-list" ).hide();
+function presentUserData(giftboxData) {
+    $( "#giftbox-list" ).hide();
     var items = [];
-        $.each( userData, function( key, val ) {
+        $.each( giftboxData, function( key, val ) {
             items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
         });
 
         $( "<ul/>", {
-            "class": "user-info",
+            "class": "giftbox-info",
             html: items.join( "" )
-        }).appendTo( "#user-div" );
+        }).appendTo( "#giftbox-div" );
 
-        $("<button>Ta bort användare</button>").on("click", function(e) {
+        $("<button>Ta bort gåva</button>").on("click", function(e) {
             e.preventDefault();
-			$.delete("/delete_user", {id : userData['id']});
-			$("#admin-users").click();
-            $("#user-div").empty();
-            $("#user-list").show();
-        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
+			$.delete("api/v1/delete_giftbox", {id : giftboxData['id']});
+			$("#admin-giftboxs").click();
+            $("#giftbox-div").empty();
+            $("#giftbox-list").show();
+        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");
 
-        $("<button>Redigera användare</button>").on("click", function(e) {
+        $("<button>Redigera gåva</button>").on("click", function(e) {
             e.preventDefault();
-			$('#user-div').empty();
-			presentUserDataEditable(userData);
+			$('#giftbox-div').empty();
+			presentUserDataEditable(giftboxData);
         }).appendTo("#btn-div");
 
-        $("<button>Tillbaka till användarlistan</button>").on("click", function(e) {
+        $("<button>Tillbaka till gåvolistan</button>").on("click", function(e) {
             e.preventDefault();
-            $("#user-div").empty();
-            $("#user-list").show();
+            $("#giftbox-div").empty();
+            $("#giftbox-list").show();
   		}).appendTo("#btn-div");
 }
 
-function presentUserDataEditable(userData) {
+function presentUserDataEditable(giftboxData) {
     var items = [];
-        $.each( userData, function( key, val ) {
+        $.each( giftboxData, function( key, val ) {
 			if(key != "created" && key != "modified" && key != "id") {
             	items.push( "<label id=" + key + ">"+ key + ": </label>" );
-				if(key == "email") {
-					items.push("<input type=\"email\" class=\"form-control\" id=" + key + "-input"
-						+ " value=" + val + ">");
-				} else if(key == "is_admin") {
-					items.push("<input type=\"checkbox\" id=" + key + "-input"
-						+ " value=" + val + "><br>");
-				
 				} else {
 					items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input"  
 						+ " value=" + val + ">");
@@ -66,28 +59,20 @@ function presentUserDataEditable(userData) {
 			}
         });
 		
-	items.push( "<label id=password> Lösenord: </label>" );
-	items.push("<input type=\"password\" class=\"form-control\" id=password-input>");
-    items.push( "<label id=password2> Repetera lösenord: </label>" );
-	items.push("<input type=\"password\" class=\"form-control\" id=password2-input>");
 
         $( "<ul/>", {
-            "class": "user-info",
+            "class": "giftbox-info",
             html: items.join( "" )
-        }).appendTo( "#user-div" );
+        }).appendTo( "#giftbox-div" );
 
         $("<button>Spara ändringar</button>").on("click", function(e) {
             e.preventDefault();
-			if($("#password-input").val() != $("#password2-input").val()) {
-				alert("Lösenorden måste stämma överens!");
-			} else {
-				$.post("/edit_user", 
-					{id: userData['id'], 
-						username: $("#username-input").val(), 
-						email: $("#email-input").val(), 
-						password: $("#password-input").val(), 
-						password2: $("#password2-input").val(), 
-						is_admin: $("#is_admin-input").val()
+				$.post("api/v1/edit_giftbox", 
+					{id: giftboxData['id'], 
+						description: $("#description-input").val(), 
+						image: $("#image-input").val(), 
+						name: $("#name-input").val(), 
+						price: $("#price-input").val(), 
 						}, function(data, status) {
 						if (status == "success") {
 							alert("Ändringar sparade!");
@@ -96,16 +81,15 @@ function presentUserDataEditable(userData) {
 						}
 					});
 
-				$("#admin-users").click();
-            	$("#user-div").empty();
-            	$("#user-list").show();
-			}
-        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
+				$("#admin-giftboxs").click();
+            	$("#giftbox-div").empty();
+            	$("#giftbox-list").show();
+        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");
         
 	$("<button>Avbryt</button>").on("click", function(e) {
             e.preventDefault();
-            $("#user-div").empty();
-            $("#user-list").show();
+            $("#giftbox-div").empty();
+            $("#giftbox-list").show();
   		}).appendTo("#btn-div");
 }
 
@@ -125,3 +109,4 @@ $.delete = function(url, data, callback, type){
 		      contentType: type
 		    });
 }
+

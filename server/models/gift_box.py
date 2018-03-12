@@ -24,3 +24,19 @@ class GiftBox(SharedModel):
     excluded_fields = set()
 
     products = db.relationship(GiftBoxProduct, primaryjoin='GiftBox.id==GiftBoxProduct.gift_box_id')
+
+    def set_name(self, name):
+        self.name = name
+        db.session.commit()
+
+    def set_price(self, price):
+        self.price = price
+        db.session.commit()
+
+    def set_description(self, description):
+        self.description = description
+        db.session.commit()
+
+    def set_image(self, image):
+        self.image = image
+        db.session.commit()

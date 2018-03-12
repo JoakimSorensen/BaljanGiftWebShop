@@ -28,6 +28,27 @@ class Order(SharedModel):
     giftbox = db.relationship(GiftBox, foreign_keys=[giftbox_id], single_parent=True,
                               backref=db.backref('orders', uselist=True, cascade="all"))
 
-
-
+    def set_date(self, date):
+        self.date = date
+        db.session.commit()
+    
+    def set_price(self, price):
+        self.price = price
+        db.session.commit()
+    
+    def set_status(self, status):
+        self.status = status
+        db.session.commit()
+    
+    def set_buyer(self, buyer_id):
+        self.buyer_id = buyer_id
+        db.session.commit()
+    
+    def set_receiver(self, receiver_id):
+        self.receiver_id = receiver_id
+        db.session.commit()
+    
+    def set_giftbox(self, giftbox_id):
+        self.giftbox_id = giftbox_id
+        db.session.commit()
 

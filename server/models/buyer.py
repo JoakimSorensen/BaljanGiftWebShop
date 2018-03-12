@@ -9,3 +9,6 @@ class Buyer(SharedModel):
     mutable_fields = set()
     required_fields = {email, name}
     excluded_fields = set()
+
+    def __repr__(self):
+        return self.name

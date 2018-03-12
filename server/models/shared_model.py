@@ -81,7 +81,7 @@ class SharedModel(db.Model):
     def to_dict(self):
         """Return dict containing the keys and values of all property columns, and the keys and identifiers of
         all N-1 or 1-1 relationships for the current model object instance
-        Edited 180312 by Joakim Sorensen: Added timedelta check to dict building"""
+        Edited 180312 by Joakim Sorensen: Changed and added timedelta check to dict building"""
         orm_descriptors = inspect(type(self)).all_orm_descriptors
         excluded_fields_keys = [excluded_field.key for excluded_field in self.excluded_fields]
 
@@ -115,8 +115,6 @@ class SharedModel(db.Model):
         for (key, property_type) in modified_descriptors:
             try:
                 value = getattr(self, key)
-                if isinstance(value, datetime.timedelta):
-                    value = str(value)
                 if isinstance(value, collections.Iterable) and property_type is RelationshipProperty:
                     # We will only return N-1 or 1-1 relationships
                     continue
@@ -129,9 +127,12 @@ class SharedModel(db.Model):
                 if isinstance(value, Enum):
                     value = value.value
 
-                # Return ISO-strings for datetimes
+                # Return <Day of the week> <Month> <Day> <Time> <Year>
+                # Changed by Joakim Sorensen from ISO-standard
                 if isinstance(value, (datetime.datetime, datetime.date)):
-                    value = value.isoformat()
+                    value = value.strftime("%a %b %d %H:%M:%S %Y")
+                if isinstance(value, datetime.timedelta):
+                    value = str(value)
 
             except AttributeError:
                 value = None

@@ -4,3 +4,5 @@ Werkzeug==0.14.1
 flask-sqlalchemy==2.3.2
 flask-login==0.4.1
 flask-wtf==0.14.2
+python-dateutil=2.7.0
+pytimeparse=1.1.7

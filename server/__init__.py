@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_mail import Mail
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
@@ -11,5 +12,7 @@ db = SQLAlchemy(app)
 
 login = LoginManager(app)
 login.login_view = 'login'
+
+mail = Mail(app)
 
 from server import routes, models

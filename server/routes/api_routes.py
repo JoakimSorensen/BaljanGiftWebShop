@@ -1,8 +1,10 @@
 import datetime
 import pytimeparse
 from flask import jsonify, redirect, request, url_for
+from flask_mail import Message
 from flask_login import current_user, login_required
 from server import app
+from server import mail
 from server.models import Buyer, GiftBox, Receiver, Order, User
 
 
@@ -29,6 +31,7 @@ def all_orders():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
+    #TODO: send receipt to buyer email!
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
     receiver = Receiver.add(name=request.values["rec-name"], phone=request.values["phonenumber"], 
                             liu_id=request.values["liuid"])
@@ -38,6 +41,13 @@ def payment_completed():
                         date=datetime.datetime.now(), 
                         buyer_id=buyer.id, 
                         receiver_id=receiver.id)
+    conf_msg = Message("Baljangavan: Order confirmation, {}".format(order.date), sender='baljangavan@gmail.com', 
+                    recipients=[buyer.email])
+    conf_msg.body = "We have received your order! \nYour name: {}\nReceiver's name: {}\
+            \nReceiver's LiU ID: {}\nReceiver's phone: {}\
+            \nPrice: {}\nGift: {}\nStatus: {}".format(buyer.name, receiver.name, receiver.liu_id, receiver.phone, 
+                                            order.price, giftbox.name, order.status)
+    mail.send(conf_msg)
     return redirect(url_for('order_view', order_id=order.id))
 
 

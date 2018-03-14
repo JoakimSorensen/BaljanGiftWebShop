@@ -36,7 +36,6 @@ def payment_completed():
     order = Order.add(price=giftbox.price, 
                         giftbox_id = giftbox.id, 
                         date=datetime.datetime.now(), 
-                        status=datetime.timedelta(days=14), 
                         buyer_id=buyer.id, 
                         receiver_id=receiver.id)
     return redirect(url_for('order_view', order_id=order.id))
@@ -63,10 +62,8 @@ def giftbox_with_id(id_):
 @app.route('/api/v1/order/<int:id_>')
 def order_with_id(id_):
     order = Order.query.get(id_)
-    is_active = (datetime.datetime.now() < (order.date + order.status))
     if order is not None:
         order_dict = order.to_dict()
-        order_dict['active'] = is_active
         return jsonify(order_dict)
 
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
@@ -149,7 +146,7 @@ def edit_order():
         buyer_id = request.form.get('buyer_id')
         price = request.form.get('price')
         date = datetime.datetime.strptime(request.form.get('date'), "%a %b %d %H:%M:%S %Y")
-        status = datetime.timedelta(pytimeparse.parse(request.form.get('status_')))
+        status = request.form.get('status_')
         receiver = request.form.get('receiver')
         receiver_id = request.form.get('receiver_id')
         giftbox = request.form.get('giftbox')

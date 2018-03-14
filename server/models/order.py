@@ -8,10 +8,10 @@ from server.models.shared_model import SharedModel
 class Order(SharedModel):
     date = db.Column(db.TIMESTAMP, index=True)
     price = db.Column(db.Integer, index=True)
-    status = db.Column(db.Interval, index=True)
+    status = db.Column(db.String(120), default='processing', index=True)
 
-    mutable_fields = set()
-    required_fields = {date, price, status}
+    mutable_fields = {date, price, status}
+    required_fields = {date, price}
     excluded_fields = set()
 
     # Foreign key relationships defined via backrefs
@@ -37,6 +37,9 @@ class Order(SharedModel):
         db.session.commit()
     
     def set_status(self, status):
+        statuses = ['processing', 'preparing', 'received']
+        if status not in statuses:
+            raise InvalidStatusException("Status need to be 'processing', 'preparing' or 'received'")
         self.status = status
         db.session.commit()
     
@@ -52,3 +55,5 @@ class Order(SharedModel):
         self.giftbox_id = giftbox_id
         db.session.commit()
 
+class InvalidStatusException(Exception):
+    pass

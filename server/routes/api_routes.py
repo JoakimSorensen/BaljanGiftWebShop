@@ -1,4 +1,5 @@
 import datetime
+import uuid
 import pytimeparse
 from flask import jsonify, redirect, request, url_for
 from flask_mail import Message
@@ -31,22 +32,26 @@ def all_orders():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
-    #TODO: send receipt to buyer email!
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
     receiver = Receiver.add(name=request.values["rec-name"], phone=request.values["phonenumber"], 
                             liu_id=request.values["liuid"])
     giftbox = GiftBox.query.get(request.values["giftbox"])
+    hash_id = uuid.uuid4().hex 
     order = Order.add(price=giftbox.price, 
                         giftbox_id = giftbox.id, 
                         date=datetime.datetime.now(), 
                         buyer_id=buyer.id, 
-                        receiver_id=receiver.id)
+                        message=request.values['message'],
+                        receiver_id=receiver.id, 
+                        hash_id=hash_id)
     conf_msg = Message("Baljangavan: Order confirmation, {}".format(order.date), sender='baljangavan@gmail.com', 
                     recipients=[buyer.email])
     conf_msg.body = "We have received your order! \nYour name: {}\nReceiver's name: {}\
             \nReceiver's LiU ID: {}\nReceiver's phone: {}\
-            \nPrice: {}\nGift: {}\nStatus: {}".format(buyer.name, receiver.name, receiver.liu_id, receiver.phone, 
-                                            order.price, giftbox.name, order.status)
+            \nPrice: {}\nGift: {}\n Message: {}\nStatus: {}".format(buyer.name, receiver.name, 
+                                                                    receiver.liu_id, receiver.phone, 
+                                                                    order.price, giftbox.name, order.message, 
+                                                                    order.status)
     mail.send(conf_msg)
     return redirect(url_for('order_view', order_id=order.id))
 
@@ -76,6 +81,16 @@ def order_with_id(id_):
         order_dict = order.to_dict()
         return jsonify(order_dict)
 
+    return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
+
+
+@app.route('/api/v1/check_order_hash/<int:id_>/<hash_id>')
+def check_order_hash(id_, hash_id):
+    order = Order.query.get(id_)
+    if order is not None:
+        if order.check_hash_id(hash_id):
+            return jsonify({"matching hash": "order id: {}".format(id_)}), 200
+        return jsonify({"error": "no matching hash for order id: {}".format(id_)}), 401
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
 
 
@@ -161,6 +176,7 @@ def edit_order():
         receiver_id = request.form.get('receiver_id')
         giftbox = request.form.get('giftbox')
         giftbox_id = request.form.get('giftbox_id')
+        message = request.form.get('message')
 
         order = Order.query.filter_by(id=order_id).first()
         if buyer_id: 
@@ -175,5 +191,7 @@ def edit_order():
             order.set_status(status)
         if giftbox_id:
             order.set_giftbox(giftbox_id)
+        if message:
+            order.set_message(message)
         return redirect(url_for('admin'))
 

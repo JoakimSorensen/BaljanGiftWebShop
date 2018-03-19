@@ -1,4 +1,3 @@
-import datetime
 from flask import abort, render_template, redirect, request, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -8,9 +7,8 @@ from server import app
 # --–---------------------
 # Templating routes
 # --–---------------------
-from server.forms import AdminLoginForm, EditUserForm, RegistrationForm
-from server.models import User
-from server.models import User, Order, Product, GiftBox
+from server.forms import AdminLoginForm, RegistrationForm
+from server.models import User, Order, GiftBox
 
 
 @app.route('/')
@@ -54,7 +52,7 @@ def admin_users():
 
 @app.route('/admin-giftboxs')
 @login_required
-def amdin_giftboxs():
+def admin_giftboxs():
     """
     Returns a list of all
     giftbox in admin_gigiftbox.html.

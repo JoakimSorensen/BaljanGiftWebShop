@@ -64,5 +64,6 @@ class Order(SharedModel):
         self.message = message
         db.session.commit()
 
+
 class InvalidStatusException(Exception):
     pass

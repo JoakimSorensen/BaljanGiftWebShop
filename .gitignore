@@ -224,3 +224,6 @@ $RECYCLE.BIN/
 /.idea/vcs.xml
 /.idea/inspectionProfiles/Project_Default.xml
 /app.db
+
+# ignore swp files from vim
+*.swp

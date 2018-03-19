@@ -4,12 +4,14 @@
         <a href="#" data-order-id="{{ order.id }}" class="list-group-item list-group-item-action flex-column align-items-start order">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ order.date }}</h5>
-				<small>{{ order.price }}</small><br>
-                <small>{{ order.status }}</small>
-                <small>{{ order.buyer }}</small>
-                <small>{{ order.receiver }}</small>
+				<small>id: {{ order.id }}</small>
+				<small>pris: {{ order.price }}</small><br>
+                <small>köpare: {{ order.buyer }}, </small>
+				<small>mottagare:{{ order.receiver }}</small><br>
+                <small>status: {{ order.status }}</small>
             </div>
         </a>
     {% endfor %}
 </div>
 <div id="order-div"></div>
+<button id='add-order'>Add order</button>

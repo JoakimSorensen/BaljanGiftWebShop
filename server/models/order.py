@@ -9,8 +9,10 @@ class Order(SharedModel):
     date = db.Column(db.TIMESTAMP, index=True)
     price = db.Column(db.Integer, index=True)
     status = db.Column(db.String(120), default='processing', index=True)
+    message = db.Column(db.Text)
+    hash_id = db.Column(db.String(128), index=True)
 
-    mutable_fields = {date, price, status}
+    mutable_fields = {date, price, status, message}
     required_fields = {date, price}
     excluded_fields = set()
 
@@ -27,6 +29,9 @@ class Order(SharedModel):
     giftbox_id = db.Column(db.Integer, db.ForeignKey(GiftBox.id), nullable=False)
     giftbox = db.relationship(GiftBox, foreign_keys=[giftbox_id], single_parent=True,
                               backref=db.backref('orders', uselist=True, cascade="all"))
+
+    def check_hash_id(self, hash_id):
+        return self.hash_id == hash_id
 
     def set_date(self, date):
         self.date = date
@@ -54,6 +59,11 @@ class Order(SharedModel):
     def set_giftbox(self, giftbox_id):
         self.giftbox_id = giftbox_id
         db.session.commit()
+
+    def set_message(self, message):
+        self.message = message
+        db.session.commit()
+
 
 class InvalidStatusException(Exception):
     pass

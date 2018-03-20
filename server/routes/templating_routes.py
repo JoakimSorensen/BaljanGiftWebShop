@@ -129,7 +129,8 @@ def logout_admin():
     used for administrator.
     """
     logout_user()
-    return redirect(url_for('products'))
+    return "success", 200
+    #return redirect(url_for('index'))
 
 
 @app.route('/products')

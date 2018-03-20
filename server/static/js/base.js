@@ -14,7 +14,7 @@ function handleNavBarClick(event) {
         	bindEventHandlers(event)
     	});
 	 } else {
-	 	$.get("/logout");
+	 	$.get("/api/v1/logout");
 		window.location = "/index";
 	 }
 }

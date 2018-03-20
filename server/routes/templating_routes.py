@@ -1,5 +1,5 @@
 from flask import abort, render_template, redirect, request, url_for
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, login_required
 from werkzeug.urls import url_parse
 
 from server import app
@@ -120,17 +120,6 @@ def login():
             next_page = url_for('admin')
         return redirect(next_page)
     return render_template('adminlogin.html', title='Sign In', form=form)
-
-
-@app.route('/logout')
-def logout_admin():
-    """
-    Logout the current_user,
-    used for administrator.
-    """
-    logout_user()
-    return "success", 200
-    #return redirect(url_for('index'))
 
 
 @app.route('/products')

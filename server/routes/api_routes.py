@@ -2,7 +2,7 @@ import datetime
 import uuid
 from flask import abort, jsonify, redirect, request, url_for
 from flask_mail import Message
-from flask_login import current_user, login_required
+from flask_login import current_user, logout_user, login_required
 from server import app
 from server import mail
 from server.models import Buyer, GiftBox, Receiver, Order, User
@@ -193,3 +193,14 @@ def edit_order():
         if message:
             order.set_message(message)
         return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/logout')
+def logout_admin():
+    """
+    Logout the current_user,
+    used for administrator.
+    """
+    logout_user()
+    return jsonify("success"), 200
+

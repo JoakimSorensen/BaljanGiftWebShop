@@ -137,3 +137,25 @@ nav b:hover::before {
     text-shadow: 0 4px 4px
     rgba(0, 0, 0, 0.25);
 }
+
+.guide-text-container {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+    padding-top: 30px;
+}
+
+.guide-text {
+    border-bottom: 2px solid black;
+}
+
+.guide-dot {
+    margin-top: 10px;
+    padding-bottom: 100%;
+    background-color: lightgray;
+    border-radius: 50%;
+}

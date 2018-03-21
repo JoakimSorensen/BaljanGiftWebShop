@@ -116,3 +116,12 @@ nav b:hover::before {
     width: 100%;
 }
 
+.image-with-caption {
+    position: relative;
+}
+.caption {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+}

@@ -9,9 +9,15 @@ $(document).ready(function () {
 
 function handleNavBarClick(event) {
     var url = "/" + event.target.id;
-    $('#main-container').load(url, function() {
-        bindEventHandlers(event)
-    });
+	if(url != "/logout") {
+    	$('#main-container').load(url, function() {
+        	bindEventHandlers(event)
+    	});
+	 } else {
+	 	$.get("/api/v1/logout", function() {
+			window.location = "/index";
+		});
+	 }
 }
 
 function bindEventHandlers(event) {

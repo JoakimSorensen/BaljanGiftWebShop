@@ -1,5 +1,4 @@
 import datetime
-import secrets;
 import uuid
 from flask import abort, jsonify, redirect, request, url_for
 from flask_mail import Message

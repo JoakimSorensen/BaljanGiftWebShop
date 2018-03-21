@@ -39,7 +39,7 @@ def payment_completed():
 
     def generate_hash_token(token_length):
         token = str(uuid.uuid4())
-        token = token.replace("-","")
+        token = token.replace("-", "")
         return token[0:token_length]
 
     hash_id = generate_hash_token(8);
@@ -53,12 +53,23 @@ def payment_completed():
                       hash_id=hash_id)
     conf_msg = Message("Baljangavan: Order confirmation, {}".format(order.date), sender='baljangavan@gmail.com',
                        recipients=[buyer.email])
-    conf_msg.body = "We have received your order! \nYour name: {}\nReceiver's name: {}\
-            \nReceiver's LiU ID: {}\nReceiver's phone: {}\
-            \nPrice: {}\nGift: {}\n Message: {}\nStatus: {}".format(buyer.name, receiver.name,
-                                                                    receiver.liu_id, receiver.phone,
-                                                                    order.price, giftbox.name, order.message,
-                                                                    order.status)
+
+    conf_msg.body = """ We have received your order! 
+    Your name: {name}
+    Receiver's name: {receiver_name}
+    Receiver's LiU ID: {receiver_liu_id}
+    Receiver's phone: {receiver_phone}
+    Price: {price}
+    Gift: {gift}
+    Message: {message}
+    Status: {status} 
+    You can use the token below to see current status
+    Token: {token}
+    """.format(name=buyer.name, receiver_name=receiver.name,
+               receiver_liu_id=receiver.liu_id, receiver_phone=receiver.phone,
+               price=order.price, gift=giftbox.name, message=order.message,
+               status=order.status, token=hash_id)
+
     mail.send(conf_msg)
     return redirect(url_for('order_view', order_id=order.id))
 

@@ -116,3 +116,24 @@ nav b:hover::before {
     width: 100%;
 }
 
+.image-with-caption {
+    position: relative;
+}
+.caption {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+}
+
+.landing-page-caption {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 26px;
+    text-align: center;
+    color: white;
+    text-shadow: 0 4px 4px
+    rgba(0, 0, 0, 0.25);
+}

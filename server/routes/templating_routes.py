@@ -141,6 +141,16 @@ def order_view(order_id):
     return render_template('order.html', order=order)
 
 
+@app.route('/order')
+def order_view_from_hash():
+    token = request.args.get('token')
+    # Fetch order from token/hash
+    order = Order.query.filter_by(hash_id=token).first()
+    if order is None:
+        return render_template('token_not_found.html')
+
+    return render_template('order.html', order=order)
+
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
@@ -154,6 +164,10 @@ def contact():
 @app.route('/guide')
 def guide():
     return render_template('guide.html')
+
+@app.route('/order_info')
+def order_info():
+    return render_template('order_info.html')
 
 
 #--------------------------------------#

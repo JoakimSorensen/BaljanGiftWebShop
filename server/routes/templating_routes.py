@@ -147,8 +147,7 @@ def order_view_from_hash():
     # Fetch order from token/hash
     order = Order.query.filter_by(hash_id=token).first()
     if order is None:
-        # return render_template('???.html')
-        pass
+        return render_template('token_not_found.html')
 
     return render_template('order.html', order=order)
 

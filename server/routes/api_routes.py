@@ -1,4 +1,5 @@
 import datetime
+import secrets;
 import uuid
 from flask import abort, jsonify, redirect, request, url_for
 from flask_mail import Message
@@ -35,7 +36,14 @@ def payment_completed():
     receiver = Receiver.add(name=request.values["rec-name"], phone=request.values["phonenumber"],
                             liu_id=request.values["liuid"])
     giftbox = GiftBox.query.get(request.values["giftbox"])
-    hash_id = uuid.uuid4().hex
+
+    def generate_hash_token(token_length):
+        token = str(uuid.uuid4())
+        token = token.replace("-","")
+        return token[0:token_length]
+
+    hash_id = generate_hash_token(8);
+
     order = Order.add(price=giftbox.price,
                       giftbox_id=giftbox.id,
                       date=datetime.datetime.now(),

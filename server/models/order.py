@@ -10,7 +10,7 @@ class Order(SharedModel):
     price = db.Column(db.Integer, index=True)
     status = db.Column(db.String(120), default='processing', index=True)
     message = db.Column(db.Text)
-    hash_id = db.Column(db.String(128), index=True)
+    token = db.Column(db.String(128), index=True)
 
     mutable_fields = {date, price, status, message}
     required_fields = {date, price}
@@ -31,7 +31,7 @@ class Order(SharedModel):
                               backref=db.backref('orders', uselist=True, cascade="all"))
 
     def check_hash_id(self, hash_id):
-        return self.hash_id == hash_id
+        return self.token == hash_id
 
     def set_date(self, date):
         self.date = date

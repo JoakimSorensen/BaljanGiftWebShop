@@ -115,7 +115,7 @@ function presentUserDataEditable(orderData) {
 						giftbox: $("#giftbox-input").val(), 
 						giftbox_id: $("#giftbox_id-input").val(), 
 						receiver: $("#receiver-input").val(), 
-						giftbox_id: $("#receiver_id-input").val(), 
+						receiver_id: $("#receiver_id-input").val(), 
 						status_: $("#status-input").val(), 
 						price: $("#price-input").val(), 
 						message: $("#message-input").val()
@@ -141,12 +141,20 @@ function presentUserDataEditable(orderData) {
 
 function addOrder() {
     var items = [];
-	
-	alert("Här ska add order viewn visas");
+	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "price", "message"]
+        $.each( keys, function(ind, key) {
+            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
+        });
+		
+        $( "<ul/>", {
+            "class": "order-info",
+            html: items.join( "" )
+        }).appendTo( "#order-div" );
 
-        $("<button>Spara ändringar</button>").on("click", function(e) {
+        $("<button>Lägg till order</button>").on("click", function(e) {
             e.preventDefault();
-				$.post("api/v1/edit_order", 
+				$.post("api/v1/add_order", 
 					{id: orderData['id'], 
 						buyer: $("#buyer-input").val(), 
 						buyer_id: $("#buyer_id-input").val(), 
@@ -154,7 +162,7 @@ function addOrder() {
 						giftbox: $("#giftbox-input").val(), 
 						giftbox_id: $("#giftbox_id-input").val(), 
 						receiver: $("#receiver-input").val(), 
-						giftbox_id: $("#receiver_id-input").val(), 
+						receiver_id: $("#receiver_id-input").val(), 
 						status_: $("#status-input").val(), 
 						price: $("#price-input").val(), 
 						message: $("#message-input").val()

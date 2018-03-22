@@ -195,6 +195,29 @@ def edit_order():
         return redirect(url_for('admin'))
 
 
+@app.route('/api/v1/add_order', methods=['POST'])
+@login_required
+def add_order():
+    if request.method == "POST":
+        buyer_id = request.form.get('buyer_id')
+        price = request.form.get('price')
+        date = datetime.datetime.strptime(request.form.get('date'), "%a %b %d %H:%M:%S %Y")
+        status = request.form.get('status_')
+        receiver_id = request.form.get('receiver_id')
+        giftbox_id = request.form.get('giftbox_id')
+        message = request.form.get('message')
+        if not date:
+            date = datetime.datetime.now()
+        order = Order.add(buyer_id=buyer_id, 
+                receiver_id=receiver_id, 
+                giftbox_id=giftbox_id, 
+                message=message,
+                hash_id=uuid.uuid4().hex)
+        if order:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create order"}), 500
+
+
 @app.route('/api/v1/logout')
 def logout_admin():
     """

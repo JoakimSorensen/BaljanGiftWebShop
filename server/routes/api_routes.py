@@ -1,11 +1,12 @@
 import datetime
-import uuid
+
 from flask import abort, jsonify, redirect, request, url_for
-from flask_mail import Message
 from flask_login import current_user, logout_user, login_required
+
 from server import app
-from server import mail
 from server.models import Buyer, GiftBox, Receiver, Order, User
+from server.notifications.email import send_order_confirmation_email
+from server.notifications.sms import send_ready_for_delivery_sms
 
 
 @app.route('/api/v1/users')
@@ -31,45 +32,20 @@ def all_orders():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
+    receiver_name = request.values["rec-name"]
+    receiver_phone = request.values["phonenumber"]
+    receiver_liu_id = request.values["liuid"]
+
+    message = request.values['message']
+
+    receiver = Receiver.create_receiver(receiver_name, receiver_phone, receiver_liu_id)
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
-    receiver = Receiver.add(name=request.values["rec-name"], phone=request.values["phonenumber"],
-                            liu_id=request.values["liuid"])
     giftbox = GiftBox.query.get(request.values["giftbox"])
 
-    def generate_hash_token(token_length):
-        token = str(uuid.uuid4())
-        token = token.replace("-", "")
-        return token[0:token_length]
+    order = Order.create_order(giftbox, buyer, receiver, message)
 
-    hash_id = generate_hash_token(8);
+    send_order_confirmation_email(order)
 
-    order = Order.add(price=giftbox.price,
-                      giftbox_id=giftbox.id,
-                      date=datetime.datetime.now(),
-                      buyer_id=buyer.id,
-                      message=request.values['message'],
-                      receiver_id=receiver.id,
-                      hash_id=hash_id)
-    conf_msg = Message("Baljangavan: Order confirmation, {}".format(order.date), sender='baljangavan@gmail.com',
-                       recipients=[buyer.email])
-
-    conf_msg.body = """ We have received your order! 
-    Your name: {name}
-    Receiver's name: {receiver_name}
-    Receiver's LiU ID: {receiver_liu_id}
-    Receiver's phone: {receiver_phone}
-    Price: {price}
-    Gift: {gift}
-    Message: {message}
-    Status: {status} 
-    You can use the token below to see current status
-    Token: {token}
-    """.format(name=buyer.name, receiver_name=receiver.name,
-               receiver_liu_id=receiver.liu_id, receiver_phone=receiver.phone,
-               price=order.price, gift=giftbox.name, message=order.message,
-               status=order.status, token=hash_id)
-
-    mail.send(conf_msg)
     return redirect(url_for('order_view', order_id=order.id))
 
 

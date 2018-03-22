@@ -1,3 +1,6 @@
+import datetime
+import uuid
+
 from server import db
 from server.models import GiftBox
 from server.models.buyer import Buyer
@@ -29,6 +32,18 @@ class Order(SharedModel):
     giftbox_id = db.Column(db.Integer, db.ForeignKey(GiftBox.id), nullable=False)
     giftbox = db.relationship(GiftBox, foreign_keys=[giftbox_id], single_parent=True,
                               backref=db.backref('orders', uselist=True, cascade="all"))
+
+    @classmethod
+    def create_order(cls, giftbox, buyer, receiver, message):
+        token = cls._generate_token(4)
+        order = Order.add(price=giftbox.price,
+                          giftbox_id=giftbox.id,
+                          date=datetime.datetime.now(),
+                          buyer_id=buyer.id,
+                          message=message,
+                          receiver_id=receiver.id,
+                          token=token)
+        return order
 
     def check_hash_id(self, hash_id):
         return self.token == hash_id
@@ -63,6 +78,12 @@ class Order(SharedModel):
     def set_message(self, message):
         self.message = message
         db.session.commit()
+
+    @staticmethod
+    def _generate_token(token_length):
+        token = str(uuid.uuid4())
+        token = token.replace("-", "")
+        return token[0:token_length].upper()
 
 
 class InvalidStatusException(Exception):

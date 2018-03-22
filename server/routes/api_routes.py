@@ -45,6 +45,7 @@ def payment_completed():
     order = Order.create_order(giftbox, buyer, receiver, message)
 
     send_order_confirmation_email(order)
+    send_ready_for_delivery_sms(order)
 
     return redirect(url_for('order_view', order_id=order.id))
 

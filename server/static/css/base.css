@@ -1,16 +1,39 @@
-.footer {
-    border-top: 3px solid #E7008A;
-    position: absolute !important;
-    height: 100px;
+#main-container {
+    min-height: 100%;
+    overflow: auto;
+}
+
+footer {
+    position: relative;
+    height: auto;
     width: 100%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #38A7E5;
+    background: #c5c3c5;
     display: inline-block;
-    top: 130%;
+    clear: both;
+    bottom: -5px;
 
 }
+
+
+.legality {
+    margin: auto;
+    width: 700px;
+    text-align: center;
+    clear: both;
+    font: 10pt verdana;
+    line-height: 2em;
+    padding: 20px 0 0 0;
+}
+
+footer a {
+    color: black;
+}
+
+footer a:hover {
+    cursor: pointer;
+    color: black;
+}
+
 
 ul {
     list-style: none;
@@ -18,21 +41,26 @@ ul {
     text-align: left;
 }
 
-ul li a{
-    font-family: "Helvetica Neue";
+
+html, body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 300;
+    background-color: #FFFFFF;
+
+}
+
+h3 {
+    font-weight: normal;
+    font: 12pt Georgia;
+    text-transform: uppercase;
+    color: #f2f2f2;
+}
+
+p {
     color: black;
 }
 
-ul li a:hover{
-    cursor:pointer;
-}
-
-html, body {
-  margin: 0;
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 300;
-  background-color: #FFFFFF;
-}
 
 
 

@@ -1,9 +1,9 @@
-<h3> This is the order view </h3>
+<h3> Orderbekräftelse </h3>
 <p>Datum: {{ order.date }}</p>
 <p>Pris: {{ order.price }}</p>
-<p>Order status: {{ order.status }}</p>
+<p>Orderstatus: {{ order.status }}</p>
 <p>Mottagare namn: {{ order.receiver.name }}</p>
-<p>Mottagare LiU ID: {{ order.receiver.liu_id }}</p>
-<p>Mottagare telefonnummer: {{ order.receiver.phone }}</p>
+<p>Mottagarens LiU ID: {{ order.receiver.liu_id }}</p>
+<p>Mottagarens telefonnummer: {{ order.receiver.phone }}</p>
 <p>Meddelande: {{ order.message }}</p>
-<p>Ordernummer: {{ order.hash_id }}</p>
+<p>Ordernummer: {{ order.token }}</p>

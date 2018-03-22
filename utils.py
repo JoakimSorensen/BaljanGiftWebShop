@@ -3,6 +3,8 @@ import os
 
 import datetime
 
+import phonenumbers
+
 
 def get_file_path(caller_path, relative_path):
     return os.path.join(os.path.dirname(os.path.abspath(caller_path)), relative_path)
@@ -27,3 +29,8 @@ def json_converter(obj):
         return obj.isoformat()
     error_message = "No converter implemented for type '{0}'".format(type(obj))
     raise TypeError(error_message)
+
+
+def format_phone_number(phone_number_string):
+    phone_number = phonenumbers.parse(phone_number_string, "SE")
+    return phonenumbers.format_number(phone_number, phonenumbers.PhoneNumberFormat.E164)

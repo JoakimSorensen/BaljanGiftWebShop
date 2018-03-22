@@ -5,24 +5,20 @@
     <h2 style="margin-bottom: 30px">Alla produkter</h2>
     {% for giftbox in GiftBoxes %}
         <div class="col-md-4" id="{{ giftbox.id }}" data-toggle="modal" data-target="#myModal">
-            <div class="main">
                 <div class="hovereffect">
                     <div class="product-view">
                         <img src={{ giftbox.image }} alt="Lights" class="image img-responsive"
                          style="width:auto; max-height:350px; min-height: 200px; margin-bottom: 30px;">
                         <div class="price-dot">
-                            <h3 id="price_label">{{ giftbox.price }} kr</h3>
+                            <h3 id="price_label">{{ giftbox.price }}:-</h3>
                         </div>
                         <div class="overlay" onclick="return false">
-                        <h2>{{ giftbox.name }}</h2>
-                        <h2>{{ giftbox.price }}:-</h2>
+                        <h2 id="name_label">{{ giftbox.name }}</h2>
                         <p><a></a>
                         </p>
                     </div>
                     </div>
                 </div>
-            </div>
-
         </div>
     {% endfor %}
 </div>

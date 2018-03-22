@@ -2,7 +2,30 @@
     width: 24%;
     height: auto;
     margin-bottom: 10px;
+    margin-top: 10px;
+    padding-right: 5%;
 
+}
+
+.price-dot {
+    z-index: 2;
+    background-color: black;
+    border-radius: 50%;
+    width: 20%;
+    height: 20%;
+    margin-left: 80%;
+    margin-top: -10%;
+    opacity: 2;
+}
+
+.product-view {
+    z-index: 1;
+}
+
+.product-view, .price-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .hovereffect {
@@ -14,6 +37,7 @@
 }
 
 .hovereffect {
+    padding-top: 30px;
     width: 100%;
     height: 100%;
     float: left;
@@ -24,7 +48,7 @@
 
 }
 
-.hovereffect .overlay {
+.main .hovereffect .overlay {
     position: absolute;
     overflow: hidden;
     width: 80%;
@@ -40,7 +64,7 @@
     transform: scale(0, 1);
 }
 
-.hovereffect:hover .overlay {
+.main .hovereffect:hover .overlay {
     opacity: 1;
     filter: alpha(opacity=100);
     -webkit-transform: scale(1);
@@ -56,6 +80,19 @@
 }
 
 .hovereffect:hover img {
+    filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+    filter: brightness(0.6);
+    -webkit-filter: brightness(0.6);
+}
+
+.main .hovereffect .product-view {
+    display: block;
+    position: relative;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+.main .hovereffect:hover .product-view {
     filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
     filter: brightness(0.6);
     -webkit-filter: brightness(0.6);

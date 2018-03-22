@@ -45,8 +45,8 @@ class Order(SharedModel):
                           token=token)
         return order
 
-    def check_hash_id(self, hash_id):
-        return self.token == hash_id
+    def check_token(self, token):
+        return self.token == token
 
     def set_date(self, date):
         self.date = date

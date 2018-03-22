@@ -144,8 +144,8 @@ def order_view(order_id):
 @app.route('/order')
 def order_view_from_hash():
     token = request.args.get('token')
-    # Fetch order from token/hash
-    order = Order.query.filter_by(hash_id=token).first()
+    # Fetch order from token
+    order = Order.query.filter_by(token=token).first()
     if order is None:
         return render_template('token_not_found.html')
 

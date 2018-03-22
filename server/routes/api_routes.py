@@ -78,11 +78,11 @@ def order_with_id(id_):
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
 
 
-@app.route('/api/v1/check_order_hash/<int:id_>/<hash_id>')
-def check_order_hash(id_, hash_id):
+@app.route('/api/v1/check_order_hash/<int:id_>/<token>')
+def check_order_hash(id_, token):
     order = Order.query.get(id_)
     if order is not None:
-        if order.check_hash_id(hash_id):
+        if order.check_token(token):
             return jsonify({"matching hash": "order id: {}".format(id_)}), 200
         return jsonify({"error": "no matching hash for order id: {}".format(id_)}), 401
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404

@@ -211,7 +211,7 @@
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-                            data-amount="{{ gift_box.price }}"
+                            data-amount="{{ gift_box.price * 100 }}"
                             data-currency="SEK"
                             data-name="{{ gift_box.name }}"
                             data-image="{{ gift_box.image }}"

@@ -1,6 +1,7 @@
 function bindUserClick() {
     $('.order').on('click', handleUserClick);
 	$('#add-order').on('click', addOrder);
+	$(".status-button").on('click', changeStatus)
 }
 
 function handleUserClick(event) {
@@ -13,6 +14,13 @@ function fetchUser(order_id, completionHandler) {
     $.getJSON(url, function(data) {
         completionHandler(data)
     });
+}
+
+function changeStatus(event) {
+	var order_id = $(this).data('order-id');
+	$.post("api/v1/change_status/" + order_id);
+	$("#admin-orders").click();
+	event.stopPropagation();
 }
 
 function presentUserData(orderData) {
@@ -43,7 +51,7 @@ function presentUserData(orderData) {
 			presentUserDataEditable(orderData);
         }).appendTo("#btn-div");
 
-        $("<button>Kontrollera hash</button>").on("click", function(e) {
+        $("<button>Kontrollera token</button>").on("click", function(e) {
             e.preventDefault();
 			$('#order-div').empty();
 			checkUuid(orderData);
@@ -66,12 +74,12 @@ function checkUuid(orderData) {
         html: items.join( "" )
     }).appendTo( "#order-div" );
 
-        $("<button>Kontrollera hash</button>").on("click", function(e) {
+        $("<button>Kontrollera token</button>").on("click", function(e) {
             e.preventDefault();
 				$.getJSON("api/v1/check_order_hash/" + orderData['id'] + "/" + $("#uuid-input").val(), 
 					function(data, status) {
 						if (status == "success") {
-							alert("Hash Match!");
+							alert("Token stämmer!");
 						} else {
 							alert("Ett fel uppstod: " + status);
 						}
@@ -140,6 +148,8 @@ function presentUserDataEditable(orderData) {
 }
 
 function addOrder() {
+    $( "#order-list" ).hide();
+    $( "#add-order" ).hide();
     var items = [];
 	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "price", "message"]
         $.each( keys, function(ind, key) {
@@ -155,8 +165,7 @@ function addOrder() {
         $("<button>Lägg till order</button>").on("click", function(e) {
             e.preventDefault();
 				$.post("api/v1/add_order", 
-					{id: orderData['id'], 
-						buyer: $("#buyer-input").val(), 
+					{buyer: $("#buyer-input").val(), 
 						buyer_id: $("#buyer_id-input").val(), 
 						date: $("#date-input").val(), 
 						giftbox: $("#giftbox-input").val(), 
@@ -168,7 +177,7 @@ function addOrder() {
 						message: $("#message-input").val()
 						}, function(data, status) {
 						if (status == "success") {
-							alert("Ändringar sparade!");
+							alert("Order tillagd!");
 						} else {
 							alert("Ett fel uppstod: " + status);
 						}

@@ -194,23 +194,41 @@ def edit_order():
 @login_required
 def add_order():
     if request.method == "POST":
-        buyer_id = request.form.get('buyer_id')
+        buyer = Buyer.query.filter_by(id=request.form.get('buyer_id')).first()
         price = request.form.get('price')
-        date = datetime.datetime.strptime(request.form.get('date'), "%a %b %d %H:%M:%S %Y")
+        date = request.form.get('date')
         status = request.form.get('status_')
-        receiver_id = request.form.get('receiver_id')
-        giftbox_id = request.form.get('giftbox_id')
+        receiver = Receiver.query.filter_by(id=request.form.get('receiver_id')).first()
+        giftbox = GiftBox.query.filter_by(id=request.form.get('giftbox_id')).first()
         message = request.form.get('message')
+
         if not date:
             date = datetime.datetime.now()
-        order = Order.add(buyer_id=buyer_id, 
-                receiver_id=receiver_id, 
-                giftbox_id=giftbox_id, 
-                message=message,
-                hash_id=uuid.uuid4().hex)
+        else:
+            date = datetime.datetime.strptime(date, "%a %b %d %H:%M:%S %Y")
+
+        order = Order.create_order(giftbox, buyer, receiver, message)
+        
+        if status:
+           order.set_status(status)
         if order:
             return jsonify("success"), 200 
         return jsonify({"error": "Could not create order"}), 500
+
+
+@app.route('/api/v1/change_status/<int:order_id>', methods=['POST'])
+@login_required
+def change_status(order_id):
+    statuses = ['processing', 'preparing', 'received']
+    order = Order.query.filter_by(id=order_id).first()
+    for i in range(len(statuses)):
+        if order.status == statuses[i]:
+            if i < 2:
+                order.set_status(statuses[i + 1])
+            else:
+                order.set_status(statuses[0])
+            return jsonify({"success": "status set to {}".format(order.status)}), 200
+    return jsonify({"error": "could not set status on order = {}".format(order.id)}), 500
 
 
 @app.route('/api/v1/logout')

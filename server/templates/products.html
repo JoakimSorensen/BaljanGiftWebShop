@@ -1,25 +1,26 @@
 <link href="/static/css/products.css" rel="stylesheet" type="text/css">
 
 
-<div class="container" id="list-container">
-    <h2 style="margin-bottom: 30px">Alla produkter</h2>
+<div class="row" id="list-container">
+    <h2 style="margin-bottom: 30px">Alla gåvor</h2>
     {% for giftbox in GiftBoxes %}
         <div class="col-md-4" id="{{ giftbox.id }}" data-toggle="modal" data-target="#myModal">
-            <div class="hovereffect">
-                <a href="#" target="_blank">
-                    <img src={{ giftbox.image }} alt="Lights" class="image"
-                         style="width:350px; height:350px; margin-bottom: 30px;border-radius: 25px;">
-                    <div class="overlay" onclick="return false">
-                        <h2>{{ giftbox.name }}</h2>
-                        <h2>{{ giftbox.price }}:-</h2>
+                <div class="hovereffect">
+                    <div class="product-view">
+                        <img src={{ giftbox.image }} alt="Lights" class="image img-responsive"
+                         style="width:auto; max-height:350px; min-height: 200px; margin-bottom: 30px;">
+                        <div class="price-dot">
+                            <h3 id="price_label">{{ giftbox.price }}:-</h3>
+                        </div>
+                        <div class="overlay" onclick="return false">
+                        <h2 id="name_label">{{ giftbox.name }}</h2>
                         <p><a></a>
                         </p>
                     </div>
-                </a>
-            </div>
+                    </div>
+                </div>
         </div>
     {% endfor %}
-</div>
 </div>
 
 
@@ -31,7 +32,7 @@
                 <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
             </div>
         </div>
     </div>

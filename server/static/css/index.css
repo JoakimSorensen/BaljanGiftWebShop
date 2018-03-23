@@ -1,0 +1,87 @@
+
+.landing-page-caption {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 26px;
+    text-align: center;
+    color: white;
+    text-shadow: 0 4px 4px
+    rgba(0, 0, 0, 0.25);
+}
+
+.guide-text-container {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+    padding-top: 30px;
+}
+
+.guide-text {
+    border-bottom: 2px solid black;
+}
+
+.guide-image {
+    margin-top: 10px;
+}
+
+.guide-icon {
+    z-index: 2;
+    height: 100%;
+    margin-top: 30%;
+    margin-bottom: auto;
+}
+
+.guide-dot {
+    z-index: 1;
+    height: 0;
+    padding-bottom: 100%;
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.bounce:hover {
+  display: inline-block;
+  position: relative;
+  -moz-animation: bounce 0.3s 0.0s infinite linear;
+  -o-animation: bounce 0.3s 0.0s infinite linear;
+  -webkit-animation: bounce 0.3s 0.0s infinite linear;
+  animation: bounce 0.3s 0.0s infinite linear;
+  colr:000;
+}
+
+@-webkit-keyframes bounce {
+    0% { top: 0; }
+    50% { top: -0.2em }
+    70% { top: -0.3em }
+    100% { top: 0; }
+}
+@-moz-keyframes bounce {
+    0% { top:  0;}
+    50% { top: -0.2em }
+    70% { top: -0.3em }
+    100% { top: +0.2em; }
+}
+@-o-keyframes bounce {
+    0% { top: 0;}
+    50% { top: -0.2em }
+    70% { top: -0.3em }
+    100% { top: +0.2em; }
+}
+@-ms-keyframes bounce {
+    0% { top: 0;}
+    50% { top: -0.2em }
+    70% { top: -0.3em }
+    100% { top: +0.2em; }
+}
+@keyframes bounce {
+    0% { top: 0;}
+    50% { top: -0.2em }
+    70% { top: -0.3em }
+    100% { top: +0.2em; }
+}

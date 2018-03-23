@@ -1,11 +1,12 @@
 import datetime
-import uuid
+
 from flask import abort, jsonify, redirect, request, url_for
-from flask_mail import Message
 from flask_login import current_user, logout_user, login_required
+
 from server import app
-from server import mail
 from server.models import Buyer, GiftBox, Receiver, Order, User
+from server.notifications.email import send_order_confirmation_email
+from server.notifications.sms import send_ready_for_delivery_sms
 
 
 @app.route('/api/v1/users')
@@ -31,27 +32,21 @@ def all_orders():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
+    receiver_name = request.values["rec-name"]
+    receiver_phone = request.values["phonenumber"]
+    receiver_liu_id = request.values["liuid"]
+
+    message = request.values['message']
+
+    receiver = Receiver.create_receiver(receiver_name, receiver_phone, receiver_liu_id)
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
-    receiver = Receiver.add(name=request.values["rec-name"], phone=request.values["phonenumber"],
-                            liu_id=request.values["liuid"])
     giftbox = GiftBox.query.get(request.values["giftbox"])
-    hash_id = uuid.uuid4().hex
-    order = Order.add(price=giftbox.price,
-                      giftbox_id=giftbox.id,
-                      date=datetime.datetime.now(),
-                      buyer_id=buyer.id,
-                      message=request.values['message'],
-                      receiver_id=receiver.id,
-                      hash_id=hash_id)
-    conf_msg = Message("Baljangavan: Order confirmation, {}".format(order.date), sender='baljangavan@gmail.com',
-                       recipients=[buyer.email])
-    conf_msg.body = "We have received your order! \nYour name: {}\nReceiver's name: {}\
-            \nReceiver's LiU ID: {}\nReceiver's phone: {}\
-            \nPrice: {}\nGift: {}\n Message: {}\nStatus: {}".format(buyer.name, receiver.name,
-                                                                    receiver.liu_id, receiver.phone,
-                                                                    order.price, giftbox.name, order.message,
-                                                                    order.status)
-    mail.send(conf_msg)
+
+    order = Order.create_order(giftbox, buyer, receiver, message)
+
+    send_order_confirmation_email(order)
+    send_ready_for_delivery_sms(order)
+
     return redirect(url_for('order_view', order_id=order.id))
 
 
@@ -83,11 +78,11 @@ def order_with_id(id_):
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
 
 
-@app.route('/api/v1/check_order_hash/<int:id_>/<hash_id>')
-def check_order_hash(id_, hash_id):
+@app.route('/api/v1/check_order_hash/<int:id_>/<token>')
+def check_order_hash(id_, token):
     order = Order.query.get(id_)
     if order is not None:
-        if order.check_hash_id(hash_id):
+        if order.check_token(token):
             return jsonify({"matching hash": "order id: {}".format(id_)}), 200
         return jsonify({"error": "no matching hash for order id: {}".format(id_)}), 401
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404

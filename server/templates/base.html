@@ -10,12 +10,14 @@
 
     <!-- Latest compiled and minified CSS -->
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/css/base.css">
     <link rel="stylesheet" type="text/css" href="static/css/products.css">
     <link rel="stylesheet" type="text/css" href="static/css/guide.css" >
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
 
 
     <!-- Latest compiled and minified JavaScript -->
@@ -34,6 +36,7 @@
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
     <header>
+
     <div class="container">
         <img src="static/baljan_rosa_text.png" alt="logo_text" class="logo_text" id="products" style="width: 250px"/>
         <img src="static/paket3.png" alt="logo_gift" class="logo_gift" id="products" style="width: 50px"/>
@@ -61,45 +64,51 @@
 				{% else %}
 				<li>
                     <b href="#" class="nav-button" style="color: #E7008A"
-                       id="products">Produkter</b>
+                       id="products">Gåvor</b>
                 </li>
                 <li>
                     <b href="#" class="nav-button" style="color: #E7008A"
                        id="guide">Såhär funkar det!</b>
                 </li>
+                <li>
+                    <b href="#" class="nav-button" style="color: #E7008A"
+                       id="order_info">Sök order</b>
+                </li>
 				{% endif %}
             </ul>
         </nav>
     </div>
+    
     </header>
 
 {% endblock %}
 
-<div class="container" id="main-container">
 
+<div class="container" id="main-container">
     {% block content %}
     {% endblock %}
+</div>
 
-</div> <!-- /container -->
 
-<div class="footer" style="position: fixed">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6" align="left">
-                    <h4>Mer info</h4>
-                        <ul class="footer-list">
-                            <li><a href="#" class="nav-button" id="about">Vilka är vi?</a></li>
-                            <li><a href="#" class="nav-button" id="faq">Vanliga frågor</a></li>
-                            <li><a href="#" class="nav-button" id="contact">Kontakt</a></li>
-                        </ul>
-                </div>
-                <div class="col-lg-6" align="left">
-                    <h4>Om Baljangåvan</h4>
-                        <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver göra är att skriva mottagarens nummer så löser vi resten. </p>
-                </div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" align="center">
+                <h3>Mer info</h3>
+                <a href="#" class="nav-button" id="about">Vilka är vi?</a><br>
+                <a href="#" class="nav-button" id="faq">Vanliga frågor</a><br>
+                <a href="#" class="nav-button" id="contact">Kontakt</a><br>
+            </div>
+            <div class="col-md-6" align="center">
+                <h3>Om Baljangåvan</h3>
+                <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver göra är att skriva mottagarens nummer så löser vi resten.</p>
             </div>
         </div>
- </div>
+        <div class="legality">©Baljangåvan 2018</div>
+    </div>
+</footer>
+
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

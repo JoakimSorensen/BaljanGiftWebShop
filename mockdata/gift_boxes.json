@@ -14,18 +14,18 @@
     "products": ["Dammsugare", "Kaffe"]
   },
   {
-    "name": "Hjärtegull",
-    "price": "49",
-    "description": "Den perfekta kärlekshälsningen",
-    "image": "static/products/dejt.jpeg",
-    "products": ["Chokladboll", "Biskvi"]
-  },
-  {
     "name": "Freddes favorit",
     "price": "39",
     "description": "När man är sötsugen",
     "image": "static/products/freddes_favvo.jpeg",
     "products": ["Dammsugare", "Chokladboll"]
+  },
+  {
+    "name": "Hjärtegull",
+    "price": "49",
+    "description": "Den perfekta kärlekshälsningen",
+    "image": "static/products/dejt.jpeg",
+    "products": ["Chokladboll", "Biskvi"]
   },
   {
     "name": "Tentapluggaren",

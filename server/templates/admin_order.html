@@ -7,11 +7,12 @@
 				<small>id: {{ order.id }}</small>
 				<small>pris: {{ order.price }}</small><br>
                 <small>köpare: {{ order.buyer }}, </small>
-				<small>mottagare:{{ order.receiver }}</small><br>
-                <small>status: {{ order.status }}</small>
+				<small>mottagare:{{ order.receiver }}</small><br><br>
+                <p>status: {{ order.status }}</p>
+				<button data-order-id="{{ order.id }}" class="status-button">Ändra status</button>
             </div>
         </a>
     {% endfor %}
 </div>
 <div id="order-div"></div>
-<button id='add-order'>Add order</button>
+<button id='add-order'>Lägg till order</button>

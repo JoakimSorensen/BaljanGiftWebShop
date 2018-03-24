@@ -190,6 +190,22 @@ def edit_order():
         return redirect(url_for('admin'))
 
 
+@app.route('/api/v1/add_giftbox', methods=['POST'])
+@login_required
+def add_giftbox():
+    if request.method == "POST":
+        description = request.form.get('description')
+        price = request.form.get('price')
+        name = request.form.get('name')
+        image = request.form.get('image')
+
+        giftbox = GiftBox.add(description=description, price=price, name=name, image=image)
+
+        if giftbox:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create giftbox"}), 500
+
+
 @app.route('/api/v1/add_order', methods=['POST'])
 @login_required
 def add_order():

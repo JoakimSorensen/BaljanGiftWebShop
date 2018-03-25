@@ -3,7 +3,7 @@
 <button id="token-button">Sök</button>
 <div id="order-list" class="list-group">
     {% for order in orders %}
-	<a href="#" data-order-id="{{ order.id }}" data-token="{{ order.token }}" class="list-group-item list-group-item-action flex-column align-items-start order">
+	<a href="#" data-order-id="{{ order.id }}" class="list-group-item list-group-item-action flex-column align-items-start order">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ order.date }}</h5>
 				<small>id: {{ order.id }}</small>

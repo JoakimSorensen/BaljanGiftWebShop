@@ -78,6 +78,16 @@ def order_with_id(id_):
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
 
 
+@app.route('/api/v1/order_token/<token>')
+def order_with_token(token):
+    order = Order.query.filter_by(token=token).first()
+    if order is not None:
+        order_dict = order.to_dict()
+        return jsonify(order_dict)
+
+    return jsonify({"error": "No order with token: {}".format(token)}), 404
+
+
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')
 def check_order_hash(id_, token):
     order = Order.query.get(id_)

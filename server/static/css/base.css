@@ -131,14 +131,8 @@ nav b{
     font-size: 18px;
 }
 
-
-nav b:hover{
+nav b:hover {
     cursor: pointer;
-    text-decoration: underline;
-}
-
-nav b:after{
-    text-decoration: underline;
 }
 
 .image-with-caption {
@@ -150,6 +144,10 @@ nav b:after{
     top: 45%;
     left: 0;
     width: 100%;
+}
+
+.active {
+    border-bottom: 2px solid black;
 }
 
 /*

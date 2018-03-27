@@ -1,9 +1,26 @@
-<h3> Orderbekräftelse </h3>
-<p>Datum: {{ order.date }}</p>
-<p>Pris: {{ order.price }}</p>
-<p>Orderstatus: {{ order.status }}</p>
-<p>Mottagare namn: {{ order.receiver.name }}</p>
-<p>Mottagarens LiU ID: {{ order.receiver.liu_id }}</p>
-<p>Mottagarens telefonnummer: {{ order.receiver.phone }}</p>
-<p>Meddelande: {{ order.message }}</p>
-<p>Ordernummer: {{ order.token }}</p>
+{% extends "base.html" %}
+{% block nav %}
+{{super()}}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Tack för din order!</h1>
+        Vi har mottagit din order och kommer börja packa den direkt. Du bör få en orderbekräftelse i din mail, {{ order.buyer.email }}, snart.
+        Mottagaren kommer nu få ett sms med information kring uthämtning samt sin unika uthämtningskod.
+    </div>
+    <div>
+        <h3> Ordersummering </h3>
+        <p>Datum: {{ order.date }}</p>
+        <p>Pris: {{ order.price }}</p>
+        <p>Orderstatus: {{ order.status }}</p>
+        <p>Mottagare namn: {{ order.receiver.name }}</p>
+        <p>Mottagarens LiU-ID: {{ order.receiver.liu_id }}</p>
+        <p>Mottagarens telefonnummer: {{ order.receiver.phone }}</p>
+        <p>Meddelande: {{ order.message }}</p>
+        <p>Ordernummer: {{ order.token }}</p>
+    </div>
+    <div>
+</div>
+{% endblock %}
+

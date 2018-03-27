@@ -3,8 +3,8 @@ $(document).ready(function () {
 
     $('.nav-button').on('click', handleNavBarClick);
     $('.nav-button').on('click', handleNavBarClick)
-    $('.logo_text').on('click', handleNavBarClick)
-    $('.logo_gift').on('click', handleNavBarClick)
+	$('.logo-text').on('click', handleNavBarClick)
+
 });
 
 function handleNavBarClick(event) {

@@ -11,6 +11,12 @@
     padding-top: 20%;
 }
 
+input{
+    box-sizing: border-box;
+    position: relative;
+    width: fit-content;
+}
+
 
 input.token-input:focus {
     outline-width: 0;

@@ -2,6 +2,7 @@ function bindUserClick() {
     $('.order').on('click', handleUserClick);
 	$('#add-order').on('click', addOrder);
 	$(".status-button").on('click', changeStatus);
+	$(".send-status-button").on('click', notifyStatus);
 	$("#token-button").on('click', getFromToken);
 }
 
@@ -21,6 +22,18 @@ function changeStatus(event) {
 	var order_id = $(this).data('order-id');
 	$.post("api/v1/change_status/" + order_id);
 	$("#admin-orders").click();
+	event.stopPropagation();
+}
+
+function notifyStatus(event) {
+	var order_id = $(this).data('order-id');
+	$.get("api/v1/notify-buyer-status/" + order_id, function(status, data) {
+		if(status == "success") {
+			alert("Köparen har blivit notifierad!")
+		} else {
+			alert("Ett fel uppstod! Status = " + status + "\nMeddelande = " + data);
+		}
+	});
 	event.stopPropagation();
 }
 

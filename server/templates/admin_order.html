@@ -12,6 +12,7 @@
 				<small>mottagare:{{ order.receiver }}</small><br><br>
                 <p>status: {{ order.status }}</p>
 				<button data-order-id="{{ order.id }}" class="status-button">Ändra status</button>
+				<button data-order-id="{{ order.id }}" class="send-status-button">Notifiera status</button>
             </div>
         </a>
     {% endfor %}

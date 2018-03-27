@@ -2,8 +2,7 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.nav-button').on('click', handleNavBarClick);
-    $('.nav-button').on('click', handleNavBarClick)
-	$('.logo-text').on('click', handleNavBarClick)
+	$('.logo-text').on('click', handleLogoClick);
 
 });
 
@@ -18,6 +17,10 @@ function handleNavBarClick(event) {
 			window.location = "/index";
 		});
 	 }
+};
+
+function handleLogoClick() {
+	window.location.replace("/index");
 }
 
 function bindEventHandlers(event) {
@@ -25,3 +28,9 @@ function bindEventHandlers(event) {
     bindUserClick();
 }
 
+$(function() {
+  $(".clickable").click(function() {
+  	$(".clickable").removeClass("active");
+    $(this).addClass("active");      //add the class to the clicked element
+  });
+});

@@ -1,6 +1,6 @@
 import datetime
 
-from flask import abort, jsonify, redirect, request, url_for
+from flask import abort, jsonify, redirect, request, url_for, render_template
 from flask_login import current_user, logout_user, login_required
 
 from server import app
@@ -47,7 +47,7 @@ def payment_completed():
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
 
-    return redirect(url_for('order_view', order_id=order.id))
+    return render_template('order.html', order=order)
 
 
 @app.route('/api/v1/users/<int:id_>')

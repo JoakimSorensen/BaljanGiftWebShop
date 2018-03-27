@@ -25,3 +25,9 @@ function bindEventHandlers(event) {
     bindUserClick();
 }
 
+$(function() {
+  $(".clickable").click(function() {
+  	$(".clickable").removeClass("active");
+    $(this).addClass("active");      //add the class to the clicked element
+  });
+});

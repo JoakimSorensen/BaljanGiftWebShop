@@ -35,60 +35,55 @@
 {% block nav %}
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
-    <header>
+    <div class="above-nav">
+        <div class="container">
+            <h1 class="logo-text">Baljangåvan</h1>
+        </div>
+    </div>
 
-    <div class="container">
-        <img src="static/baljan_rosa_text.png" alt="logo_text" class="logo_text" id="products" style="width: 250px"/>
-        <img src="static/paket3.png" alt="logo_gift" class="logo_gift" id="products" style="width: 50px"/>
-
-
+    <div class="container nav-wrapper">
         <nav>
             <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
-                    <b data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button"
-                       style="color: #E7008A" id="admin-users">Användare</b>
+                    <b data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button clickable" id="admin-users">Användare</b>
 				</li>
                 <li>
-                    <b data-toggle="tooltip" title="Redigera ordrar" href="#" class="nav-button"
-                       style="color: #E7008A" id="admin-orders">Ordrar</b>
+                    <b data-toggle="tooltip" title="Redigera ordrar" href="#" class="nav-button clickable" id="admin-orders">Ordrar</b>
 				</li>
                 <li>
-                    <b data-toggle="tooltip" title="Redigera gåvor" href="#" class="nav-button"
-                       style="color: #E7008A" id="admin-giftboxs">Gåvor</b>
+                    <b data-toggle="tooltip" title="Redigera gåvor" href="#" class="nav-button clickable" id="admin-giftboxs">Gåvor</b>
 				</li>
                 <li>
 					<b data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
-						class="nav-button" style="color: #E7008A" id="logout">Tillbaka</b>
+						class="nav-button" id="logout">Tillbaka</b>
 				</li>
 				{% else %}
 				<li>
-                    <b href="#" class="nav-button" style="color: #E7008A"
+                    <b href="#" class="nav-button clickable"
                        id="products">Gåvor</b>
                 </li>
                 <li>
-                    <b href="#" class="nav-button" style="color: #E7008A"
+                    <b href="#" class="nav-button clickable"
                        id="guide">Såhär funkar det!</b>
                 </li>
                 <li>
-                    <b href="#" class="nav-button" style="color: #E7008A"
+                    <b href="#" class="nav-button clickable"
                        id="order_info">Sök order</b>
                 </li>
 				{% endif %}
             </ul>
         </nav>
     </div>
-    
-    </header>
 
 {% endblock %}
 
-
-<div class="container" id="main-container">
-    {% block content %}
-    {% endblock %}
+<div id="main-container-wrapper">
+    <div class="container" id="main-container">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
-
 
 <footer>
     <div class="container">

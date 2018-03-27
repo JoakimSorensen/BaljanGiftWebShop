@@ -28,6 +28,19 @@ def order_confirmation_email(order):
     return subject, message
 
 
+def status_change_email(order):
+    subject = "Baljangavan: Order status {}".format(order.status)
+
+    message = """
+    Din beställnings status har ändrats till {status}!
+
+    För detaljer, gå in på http://localhost:5000/order?token={token}
+    Vänliga hälsningar,
+    Baljangåvan
+    """.format(status=order.status, token=order.token)
+    return subject, message
+
+
 def ready_for_delivery_sms(order):
     message = """God nyheter!
     Du har fått en gåva att hämta i Baljan!  🎁

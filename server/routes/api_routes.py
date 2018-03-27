@@ -5,7 +5,7 @@ from flask_login import current_user, logout_user, login_required
 
 from server import app
 from server.models import Buyer, GiftBox, Receiver, Order, User
-from server.notifications.email import send_order_confirmation_email
+from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
 
@@ -255,6 +255,16 @@ def change_status(order_id):
                 order.set_status(statuses[0])
             return jsonify({"success": "status set to {}".format(order.status)}), 200
     return jsonify({"error": "could not set status on order = {}".format(order.id)}), 500
+
+
+@app.route('/api/v1/notify-buyer-status/<int:order_id>')
+@login_required
+def notify_buyer_status(order_id):
+    order = Order.query.filter_by(id=order_id).first()
+    if order:
+        send_order_status_change_email(order)
+        return 200, "Status change email sent to email {}".format(order.buyer.email)
+    return 404, "No order with id = {} was found!".format(order_id)
 
 
 @app.route('/api/v1/logout')

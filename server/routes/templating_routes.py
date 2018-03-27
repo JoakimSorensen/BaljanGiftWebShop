@@ -124,7 +124,7 @@ def login():
 
 @app.route('/products')
 def products():
-    all_giftboxes = GiftBox.query.all()
+    all_giftboxes = GiftBox.query.order_by('price').all()
 
     return render_template('products.html', GiftBoxes=all_giftboxes)
 

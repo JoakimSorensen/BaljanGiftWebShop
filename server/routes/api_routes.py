@@ -5,7 +5,7 @@ from flask_login import current_user, logout_user, login_required
 
 from server import app
 from server.models import Buyer, GiftBox, Receiver, Order, User
-from server.notifications.email import send_order_confirmation_email
+from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
 
@@ -76,6 +76,16 @@ def order_with_id(id_):
         return jsonify(order_dict)
 
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
+
+
+@app.route('/api/v1/order_token/<token>')
+def order_with_token(token):
+    order = Order.query.filter_by(token=token).first()
+    if order is not None:
+        order_dict = order.to_dict()
+        return jsonify(order_dict)
+
+    return jsonify({"error": "No order with token: {}".format(token)}), 404
 
 
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')
@@ -190,6 +200,22 @@ def edit_order():
         return redirect(url_for('admin'))
 
 
+@app.route('/api/v1/add_giftbox', methods=['POST'])
+@login_required
+def add_giftbox():
+    if request.method == "POST":
+        description = request.form.get('description')
+        price = request.form.get('price')
+        name = request.form.get('name')
+        image = request.form.get('image')
+
+        giftbox = GiftBox.add(description=description, price=price, name=name, image=image)
+
+        if giftbox:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create giftbox"}), 500
+
+
 @app.route('/api/v1/add_order', methods=['POST'])
 @login_required
 def add_order():
@@ -229,6 +255,16 @@ def change_status(order_id):
                 order.set_status(statuses[0])
             return jsonify({"success": "status set to {}".format(order.status)}), 200
     return jsonify({"error": "could not set status on order = {}".format(order.id)}), 500
+
+
+@app.route('/api/v1/notify-buyer-status/<int:order_id>')
+@login_required
+def notify_buyer_status(order_id):
+    order = Order.query.filter_by(id=order_id).first()
+    if order:
+        send_order_status_change_email(order)
+        return 200, "Status change email sent to email {}".format(order.buyer.email)
+    return 404, "No order with id = {} was found!".format(order_id)
 
 
 @app.route('/api/v1/logout')

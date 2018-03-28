@@ -8,7 +8,7 @@ from server import app
 # Templating routes
 # --–---------------------
 from server.forms import AdminLoginForm, RegistrationForm
-from server.models import User, Order, GiftBox
+from server.models import User, Order, GiftBox, Product
 
 
 @app.route('/')
@@ -70,6 +70,13 @@ def amdin_orders():
     """
     all_orders = Order.query.all()
     return render_template('admin_order.html', orders=all_orders)
+
+
+@app.route('/admin-products')
+@login_required
+def admin_products():
+    all_products = Product.query.all()
+    return render_template('admin_products.html', products=all_products)
 
 
 @app.route('/add_user', methods=['GET', 'POST'])

@@ -12,3 +12,18 @@ class Product(SharedModel):
     required_fields = {name, price}
     excluded_fields = set()
 
+    def set_name(self, name):
+        self.name = name
+        db.session.commit()
+
+    def set_price(self, price):
+        self.price = price
+        db.session.commit()
+
+    def set_allergen(self, allergen):
+        self.allergen = allergen
+        db.session.commit()
+
+    def set_image(self, image):
+        self.image = image
+        db.session.commit()

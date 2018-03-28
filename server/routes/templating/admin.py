@@ -11,12 +11,6 @@ from server.forms import AdminLoginForm, RegistrationForm
 from server.models import User, Order, GiftBox, Product
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-
 @app.route('/baljan', strict_slashes=False)
 @login_required
 def admin():
@@ -116,73 +110,3 @@ def login():
             next_page = url_for('admin')
         return redirect(next_page)
     return render_template('adminlogin.html', title='Sign In', form=form)
-
-
-@app.route('/products')
-def products():
-    all_giftboxes = GiftBox.query.order_by('price').all()
-
-    return render_template('products.html', GiftBoxes=all_giftboxes)
-
-
-@app.route('/card/<int:gift_box_id>')
-def card(gift_box_id):
-    gift_box = GiftBox.query.get(gift_box_id)
-    return render_template('card.html', gift_box=gift_box)
-
-
-@app.route('/order/<int:order_id>')
-def order_view(order_id):
-    order = Order.query.get(order_id)
-    return render_template('order.html', order=order)
-
-
-@app.route('/order')
-def order_view_from_hash():
-    token = request.args.get('token')
-    # Fetch order from token
-    order = Order.query.filter_by(token=token).first()
-    if order is None:
-        return render_template('token_not_found.html')
-
-    return render_template('order.html', order=order)
-
-@app.route('/faq')
-def faq():
-    return render_template('faq.html')
-
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-
-@app.route('/guide')
-def guide():
-    return render_template('guide.html')
-
-@app.route('/order_info')
-def order_info():
-    return render_template('order_info.html')
-
-
-#--------------------------------------#
-#----------- Error Handlers -----------#
-#--------------------------------------#
-@app.errorhandler(401)
-def page_not_found(error):
-    """
-    Custom view for unauthorized 401.
-    Returns the 401-unauth.html.
-    """
-    return render_template('401-unauth.html'), 401
-
-
-@app.errorhandler(403)
-def forbidden(error):
-    """
-    Custom view for forbidden 403.
-    Returns the 403-forbidden.html.
-    """
-    return render_template('403-forbidden.html'), 403
-

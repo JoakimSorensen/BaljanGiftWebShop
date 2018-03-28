@@ -34,7 +34,6 @@ def all_orders():
 def payment_completed():
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
-    receiver_liu_id = request.values["liuid"]
 
     message = request.values['message']
 

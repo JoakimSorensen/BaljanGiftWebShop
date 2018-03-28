@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <h2 style="margin-bottom: 30px">Alla gåvor</h2>
     {% for giftbox in GiftBoxes %}
-        <div class="col-md-4 col-sm-6 col-xs-8 col-md-offset-0 col-sm-offset-0 col-xs-offset-2" id="{{ giftbox.id }}" data-toggle="modal" data-target="#myModal">
+        <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" id="{{ giftbox.id }}" data-toggle="modal" data-target="#myModal" style="position: center">
             <div class="hovereffect">
                 <div class="product-view">
                     <img src={{ giftbox.image }} alt="Lights" class="image">

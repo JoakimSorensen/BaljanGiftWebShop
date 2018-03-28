@@ -46,13 +46,16 @@
             <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
-                    <b data-toggle="tooltip" title="Redigera användare" href="#" class="nav-button clickable" id="admin-users">Användare</b>
+                    <b data-toggle="tooltip" title="Redigera admin användare" href="#" class="nav-button clickable" id="admin-users">Baljörs</b>
 				</li>
                 <li>
                     <b data-toggle="tooltip" title="Redigera ordrar" href="#" class="nav-button clickable" id="admin-orders">Ordrar</b>
 				</li>
                 <li>
                     <b data-toggle="tooltip" title="Redigera gåvor" href="#" class="nav-button clickable" id="admin-giftboxs">Gåvor</b>
+				</li>
+				<li>
+                    <b data-toggle="tooltip" title="Redigera produkter" href="#" class="nav-button clickable" id="admin-products">Produkter</b>
 				</li>
                 <li>
 					<b data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"

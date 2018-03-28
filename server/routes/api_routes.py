@@ -4,7 +4,7 @@ from flask import abort, jsonify, redirect, request, url_for
 from flask_login import current_user, logout_user, login_required
 
 from server import app
-from server.models import Buyer, GiftBox, Receiver, Order, User
+from server.models import Buyer, GiftBox, Receiver, Order, User, Product
 from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
@@ -78,6 +78,16 @@ def order_with_id(id_):
     return jsonify({"error": "No order with ID: {id_}".format(id_=id_)}), 404
 
 
+@app.route('/api/v1/product/<int:id_>')
+def product_with_id(id_):
+    product = Product.query.get(id_)
+    if product is not None:
+        product_dict = product.to_dict()
+        return jsonify(product_dict)
+
+    return jsonify({"error": "No product with ID: {id_}".format(id_=id_)}), 404
+
+
 @app.route('/api/v1/order_token/<token>')
 def order_with_token(token):
     order = Order.query.filter_by(token=token).first()
@@ -124,6 +134,14 @@ def delete_order():
     return "success"
 
 
+@app.route('/api/v1/delete_product', methods=['DELETE'])
+@login_required
+def delete_product():
+    product_id = request.form.get('id')
+    Product.delete(product_id)
+    return "success"
+
+
 @app.route('/api/v1/edit_user', methods=['GET', 'POST'])
 @login_required
 def edit_user():
@@ -163,6 +181,27 @@ def edit_giftbox():
             giftbox.set_price(price)
         if image:
             giftbox.set_image(image)
+        return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/edit_product', methods=['GET', 'POST'])
+@login_required
+def edit_product():
+    if request.method == "POST":
+        product_id = request.form.get('id')
+        product_name = request.form.get('name')
+        allergen = request.form.get('allergen')
+        price = request.form.get('price')
+        image = request.form.get('image')
+        product = Product.query.filter_by(id=product_id).first()
+        if product_name:
+            product.set_name(product_name)
+        if allergen:
+            product.set_allergen(allergen)
+        if price:
+            product.set_price(price)
+        if image:
+            product.set_image(image)
         return redirect(url_for('admin'))
 
 
@@ -214,6 +253,22 @@ def add_giftbox():
         if giftbox:
             return jsonify("success"), 200 
         return jsonify({"error": "Could not create giftbox"}), 500
+
+
+@app.route('/api/v1/add_product', methods=['POST'])
+@login_required
+def add_product():
+    if request.method == "POST":
+        allergen = request.form.get('allergen')
+        price = request.form.get('price')
+        name = request.form.get('name')
+        image = request.form.get('image')
+
+        product = Product.add(allergen=allergen, price=price, name=name, image=image)
+
+        if product:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create product"}), 500
 
 
 @app.route('/api/v1/add_order', methods=['POST'])

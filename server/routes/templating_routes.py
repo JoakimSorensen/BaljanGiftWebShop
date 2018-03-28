@@ -17,17 +17,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-@app.route('/users')
-def users():
-    all_users = User.query.all()
-    return render_template('users.html', users=all_users)
-
-
 @app.route('/baljan', strict_slashes=False)
 @login_required
 def admin():

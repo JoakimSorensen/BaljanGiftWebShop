@@ -1,0 +1,14 @@
+<script src="/static/js/admin_giftboxproducts.js"></script>
+<div id="giftboxproduct-list" class="list-group">
+    {% for giftboxproduct in giftboxproducts %}
+        <a href="#" data-giftboxproduct-id="{{ giftboxproduct.id }}" class="list-group-item list-group-item-action flex-column align-items-start giftboxproduct">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ giftboxproduct.name }}</h5>
+				<small>Allergen: {{ giftboxproduct.allergen }}</small><br>
+                <small>Pris: {{ giftboxproduct.price }} kr</small>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+<div id="giftboxproduct-div"></div>
+<button id='add-giftboxproduct'>Lägg till produkt</button>

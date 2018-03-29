@@ -4,7 +4,7 @@ $('[data-toggle="tooltip"]').tooltip();
 function handleColClick(event) {
     var x = Number("1");
     $('#list-container').fadeOut(function () {
-        $('#list-container').load('/card/' + event.target.id, function () {
+        $('#list-container').load('/html/card/' + event.target.id, function () {
             bindEventHandlers(event);
             $('#list-container').fadeIn();
         });
@@ -13,7 +13,7 @@ function handleColClick(event) {
 
 $('#myModal').on('show.bs.modal', function (e) {
      ide = e.relatedTarget.id;
-    $('.modal-body').load('/card/' + ide);
+    $('.modal-body').load('/html/card/' + ide);
 });
 
 /*

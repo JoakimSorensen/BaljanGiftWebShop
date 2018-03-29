@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 function handleNavBarClick(event) {
-    var url = "/" + event.target.id;
+    var url = "/html/" + event.target.id;
 	if(url != "/logout") {
     	$('#main-container').load(url, function() {
         	bindEventHandlers(event)

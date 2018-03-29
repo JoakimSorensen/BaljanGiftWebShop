@@ -2,25 +2,25 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.nav-button').on('click', handleNavBarClick);
-	$('.logo-text').on('click', handleLogoClick);
+    $('.logo-text').on('click', handleLogoClick);
 
 });
 
 function handleNavBarClick(event) {
     var url = "/html/" + event.target.id;
-	if(url != "/logout") {
-    	$('#main-container').load(url, function() {
-        	bindEventHandlers(event)
-    	});
-	 } else {
-	 	$.get("/api/v1/logout", function() {
-			window.location = "/index";
-		});
-	 }
+    if(url != "/logout") {
+        $('#main-container').load(url, function() {
+            bindEventHandlers(event)
+        });
+    } else {
+        $.get("/api/v1/logout", function() {
+            window.location = "/index";
+        });
+    }
 };
 
 function handleLogoClick() {
-	window.location.replace("/index");
+    window.location.replace("/index");
 }
 
 function bindEventHandlers(event) {
@@ -29,8 +29,8 @@ function bindEventHandlers(event) {
 }
 
 $(function() {
-  $(".clickable").click(function() {
-  	$(".clickable").removeClass("active");
-    $(this).addClass("active");      //add the class to the clicked element
-  });
+    $(".clickable").click(function() {
+        $(".clickable").removeClass("active");
+        $(this).addClass("active");      //add the class to the clicked element
+    });
 });

@@ -9,7 +9,6 @@ def order_confirmation_email(order):
     
 Ditt namn: {name}
 Mottagarens namn: {receiver_name}
-Mottagarens LiU ID: {receiver_liu_id}
 Mottagarens telefonnummer: {receiver_phone}
         
 Pris: {price}
@@ -20,7 +19,7 @@ Bekräftelsenummret {token} kommer användas av gåvans mottagare för att hämt
         
 För att se status på beställningen, gå in på http://localhost:5000/order?token={token}
 """.format(name=buyer.name, receiver_name=receiver.name,
-           receiver_liu_id=receiver.liu_id, receiver_phone=receiver.phone,
+           receiver_phone=receiver.phone,
            price=order.price, gift=giftbox.name, message=order.message,
            token=order.token)
 

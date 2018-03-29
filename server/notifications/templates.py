@@ -59,7 +59,7 @@ def ready_for_delivery_sms(order):
 Du har fått en gåva att hämta i Baljan!  🎁
 Ange kod: {token}
     
-Med gratulerande hälsningar,
-Baljangåvan  🎈""".format(token=order.token)
+Ha en kalasbra dag,
+Önskar Baljangåvan 🎈""".format(token=order.token)
 
     return message

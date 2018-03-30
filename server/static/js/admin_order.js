@@ -50,7 +50,7 @@ function presentUserData(orderData) {
     $( "#add-order" ).hide();
     var items = [];
         $.each( orderData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
         });
 
         $( "<ul/>", {

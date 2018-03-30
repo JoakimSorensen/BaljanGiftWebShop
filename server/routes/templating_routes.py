@@ -8,7 +8,7 @@ from server import app
 # Templating routes
 # --–---------------------
 from server.forms import AdminLoginForm, RegistrationForm
-from server.models import User, Order, GiftBox, Product
+from server.models import User, Order, GiftBox, GiftBoxProduct, Product
 
 
 @app.route('/')
@@ -58,7 +58,8 @@ def admin_giftboxs():
     giftbox in admin_gigiftbox.html.
     """
     all_giftbox = GiftBox.query.all()
-    return render_template('admin_giftbox.html', giftboxs=all_giftbox)
+    all_products = Product.query.all()
+    return render_template('admin_giftbox.html', giftboxs=all_giftbox, products=all_products)
 
 
 @app.route('/admin-orders')
@@ -77,6 +78,13 @@ def amdin_orders():
 def admin_products():
     all_products = Product.query.all()
     return render_template('admin_products.html', products=all_products)
+
+
+@app.route('/admin-giftboxproducts')
+@login_required
+def admin_giftboxproducts():
+    all_giftboxproducts = GiftBoxProduct.query.all()
+    return render_template('admin_giftboxproducts.html', giftboxproducts=all_giftboxproducts)
 
 
 @app.route('/add_user', methods=['GET', 'POST'])

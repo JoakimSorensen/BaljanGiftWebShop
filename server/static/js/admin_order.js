@@ -27,9 +27,9 @@ function changeStatus(event) {
 
 function notifyStatus(event) {
 	var order_id = $(this).data('order-id');
-	$.get("api/v1/notify-buyer-status/" + order_id, function(status, data) {
+	$.get("api/v1/notify-buyer-status/" + order_id, function(data, status) {
 		if(status == "success") {
-			alert("Köparen har blivit notifierad!")
+			alert("Köparen har blivit notifierad!");
 		} else {
 			alert("Ett fel uppstod! Status = " + status + "\nMeddelande = " + data);
 		}

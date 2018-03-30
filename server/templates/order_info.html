@@ -16,13 +16,17 @@
 
     </form>
 
-    <div id="token-result"></div>
+    <div id="token-result">
+        <h1 id="text1">Här finns lite text</h1>
+        <h1>Här finns lite mer text</h1>
+    </div>
 
 
 
 <script>
     $(document).ready(function() {
         $("#error-text").hide();
+        $("#token-result").hide();
     });
 
 
@@ -40,18 +44,53 @@
                 console.log("failure")
             }else{
             console.log("successs")
-            $.each( data, function( key, val ) {
-            info.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
-            });
+            $("#token-result").show();
+            handleData(data);
             }
         });
-
-        $( "<ul/>", {
-           "class": "token-info",
-           html: info.join( "" )
-           }).appendTo( "#token-result" );
-
     });
+
+    function handleData(data){
+            var receiver_data="null";
+            var giftbox_val = 0;
+
+
+         $.each(data, function( key, val ) {
+            if(key==="giftbox_id"){
+                giftbox_val = val;
+            }else if(key==="receiver_id"){
+                var receiver_val = val;
+                receiver_data = getReceiverData(receiver_val);
+            }else if(key==="date"){
+                var date_val = val;
+            }else if(key==="message"){
+                var msg_val = val;
+            }else if(key==="price"){
+                var price_val = val;
+            }else if(key==="status"){
+                var status_val = val;
+            }
+            });
+
+            var gift_data = getGiftboxData(giftbox_val);
+
+         /*console.log(gift_data['name']);*/
+         console.log(gift_data);
+    }
+
+    function getGiftboxData(val) {
+        var url = "api/v1/giftbox/" + val;
+        $.getJSON(url, function (data) {
+            return data;
+        });
+    }
+
+    function getReceiverData(val) {
+        var url = "api/v1/receiver/" + val;
+        $.getJSON(url, function (data) {
+            return data;
+        });
+    }
 
 </script>
 

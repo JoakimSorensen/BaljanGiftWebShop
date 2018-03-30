@@ -68,6 +68,15 @@ def giftbox_with_id(id_):
     return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
 
 
+@app.route('/api/v1/receiver/<int:id_>')
+def receiver_with_id(id_):
+    receiver = Receiver.query.get(id_)
+    if receiver is not None:
+        return jsonify(receiver.to_dict())
+
+    return jsonify({"error": "No receiver with ID: {id_}".format(id_=id_)}), 404
+
+
 @app.route('/api/v1/order/<int:id_>')
 def order_with_id(id_):
     order = Order.query.get(id_)

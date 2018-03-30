@@ -3,15 +3,55 @@
 
 <h1 id="order_label" align="center">Skriv in ordernummer för att visa order</h1>
 
-    <form id="token-form"  class="flex-form" action="/order" method="get">
+    <form id="token-form"  class="flex-form" method="get">
             <div align="center" style="margin-top: 10%">
                 <div align="center" style="width: 53%">
                     <input id="token_input" class="token-input" type="text" name="token" placeholder="Ordernummer" style="font-size: 3.5vw;
                      border: 0; width: 80%; white-space: nowrap; border-bottom: 2px solid black">
                     <input id="submit_btn" type="submit" value="Sök" style="background-color: #38A7E5; font-size: 250%;
                     color: #FFFFFF; border: 0; height: 200%; padding-bottom: 1%">
+                    <p id="error-text" style="color: crimson; font-size: 1.5vw; padding-left: 1vw" align="left">Ordernumret du angav existerar ej!</p>
                 </div>
             </div>
 
     </form>
+
+    <div id="token-result"></div>
+
+
+
+<script>
+    $(document).ready(function() {
+        $("#error-text").hide();
+    });
+
+
+    $("#token-form").submit(function(ev){
+
+        console.log("går in i script");
+        ev.preventDefault();
+        var token_from_input = $("#token_input").val();
+        var info = [];
+        var url = "api/v1/order_token/" + token_from_input;
+
+        $.getJSON(url, function(data){
+            if(data === "error"){
+                $("#error-text").show();
+                console.log("failure")
+            }else{
+            console.log("successs")
+            $.each( data, function( key, val ) {
+            info.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            });
+            }
+        });
+
+        $( "<ul/>", {
+           "class": "token-info",
+           html: info.join( "" )
+           }).appendTo( "#token-result" );
+
+    });
+
+</script>
 

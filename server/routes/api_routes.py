@@ -95,7 +95,7 @@ def order_with_token(token):
         order_dict = order.to_dict()
         return jsonify(order_dict)
 
-    return jsonify({"error": "No order with token: {}".format(token)}), 404
+    return jsonify("error")
 
 
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')

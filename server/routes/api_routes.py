@@ -347,7 +347,7 @@ def change_status(order_id):
                 order.set_status(statuses[i + 1])
             else:
                 order.set_status(statuses[0])
-            return jsonify({"success": "status set to {}".format(order.status)}), 200
+            return "success"
     return jsonify({"error": "could not set status on order = {}".format(order.id)}), 500
 
 
@@ -357,8 +357,8 @@ def notify_buyer_status(order_id):
     order = Order.query.filter_by(id=order_id).first()
     if order:
         send_order_status_change_email(order)
-        return 200, "Status change email sent to email {}".format(order.buyer.email)
-    return 404, "No order with id = {} was found!".format(order_id)
+        return "Status change email sent to email {}".format(order.buyer.email), 200
+    return "No order with id = {} was found!".format(order_id), 404
 
 
 @app.route('/api/v1/logout')

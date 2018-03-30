@@ -45,22 +45,32 @@
             }else{
             console.log("successs")
             $("#token-result").show();
-            handleData(data);
+            retrieveData(data);
             }
         });
     });
 
-    function handleData(data){
-            var receiver_data="null";
-            var giftbox_val = 0;
-
-
+    function retrieveData(data){
+            var values = [];
+            var gift_data;
+        
          $.each(data, function( key, val ) {
             if(key==="giftbox_id"){
-                giftbox_val = val;
+                var giftbox_val = val;
+                var url = "api/v1/giftbox/" + val;
+                $.getJSON(url, function (data) {
+                gift_data = data;
+                console.log(data);
+                /*Denna skriver ut data*/
+                console.log(gift_data);
+                });
+
+                /*Denna skriver inte ut data*, får undefined*/
+                console.log(gift_data);
+
             }else if(key==="receiver_id"){
                 var receiver_val = val;
-                receiver_data = getReceiverData(receiver_val);
+                var receiver_data = getReceiverData(receiver_val);
             }else if(key==="date"){
                 var date_val = val;
             }else if(key==="message"){
@@ -70,19 +80,16 @@
             }else if(key==="status"){
                 var status_val = val;
             }
+            handleData();
+            function getGiftboxData(val) {
+
+            }
+
             });
-
-            var gift_data = getGiftboxData(giftbox_val);
-
-         /*console.log(gift_data['name']);*/
-         console.log(gift_data);
     }
 
-    function getGiftboxData(val) {
-        var url = "api/v1/giftbox/" + val;
-        $.getJSON(url, function (data) {
-            return data;
-        });
+    function handleData() {
+        
     }
 
     function getReceiverData(val) {

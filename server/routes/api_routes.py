@@ -3,8 +3,8 @@ import datetime
 from flask import abort, jsonify, redirect, request, url_for, render_template
 from flask_login import current_user, logout_user, login_required
 
-from server import app
-from server.models import Buyer, GiftBox, Receiver, Order, User, Product
+from server import app, db
+from server.models import Buyer, GiftBox, GiftBoxProduct, Receiver, Order, User, Product
 from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
@@ -62,8 +62,14 @@ def user_with_id(id_):
 @app.route('/api/v1/giftbox/<int:id_>')
 def giftbox_with_id(id_):
     giftbox = GiftBox.query.get(id_)
+    products = db.session.query(Product.name
+            ).filter(GiftBoxProduct.gift_box_id==giftbox.id, Product.id==GiftBoxProduct.product_id
+                    ).all()
     if giftbox is not None:
-        return jsonify(giftbox.to_dict())
+        giftbox_dict = giftbox.to_dict()
+        print("Products = ", products)
+        giftbox_dict["products"]  = products
+        return jsonify(giftbox_dict)
 
     return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
 
@@ -86,6 +92,15 @@ def product_with_id(id_):
         return jsonify(product_dict)
 
     return jsonify({"error": "No product with ID: {id_}".format(id_=id_)}), 404
+
+
+@app.route('/api/v1/giftboxproduct/<int:id_>')
+def giftboxproduct_with_id(id_):
+    giftboxproduct = GiftBoxProduct.query.get(id_)
+    if giftboxproduct is not None:
+        return jsonify(giftboxproduct.to_dict())
+
+    return jsonify({"error": "No giftboxproduct with ID: {id_}".format(id_=id_)}), 404
 
 
 @app.route('/api/v1/order_token/<token>')
@@ -123,6 +138,31 @@ def delete_user():
 def delete_giftbox():
     giftbox_id = request.form.get('id')
     GiftBox.delete(giftbox_id)
+    return "success"
+
+
+@app.route('/api/v1/delete-product-giftbox', methods=['POST'])
+@login_required
+def delete_product_from_giftbox():
+    giftbox_id = request.form.get('id')
+    product_name = request.form.get('name').lower().title()
+    product = Product.query.filter_by(name=product_name).first()
+    if not product:
+        return jsonify("No product with name {}".format(product_name)), 404
+    GiftBoxProduct.query.filter_by(gift_box_id=giftbox_id, product_id=product.id).delete()
+    db.session.commit()
+    return "success"
+
+
+@app.route('/api/v1/add-product-giftbox', methods=['POST'])
+@login_required
+def add_product_to_giftbox():
+    giftbox_id = request.form.get('id')
+    product_name = request.form.get('name').lower().title()
+    product = Product.query.filter_by(name=product_name).first()
+    if not product:
+        return jsonify("No product with name {}".format(product_name)), 404
+    giftbox = GiftBoxProduct.add(gift_box_id=giftbox_id, product_id=product.id)
     return "success"
 
 

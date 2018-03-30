@@ -19,7 +19,7 @@ function presentUserData(productData) {
     $( "#product-list" ).hide();
     var items = [];
         $.each( productData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
         });
 
         $( "<ul/>", {

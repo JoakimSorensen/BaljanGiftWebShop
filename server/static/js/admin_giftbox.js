@@ -26,7 +26,7 @@ function presentUserData(giftboxData) {
 	$("#add-giftbox").hide();
     var items = [];
         $.each( giftboxData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
         });
 
         $( "<ul/>", {

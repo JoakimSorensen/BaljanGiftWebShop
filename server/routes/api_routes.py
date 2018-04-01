@@ -93,13 +93,22 @@ def product_with_id(id_):
     return jsonify({"error": "No product with ID: {id_}".format(id_=id_)}), 404
 
 
-@app.route('/api/v1/giftboxproduct/<int:id_>')
-def giftboxproduct_with_id(id_):
-    giftboxproduct = GiftBoxProduct.query.get(id_)
-    if giftboxproduct is not None:
-        return jsonify(giftboxproduct.to_dict())
+@app.route('/api/v1/buyer/<int:id_>')
+def buyer_with_id(id_):
+    buyer = Buyer.query.get(id_)
+    if buyer is not None:
+        return jsonify(buyer.to_dict())
 
-    return jsonify({"error": "No giftboxproduct with ID: {id_}".format(id_=id_)}), 404
+    return jsonify({"error": "No buyer with ID: {id_}".format(id_=id_)}), 404
+
+
+@app.route('/api/v1/receiver/<int:id_>')
+def receiver_with_id(id_):
+    receiver = Receiver.query.get(id_)
+    if receiver is not None:
+        return jsonify(receiver.to_dict())
+
+    return jsonify({"error": "No receiver with ID: {id_}".format(id_=id_)}), 404
 
 
 @app.route('/api/v1/order_token/<token>')
@@ -181,6 +190,22 @@ def delete_product():
     return "success"
 
 
+@app.route('/api/v1/delete_buyer', methods=['DELETE'])
+@login_required
+def delete_buyer():
+    buyer_id = request.form.get('id')
+    Buyer.delete(buyer_id)
+    return "success"
+
+
+@app.route('/api/v1/delete_receiver', methods=['DELETE'])
+@login_required
+def delete_receiver():
+    receiver_id = request.form.get('id')
+    Receiver.delete(buyer_id)
+    return "success"
+
+
 @app.route('/api/v1/edit_user', methods=['GET', 'POST'])
 @login_required
 def edit_user():
@@ -241,6 +266,36 @@ def edit_product():
             product.set_price(price)
         if image:
             product.set_image(image)
+        return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/edit_buyer', methods=['GET', 'POST'])
+@login_required
+def edit_buyer():
+    if request.method == "POST":
+        buyer_id = request.form.get('id')
+        buyer_name = request.form.get('name')
+        email = request.form.get('email')
+        buyer = Buyer.query.filter_by(id=product_id).first()
+        if buyer_name:
+            buyer.set_name(buyer_name)
+        if email:
+            buyer.set_email(email)
+        return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/edit_receiver', methods=['GET', 'POST'])
+@login_required
+def edit_receiver():
+    if request.method == "POST":
+        receiver_id = request.form.get('id')
+        receiver_name = request.form.get('name')
+        receiver_phone = request.form.get('phone')
+        receiver = Receiver.query.filter_by(id=product_id).first()
+        if receiver_name:
+            receiver.set_name(product_name)
+        if receiver_phone:
+            receiver.set_phone(receiver_phone)
         return redirect(url_for('admin'))
 
 
@@ -308,6 +363,34 @@ def add_product():
         if product:
             return jsonify("success"), 200 
         return jsonify({"error": "Could not create product"}), 500
+
+
+@app.route('/api/v1/add_buyer', methods=['POST'])
+@login_required
+def add_buyer():
+    if request.method == "POST":
+        name = request.form.get('name')
+        email = request.form.get('email')
+
+        buyer = Buyer.add(name=name, email=email)
+
+        if buyer:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create buyer"}), 500
+
+
+@app.route('/api/v1/add_receiver', methods=['POST'])
+@login_required
+def add_receiver():
+    if request.method == "POST":
+        name = request.form.get('name')
+        phone = request.form.get('phone')
+
+        receiver = Receiver.add(name=name, phone=phone)
+
+        if receiver:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create receiver"}), 500
 
 
 @app.route('/api/v1/add_order', methods=['POST'])

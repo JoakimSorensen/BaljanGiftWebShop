@@ -73,7 +73,7 @@ function presentUserDataEditable(giftboxData) {
 						+ "<span class='tooltiptext'>Klicka för att ta bort</span></div><br>");
 				});
 				items.push("<br><input type=\"text\" id=product-input"  
-						+ " placeholder='lägg till product..'><button id='add-prod-btn'>Lägg till</button><br>");
+						+ " placeholder='lägg till produkt..'><button id='add-prod-btn'>Lägg till</button><br>");
 			}
         });
 

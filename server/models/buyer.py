@@ -12,3 +12,11 @@ class Buyer(SharedModel):
 
     def __repr__(self):
         return self.name
+
+    def set_email(self, email):
+        self.email = email
+        db.session.commit()
+
+    def set_name(self, name):
+        self.name = name
+        db.session.commit()

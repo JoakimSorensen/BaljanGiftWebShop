@@ -19,3 +19,10 @@ class Receiver(SharedModel):
     def __repr__(self):
         return self.name
 
+    def set_name(self, name):
+        self.name = name
+        db.session.commit()
+
+    def set_phone(self, phone):
+        self.phone = phone
+        db.session.commit()

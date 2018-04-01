@@ -17,6 +17,7 @@ function fetchUser(product_id, completionHandler) {
 
 function presentUserData(productData) {
     $( "#product-list" ).hide();
+	$('#add-product').hide();
     var items = [];
         $.each( productData, function( key, val ) {
             items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
@@ -33,6 +34,7 @@ function presentUserData(productData) {
 			$("#admin-products").click();
             $("#product-div").empty();
             $("#product-list").show();
+			$('#add-product').show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");
 
         $("<button>Redigera produkt</button>").on("click", function(e) {
@@ -45,6 +47,7 @@ function presentUserData(productData) {
             e.preventDefault();
             $("#product-div").empty();
             $("#product-list").show();
+			$('#add-product').show();
   		}).appendTo("#btn-div");
 }
 
@@ -83,12 +86,14 @@ function presentUserDataEditable(productData) {
 				$("#admin-products").click();
             	$("#product-div").empty();
             	$("#product-list").show();
+				$('#add-product').show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");
         
 	$("<button>Avbryt</button>").on("click", function(e) {
             e.preventDefault();
             $("#product-div").empty();
             $("#product-list").show();
+			$('#add-product').show();
   		}).appendTo("#btn-div");
 }
 

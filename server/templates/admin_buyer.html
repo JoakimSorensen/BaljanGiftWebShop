@@ -1,0 +1,14 @@
+<script src="/static/js/admin_buyer.js"></script>
+<div id="buyer-list" class="list-group">
+    {% for buyer in buyers %}
+        <a href="#" data-buyer-id="{{ buyer.id }}" class="list-group-item list-group-item-action flex-column align-items-start buyer">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ buyer.name }}</h5>
+				<small>id: {{ buyer.id }}</small><br>
+				<small>Email: {{ buyer.email }}</small><br>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+<div id="buyer-div"></div>
+<button id='add-buyer'>Lägg till köpare</button>

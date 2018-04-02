@@ -23,7 +23,7 @@ def card(gift_box_id):
     return render_template('card.html', gift_box=gift_box)
 
 
-@app.route('/html//order/<int:order_id>')
+@app.route('/html/order/<int:order_id>')
 def order_view(order_id):
     order = Order.query.get(order_id)
     return render_template('order.html', order=order)

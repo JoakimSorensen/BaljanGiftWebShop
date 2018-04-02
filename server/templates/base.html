@@ -37,7 +37,7 @@
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="above-nav">
         <div class="container">
-            <h1 class="logo-text">Baljangåvan</h1>
+            <h1 class="logo-text"><a href="/">Baljangåvan</a></h1>
         </div>
     </div>
 
@@ -63,16 +63,13 @@
 				</li>
 				{% else %}
 				<li>
-                    <b href="#" class="nav-button clickable"
-                       id="products">Gåvor</b>
+                    <a href="/products" class="nav-button clickable">Gåvor</a>
                 </li>
                 <li>
-                    <b href="#" class="nav-button clickable"
-                       id="guide">Såhär funkar det!</b>
+                    <a href="/guide" class="nav-button clickable">Såhär funkar det!</a>
                 </li>
                 <li>
-                    <b href="#" class="nav-button clickable"
-                       id="order_info">Sök order</b>
+                    <a href="/order-info" class="nav-button clickable">Sök order</a>
                 </li>
 				{% endif %}
             </ul>
@@ -114,6 +111,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<script src="https://unpkg.com/page/page.js"></script>
 <script src="/static/js/base.js"></script>
 <script src="/static/js/users.js"></script>
 

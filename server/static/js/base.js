@@ -1,36 +1,39 @@
-$(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip();
+// All requests from the browser will hit this code first. Then the request will match one of the defined routes below,
+// depending on the requested path. The function for each defined route is responsible for initiating the page that
+// should be served.
+//
+// We are using normal <a>-links on the site for the paths defined below, and the `page`-package will automagically
+// intercept the click-event and execute the code in the corresponding route.
 
-    $('.nav-button').on('click', handleNavBarClick);
-    $('.logo-text').on('click', handleLogoClick);
+page('/', function(){
+    var url = "/html/index";
+    loadURL(url);
+    console.log("Index");
+});
+
+page('/products', function() {
+    var url = "/html/products";
+    loadURL(url);
+    console.log("Products")
 
 });
 
-function handleNavBarClick(event) {
-    var url = "/html/" + event.target.id;
-    if(url != "/logout") {
-        $('#main-container').load(url, function() {
-            bindEventHandlers(event)
-        });
-    } else {
-        $.get("/api/v1/logout", function() {
-            window.location = "/index";
-        });
-    }
-};
+page('/guide', function() {
+    var url = "/html/guide";
+    loadURL(url);
+    console.log("Guide")
+});
 
-function handleLogoClick() {
-    window.location.replace("/index");
-}
+page('/order-info', function() {
+    var url = "/html/order-info";
+    loadURL(url);
+   console.log("Order Info")
+});
 
-function bindEventHandlers(event) {
-    // TODO: Bind the proper event handlers based on which "module" is activated, based on the event or something
-    bindUserClick();
-}
-
-$(function() {
-    $(".clickable").click(function() {
-        $(".clickable").removeClass("active");
-        $(this).addClass("active");      //add the class to the clicked element
+function loadURL(url) {
+    $('#main-container').load(url, function() {
     });
-});
+
+}
+
+page.start();

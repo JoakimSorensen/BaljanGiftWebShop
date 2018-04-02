@@ -4,10 +4,11 @@ from server import app
 from server.models import Order, GiftBox
 
 
-@app.route('/')
-@app.route('/index')
-def index():
-    return render_template('index.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def base(path):
+    # This is a special route which will respond to all requests, except those matching an other defined route
+    return render_template('base.html')
 
 
 @app.route('/html/products')
@@ -15,6 +16,11 @@ def products():
     all_giftboxes = GiftBox.query.order_by('price').all()
 
     return render_template('products.html', GiftBoxes=all_giftboxes)
+
+
+@app.route('/html/index')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/html/card/<int:gift_box_id>')

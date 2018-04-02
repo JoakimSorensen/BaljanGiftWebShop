@@ -1,3 +1,4 @@
+from server.models import Receiver, Buyer, Order
 from server.models.user import User
 from server.models.product import Product
 from server.models.gift_box import GiftBox, GiftBoxProduct
@@ -8,6 +9,7 @@ def create_mock_data():
     _create_admin_users()
     _create_products()
     _create_gift_boxes()
+    _create_orders()
 
 
 def _create_admin_users():
@@ -46,3 +48,21 @@ def _create_gift_boxes():
         gift_box = GiftBox.add(name=name, price=price, description=description, image=image)
         for product in included_products:
             GiftBoxProduct.add(gift_box_id=gift_box.id, product_id=product.id)
+
+
+def _create_orders():
+    orders_dicts = load_json_from_relative_path(__file__, 'orders.json')
+    for order_dict in orders_dicts:
+        receiver_name = order_dict["receiver"]["name"]
+        receiver_phone = order_dict["receiver"]["phone"]
+        buyer_name = order_dict["buyer"]["name"]
+        buyer_email = order_dict["buyer"]["email"]
+        giftbox_id = order_dict["giftbox_id"]
+        message = order_dict["message"]
+
+        receiver = Receiver.create_receiver(receiver_name, receiver_phone)
+        buyer = Buyer.add(name=buyer_name, email=buyer_email)
+        giftbox = GiftBox.query.get(giftbox_id)
+
+        order = Order.create_order(giftbox, buyer, receiver, message)
+        print("ℹ️: Mock Order created with token {token}".format(token=order.token))

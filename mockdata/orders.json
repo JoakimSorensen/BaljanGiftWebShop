@@ -1,0 +1,26 @@
+[
+  {
+    "receiver": {
+      "name": "Filip Nilsson",
+      "phone": "0702822329"
+    },
+    "buyer": {
+      "name": "Felicia Dahlström",
+      "email": "felicia@example.se"
+    },
+    "giftbox_id": 1,
+    "message": "Grattis till 5:a i IFP:n!"
+  },
+  {
+    "receiver": {
+      "name": "Eirik Funnemark",
+      "phone": "0701333337"
+    },
+    "buyer": {
+      "name": "Filip Nilsson",
+      "email": "filip@example.se"
+    },
+    "giftbox_id": 2,
+    "message": "Bra jobbat i Soccer Manager!"
+  }
+]

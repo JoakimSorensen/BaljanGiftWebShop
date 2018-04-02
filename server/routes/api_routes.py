@@ -46,7 +46,7 @@ def payment_completed():
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
 
-    return render_template('order.html', order=order)
+    return redirect("/order?token={token}".format(token=order.token))
 
 
 @app.route('/api/v1/users/<int:id_>')

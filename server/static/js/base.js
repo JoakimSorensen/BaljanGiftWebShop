@@ -30,6 +30,10 @@ page('/order_info', function() {
     console.log("Order Info")
 });
 
+page('/order', function(context) {
+    var url = "/html/order" + "?" + context.querystring;
+    loadURL(url);
+    console.log("Order")
 });
 
 function loadURL(url) {

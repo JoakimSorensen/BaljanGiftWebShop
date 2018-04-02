@@ -8,27 +8,18 @@ from server import app
 # Templating routes
 # --–---------------------
 from server.forms import AdminLoginForm, RegistrationForm
-from server.models import User, Order, GiftBox, Product
+from server.models import User, Order, GiftBox, GiftBoxProduct, Product, Receiver, Buyer
 
 
 @app.route('/baljan', strict_slashes=False)
 @login_required
 def admin():
-    """
-    The start page for admin,
-    requires login and returns
-    the html admin.html.
-    """
     return render_template('admin.html')
 
 
 @app.route('/admin-users')
 @login_required
 def admin_users():
-    """
-    Returns a list of all
-    user in user.html.
-    """
     all_users = User.query.all()
     return render_template('users.html', users=all_users)
 
@@ -36,21 +27,14 @@ def admin_users():
 @app.route('/admin-giftboxs')
 @login_required
 def admin_giftboxs():
-    """
-    Returns a list of all
-    giftbox in admin_gigiftbox.html.
-    """
     all_giftbox = GiftBox.query.all()
-    return render_template('admin_giftbox.html', giftboxs=all_giftbox)
+    all_products = Product.query.all()
+    return render_template('admin_giftbox.html', giftboxs=all_giftbox, products=all_products)
 
 
 @app.route('/admin-orders')
 @login_required
 def amdin_orders():
-    """
-    Returns a list of all
-    orders in admin_order.html.
-    """
     all_orders = Order.query.all()
     return render_template('admin_order.html', orders=all_orders)
 
@@ -60,6 +44,20 @@ def amdin_orders():
 def admin_products():
     all_products = Product.query.all()
     return render_template('admin_products.html', products=all_products)
+
+
+@app.route('/admin-buyers')
+@login_required
+def admin_buyers():
+    all_buyers = Buyer.query.all()
+    return render_template('admin_buyer.html', buyers=all_buyers)
+
+
+@app.route('/admin-receivers')
+@login_required
+def admin_receivers():
+    all_receivers = Receiver.query.all()
+    return render_template('admin_receiver.html', receivers=all_receivers)
 
 
 @app.route('/add_user', methods=['GET', 'POST'])

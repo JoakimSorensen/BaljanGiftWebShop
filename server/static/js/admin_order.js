@@ -27,9 +27,9 @@ function changeStatus(event) {
 
 function notifyStatus(event) {
 	var order_id = $(this).data('order-id');
-	$.get("api/v1/notify-buyer-status/" + order_id, function(status, data) {
+	$.get("api/v1/notify-buyer-status/" + order_id, function(data, status) {
 		if(status == "success") {
-			alert("Köparen har blivit notifierad!")
+			alert("Köparen har blivit notifierad!");
 		} else {
 			alert("Ett fel uppstod! Status = " + status + "\nMeddelande = " + data);
 		}
@@ -50,7 +50,7 @@ function presentUserData(orderData) {
     $( "#add-order" ).hide();
     var items = [];
         $.each( orderData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
         });
 
         $( "<ul/>", {
@@ -173,7 +173,7 @@ function addOrder() {
     $( "#order-list" ).hide();
     $( "#add-order" ).hide();
     var items = [];
-	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "price", "message"]
+	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "message"]
         $.each( keys, function(ind, key) {
             items.push( "<label id=" + key + ">"+ key + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");

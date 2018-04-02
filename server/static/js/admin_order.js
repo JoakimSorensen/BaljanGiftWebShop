@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.order').on('click', handleUserClick);
 	$('#add-order').on('click', addOrder);
@@ -50,8 +52,10 @@ function presentUserData(orderData) {
     $( "#add-order" ).hide();
     var items = [];
         $.each( orderData, function( key, val ) {
-            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
-        });
+			if(key != "buyer" && key != "receiver") {
+            	items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
+        	}
+		});
 
         $( "<ul/>", {
             "class": "order-info",
@@ -122,7 +126,7 @@ function checkUuid(orderData) {
 function presentUserDataEditable(orderData) {
     var items = [];
         $.each( orderData, function( key, val ) {
-			if(key != "created" && key != "modified" && key != "id") {
+			if(key != "created" && key != "modified" && key != "id" && key != "receiver" && key != "buyer") {
             	items.push( "<label id=" + key + ">"+ key + ": </label>" );
 				items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input"  
 						+ " value='" + val + "'>");

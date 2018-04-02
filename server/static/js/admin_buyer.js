@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.buyer').on('click', handleBuyerClick);
 	$('#add-buyer').on('click', addBuyer);

@@ -1,5 +1,7 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
-    $('.user').on('click', handleUserClick);
+	$('.user').on('click', handleUserClick);
 }
 
 function handleUserClick(event) {

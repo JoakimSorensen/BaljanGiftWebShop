@@ -36,10 +36,53 @@ page('/order', function(context) {
     console.log("Order")
 });
 
+page('/baljan/users', function() {
+	var url = "/admin-users";
+	loadURL(url);
+	console.log("Admin Users")
+});
+
+page('/baljan/orders', function() {
+	var url = "/admin-orders";
+	loadURL(url);
+	console.log("Admin Orders")
+});
+
+page('/baljan/giftboxs', function() {
+	var url = "/admin-giftboxs";
+	loadURL(url);
+	console.log("Admin Giftboxes")
+});
+
+page('/baljan/products', function() {
+	var url = "/admin-products";
+	loadURL(url);
+	console.log("Admin Products")
+});
+
+page('/baljan/buyers', function() {
+	var url = "/admin-buyers";
+	loadURL(url);
+	console.log("Admin Buyers")
+});
+
+page('/baljan/receivers', function() {
+	var url = "/admin-receivers";
+	loadURL(url);
+	console.log("Admin Receivers")
+});
+
+page('/logout', function() {
+	var url = "/api/v1/logout";
+	loadURL(url);
+	console.log("Admin Logout")
+});
+
 function loadURL(url) {
     $('#main-container').load(url, function() {
     });
 
 }
+
 
 page.start();

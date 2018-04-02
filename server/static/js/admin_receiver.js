@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.receiver').on('click', handleReceiverClick);
 	$('#add-receiver').on('click', addReceiver);

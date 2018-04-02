@@ -11,9 +11,10 @@ from server.forms import AdminLoginForm, RegistrationForm
 from server.models import User, Order, GiftBox, GiftBoxProduct, Product, Receiver, Buyer
 
 
-@app.route('/baljan', strict_slashes=False)
+@app.route('/baljan', defaults={'path': ''})
+@app.route('/<path:path>')
 @login_required
-def admin():
+def admin(path):
     return render_template('admin.html')
 
 

@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.giftbox').on('click', handleUserClick);
 	$('#add-giftbox').on('click', addGiftBox);

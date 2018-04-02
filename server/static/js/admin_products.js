@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.product').on('click', handleUserClick);
 	$('#add-product').on('click', addProduct);

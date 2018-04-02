@@ -24,10 +24,12 @@ page('/guide', function() {
     console.log("Guide")
 });
 
-page('/order-info', function() {
-    var url = "/html/order-info";
+page('/order_info', function() {
+    var url = "/html/order_info";
     loadURL(url);
-   console.log("Order Info")
+    console.log("Order Info")
+});
+
 });
 
 function loadURL(url) {

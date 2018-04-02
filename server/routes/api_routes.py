@@ -481,5 +481,4 @@ def logout_admin():
     """
     logout_user()
     return redirect('/')
-    #return jsonify("success"), 200
 

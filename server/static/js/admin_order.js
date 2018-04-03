@@ -1,6 +1,7 @@
 $(document).ready(bindUserClick);
 
 function bindUserClick() {
+	$(".send-status-wait").hide();
     $('.order').on('click', handleUserClick);
 	$('#add-order').on('click', addOrder);
 	$(".status-button").on('click', changeStatus);
@@ -29,11 +30,17 @@ function changeStatus(event) {
 
 function notifyStatus(event) {
 	var order_id = $(this).data('order-id');
+	$("#send-status-" + order_id).hide();
+	$("#send-status-wait-" + order_id).show();
 	$.get("api/v1/notify-buyer-status/" + order_id, function(data, status) {
 		if(status == "success") {
 			alert("Köparen har blivit notifierad!");
+			$("#send-status-wait-" + order_id).hide();
+			$("#send-status-" + order_id).show();
 		} else {
 			alert("Ett fel uppstod! Status = " + status + "\nMeddelande = " + data);
+			$("#send-status-wait-" + order_id).hide();
+			$("#send-status-" + order_id).show();
 		}
 	});
 	event.stopPropagation();

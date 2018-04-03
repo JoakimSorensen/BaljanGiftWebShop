@@ -33,7 +33,7 @@ function presentReceiverData(receiverData) {
         $("<button>Ta bort mottagare</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_receiver", {id : receiverData['id']});
-			$("#admin-receivers").click();
+			document.findElementById("admin-receivers").click();
             $("#receiver-div").empty();
             $("#receiver-list").show();
 			$('#add-receiver').show();
@@ -83,7 +83,7 @@ function presentReceiverDataEditable(receiverData) {
 						}
 					});
 
-				$("#admin-receivers").click();
+				document.findElementById("admin-receivers").click();
             	$("#receiver-div").empty();
             	$("#receiver-list").show();
 				$('#add-receiver').show();
@@ -125,7 +125,7 @@ function addReceiver() {
 						}
 					});
 
-				$("#admin-receivers").click();
+				document.findElementById("admin-receivers").click();
             	$("#gifbox-div").empty();
             	$("#receiver-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#receiver-div");

@@ -355,6 +355,25 @@ def edit_order():
         return redirect(url_for('admin'))
 
 
+@app.route('/api/v1/add_user', methods=['POST'])
+@app.route('/baljan/api/v1/add_user', methods=['POST'])
+@login_required
+def add_user():
+    if request.method == "POST":
+        username = request.form.get('username')
+        email = request.form.get('email')
+        is_admin = request.form.get('is_admin')
+        password = request.form.get('password')
+
+        user = User.add(username=username, email=email, is_admin=bool(is_admin))
+
+        if user:
+            if password:
+                user.set_password(password)
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create user"}), 500
+
+
 @app.route('/api/v1/add_giftbox', methods=['POST'])
 @app.route('/baljan/api/v1/add_giftbox', methods=['POST'])
 @login_required

@@ -61,23 +61,6 @@ def admin_receivers():
     return render_template('admin_receiver.html', receivers=all_receivers)
 
 
-@app.route('/add_user', methods=['GET', 'POST'])
-@login_required
-def add_user():
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        user = User.add(username=form.username.data, email=form.email.data, is_admin=form.is_admin.data)
-        user.set_password(form.password.data)
-        return redirect(url_for('admin'))
-    return render_template('edituser.html', form=form)
-
-
-@app.route('/edit_user')
-@login_required
-def render_edit_user():
-    return render_template('edituser.html', form=form)
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """

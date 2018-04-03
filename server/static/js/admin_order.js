@@ -23,7 +23,7 @@ function fetchUser(order_id, completionHandler) {
 function changeStatus(event) {
 	var order_id = $(this).data('order-id');
 	$.post("api/v1/change_status/" + order_id);
-	document.findElementById("admin-orders").click();
+	document.getElementById("admin-orders").click();
 	event.stopPropagation();
 }
 
@@ -65,7 +65,7 @@ function presentUserData(orderData) {
         $("<button>Ta bort order</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_order", {id : orderData['id']});
-			document.findElementById("admin-users").click();
+			document.getElementById("admin-users").click();
             $("#order-div").empty();
             $("#order-list").show();
             $("#add-order").show();
@@ -111,7 +111,7 @@ function checkUuid(orderData) {
 						}
 					});
 
-				document.findElementById("admin-users").click();
+				document.getElementById("admin-users").click();
             	$("#order-div").empty();
             	$("#order-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
@@ -161,7 +161,7 @@ function presentUserDataEditable(orderData) {
 						}
 					});
 
-				document.findElementById("admin-users").click();
+				document.getElementById("admin-users").click();
             	$("#order-div").empty();
             	$("#order-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
@@ -209,7 +209,7 @@ function addOrder() {
 						}
 					});
 
-				document.findElementById("admin-users").click();
+				document.getElementById("admin-users").click();
             	$("#order-div").empty();
             	$("#order-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");

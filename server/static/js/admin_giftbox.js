@@ -39,7 +39,7 @@ function presentUserData(giftboxData) {
         $("<button>Ta bort gåva</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_giftbox", {id : giftboxData['id']});
-			document.findElementById("admin-giftboxs").click();
+			document.getElementById("admin-giftboxs").click();
             $("#giftbox-div").empty();
             $("#giftbox-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");
@@ -89,7 +89,7 @@ function presentUserDataEditable(giftboxData) {
 				{id : giftboxData['id'], 
 				name : $(this).data("product-name")}, 
 				function() {
-					document.findElementById("admin-giftboxs").click();
+					document.getElementById("admin-giftboxs").click();
             		$("#giftbox-div").empty();
 					fetchUser(giftboxData['id'], presentUserDataEditable);
 			});
@@ -104,7 +104,7 @@ function presentUserDataEditable(giftboxData) {
 					if(status != "success") {
 						alert("Välj en existerande produkt!");
 					} else {
-						document.findElementById("admin-giftboxs").click();
+						document.getElementById("admin-giftboxs").click();
             			$("#giftbox-div").empty();
 						fetchUser(giftboxData['id'], presentUserDataEditable);
 					}
@@ -127,7 +127,7 @@ function presentUserDataEditable(giftboxData) {
 						}
 					});
 
-				document.findElementById("admin-giftboxs").click();
+				document.getElementById("admin-giftboxs").click();
             	$("#giftbox-div").empty();
             	$("#giftbox-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");
@@ -170,7 +170,7 @@ function addGiftBox() {
 						}
 					});
 
-				document.findElementById("admin-giftboxs").click();
+				document.getElementById("admin-giftboxs").click();
             	$("#gifbox-div").empty();
             	$("#giftbox-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#giftbox-div");

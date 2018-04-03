@@ -33,7 +33,7 @@ function presentUserData(productData) {
         $("<button>Ta bort produkt</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_product", {id : productData['id']});
-			document.findElementById("admin-products").click();
+			document.getElementById("admin-products").click();
             $("#product-div").empty();
             $("#product-list").show();
 			$('#add-product').show();
@@ -85,7 +85,7 @@ function presentUserDataEditable(productData) {
 						}
 					});
 
-				document.findElementById("admin-products").click();
+				document.getElementById("admin-products").click();
             	$("#product-div").empty();
             	$("#product-list").show();
 				$('#add-product').show();
@@ -129,7 +129,7 @@ function addProduct() {
 						}
 					});
 
-				document.findElementById("admin-products").click();
+				document.getElementById("admin-products").click();
             	$("#gifbox-div").empty();
             	$("#product-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");

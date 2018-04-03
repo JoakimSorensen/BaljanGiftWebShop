@@ -31,7 +31,7 @@ function presentUserData(userData) {
         $("<button>Ta bort användare</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_user", {id : userData['id']});
-			document.findElementById("admin-users").click();
+			document.getElementById("admin-users").click();
             $("#user-div").empty();
             $("#user-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
@@ -98,9 +98,9 @@ function presentUserDataEditable(userData) {
 						}
 					});
 
-				document.findElementById("admin-users").click();
             	$("#user-div").empty();
             	$("#user-list").show();
+				document.getElementById("admin-users").click();
 			}
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
         

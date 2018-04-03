@@ -296,7 +296,7 @@ def edit_buyer():
         buyer_id = request.form.get('id')
         buyer_name = request.form.get('name')
         email = request.form.get('email')
-        buyer = Buyer.query.filter_by(id=product_id).first()
+        buyer = Buyer.query.filter_by(id=buyer_id).first()
         if buyer_name:
             buyer.set_name(buyer_name)
         if email:
@@ -312,9 +312,9 @@ def edit_receiver():
         receiver_id = request.form.get('id')
         receiver_name = request.form.get('name')
         receiver_phone = request.form.get('phone')
-        receiver = Receiver.query.filter_by(id=product_id).first()
+        receiver = Receiver.query.filter_by(id=receiver_id).first()
         if receiver_name:
-            receiver.set_name(product_name)
+            receiver.set_name(receiver_name)
         if receiver_phone:
             receiver.set_phone(receiver_phone)
         return redirect(url_for('admin'))

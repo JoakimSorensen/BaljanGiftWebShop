@@ -11,6 +11,12 @@ page('/', function(){
     console.log("Index");
 });
 
+page('/baljan', function(){
+    var url = "/admin-welcome";
+    loadURL(url);
+    console.log("amdin index");
+});
+
 page('/products', function() {
     var url = "/html/products";
     loadURL(url);

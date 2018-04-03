@@ -15,6 +15,12 @@ from server.models import User, Order, GiftBox, GiftBoxProduct, Product, Receive
 @app.route('/baljan/<path:path>')
 @login_required
 def admin(path):
+    return render_template('base.html')
+
+
+@app.route('/admin-welcome')
+@login_required
+def admin_welcome():
     return render_template('admin.html')
 
 

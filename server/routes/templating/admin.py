@@ -12,7 +12,7 @@ from server.models import User, Order, GiftBox, GiftBoxProduct, Product, Receive
 
 
 @app.route('/baljan', defaults={'path': ''})
-@app.route('/<path:path>')
+@app.route('/baljan/<path:path>')
 @login_required
 def admin(path):
     return render_template('admin.html')

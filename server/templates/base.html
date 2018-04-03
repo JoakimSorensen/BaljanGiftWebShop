@@ -38,7 +38,7 @@
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="above-nav">
         <div class="container">
-            <h1 class="logo-text">Baljangåvan</h1>
+            <h1 class="logo-text"><a href="/">Baljangåvan</a></h1>
         </div>
     </div>
 
@@ -47,39 +47,36 @@
             <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
-                    <b data-toggle="tooltip" title="Redigera admin användare" href="#" class="nav-button clickable" id="admin-users">Baljörs</b>
+                    <a data-toggle="tooltip" title="Redigera admin användare" href="/baljan/users" class="nav-button clickable" id="admin-users">Baljörs</a>
 				</li>
                 <li>
-                    <b data-toggle="tooltip" title="Redigera ordrar" href="#" class="nav-button clickable" id="admin-orders">Ordrar</b>
+                    <a data-toggle="tooltip" title="Redigera ordrar" href="/baljan/orders" class="nav-button clickable" id="admin-orders">Ordrar</a>
 				</li>
                 <li>
-                    <b data-toggle="tooltip" title="Redigera gåvor" href="#" class="nav-button clickable" id="admin-giftboxs">Gåvor</b>
+                    <a data-toggle="tooltip" title="Redigera gåvor" href="/baljan/giftboxs" class="nav-button clickable" id="admin-giftboxs">Gåvor</a>
 				</li>
 				<li>
-                    <b data-toggle="tooltip" title="Redigera produkter" href="#" class="nav-button clickable" id="admin-products">Produkter</b>
+                    <a data-toggle="tooltip" title="Redigera produkter" href="/baljan/products" class="nav-button clickable" id="admin-products">Produkter</a>
 				</li>
 				<li>
-                    <b data-toggle="tooltip" title="Redigera köpare" href="#" class="nav-button clickable" id="admin-buyers">Köpare</b>
+                    <a data-toggle="tooltip" title="Redigera köpare" href="/baljan/buyers" class="nav-button clickable" id="admin-buyers">Köpare</a>
 				</li>
 				<li>
-                    <b data-toggle="tooltip" title="Redigera mottagare" href="#" class="nav-button clickable" id="admin-receivers">Mottagare</b>
+                    <a data-toggle="tooltip" title="Redigera mottagare" href="/baljan/receivers" class="nav-button clickable" id="admin-receivers">Mottagare</a>
 				</li>
                 <li>
-					<b data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
-						class="nav-button" id="logout">Tillbaka</b>
+					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
+						class="nav-button" id="logout">Tillbaka</a>
 				</li>
 				{% else %}
 				<li>
-                    <b href="#" class="nav-button clickable"
-                       id="products">Gåvor</b>
+                    <a href="/products" class="nav-button clickable">Gåvor</a>
                 </li>
                 <li>
-                    <b href="#" class="nav-button clickable"
-                       id="guide">Såhär funkar det!</b>
+                    <a href="/guide" class="nav-button clickable">Såhär funkar det!</a>
                 </li>
                 <li>
-                    <b href="#" class="nav-button clickable"
-                       id="order_info">Sök order</b>
+                    <a href="/order_info" class="nav-button clickable">Sök order</a>
                 </li>
 				{% endif %}
             </ul>
@@ -121,6 +118,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<script src="https://unpkg.com/page/page.js"></script>
 <script src="/static/js/base.js"></script>
 <script src="/static/js/users.js"></script>
 

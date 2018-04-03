@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/static/css/admin_giftbox.css">
 <div id="giftbox-list" class="list-group">
     {% for giftbox in giftboxs %}
-        <a href="#" data-giftbox-id="{{ giftbox.id }}" class="list-group-item list-group-item-action flex-column align-items-start giftbox">
+        <a data-giftbox-id="{{ giftbox.id }}" class="list-group-item list-group-item-action flex-column align-items-start giftbox">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ giftbox.name }}</h5>
 				<small>{{ giftbox.description }}</small><br>

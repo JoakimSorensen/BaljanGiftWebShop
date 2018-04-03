@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.buyer').on('click', handleBuyerClick);
 	$('#add-buyer').on('click', addBuyer);
@@ -31,7 +33,7 @@ function presentBuyerData(buyerData) {
         $("<button>Ta bort köpare</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_buyer", {id : buyerData['id']});
-			$("#admin-buyers").click();
+			document.findElementById("admin-buyers").click();
             $("#buyer-div").empty();
             $("#buyer-list").show();
 			$('#add-buyer').show();
@@ -81,7 +83,7 @@ function presentBuyerDataEditable(buyerData) {
 						}
 					});
 
-				$("#admin-buyers").click();
+				document.findElementById("admin-buyers").click();
             	$("#buyer-div").empty();
             	$("#buyer-list").show();
 				$('#add-buyer').show();
@@ -123,7 +125,7 @@ function addBuyer() {
 						}
 					});
 
-				$("#admin-buyers").click();
+				document.findElementById("admin-buyers").click();
             	$("#gifbox-div").empty();
             	$("#buyer-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#buyer-div");

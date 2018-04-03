@@ -1,5 +1,7 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
-    $('.user').on('click', handleUserClick);
+	$('.user').on('click', handleUserClick);
 }
 
 function handleUserClick(event) {
@@ -29,7 +31,7 @@ function presentUserData(userData) {
         $("<button>Ta bort användare</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_user", {id : userData['id']});
-			$("#admin-users").click();
+			document.findElementById("admin-users").click();
             $("#user-div").empty();
             $("#user-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
@@ -96,7 +98,7 @@ function presentUserDataEditable(userData) {
 						}
 					});
 
-				$("#admin-users").click();
+				document.findElementById("admin-users").click();
             	$("#user-div").empty();
             	$("#user-list").show();
 			}

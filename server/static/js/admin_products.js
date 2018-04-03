@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.product').on('click', handleUserClick);
 	$('#add-product').on('click', addProduct);
@@ -31,7 +33,7 @@ function presentUserData(productData) {
         $("<button>Ta bort produkt</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_product", {id : productData['id']});
-			$("#admin-products").click();
+			document.findElementById("admin-products").click();
             $("#product-div").empty();
             $("#product-list").show();
 			$('#add-product').show();
@@ -83,7 +85,7 @@ function presentUserDataEditable(productData) {
 						}
 					});
 
-				$("#admin-products").click();
+				document.findElementById("admin-products").click();
             	$("#product-div").empty();
             	$("#product-list").show();
 				$('#add-product').show();
@@ -127,7 +129,7 @@ function addProduct() {
 						}
 					});
 
-				$("#admin-products").click();
+				document.findElementById("admin-products").click();
             	$("#gifbox-div").empty();
             	$("#product-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");

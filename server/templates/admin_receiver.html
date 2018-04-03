@@ -1,7 +1,7 @@
 <script src="/static/js/admin_receiver.js"></script>
 <div id="receiver-list" class="list-group">
     {% for receiver in receivers %}
-        <a href="#" data-receiver-id="{{ receiver.id }}" class="list-group-item list-group-item-action flex-column align-items-start receiver">
+        <a data-receiver-id="{{ receiver.id }}" class="list-group-item list-group-item-action flex-column align-items-start receiver">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ receiver.name }}</h5>
 				<small>id: {{ receiver.id }}</small><br>

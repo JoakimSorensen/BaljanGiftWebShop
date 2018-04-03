@@ -46,10 +46,11 @@ def payment_completed():
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
 
-    return render_template('order.html', order=order)
+    return redirect("/order?token={token}".format(token=order.token))
 
 
 @app.route('/api/v1/users/<int:id_>')
+@app.route('/baljan/api/v1/users/<int:id_>')
 def user_with_id(id_):
     user = User.query.get(id_)
     if user is not None:
@@ -59,6 +60,7 @@ def user_with_id(id_):
 
 
 @app.route('/api/v1/giftbox/<int:id_>')
+@app.route('/baljan/api/v1/giftbox/<int:id_>')
 def giftbox_with_id(id_):
     giftbox = GiftBox.query.get(id_)
     products = db.session.query(Product.name
@@ -74,6 +76,7 @@ def giftbox_with_id(id_):
 
 
 @app.route('/api/v1/order/<int:id_>')
+@app.route('/baljan/api/v1/order/<int:id_>')
 def order_with_id(id_):
     order = Order.query.get(id_)
     if order is not None:
@@ -84,6 +87,7 @@ def order_with_id(id_):
 
 
 @app.route('/api/v1/product/<int:id_>')
+@app.route('/baljan/api/v1/product/<int:id_>')
 def product_with_id(id_):
     product = Product.query.get(id_)
     if product is not None:
@@ -94,6 +98,7 @@ def product_with_id(id_):
 
 
 @app.route('/api/v1/buyer/<int:id_>')
+@app.route('/baljan/api/v1/buyer/<int:id_>')
 def buyer_with_id(id_):
     buyer = Buyer.query.get(id_)
     if buyer is not None:
@@ -103,6 +108,7 @@ def buyer_with_id(id_):
 
 
 @app.route('/api/v1/receiver/<int:id_>')
+@app.route('/baljan/api/v1/receiver/<int:id_>')
 def receiver_with_id(id_):
     receiver = Receiver.query.get(id_)
     if receiver is not None:
@@ -112,6 +118,7 @@ def receiver_with_id(id_):
 
 
 @app.route('/api/v1/order_token/<token>')
+@app.route('/baljan/api/v1/order_token/<token>')
 def order_with_token(token):
     order = Order.query.filter_by(token=token).first()
     if order is not None:
@@ -122,6 +129,7 @@ def order_with_token(token):
 
 
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')
+@app.route('/baljan/api/v1/check_order_hash/<int:id_>/<token>')
 def check_order_hash(id_, token):
     order = Order.query.get(id_)
     if order is not None:
@@ -132,6 +140,7 @@ def check_order_hash(id_, token):
 
 
 @app.route('/api/v1/delete_user', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_user', methods=['DELETE'])
 @login_required
 def delete_user():
     user_id = request.form.get('id')
@@ -142,6 +151,7 @@ def delete_user():
 
 
 @app.route('/api/v1/delete_giftbox', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_giftbox', methods=['DELETE'])
 @login_required
 def delete_giftbox():
     giftbox_id = request.form.get('id')
@@ -150,6 +160,7 @@ def delete_giftbox():
 
 
 @app.route('/api/v1/delete-product-giftbox', methods=['POST'])
+@app.route('/baljan/api/v1/delete-product-giftbox', methods=['POST'])
 @login_required
 def delete_product_from_giftbox():
     giftbox_id = request.form.get('id')
@@ -163,6 +174,7 @@ def delete_product_from_giftbox():
 
 
 @app.route('/api/v1/add-product-giftbox', methods=['POST'])
+@app.route('/baljan/api/v1/add-product-giftbox', methods=['POST'])
 @login_required
 def add_product_to_giftbox():
     giftbox_id = request.form.get('id')
@@ -175,6 +187,7 @@ def add_product_to_giftbox():
 
 
 @app.route('/api/v1/delete_order', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_order', methods=['DELETE'])
 @login_required
 def delete_order():
     order_id = request.form.get('id')
@@ -183,6 +196,7 @@ def delete_order():
 
 
 @app.route('/api/v1/delete_product', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_product', methods=['DELETE'])
 @login_required
 def delete_product():
     product_id = request.form.get('id')
@@ -191,6 +205,7 @@ def delete_product():
 
 
 @app.route('/api/v1/delete_buyer', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_buyer', methods=['DELETE'])
 @login_required
 def delete_buyer():
     buyer_id = request.form.get('id')
@@ -199,6 +214,7 @@ def delete_buyer():
 
 
 @app.route('/api/v1/delete_receiver', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_receiver', methods=['DELETE'])
 @login_required
 def delete_receiver():
     receiver_id = request.form.get('id')
@@ -207,6 +223,7 @@ def delete_receiver():
 
 
 @app.route('/api/v1/edit_user', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_user', methods=['GET', 'POST'])
 @login_required
 def edit_user():
     if request.method == "POST":
@@ -228,6 +245,7 @@ def edit_user():
 
 
 @app.route('/api/v1/edit_giftbox', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_giftbox', methods=['GET', 'POST'])
 @login_required
 def edit_giftbox():
     if request.method == "POST":
@@ -249,6 +267,7 @@ def edit_giftbox():
 
 
 @app.route('/api/v1/edit_product', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_product', methods=['GET', 'POST'])
 @login_required
 def edit_product():
     if request.method == "POST":
@@ -270,6 +289,7 @@ def edit_product():
 
 
 @app.route('/api/v1/edit_buyer', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_buyer', methods=['GET', 'POST'])
 @login_required
 def edit_buyer():
     if request.method == "POST":
@@ -285,6 +305,7 @@ def edit_buyer():
 
 
 @app.route('/api/v1/edit_receiver', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_receiver', methods=['GET', 'POST'])
 @login_required
 def edit_receiver():
     if request.method == "POST":
@@ -300,6 +321,7 @@ def edit_receiver():
 
 
 @app.route('/api/v1/edit_order', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_order', methods=['GET', 'POST'])
 @login_required
 def edit_order():
     if request.method == "POST":
@@ -334,6 +356,7 @@ def edit_order():
 
 
 @app.route('/api/v1/add_giftbox', methods=['POST'])
+@app.route('/baljan/api/v1/add_giftbox', methods=['POST'])
 @login_required
 def add_giftbox():
     if request.method == "POST":
@@ -350,6 +373,7 @@ def add_giftbox():
 
 
 @app.route('/api/v1/add_product', methods=['POST'])
+@app.route('/baljan/api/v1/add_product', methods=['POST'])
 @login_required
 def add_product():
     if request.method == "POST":
@@ -366,6 +390,7 @@ def add_product():
 
 
 @app.route('/api/v1/add_buyer', methods=['POST'])
+@app.route('/baljan/api/v1/add_buyer', methods=['POST'])
 @login_required
 def add_buyer():
     if request.method == "POST":
@@ -380,6 +405,7 @@ def add_buyer():
 
 
 @app.route('/api/v1/add_receiver', methods=['POST'])
+@app.route('/baljan/api/v1/add_receiver', methods=['POST'])
 @login_required
 def add_receiver():
     if request.method == "POST":
@@ -394,6 +420,7 @@ def add_receiver():
 
 
 @app.route('/api/v1/add_order', methods=['POST'])
+@app.route('/baljan/api/v1/add_order', methods=['POST'])
 @login_required
 def add_order():
     if request.method == "POST":
@@ -420,6 +447,7 @@ def add_order():
 
 
 @app.route('/api/v1/change_status/<int:order_id>', methods=['POST'])
+@app.route('/baljan/api/v1/change_status/<int:order_id>', methods=['POST'])
 @login_required
 def change_status(order_id):
     statuses = ['processing', 'preparing', 'received']
@@ -435,6 +463,7 @@ def change_status(order_id):
 
 
 @app.route('/api/v1/notify-buyer-status/<int:order_id>')
+@app.route('/baljan/api/v1/notify-buyer-status/<int:order_id>')
 @login_required
 def notify_buyer_status(order_id):
     order = Order.query.filter_by(id=order_id).first()
@@ -451,5 +480,5 @@ def logout_admin():
     used for administrator.
     """
     logout_user()
-    return jsonify("success"), 200
+    return redirect('/')
 

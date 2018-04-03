@@ -218,7 +218,7 @@ def delete_buyer():
 @login_required
 def delete_receiver():
     receiver_id = request.form.get('id')
-    Receiver.delete(buyer_id)
+    Receiver.delete(receiver_id)
     return "success"
 
 

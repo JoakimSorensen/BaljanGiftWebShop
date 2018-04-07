@@ -17,8 +17,14 @@
     </form>
 
     <div id="token-result">
-        <h1 id="text1">Här finns lite text</h1>
-        <h1>Här finns lite mer text</h1>
+        <h1 id="giftbox_name">Här finns lite text</h1>
+        <h1 id="receiver_name">Här finns lite mer text</h1>
+        <h1 id="message">Här finns lite mer text</h1>
+        <h1 id="phone_nr">Här finns lite mer text</h1>
+        <h1 id="status">Här finns lite mer text</h1>
+        <h1 id="price">Här finns lite mer text</h1>
+
+
     </div>
 
 
@@ -65,6 +71,7 @@
                 /*Denna skriver inte ut data*, får undefined*/
                 setTimeout(function wait2sec(){
                     console.log(gift_data.name)
+                    document.getElementById("giftbox_name").innerText = gift_data.name;
                 },100)
 
             }else if(key==="receiver_id"){
@@ -76,6 +83,9 @@
                  setTimeout(function wait2sec(){
                     console.log(receiver_data.name)
                     console.log(receiver_data.phone)
+                    document.getElementById("receiver_name").innerText = receiver_data.name;
+                    document.getElementById("phone_nr").innerText = receiver_data.phone;
+
                 },100)
 
             }else if(key==="date"){
@@ -83,12 +93,18 @@
             }else if(key==="message"){
                 var msg_val = val;
                 console.log(msg_val)
+                document.getElementById("message").innerText = msg_val;
+
             }else if(key==="price"){
                 var price_val = val;
                 console.log(price_val)
+                document.getElementById("price").innerText = price_val;
+
             }else if(key==="status"){
                 var status_val = val;
                 console.log(status_val);
+                document.getElementById("status").innerText = status_val;
+
             }
 
 

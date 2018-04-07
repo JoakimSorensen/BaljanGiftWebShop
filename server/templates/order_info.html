@@ -17,19 +17,14 @@
     </form>
 
     <div id="token-result">
-        <h1 id="giftbox_name">Här finns lite text</h1>
-        <h1 id="receiver_name">Här finns lite mer text</h1>
-        <h1 id="message">Här finns lite mer text</h1>
-        <h1 id="phone_nr">Här finns lite mer text</h1>
-        <h1 id="status">Här finns lite mer text</h1>
-        <h1 id="price">Här finns lite mer text</h1>
-
-
+        <h1 id="info_text1"></h1>
+        <h1 id="info_text2"></h1>
     </div>
 
 
 
 <script>
+
     $(document).ready(function() {
         $("#error-text").hide();
         $("#token-result").hide();
@@ -41,16 +36,18 @@
         console.log("går in i script");
         ev.preventDefault();
         var token_from_input = $("#token_input").val();
-        var info = [];
         var url = "api/v1/order_token/" + token_from_input;
 
         $.getJSON(url, function(data){
             if(data === "error"){
                 $("#error-text").show();
+                $("#token-result").hide();
                 console.log("failure")
             }else{
             console.log("successs")
             $("#token-result").show();
+            $("#error-text").hide();
+
             retrieveData(data);
             }
         });
@@ -60,6 +57,9 @@
             var values = [];
             var gift_data;
             var receiver_data;
+            var msg_val;
+            var price_val;
+            var status_val;
         
          $.each(data, function( key, val ) {
             if(key==="giftbox_id"){
@@ -68,10 +68,8 @@
                 $.getJSON(url, function (data) {
                 gift_data = data;
                 });
-                /*Denna skriver inte ut data*, får undefined*/
                 setTimeout(function wait2sec(){
                     console.log(gift_data.name)
-                    document.getElementById("giftbox_name").innerText = gift_data.name;
                 },100)
 
             }else if(key==="receiver_id"){
@@ -83,29 +81,32 @@
                  setTimeout(function wait2sec(){
                     console.log(receiver_data.name)
                     console.log(receiver_data.phone)
-                    document.getElementById("receiver_name").innerText = receiver_data.name;
-                    document.getElementById("phone_nr").innerText = receiver_data.phone;
 
                 },100)
 
             }else if(key==="date"){
                 var date_val = val;
             }else if(key==="message"){
-                var msg_val = val;
+                 msg_val = val;
                 console.log(msg_val)
-                document.getElementById("message").innerText = msg_val;
 
             }else if(key==="price"){
-                var price_val = val;
+                 price_val = val;
                 console.log(price_val)
-                document.getElementById("price").innerText = price_val;
 
             }else if(key==="status"){
-                var status_val = val;
+                 status_val = val;
                 console.log(status_val);
-                document.getElementById("status").innerText = status_val;
 
             }
+            setTimeout(function (wait2sex) {
+                document.getElementById("info_text1").innerText = "Du skickade gåvan " + gift_data.name + " till "
+                + receiver_data.name + "(" + receiver_data.phone + ") med följande meddelande: " + msg_val;
+
+                document.getElementById("info_text2").innerText = "Nuvarande status på din order: " + status_val + "\n"
+                + "Priset på din order: " + price_val + " kr.";
+
+            },300)
 
 
             });

@@ -41,7 +41,7 @@ def admin_giftboxs():
 
 @app.route('/admin-orders')
 @login_required
-def amdin_orders():
+def admin_orders():
     all_orders = Order.query.all()
     return render_template('admin_order.html', orders=all_orders)
 

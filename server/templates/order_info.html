@@ -53,51 +53,48 @@
     function retrieveData(data){
             var values = [];
             var gift_data;
+            var receiver_data;
         
          $.each(data, function( key, val ) {
             if(key==="giftbox_id"){
                 var giftbox_val = val;
-                var url = "api/v1/giftbox/" + val;
+                var url = "api/v1/giftbox/" + giftbox_val;
                 $.getJSON(url, function (data) {
                 gift_data = data;
-                console.log(data);
-                /*Denna skriver ut data*/
-                console.log(gift_data);
                 });
-
                 /*Denna skriver inte ut data*, får undefined*/
-                console.log(gift_data);
+                setTimeout(function wait2sec(){
+                    console.log(gift_data.name)
+                },100)
 
             }else if(key==="receiver_id"){
                 var receiver_val = val;
-                var receiver_data = getReceiverData(receiver_val);
+                var url = "api/v1/receiver/" + receiver_val;
+                $.getJSON(url, function (data) {
+                receiver_data = data;
+                });
+                 setTimeout(function wait2sec(){
+                    console.log(receiver_data.name)
+                    console.log(receiver_data.phone)
+                },100)
+
             }else if(key==="date"){
                 var date_val = val;
             }else if(key==="message"){
                 var msg_val = val;
+                console.log(msg_val)
             }else if(key==="price"){
                 var price_val = val;
+                console.log(price_val)
             }else if(key==="status"){
                 var status_val = val;
+                console.log(status_val);
             }
-            handleData();
-            function getGiftboxData(val) {
 
-            }
 
             });
     }
 
-    function handleData() {
-        
-    }
-
-    function getReceiverData(val) {
-        var url = "api/v1/receiver/" + val;
-        $.getJSON(url, function (data) {
-            return data;
-        });
-    }
 
 </script>
 

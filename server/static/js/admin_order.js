@@ -1,4 +1,7 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
+	$(".send-status-wait").hide();
     $('.order').on('click', handleUserClick);
 	$('#add-order').on('click', addOrder);
 	$(".status-button").on('click', changeStatus);
@@ -21,17 +24,23 @@ function fetchUser(order_id, completionHandler) {
 function changeStatus(event) {
 	var order_id = $(this).data('order-id');
 	$.post("api/v1/change_status/" + order_id);
-	$("#admin-orders").click();
+	document.getElementById("admin-orders").click();
 	event.stopPropagation();
 }
 
 function notifyStatus(event) {
 	var order_id = $(this).data('order-id');
-	$.get("api/v1/notify-buyer-status/" + order_id, function(status, data) {
+	$("#send-status-" + order_id).hide();
+	$("#send-status-wait-" + order_id).show();
+	$.get("api/v1/notify-buyer-status/" + order_id, function(data, status) {
 		if(status == "success") {
-			alert("Köparen har blivit notifierad!")
+			alert("Köparen har blivit notifierad!");
+			$("#send-status-wait-" + order_id).hide();
+			$("#send-status-" + order_id).show();
 		} else {
 			alert("Ett fel uppstod! Status = " + status + "\nMeddelande = " + data);
+			$("#send-status-wait-" + order_id).hide();
+			$("#send-status-" + order_id).show();
 		}
 	});
 	event.stopPropagation();
@@ -50,8 +59,10 @@ function presentUserData(orderData) {
     $( "#add-order" ).hide();
     var items = [];
         $.each( orderData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
-        });
+			if(key != "buyer" && key != "receiver") {
+            	items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
+        	}
+		});
 
         $( "<ul/>", {
             "class": "order-info",
@@ -61,7 +72,7 @@ function presentUserData(orderData) {
         $("<button>Ta bort order</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_order", {id : orderData['id']});
-			$("#admin-orders").click();
+			document.getElementById("admin-orders").click();
             $("#order-div").empty();
             $("#order-list").show();
             $("#add-order").show();
@@ -107,7 +118,7 @@ function checkUuid(orderData) {
 						}
 					});
 
-				$("#admin-orders").click();
+				document.getElementById("admin-orders").click();
             	$("#order-div").empty();
             	$("#order-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
@@ -122,7 +133,7 @@ function checkUuid(orderData) {
 function presentUserDataEditable(orderData) {
     var items = [];
         $.each( orderData, function( key, val ) {
-			if(key != "created" && key != "modified" && key != "id") {
+			if(key != "created" && key != "modified" && key != "id" && key != "receiver" && key != "buyer") {
             	items.push( "<label id=" + key + ">"+ key + ": </label>" );
 				items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input"  
 						+ " value='" + val + "'>");
@@ -157,7 +168,7 @@ function presentUserDataEditable(orderData) {
 						}
 					});
 
-				$("#admin-orders").click();
+				document.getElementById("admin-orders").click();
             	$("#order-div").empty();
             	$("#order-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
@@ -173,7 +184,7 @@ function addOrder() {
     $( "#order-list" ).hide();
     $( "#add-order" ).hide();
     var items = [];
-	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "price", "message"]
+	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "message"]
         $.each( keys, function(ind, key) {
             items.push( "<label id=" + key + ">"+ key + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
@@ -205,7 +216,7 @@ function addOrder() {
 						}
 					});
 
-				$("#admin-orders").click();
+				document.getElementById("admin-orders").click();
             	$("#order-div").empty();
             	$("#order-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");

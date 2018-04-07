@@ -1,3 +1,5 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
     $('.product').on('click', handleUserClick);
 	$('#add-product').on('click', addProduct);
@@ -17,9 +19,10 @@ function fetchUser(product_id, completionHandler) {
 
 function presentUserData(productData) {
     $( "#product-list" ).hide();
+	$('#add-product').hide();
     var items = [];
         $.each( productData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
         });
 
         $( "<ul/>", {
@@ -30,9 +33,10 @@ function presentUserData(productData) {
         $("<button>Ta bort produkt</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_product", {id : productData['id']});
-			$("#admin-products").click();
+			document.getElementById("admin-products").click();
             $("#product-div").empty();
             $("#product-list").show();
+			$('#add-product').show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");
 
         $("<button>Redigera produkt</button>").on("click", function(e) {
@@ -45,6 +49,7 @@ function presentUserData(productData) {
             e.preventDefault();
             $("#product-div").empty();
             $("#product-list").show();
+			$('#add-product').show();
   		}).appendTo("#btn-div");
 }
 
@@ -80,15 +85,17 @@ function presentUserDataEditable(productData) {
 						}
 					});
 
-				$("#admin-products").click();
+				document.getElementById("admin-products").click();
             	$("#product-div").empty();
             	$("#product-list").show();
+				$('#add-product').show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");
         
 	$("<button>Avbryt</button>").on("click", function(e) {
             e.preventDefault();
             $("#product-div").empty();
             $("#product-list").show();
+			$('#add-product').show();
   		}).appendTo("#btn-div");
 }
 
@@ -122,7 +129,7 @@ function addProduct() {
 						}
 					});
 
-				$("#admin-products").click();
+				document.getElementById("admin-products").click();
             	$("#gifbox-div").empty();
             	$("#product-list").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#product-div");

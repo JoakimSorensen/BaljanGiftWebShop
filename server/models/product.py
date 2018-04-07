@@ -3,6 +3,7 @@ from server.models.shared_model import SharedModel
 
 
 class Product(SharedModel):
+    __tablename__ = 'product'
     name = db.Column(db.Text, index=True)
     price = db.Column(db.Integer, index=True)
     allergen = db.Column(db.Text, index=True)

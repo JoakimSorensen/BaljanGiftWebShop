@@ -1,5 +1,8 @@
+$(document).ready(bindUserClick);
+
 function bindUserClick() {
-    $('.user').on('click', handleUserClick);
+	$('.user').on('click', handleUserClick);
+	$("#add-user").on('click', addUser);
 }
 
 function handleUserClick(event) {
@@ -16,9 +19,10 @@ function fetchUser(user_id, completionHandler) {
 
 function presentUserData(userData) {
     $( "#user-list" ).hide();
+	$("#add-user").hide();
     var items = [];
         $.each( userData, function( key, val ) {
-            items.push( "<li id='" + key + "'>"+ key + ": " + val + "</li>" );
+            items.push( "<h5 id='" + key + "'>"+ key + ":</h5><li>" + val + "</li>" );
         });
 
         $( "<ul/>", {
@@ -29,9 +33,10 @@ function presentUserData(userData) {
         $("<button>Ta bort användare</button>").on("click", function(e) {
             e.preventDefault();
 			$.delete("api/v1/delete_user", {id : userData['id']});
-			$("#admin-users").click();
+			document.getElementById("admin-users").click();
             $("#user-div").empty();
             $("#user-list").show();
+			$("#add-user").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
 
         $("<button>Redigera användare</button>").on("click", function(e) {
@@ -44,6 +49,7 @@ function presentUserData(userData) {
             e.preventDefault();
             $("#user-div").empty();
             $("#user-list").show();
+			$("#add-user").show();
   		}).appendTo("#btn-div");
 }
 
@@ -56,7 +62,7 @@ function presentUserDataEditable(userData) {
 					items.push("<input type=\"email\" class=\"form-control\" id=" + key + "-input"
 						+ " value=" + val + ">");
 				} else if(key == "is_admin") {
-					items.push("<input type=\"checkbox\" id=" + key + "-input"
+					items.push("<br><input type=\"checkbox\" id=" + key + "-input"
 						+ " value=" + val + "><br>");
 				
 				} else {
@@ -96,9 +102,10 @@ function presentUserDataEditable(userData) {
 						}
 					});
 
-				$("#admin-users").click();
             	$("#user-div").empty();
             	$("#user-list").show();
+				$("#add-user").show();
+				document.getElementById("admin-users").click();
 			}
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
         
@@ -106,6 +113,66 @@ function presentUserDataEditable(userData) {
             e.preventDefault();
             $("#user-div").empty();
             $("#user-list").show();
+			$("#add-user").show();
+  		}).appendTo("#btn-div");
+}
+
+function addUser() {
+    $( "#user-list" ).hide();
+    $( "#add-user" ).hide();
+    var items = [];
+	var keys = ["username", "email", "is_admin"]
+        $.each( keys, function(ind, key) {
+            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+			if(key == "email") {
+				items.push("<input type=\"email\" class=\"form-control\" id=" + key + "-input>");
+			} else if(key == "is_admin") {
+				items.push("<br><input type=\"checkbox\" id=" + key + "-input><br>");
+				
+			} else {
+				items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
+			}
+        });
+	
+	items.push( "<label id=password> Lösenord: </label>" );
+	items.push("<input type=\"password\" class=\"form-control\" id=password-input>");
+    items.push( "<label id=password2> Repetera lösenord: </label>" );
+	items.push("<input type=\"password\" class=\"form-control\" id=password2-input>");
+		
+        $( "<ul/>", {
+            "class": "user-info",
+            html: items.join( "" )
+        }).appendTo( "#user-div" );
+
+        $("<button>Lägg till baljör</button>").on("click", function(e) {
+            e.preventDefault();
+			if($("#password-input").val() != $("#password2-input").val()) {
+				alert("Lösenorden måste stämma överens!");
+			} else {
+				$.post("api/v1/add_user", 
+					{email: $("#email-input").val(), 
+						is_admin: $("#is_admin-input").val(), 
+						username: $("#username-input").val(), 
+						password: $("#password-input").val()
+						}, function(data, status) {
+						if (status == "success") {
+							alert("Baljör tillagd!");
+						} else {
+							alert("Ett fel uppstod: " + status);
+						}
+					});
+				}
+				document.getElementById("admin-users").click();
+            	$("#gifbox-div").empty();
+            	$("#user-list").show();
+				$("#add-user").show();
+        }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#user-div");
+        
+	$("<button>Avbryt</button>").on("click", function(e) {
+            e.preventDefault();
+            $("#user-div").empty();
+            $("#user-list").show();
+			$("#add-user").show();
   		}).appendTo("#btn-div");
 }
 

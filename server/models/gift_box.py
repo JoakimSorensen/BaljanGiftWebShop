@@ -1,19 +1,26 @@
+from sqlalchemy import Table
 from server import db
-
-from server.models.shared_model import SharedModel
-
+from server.models import Product, SharedModel
 
 class GiftBoxProduct(SharedModel):
 
     gift_box_id = db.Column(db.Integer, db.ForeignKey('gift_box.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    product = db.relationship("Product")
 
     mutable_fields = set()
     required_fields = set()
     excluded_fields = set()
 
+    def get_gift_box(self):
+        return GiftBox.query.filter_by(id=self.gift_box_id).first()
+
+    def get_product(self):
+        return Product.query.filter_by(id=self.product_id).first()
+
 
 class GiftBox(SharedModel):
+    __tablename__ = 'gift_box'
     name = db.Column(db.Text, index=True)
     price = db.Column(db.Integer, index=True)
     description = db.Column(db.Text, index=True)
@@ -23,7 +30,7 @@ class GiftBox(SharedModel):
     required_fields = {name, price}
     excluded_fields = set()
 
-    products = db.relationship(GiftBoxProduct, primaryjoin='GiftBox.id==GiftBoxProduct.gift_box_id')
+    products = db.relationship("GiftBoxProduct", primaryjoin='GiftBox.id==GiftBoxProduct.gift_box_id')
 
     def set_name(self, name):
         self.name = name

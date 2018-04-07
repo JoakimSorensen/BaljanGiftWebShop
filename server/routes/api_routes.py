@@ -3,8 +3,8 @@ import datetime
 from flask import abort, jsonify, redirect, request, url_for, render_template
 from flask_login import current_user, logout_user, login_required
 
-from server import app
-from server.models import Buyer, GiftBox, Receiver, Order, User, Product
+from server import app, db
+from server.models import Buyer, GiftBox, GiftBoxProduct, Receiver, Order, User, Product
 from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
@@ -34,11 +34,10 @@ def all_orders():
 def payment_completed():
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
-    receiver_liu_id = request.values["liuid"]
 
     message = request.values['message']
 
-    receiver = Receiver.create_receiver(receiver_name, receiver_phone, receiver_liu_id)
+    receiver = Receiver.create_receiver(receiver_name, receiver_phone)
     buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
     giftbox = GiftBox.query.get(request.values["giftbox"])
 
@@ -47,10 +46,11 @@ def payment_completed():
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
 
-    return render_template('order.html', order=order)
+    return redirect("/order?token={token}".format(token=order.token))
 
 
 @app.route('/api/v1/users/<int:id_>')
+@app.route('/baljan/api/v1/users/<int:id_>')
 def user_with_id(id_):
     user = User.query.get(id_)
     if user is not None:
@@ -60,10 +60,17 @@ def user_with_id(id_):
 
 
 @app.route('/api/v1/giftbox/<int:id_>')
+@app.route('/baljan/api/v1/giftbox/<int:id_>')
 def giftbox_with_id(id_):
     giftbox = GiftBox.query.get(id_)
+    products = db.session.query(Product.name
+            ).filter(GiftBoxProduct.gift_box_id==giftbox.id, Product.id==GiftBoxProduct.product_id
+                    ).all()
     if giftbox is not None:
-        return jsonify(giftbox.to_dict())
+        giftbox_dict = giftbox.to_dict()
+        print("Products = ", products)
+        giftbox_dict["products"]  = products
+        return jsonify(giftbox_dict)
 
     return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
 
@@ -78,6 +85,7 @@ def receiver_with_id(id_):
 
 
 @app.route('/api/v1/order/<int:id_>')
+@app.route('/baljan/api/v1/order/<int:id_>')
 def order_with_id(id_):
     order = Order.query.get(id_)
     if order is not None:
@@ -88,6 +96,7 @@ def order_with_id(id_):
 
 
 @app.route('/api/v1/product/<int:id_>')
+@app.route('/baljan/api/v1/product/<int:id_>')
 def product_with_id(id_):
     product = Product.query.get(id_)
     if product is not None:
@@ -97,7 +106,28 @@ def product_with_id(id_):
     return jsonify({"error": "No product with ID: {id_}".format(id_=id_)}), 404
 
 
+@app.route('/api/v1/buyer/<int:id_>')
+@app.route('/baljan/api/v1/buyer/<int:id_>')
+def buyer_with_id(id_):
+    buyer = Buyer.query.get(id_)
+    if buyer is not None:
+        return jsonify(buyer.to_dict())
+
+    return jsonify({"error": "No buyer with ID: {id_}".format(id_=id_)}), 404
+
+
+@app.route('/api/v1/receiver/<int:id_>')
+@app.route('/baljan/api/v1/receiver/<int:id_>')
+def receiver_with_id(id_):
+    receiver = Receiver.query.get(id_)
+    if receiver is not None:
+        return jsonify(receiver.to_dict())
+
+    return jsonify({"error": "No receiver with ID: {id_}".format(id_=id_)}), 404
+
+
 @app.route('/api/v1/order_token/<token>')
+@app.route('/baljan/api/v1/order_token/<token>')
 def order_with_token(token):
     order = Order.query.filter_by(token=token).first()
     if order is not None:
@@ -108,6 +138,7 @@ def order_with_token(token):
 
 
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')
+@app.route('/baljan/api/v1/check_order_hash/<int:id_>/<token>')
 def check_order_hash(id_, token):
     order = Order.query.get(id_)
     if order is not None:
@@ -118,6 +149,7 @@ def check_order_hash(id_, token):
 
 
 @app.route('/api/v1/delete_user', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_user', methods=['DELETE'])
 @login_required
 def delete_user():
     user_id = request.form.get('id')
@@ -128,6 +160,7 @@ def delete_user():
 
 
 @app.route('/api/v1/delete_giftbox', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_giftbox', methods=['DELETE'])
 @login_required
 def delete_giftbox():
     giftbox_id = request.form.get('id')
@@ -135,7 +168,35 @@ def delete_giftbox():
     return "success"
 
 
+@app.route('/api/v1/delete-product-giftbox', methods=['POST'])
+@app.route('/baljan/api/v1/delete-product-giftbox', methods=['POST'])
+@login_required
+def delete_product_from_giftbox():
+    giftbox_id = request.form.get('id')
+    product_name = request.form.get('name').lower().title()
+    product = Product.query.filter_by(name=product_name).first()
+    if not product:
+        return jsonify("No product with name {}".format(product_name)), 404
+    GiftBoxProduct.query.filter_by(gift_box_id=giftbox_id, product_id=product.id).delete()
+    db.session.commit()
+    return "success"
+
+
+@app.route('/api/v1/add-product-giftbox', methods=['POST'])
+@app.route('/baljan/api/v1/add-product-giftbox', methods=['POST'])
+@login_required
+def add_product_to_giftbox():
+    giftbox_id = request.form.get('id')
+    product_name = request.form.get('name').lower().title()
+    product = Product.query.filter_by(name=product_name).first()
+    if not product:
+        return jsonify("No product with name {}".format(product_name)), 404
+    giftbox = GiftBoxProduct.add(gift_box_id=giftbox_id, product_id=product.id)
+    return "success"
+
+
 @app.route('/api/v1/delete_order', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_order', methods=['DELETE'])
 @login_required
 def delete_order():
     order_id = request.form.get('id')
@@ -144,6 +205,7 @@ def delete_order():
 
 
 @app.route('/api/v1/delete_product', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_product', methods=['DELETE'])
 @login_required
 def delete_product():
     product_id = request.form.get('id')
@@ -151,7 +213,26 @@ def delete_product():
     return "success"
 
 
+@app.route('/api/v1/delete_buyer', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_buyer', methods=['DELETE'])
+@login_required
+def delete_buyer():
+    buyer_id = request.form.get('id')
+    Buyer.delete(buyer_id)
+    return "success"
+
+
+@app.route('/api/v1/delete_receiver', methods=['DELETE'])
+@app.route('/baljan/api/v1/delete_receiver', methods=['DELETE'])
+@login_required
+def delete_receiver():
+    receiver_id = request.form.get('id')
+    Receiver.delete(receiver_id)
+    return "success"
+
+
 @app.route('/api/v1/edit_user', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_user', methods=['GET', 'POST'])
 @login_required
 def edit_user():
     if request.method == "POST":
@@ -173,6 +254,7 @@ def edit_user():
 
 
 @app.route('/api/v1/edit_giftbox', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_giftbox', methods=['GET', 'POST'])
 @login_required
 def edit_giftbox():
     if request.method == "POST":
@@ -194,6 +276,7 @@ def edit_giftbox():
 
 
 @app.route('/api/v1/edit_product', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_product', methods=['GET', 'POST'])
 @login_required
 def edit_product():
     if request.method == "POST":
@@ -214,7 +297,40 @@ def edit_product():
         return redirect(url_for('admin'))
 
 
+@app.route('/api/v1/edit_buyer', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_buyer', methods=['GET', 'POST'])
+@login_required
+def edit_buyer():
+    if request.method == "POST":
+        buyer_id = request.form.get('id')
+        buyer_name = request.form.get('name')
+        email = request.form.get('email')
+        buyer = Buyer.query.filter_by(id=buyer_id).first()
+        if buyer_name:
+            buyer.set_name(buyer_name)
+        if email:
+            buyer.set_email(email)
+        return redirect(url_for('admin'))
+
+
+@app.route('/api/v1/edit_receiver', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_receiver', methods=['GET', 'POST'])
+@login_required
+def edit_receiver():
+    if request.method == "POST":
+        receiver_id = request.form.get('id')
+        receiver_name = request.form.get('name')
+        receiver_phone = request.form.get('phone')
+        receiver = Receiver.query.filter_by(id=receiver_id).first()
+        if receiver_name:
+            receiver.set_name(receiver_name)
+        if receiver_phone:
+            receiver.set_phone(receiver_phone)
+        return redirect(url_for('admin'))
+
+
 @app.route('/api/v1/edit_order', methods=['GET', 'POST'])
+@app.route('/baljan/api/v1/edit_order', methods=['GET', 'POST'])
 @login_required
 def edit_order():
     if request.method == "POST":
@@ -248,7 +364,27 @@ def edit_order():
         return redirect(url_for('admin'))
 
 
+@app.route('/api/v1/add_user', methods=['POST'])
+@app.route('/baljan/api/v1/add_user', methods=['POST'])
+@login_required
+def add_user():
+    if request.method == "POST":
+        username = request.form.get('username')
+        email = request.form.get('email')
+        is_admin = request.form.get('is_admin')
+        password = request.form.get('password')
+
+        user = User.add(username=username, email=email, is_admin=bool(is_admin))
+
+        if user:
+            if password:
+                user.set_password(password)
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create user"}), 500
+
+
 @app.route('/api/v1/add_giftbox', methods=['POST'])
+@app.route('/baljan/api/v1/add_giftbox', methods=['POST'])
 @login_required
 def add_giftbox():
     if request.method == "POST":
@@ -265,6 +401,7 @@ def add_giftbox():
 
 
 @app.route('/api/v1/add_product', methods=['POST'])
+@app.route('/baljan/api/v1/add_product', methods=['POST'])
 @login_required
 def add_product():
     if request.method == "POST":
@@ -280,7 +417,38 @@ def add_product():
         return jsonify({"error": "Could not create product"}), 500
 
 
+@app.route('/api/v1/add_buyer', methods=['POST'])
+@app.route('/baljan/api/v1/add_buyer', methods=['POST'])
+@login_required
+def add_buyer():
+    if request.method == "POST":
+        name = request.form.get('name')
+        email = request.form.get('email')
+
+        buyer = Buyer.add(name=name, email=email)
+
+        if buyer:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create buyer"}), 500
+
+
+@app.route('/api/v1/add_receiver', methods=['POST'])
+@app.route('/baljan/api/v1/add_receiver', methods=['POST'])
+@login_required
+def add_receiver():
+    if request.method == "POST":
+        name = request.form.get('name')
+        phone = request.form.get('phone')
+
+        receiver = Receiver.add(name=name, phone=phone)
+
+        if receiver:
+            return jsonify("success"), 200 
+        return jsonify({"error": "Could not create receiver"}), 500
+
+
 @app.route('/api/v1/add_order', methods=['POST'])
+@app.route('/baljan/api/v1/add_order', methods=['POST'])
 @login_required
 def add_order():
     if request.method == "POST":
@@ -307,6 +475,7 @@ def add_order():
 
 
 @app.route('/api/v1/change_status/<int:order_id>', methods=['POST'])
+@app.route('/baljan/api/v1/change_status/<int:order_id>', methods=['POST'])
 @login_required
 def change_status(order_id):
     statuses = ['processing', 'preparing', 'received']
@@ -317,18 +486,19 @@ def change_status(order_id):
                 order.set_status(statuses[i + 1])
             else:
                 order.set_status(statuses[0])
-            return jsonify({"success": "status set to {}".format(order.status)}), 200
+            return "success"
     return jsonify({"error": "could not set status on order = {}".format(order.id)}), 500
 
 
 @app.route('/api/v1/notify-buyer-status/<int:order_id>')
+@app.route('/baljan/api/v1/notify-buyer-status/<int:order_id>')
 @login_required
 def notify_buyer_status(order_id):
     order = Order.query.filter_by(id=order_id).first()
     if order:
         send_order_status_change_email(order)
-        return 200, "Status change email sent to email {}".format(order.buyer.email)
-    return 404, "No order with id = {} was found!".format(order_id)
+        return "Status change email sent to email {}".format(order.buyer.email), 200
+    return "No order with id = {} was found!".format(order_id), 404
 
 
 @app.route('/api/v1/logout')
@@ -338,5 +508,5 @@ def logout_admin():
     used for administrator.
     """
     logout_user()
-    return jsonify("success"), 200
+    return redirect('/')
 

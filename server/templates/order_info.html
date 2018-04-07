@@ -17,8 +17,23 @@
     </form>
 
     <div id="token-result">
-        <h1 id="info_text1"></h1>
-        <h1 id="info_text2"></h1>
+
+        <h1 id="main_infp">
+            Du skickade gåvan
+            <span id="name_info" style="color: crimson"></span>
+             till
+            <span id="receiver_name" style="color: crimson"></span>
+             (<span id="receiver_phone" style="color: crimson"></span>)
+             med följande meddelande:
+             <span id="msg_id" style="color: crimson"></span>
+        </h1>
+
+        <h1 id="main_info2">
+            Nuvarande status på din order:
+             <span id="status_id" style="color: crimson"></span> <br />
+            Priset på din order:
+            <span id="price_id" style="color: crimson"></span> kr
+        </h1>
     </div>
 
 
@@ -99,14 +114,22 @@
                 console.log(status_val);
 
             }
-            setTimeout(function (wait2sex) {
-                document.getElementById("info_text1").innerText = "Du skickade gåvan " + gift_data.name + " till "
+            setTimeout(function () {
+                /*document.getElementById("info_text1").innerText = "Du skickade gåvan " + gift_data.name + " till "
                 + receiver_data.name + "(" + receiver_data.phone + ") med följande meddelande: " + msg_val;
 
                 document.getElementById("info_text2").innerText = "Nuvarande status på din order: " + status_val + "\n"
-                + "Priset på din order: " + price_val + " kr.";
+                + "Priset på din order: " + price_val + " kr.";*/
 
-            },300)
+                document.getElementById("name_info").innerText = gift_data.name;
+                document.getElementById("receiver_name").innerText = receiver_data.name;
+                document.getElementById("receiver_phone").innerText = receiver_data.phone;
+                document.getElementById("msg_id").innerText = msg_val;
+                document.getElementById("status_id").innerText = status_val;
+                document.getElementById("price_id").innerText = price_val;
+
+
+            },100)
 
 
             });

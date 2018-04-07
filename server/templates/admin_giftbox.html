@@ -1,5 +1,6 @@
 <script src="/static/js/admin_giftbox.js"></script>
 <link rel="stylesheet" type="text/css" href="/static/css/admin_giftbox.css">
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css">
 <div id="giftbox-list" class="list-group">
     {% for giftbox in giftboxs %}
         <a data-giftbox-id="{{ giftbox.id }}" class="list-group-item list-group-item-action flex-column align-items-start giftbox">
@@ -12,4 +13,4 @@
     {% endfor %}
 </div>
 <div id="giftbox-div"></div>
-<button id='add-giftbox'>Lägg till gåva</button>
+<button id='add-giftbox' class="admin-button">Lägg till gåva</button>

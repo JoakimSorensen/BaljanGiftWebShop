@@ -1,6 +1,8 @@
 <script src="/static/js/admin_order.js"></script>
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css">
+
 <input id="token-search" type="text" placeholder="Skriv in token...">
-<button id="token-button">Sök</button>
+<button id="token-button" class="admin-button">Sök</button>
 <div id="order-list" class="list-group">
     {% for order in orders %}
 	<a data-order-id="{{ order.id }}" class="list-group-item list-group-item-action flex-column align-items-start order">
@@ -11,12 +13,12 @@
                 <small>köpare: {{ order.buyer }}, </small>
 				<small>mottagare:{{ order.receiver }}</small><br><br>
                 <p>status: {{ order.status }}</p>
-				<button data-order-id="{{ order.id }}" class="status-button">Ändra status</button>
-				<button id="send-status-{{ order.id }}" data-order-id="{{ order.id }}" class="send-status-button">Notifiera status</button>
+				<button data-order-id="{{ order.id }}" class="status-button admin-button">Ändra status</button>
+				<button id="send-status-{{ order.id }}" data-order-id="{{ order.id }}" class="send-status-button admin-button">Notifiera status</button>
 				<p id="send-status-wait-{{ order.id }}" class="send-status-wait">Vänta en sekund..</p>
             </div>
         </a>
     {% endfor %}
 </div>
 <div id="order-div"></div>
-<button id='add-order'>Lägg till order</button>
+<button id='add-order' class="admin-button">Lägg till order</button>

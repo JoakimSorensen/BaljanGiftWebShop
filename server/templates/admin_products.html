@@ -1,4 +1,5 @@
 <script src="/static/js/admin_products.js"></script>
+<link href="/static/css/admin.css" rel="stylesheet" type="text/css">
 <div id="product-list" class="list-group">
     {% for product in products %}
         <a data-product-id="{{ product.id }}" class="list-group-item list-group-item-action flex-column align-items-start product">
@@ -11,4 +12,4 @@
     {% endfor %}
 </div>
 <div id="product-div"></div>
-<button id='add-product'>Lägg till produkt</button>
+<button id='add-product' class="admin-button">Lägg till produkt</button>

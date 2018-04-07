@@ -74,7 +74,6 @@ def giftbox_with_id(id_):
 
     return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
 
-
 @app.route('/api/v1/order/<int:id_>')
 @app.route('/baljan/api/v1/order/<int:id_>')
 def order_with_id(id_):
@@ -125,7 +124,7 @@ def order_with_token(token):
         order_dict = order.to_dict()
         return jsonify(order_dict)
 
-    return jsonify({"error": "No order with token: {}".format(token)}), 404
+    return jsonify("error")
 
 
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')

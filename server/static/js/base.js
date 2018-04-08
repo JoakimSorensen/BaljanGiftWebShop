@@ -24,6 +24,12 @@ page('/products', function() {
 
 });
 
+page.exit('/products', function(ctx, next) {
+    $('#myModal').modal('hide');
+    $('.modal-backdrop').remove();
+    next();
+});
+
 page('/guide', function() {
     var url = "/html/guide";
     loadURL(url);

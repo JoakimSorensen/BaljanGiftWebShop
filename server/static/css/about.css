@@ -1,0 +1,9 @@
+.about_container {
+    text-align: left;
+}
+.info {
+    width: 654px;
+    height: 304px;
+    background-color: blue;
+    text-align: left;
+}

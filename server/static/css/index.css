@@ -1,4 +1,8 @@
 
+.landing-page-video {
+    object-position: 50% 50%;
+}
+
 .landing-page-caption {
     font-family: Roboto, sans-serif;
     font-style: normal;

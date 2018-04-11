@@ -51,6 +51,11 @@ def faq():
     return render_template('faq.html')
 
 
+@app.route('/html/about')
+def about():
+    return render_template('about.html')
+
+
 @app.route('/html/contact')
 def contact():
     return render_template('contact.html')

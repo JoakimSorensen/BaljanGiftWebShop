@@ -17,12 +17,6 @@ function fetchUser(giftbox_id, completionHandler) {
     });
 }
 
-function dropProducts() {
-	$('#products-dropdown').classList.toggle("show");
-	//document.getElementById("products-dropdown").classList.toggle("show");
-	//$('#products-dropdown').toggle("show")
-}
-
 function presentUserData(giftboxData) {
     $( "#giftbox-list" ).hide();
 	$("#add-giftbox").hide();

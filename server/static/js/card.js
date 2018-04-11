@@ -14,7 +14,6 @@ $(document).ready(function() {
 
 function validateName() {
   var name = $("#name").val();
-  console.log(name);
   if (name == "") {
     $("#name-error").show();
   }else{

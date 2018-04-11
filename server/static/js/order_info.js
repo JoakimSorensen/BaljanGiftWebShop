@@ -52,15 +52,12 @@
                 var date_val = val;
             }else if(key==="message"){
                  msg_val = val;
-                console.log(msg_val)
 
             }else if(key==="price"){
                  price_val = val;
-                console.log(price_val)
 
             }else if(key==="status"){
                  status_val = val;
-                console.log(status_val);
 
             }
             setTimeout(function () {

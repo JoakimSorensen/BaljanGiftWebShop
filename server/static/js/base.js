@@ -36,6 +36,24 @@ page('/guide', function() {
     console.log("Guide")
 });
 
+page('/about', function() {
+    var url = "/html/about";
+    loadURL(url);
+    console.log("About")
+});
+
+page('/faq', function() {
+    var url = "/html/faq";
+    loadURL(url);
+    console.log("Faq")
+});
+
+page('/contact', function() {
+    var url = "/html/contact";
+    loadURL(url);
+    console.log("Contact")
+});
+
 page('/order_info', function() {
     var url = "/html/order_info";
     loadURL(url);

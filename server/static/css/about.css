@@ -1,9 +1,8 @@
-.about_container {
-    text-align: left;
+.about-wrapper {
+    max-width: 800px;
+    border: solid black 2px;
+    text-align: center;
+    padding: 40px 80px 40px 80px;
+    margin-top: 50px;
 }
-.info {
-    width: 654px;
-    height: 304px;
-    background-color: blue;
-    text-align: left;
-}
+

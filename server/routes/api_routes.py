@@ -1,4 +1,5 @@
 import datetime
+from threading import Thread
 
 from flask import abort, jsonify, redirect, request, url_for, render_template
 from flask_login import current_user, logout_user, login_required
@@ -42,7 +43,7 @@ def payment_completed():
     giftbox = GiftBox.query.get(request.values["giftbox"])
 
     order = Order.create_order(giftbox, buyer, receiver, message)
-
+    
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
 

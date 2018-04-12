@@ -128,6 +128,24 @@ def order_with_token(token):
     return jsonify("error")
 
 
+@app.route('/api/v1/order_token_formatted_info/<token>')
+@app.route('/baljan/api/v1/order_token_formatted_info/<token>')
+def order_with_token_formatted_info(token):
+    order = Order.query.filter_by(token=token).first()
+    if order is not None:
+        giftbox = GiftBox.query.filter_by(id=order.giftbox_id).first()
+        receiver = Receiver.query.filter_by(id=order.receiver_id).first()
+
+        return jsonify({"giftbox_name": giftbox.name, 
+            "receiver_name": receiver.name,
+            "receiver_phone": receiver.phone,
+            "message": order.message,
+            "price": order.price,
+            "status": order.status})
+
+    return jsonify("error")
+
+
 @app.route('/api/v1/check_order_hash/<int:id_>/<token>')
 @app.route('/baljan/api/v1/check_order_hash/<int:id_>/<token>')
 def check_order_hash(id_, token):

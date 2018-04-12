@@ -41,7 +41,7 @@
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="above-nav">
         <div class="container">
-            <h1 class="logo-text"><a href="/">Baljangåvan</a></h1>
+            <h1 class="logo-text clickable" id="logotype"><a href="/">Baljangåvan</a></h1>
         </div>
     </div>
 
@@ -72,11 +72,11 @@
 						class="nav-button" id="logout">Tillbaka</a>
 				</li>
 				{% else %}
-				<li>
-                    <a href="/products" class="nav-button clickable">Gåvor</a>
+				<li class="nav-item">
+                    <a href="/products" class="nav-button clickable" id="products">Gåvor</a>
                 </li>
-                <li>
-                    <a href="/guide" class="nav-button clickable">Såhär funkar det!</a>
+                <li class="nav-item">
+                    <a href="/guide" class="nav-button clickable" id="guide">Så funkar det</a>
                 </li>
 
 				{% endif %}

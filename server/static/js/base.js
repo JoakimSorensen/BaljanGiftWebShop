@@ -116,3 +116,17 @@ $.delete = function(url, data, callback, type){
 }
 
 page.start();
+
+$(document).ready(function () {
+    $('.clickable').on('click', function(event) {
+    	var id = this.id;
+    	console.log(id);
+    	if (id === 'logotype') {
+    		$('.clickable').removeClass('active');
+		} else {
+    		$('.clickable').removeClass('active');
+    		$(this).addClass('active');
+		}
+
+    });
+});

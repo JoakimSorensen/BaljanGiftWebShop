@@ -90,7 +90,6 @@ p {
 }
 
 
-
 nav {
     width: 100%;
     background-color: white;
@@ -145,4 +144,12 @@ nav a{
     width: 100%;
 }
 
+.active {
+    border-bottom: 2px solid black;
+}
 
+.nav-item a:hover {
+    color: black;
+    border-bottom: 2px solid black;
+    text-decoration: none;
+}

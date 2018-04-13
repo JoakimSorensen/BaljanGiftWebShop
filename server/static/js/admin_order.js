@@ -51,7 +51,7 @@ function getFromToken(event) {
 	$("#order-div").empty();
     $.getJSON(url, function(data) {
         presentUserData(data)
-    });
+	});
 }
 
 function presentUserData(orderData) {

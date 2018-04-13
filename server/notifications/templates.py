@@ -3,7 +3,7 @@ def order_confirmation_email(order):
     receiver = order.receiver
     giftbox = order.giftbox
 
-    subject = "Baljangavan: Orderbekräftelse {}".format(order.date)
+    subject = "Baljangavan: orderbekräftelse {}".format(order.date)
 
     message = """Tack för din beställning!
 
@@ -23,7 +23,7 @@ Mottagarens telefonnummer: {receiver_phone}
 Pris: {price}
 Gåva: {gift}
 Meddelande: {message}
-Ordernummer: {token}
+ordernummer: {token}
 
 
 """.format(name=buyer.name, receiver_name=receiver.name,
@@ -38,7 +38,7 @@ def status_change_email(order):
     buyer = order.buyer
     receiver = order.receiver
 
-    subject = "Baljangavan: Order status {}".format(order.status)
+    subject = "Baljangavan: order status {}".format(order.get_status_text(order.status))
 
     message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till {status}!
 
@@ -50,7 +50,7 @@ Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
 Med vänliga hälsningar,
 Baljangåvan 🎁
 
-""".format(status=order.status, token=order.token, name=buyer.name, receiver_name=receiver.name)
+""".format(status=order.get_status_text(order.status), token=order.token, name=buyer.name, receiver_name=receiver.name)
     return subject, message
 
 

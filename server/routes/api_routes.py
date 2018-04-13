@@ -6,6 +6,7 @@ from flask_login import current_user, logout_user, login_required
 
 from server import app, db
 from server.models import Buyer, GiftBox, GiftBoxProduct, Receiver, Order, User, Product
+from server.models.custom_types import OrderStatus
 from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
@@ -141,7 +142,7 @@ def order_with_token_formatted_info(token):
             "receiver_phone": receiver.phone,
             "message": order.message,
             "price": order.price,
-            "status": order.status})
+            "status": order.get_status_text(order.status)})
 
     return jsonify("error")
 
@@ -365,7 +366,9 @@ def edit_order():
         if date:
             order.set_date(date)
         if status:
-            order.set_status(status)
+            statuses = [st for st in OrderStatus]
+            if int(status) in range(len(statuses) - 1):
+                order.set_status(statuses[int(status)])
         if giftbox_id:
             order.set_giftbox(giftbox_id)
         if message:
@@ -477,7 +480,9 @@ def add_order():
         order = Order.create_order(giftbox, buyer, receiver, message)
         
         if status:
-           order.set_status(status)
+            statuses = [st for st in OrderStatus]
+            if int(status) in range(len(statuses) - 1):
+                order.set_status(statuses[int(status)])
         if order:
             return jsonify("success"), 200 
         return jsonify({"error": "Could not create order"}), 500
@@ -487,11 +492,11 @@ def add_order():
 @app.route('/baljan/api/v1/change_status/<int:order_id>', methods=['POST'])
 @login_required
 def change_status(order_id):
-    statuses = ['processing', 'preparing', 'received']
+    statuses = [st for st in OrderStatus]
     order = Order.query.filter_by(id=order_id).first()
     for i in range(len(statuses)):
         if order.status == statuses[i]:
-            if i < 2:
+            if i < len(statuses) - 1:
                 order.set_status(statuses[i + 1])
             else:
                 order.set_status(statuses[0])

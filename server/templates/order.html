@@ -8,7 +8,7 @@
     <h3> Ordersummering </h3>
     <p>Datum: {{ order.date }}</p>
     <p>Pris: {{ order.price }}</p>
-    <p>Orderstatus: {{ order.status }}</p>
+    <p>Orderstatus: {{ order.get_status_text(order.status) }}</p>
     <p>Mottagare namn: {{ order.receiver.name }}</p>
     <p>Mottagarens telefonnummer: {{ order.receiver.phone }}</p>
     <p>Meddelande: {{ order.message }}</p>

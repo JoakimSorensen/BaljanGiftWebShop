@@ -18,7 +18,7 @@
         <p> Pris: {{ gift_box.price }}kr </p>
         <p> Gåvan innehåller: </p>
         {% for product in products %}
-            <p>{{ product[0] }}</p>
+            <p>{{ product[0] }} {% if product[1] != "" %}(innehåller {{ product[1] }}) {% endif %}</p>
         {% endfor %}
         <p>Utöver produkterna ovan innehåller gåvan ett kort med ett personligt meddelande.
         Gåvan slås in i ett fint paket.</p>

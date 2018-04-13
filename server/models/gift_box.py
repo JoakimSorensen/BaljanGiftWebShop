@@ -49,13 +49,14 @@ class GiftBox(SharedModel):
         self.image = image
         db.session.commit()
 
-    def get_products(self):
-        gift_box_products = db.session.query(Product.name).\
+    def get_product_information(self):
+        gift_box_info = db.session.query(Product.name, Product.allergen).\
             join(GiftBoxProduct).\
             join(GiftBox).\
             filter(GiftBox.id == self).\
             filter(Product.id == GiftBoxProduct.product_id).all()
-        return gift_box_products
+        return gift_box_info
+
 
 
 

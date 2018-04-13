@@ -26,7 +26,7 @@ def index():
 @app.route('/html/card/<int:gift_box_id>')
 def card(gift_box_id):
     gift_box = GiftBox.query.get(gift_box_id)
-    products = GiftBox.get_products(gift_box_id)
+    products = GiftBox.get_product_information(gift_box_id)
     return render_template('card.html', gift_box=gift_box, products=products)
 
 

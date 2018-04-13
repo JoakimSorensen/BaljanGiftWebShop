@@ -9,7 +9,6 @@
     <title>Baljangåvan</title>
 
     <!-- Latest compiled and minified CSS -->
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
@@ -19,9 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/admin_giftbox.css">
     <link rel="stylesheet" type="text/css" href="/static/css/about.css">
     <link rel="stylesheet" type="text/css" href="/static/css/faq.css">
-
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300" rel="stylesheet">
 
 
     <!-- Latest compiled and minified JavaScript -->
@@ -41,7 +38,7 @@
          Multiple lines will require custom code not provided by Bootstrap. -->
     <div class="above-nav">
         <div class="container">
-            <h1 class="logo-text clickable" id="logotype"><a href="/">Baljangåvan</a></h1>
+            <h1 class="logo-text clickable uppercase" id="logotype"><a href="/">Baljangåvan</a></h1>
         </div>
     </div>
 
@@ -50,22 +47,22 @@
             <ul>
 				{% if not current_user.is_anonymous %}
                 <li>
-                    <a data-toggle="tooltip" title="Redigera admin användare" href="/baljan/users" class="nav-button clickable" id="admin-users">Baljörer</a>
+                    <a data-toggle="tooltip" title="Redigera admin användare" href="/baljan/users" class="nav-button clickable uppercase" id="admin-users">Baljörer</a>
 				</li>
                 <li>
-                    <a data-toggle="tooltip" title="Redigera ordrar" href="/baljan/orders" class="nav-button clickable" id="admin-orders">Ordrar</a>
+                    <a data-toggle="tooltip" title="Redigera ordrar" href="/baljan/orders" class="nav-button clickable uppercase" id="admin-orders">Ordrar</a>
 				</li>
                 <li>
-                    <a data-toggle="tooltip" title="Redigera gåvor" href="/baljan/giftboxs" class="nav-button clickable" id="admin-giftboxs">Gåvor</a>
+                    <a data-toggle="tooltip" title="Redigera gåvor" href="/baljan/giftboxs" class="nav-button clickable uppercase" id="admin-giftboxs">Gåvor</a>
 				</li>
 				<li>
-                    <a data-toggle="tooltip" title="Redigera produkter" href="/baljan/products" class="nav-button clickable" id="admin-products">Produkter</a>
+                    <a data-toggle="tooltip" title="Redigera produkter" href="/baljan/products" class="nav-button clickable uppercase" id="admin-products">Produkter</a>
 				</li>
 				<li>
-                    <a data-toggle="tooltip" title="Redigera köpare" href="/baljan/buyers" class="nav-button clickable" id="admin-buyers">Köpare</a>
+                    <a data-toggle="tooltip" title="Redigera köpare" href="/baljan/buyers" class="nav-button clickable uppercase" id="admin-buyers">Köpare</a>
 				</li>
 				<li>
-                    <a data-toggle="tooltip" title="Redigera mottagare" href="/baljan/receivers" class="nav-button clickable" id="admin-receivers">Mottagare</a>
+                    <a data-toggle="tooltip" title="Redigera mottagare" href="/baljan/receivers" class="nav-button clickable uppercase" id="admin-receivers">Mottagare</a>
 				</li>
                 <li>
 					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
@@ -73,10 +70,10 @@
 				</li>
 				{% else %}
 				<li class="nav-item">
-                    <a href="/products" class="nav-button clickable" id="products">Gåvor</a>
+                    <a href="/products" class="nav-button clickable uppercase" id="products">Gåvor</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/guide" class="nav-button clickable" id="guide">Så funkar det</a>
+                    <a href="/guide" class="nav-button clickable uppercase" id="guide">Så funkar det</a>
                 </li>
 
 				{% endif %}
@@ -97,14 +94,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6" align="center">
-                <h3>Mer info</h3>
+                <h3 class="uppercase">Mer info</h3>
                 <a href="/order_info" class="nav-button" id="order_status">Orderstatus</a><br>
                 <a href="/about" class="nav-button" id="about">Vilka är vi?</a><br>
                 <a href="/faq" class="nav-button" id="faq">Vanliga frågor</a><br>
                 <a href="/contact" class="nav-button" id="contact">Kontakt</a><br>
             </div>
             <div class="col-md-6" align="center">
-                <h3>Om Baljangåvan</h3>
+                <h3 class="uppercase">Om Baljangåvan</h3>
                 <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver göra är att skriva mottagarens nummer så löser vi resten.</p>
             </div>
         </div>

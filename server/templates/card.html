@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-6 gift-information">
         <div class="header">
-            <h2><b>{{ gift_box.name }}</b></h2>
+            <h2 class="uppercase"><b>{{ gift_box.name }}</b></h2>
         </div>
         <p class="description" >{{ gift_box.description }}</p>
         <p> Pris: {{ gift_box.price }}kr </p>
@@ -28,8 +28,7 @@
         <img src="{{ gift_box.image }}" alt="Lights" class="image current-product">
     </div>
 
-    <h2>Skicka denna vara till din nära!</h2>
-    <p>Fyll i följande formulär:</p>
+    <h2>Skicka denna gåva till någon du tycker om</h2>
 
     <div class="container">
         <form action="/api/v1/payment_completed">

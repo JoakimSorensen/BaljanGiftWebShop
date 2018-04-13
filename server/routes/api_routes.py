@@ -9,6 +9,12 @@ from server.models import Buyer, GiftBox, GiftBoxProduct, Receiver, Order, User,
 from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
+import stripe
+
+pub_key = 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm'
+secret_key = 'sk_test_4qrht4gf2vgrO3AeirBd7H7W'
+
+stripe.api_key = secret_key
 
 @app.route('/api/v1/users')
 def all_users():
@@ -29,6 +35,21 @@ def all_orders():
     orders = Order.query.all()
     orders_dicts = [order.to_dict() for order in orders]
     return jsonify(orders_dicts)
+
+
+@app.route('/api/v1/pay', methods=['POST'])
+def pay():
+    stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
+
+    token = request.form['stripeToken']
+
+    charge = stripe.Charge.create(
+        amount=3900,
+        currency='sek',
+        description='Baljangavan',
+        source=token,
+    )
+    return redirect("/api/v1/payment_completed")
 
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])

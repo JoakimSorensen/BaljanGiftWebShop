@@ -8,3 +8,4 @@ pytimeparse==1.1.7
 flask-mail==0.9.1
 requests==2.18.4
 phonenumbers==8.9.2
+stripe==1.79.1

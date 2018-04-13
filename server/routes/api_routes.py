@@ -37,23 +37,9 @@ def all_orders():
     return jsonify(orders_dicts)
 
 
-@app.route('/api/v1/pay', methods=['POST'])
-def pay():
-    stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
-
-    token = request.form['stripeToken']
-
-    charge = stripe.Charge.create(
-        amount=3900,
-        currency='sek',
-        description='Baljangavan',
-        source=token,
-    )
-    return redirect("/api/v1/payment_completed")
-
-
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
+    _stripe_charge(request.values['stripeToken'])
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
 
@@ -539,4 +525,14 @@ def logout_admin():
     """
     logout_user()
     return redirect('/')
+
+
+def _stripe_charge(token):
+    stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
+    charge = stripe.Charge.create(
+        amount=3900,
+        currency='sek',
+        description='Baljangavan',
+        source=token,
+    )
 

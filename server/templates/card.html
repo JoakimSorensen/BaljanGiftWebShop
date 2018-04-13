@@ -30,7 +30,7 @@
     <p>Fyll i följande formulär:</p>
 
     <div class="container">
-        <form action="/api/v1/payment_completed">
+        <form action="/api/v1/payment_completed" method="POST" id="orderForm">
             <div hidden class="row">
                 <div class="col-75">
                     <input type="text" id="giftbox" name="giftbox" value={{gift_box.id}}>
@@ -67,6 +67,16 @@
                 </div>
             </div>
 
+             <div class="row">
+                <div class="col-25">
+                    <label for="email">Din epostadress</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="email" name="email"
+                           placeholder="Din email"> </input>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-25">
                     <label for="message">Meddelande</label>
@@ -77,7 +87,7 @@
                 </div>
             </div>
             <div class="row" float="right">
-                <form action="/api/v1/payment_completed" method="POST">
+                <form action="/api/v1/payment_completed" method="POST" id="stripeForm">
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -93,11 +103,12 @@
                 </form>
             </div>
         </form>
+        <button type="submit" form="orderForm">Swish</button>
+
     </div>
 
 
 </div>
-
 
 </body>
 </html>

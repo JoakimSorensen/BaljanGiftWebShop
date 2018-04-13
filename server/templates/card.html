@@ -10,18 +10,18 @@
 <body>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 gift-information">
         <div class="header">
             <h2><b>{{ gift_box.name }}</b></h2>
         </div>
-        <p>{{ gift_box.description }}</p>
+        <p class="description" >{{ gift_box.description }}</p>
         <p> Pris: {{ gift_box.price }}kr </p>
-        <p> {{ gift_box.id }}</p>
-        <p> {{ products }}</p>
-       {# <p> Allergen: {{ gift_box.allergen }} </p>
-        <p>&#10003; Glutenfri
-        <p>&#10005; Laktosfri#}
-
+        <p> Gåvan innehåller: </p>
+        {% for product in products %}
+            <p>{{ product[0] }}</p>
+        {% endfor %}
+        <p>Utöver produkterna ovan innehåller gåvan ett kort med ett personligt meddelande.
+        Gåvan slås in i ett fint paket.</p>
     </div>
 
     <div class="col-md-6">

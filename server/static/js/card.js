@@ -1,7 +1,12 @@
+
+$('[data-toggle="tooltip"]').tooltip();
+
 $(document).ready(function() {
     $("#name-error").hide();
     $("#rec-name-error").hide();
     $("#phonenumber-error").hide();
+    $("#hider").hide();
+    $("#swish").hide();
 
     $("#name").on("focusout", validateName);
     $("#rec-name").on("focusout", validateRecName);
@@ -9,8 +14,21 @@ $(document).ready(function() {
 
     // console.log(document.getElementsByClassName("stripe-button-el")[0]);
     //$(".stripe-button-el")[0].disabled = true;
-});
 
+    $("#swishButton").on("click", function () {
+        /*swishData();*/
+        $("#hider").fadeIn("slow");
+        $("#swish").fadeIn("slow");
+    });
+
+     $("#buttonClose").on("click", function () {
+        /*swishData();*/
+        $("#hider").fadeOut("slow");
+        $("#swish").fadeOut("slow");
+    });
+
+
+});
 
 function validateName() {
   var name = $("#name").val();
@@ -19,6 +37,31 @@ function validateName() {
   }else{
     $("#name-error").hide();
   };
+};
+
+function swishData() {
+    $("#swishModal").showModal();
+
+    var name = $("#name").val();
+    var rec_name = $("#rec-name").val();
+    var number = $("#phonenumber").val();
+    var email = $("#email").val();
+    var message = $("#message").val();
+    var giftbox = $("#giftbox").val();
+
+    var data = {
+        receiver_name: rec_name,
+        receiver_phone: number,
+        message: message,
+        buyer_email: email,
+        buyer_name: name,
+        giftbox_in: giftbox
+    };
+
+    $.post("/api/v1/payment_completed", data, function (res) {
+            console.log('res', res);
+        });
+
 };
 
 function validateRecName() {
@@ -37,7 +80,6 @@ function validateNumber() {
     } else {
         $("#phonenumber-error").show();
     }
-
 }
 
 

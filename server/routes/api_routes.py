@@ -35,12 +35,14 @@ def all_orders():
 def payment_completed():
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
-
     message = request.values['message']
+    buyer_name = request.values["name"]
+    buyer_email = request.values["email"]
+    giftbox_in = request.values["giftbox"]
 
     receiver = Receiver.create_receiver(receiver_name, receiver_phone)
-    buyer = Buyer.add(name=request.values["name"], email=request.values["email"])
-    giftbox = GiftBox.query.get(request.values["giftbox"])
+    buyer = Buyer.add(buyer_name, buyer_email)
+    giftbox = GiftBox.query.get(giftbox_in)
 
     order = Order.create_order(giftbox, buyer, receiver, message)
 

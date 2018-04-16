@@ -36,13 +36,9 @@
 {% block nav %}
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
-    <div class="above-nav">
-        <div class="container">
-            <h1 class="logo-text clickable uppercase" id="logotype"><a href="/">Baljangåvan</a></h1>
-        </div>
-    </div>
-
-    <div class="container nav-wrapper">
+    <header>
+    <div class="container">
+        <a class="uppercase logo-text" href="/">Baljangåvan</a>
         <nav>
             <ul>
 				{% if not current_user.is_anonymous %}
@@ -80,6 +76,7 @@
             </ul>
         </nav>
     </div>
+    </header>
 
 {% endblock %}
 
@@ -94,7 +91,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6" align="center">
-                <h3 class="uppercase">Mer info</h3>
+                <h3>Mer info</h3>
                 <a href="/order_info" class="nav-button" id="order_status">Orderstatus</a><br>
                 <a href="/about" class="nav-button" id="about">Vilka är vi?</a><br>
                 <a href="/faq" class="nav-button" id="faq">Vanliga frågor</a><br>

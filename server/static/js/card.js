@@ -8,6 +8,7 @@ $(document).ready(function() {
     $("#hider").hide();
     $("#swish").hide();
 
+
     $("#name").on("focusout", validateName);
     $("#rec-name").on("focusout", validateRecName);
     $("#phonenumber").on("focusout", validateNumber);
@@ -19,8 +20,9 @@ $(document).ready(function() {
         /*swishData();*/
         $("#hider").fadeIn("slow");
         $("#swish").fadeIn("slow");
-        $("#loader").hide();
         $("#loaderMain").hide();
+        $("#swishPayement").hide();
+
         $("#swishPhone-form").show();
 
     });
@@ -34,10 +36,23 @@ $(document).ready(function() {
       $("#swishPhone-form").submit(function(ev){
 
         ev.preventDefault();
+        $("#swishPayement").hide();
+
         var buyer_phone = $("#buyerPhone").val();
         $("#swishPhone-form").hide();
-        $("#loader").show();
-        $("#loaderMain").show();
+       $("#loaderMain").show();
+
+        setTimeout(function () {
+            $("#loaderMain").hide();
+            $("#swishPayement").show();
+
+            setTimeout(function () {
+                $("#swish").hide();
+                $("#hider").hide();
+
+            },1500);
+
+        },5000);
 
 
     });

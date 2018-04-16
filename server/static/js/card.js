@@ -19,6 +19,9 @@ $(document).ready(function() {
         /*swishData();*/
         $("#hider").fadeIn("slow");
         $("#swish").fadeIn("slow");
+        $("#loader").hide();
+        $("#loaderMain").hide();
+        $("#swishPhone-form").show();
 
     });
 
@@ -26,6 +29,17 @@ $(document).ready(function() {
         /*swishData();*/
         $("#hider").fadeOut("slow");
         $("#swish").fadeOut("slow");
+    });
+
+      $("#swishPhone-form").submit(function(ev){
+
+        ev.preventDefault();
+        var buyer_phone = $("#buyerPhone").val();
+        $("#swishPhone-form").hide();
+        $("#loader").show();
+        $("#loaderMain").show();
+
+
     });
 
 

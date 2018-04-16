@@ -11,15 +11,33 @@
 
 <div id="hider"></div>
 <div id="swish">
-    <img id="swishImage" src="static/swish.png">
+    <div style="height: 25em">
+         <img id="swishImage" src="static/swish.png">
     <div id="swishContent">
         <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
         <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
     </div>
+    <form id="swishPhone-form" style="width: 100%">
+        <div style="width: 100%; alignment: center" >
+            <input id="buyerPhone" type="text" placeholder="Ange ditt telefonnummer" style="font-size: 1.2vw;
+                     border: 0; width: 80%; white-space: nowrap; border-bottom: 2px solid black; text-align: center; border-radius: 0">
+        </div>
 
-    <div id="loader"></div>
+        <div style="width: 13.5em; padding-top: 1em">
+        <input type="submit" value="Betala" style="background-color: #38A7E5; font-size: 1.5vw;
+                    color: #FFFFFF; border: 0;">
+        </div>
+    </form>
+    <div id="loaderMain">
+        <div id="loader"></div>
+        <p>Öppna Swish</p>
+    </div>
+
+    </div>
+
     <div id="swishFooter">
-            <button id="closeSwish">Close</button>
+            <button id="closeSwish" style="background-color: #38A7E5; font-size: 1vw;
+                    color: #FFFFFF; border: 0; border-radius: 0.3vw">Stäng</button>
     </div>
 </div>
 
@@ -118,7 +136,6 @@
             </div>
         </form>
         <button type="button" id="swishButton">Swish</button>
-
     </div>
 </div>
 

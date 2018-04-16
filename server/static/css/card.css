@@ -164,21 +164,22 @@ body {
 #swishImage {
     width: 15em;
     height: auto;
-    position: absolute;
-    margin-left: -3em;
     margin-top: -1.4em;
 }
 
 #swishFooter {
-    margin-top: 3.5em;
-    background-color: black;
     z-index: 101;
+    position: relative;
+    margin-top: 2em;
+}
+
+#swishPhone {
+    position: absolute;
 }
 
 #swishContent {
     z-index: 101;
-    margin-top: 6em;
-    position: absolute;
+    margin-top: -1em;
     width: 19.7em;
     text-align: center;
 }
@@ -189,10 +190,10 @@ body {
   border-top: 16px solid #3498db;
   width: 120px;
   height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
   display: inline-block;
-  margin-top: 15em;
+  margin-top: 1em;
 }
 
 /* Safari */
@@ -205,5 +206,7 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
 
 

@@ -49,7 +49,7 @@ ul {
 html, body {
     height: 100%;
     margin: 0;
-    background-color: #FFFFFF;
+    background-color: white;
 }
 
 footer h3 {
@@ -120,12 +120,12 @@ nav ul li {
     position: relative;
     text-align: center;
     padding: 0 20px;
-    line-height: 0;
+    line-height: 15px;
 
 }
 
 nav ul li {
-    border-right: 2px solid #000;
+    border-right: 1px solid #000;
 }
 
 nav li:last-of-type {

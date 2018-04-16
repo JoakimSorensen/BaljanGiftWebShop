@@ -19,6 +19,7 @@ $(document).ready(function() {
         /*swishData();*/
         $("#hider").fadeIn("slow");
         $("#swish").fadeIn("slow");
+
     });
 
      $("#closeSwish").on("click", function () {
@@ -81,5 +82,6 @@ function validateNumber() {
         $("#phonenumber-error").show();
     }
 }
+
 
 

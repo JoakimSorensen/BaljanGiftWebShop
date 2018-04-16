@@ -11,9 +11,14 @@
 
 <div id="hider"></div>
 <div id="swish">
-    <h2 align="center">Swish</h2>
-    Message<br />
-    <a id="buttonClose">Close</a>
+    <img id="swishImage" src="static/swish.png">
+    <div id="swishContent">
+        <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
+        <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
+    </div>
+    <div id="swishFooter">
+            <button id="closeSwish">Close</button>
+    </div>
 </div>
 
 <div class="row" id="mainCard">

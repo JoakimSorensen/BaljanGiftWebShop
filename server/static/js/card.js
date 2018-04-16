@@ -21,7 +21,7 @@ $(document).ready(function() {
         $("#swish").fadeIn("slow");
     });
 
-     $("#buttonClose").on("click", function () {
+     $("#closeSwish").on("click", function () {
         /*swishData();*/
         $("#hider").fadeOut("slow");
         $("#swish").fadeOut("slow");

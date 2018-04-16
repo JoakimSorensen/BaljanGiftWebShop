@@ -129,34 +129,55 @@ body {
     padding-right: 0px"
 }
 
-#hider
-    {
-        position:absolute;
-        top: 0%;
-        left: 0%;
-        width:1600px;
-        height:2000px;
-        margin-top: -800px; /*set to a negative number 1/2 of your height*/
-        margin-left: -500px; /*set to a negative number 1/2 of your width*/
-        /*
-        z- index must be lower than pop up box
-       */
-        z-index: 99;
-    }
-
-#swish
-    {
-
+#hider {
     position:absolute;
-        top: 50%;
-        left: 50%;
-        width:10em;
-        height:25em;
-        margin-top: -5em; /*set to a negative number 1/2 of your height*/
-        margin-left: -5em; /*set to a negative number 1/2 of your width*/
-        border: 1px solid #ccc;
-        border:  2px solid black;
-        z-index:100;
-        background-color: #FFFFFF;
+    top: 0%;
+    left: 0%;
+    width:1600px;
+    height:2000px;
+    margin-top: -800px; /*set to a negative number 1/2 of your height*/
+    margin-left: -500px; /*set to a negative number 1/2 of your width*/
+    /*
+       z- index must be lower than pop up box
+      */
+    z-index: 99;
+    background-color: #FFFFFF;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+#swish {
+    position:absolute;
+    top: 50%;
+    left: 40%;
+    width:20em;
+    height:30em;
+    margin-top: -5em; /*set to a negative number 1/2 of your height*/
+    margin-left: -5em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    border:  2px solid black;
+    z-index:100;
+    background-color: #FFFFFF;
+}
 
-    }
+#swishImage {
+    width: 15em;
+    height: auto;
+    position: absolute;
+    margin-left: 2.13em;
+    margin-top: -1.4em;
+}
+
+#swishFooter {
+    margin-top: 25em;
+    background-color: black;
+    z-index: 101;
+}
+
+#swishContent {
+    background-color: #38A7E5;
+    z-index: 101;
+    margin-top: 6em;
+    position: absolute;
+    width: 19.7em;
+    text-align: center;
+}

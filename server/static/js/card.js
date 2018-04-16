@@ -40,7 +40,7 @@ $(document).ready(function() {
 
         var buyer_phone = $("#buyerPhone").val();
         $("#swishPhone-form").hide();
-       $("#loaderMain").show();
+        $("#loaderMain").show();
 
         setTimeout(function () {
             $("#loaderMain").hide();
@@ -53,7 +53,6 @@ $(document).ready(function() {
             },1500);
 
         },5000);
-
 
     });
 

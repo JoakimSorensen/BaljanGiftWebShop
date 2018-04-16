@@ -17,7 +17,6 @@ footer {
     display: inline-block;
     clear: both;
     margin-top: 100px;
-
 }
 
 
@@ -97,7 +96,6 @@ a {
 
 .nav-wrapper{
     height: 50px;
-    background: white;
 }
 
 .nav-wrapper::after{
@@ -107,7 +105,7 @@ a {
 }
 
 header{
-    background: white;
+    background: #c5c3c5;
     height: 70px;
     padding-top: 15px;
     border-bottom: 1px solid #c5c3c5;
@@ -119,7 +117,6 @@ header{
 
 nav {
     width: 100%;
-    background-color: white;
     letter-spacing: 0.025em;
     text-align: right;
 }

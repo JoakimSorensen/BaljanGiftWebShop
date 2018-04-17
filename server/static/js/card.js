@@ -110,7 +110,22 @@ function validateNumber() {
     } else {
         $("#phonenumber-error").show();
     }
+
 }
+        $('#stripeStuff').hide();
 
 
 
+$('#myModal').ready(function () {
+    $('.button1').prop('disabled', true);
+    $('.inputfield').keyup(function () {
+        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 )
+            $('.button1').prop('disabled', false);
+        else
+            $('.button1').prop('disabled', true);
+    });
+});
+
+function loadStripe() {
+    $('.stripe-button-el').click();
+}

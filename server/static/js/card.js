@@ -33,6 +33,9 @@ $(document).ready(function() {
     $("#hider").hide();
     $("#swish").hide();
 
+    $("#orderForm").submit(function () {
+       console.log("klickade")
+    });
 
     $("#name").on("focusout", validateName);
     $("#rec-name").on("focusout", validateRecName);
@@ -48,10 +51,6 @@ $(document).ready(function() {
 
     });
 
-     $("#closeSwish").on("click", function () {
-        $("#hider").fadeOut("slow");
-        $("#swish").fadeOut("slow");
-    });
 
       $("#swishPhone-form").submit(function(ev){
 
@@ -76,7 +75,6 @@ $(document).ready(function() {
         },5000);
 
     });
-
 
 });
 

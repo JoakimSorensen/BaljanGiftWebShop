@@ -126,6 +126,88 @@ input[type=submit]:hover {
     padding-right: 0px"
 }
 
+#hider {
+    position:absolute;
+    top: 0%;
+    left: 0%;
+    width:1600px;
+    height:2000px;
+    margin-top: -800px; /*set to a negative number 1/2 of your height*/
+    margin-left: -500px; /*set to a negative number 1/2 of your width*/
+    /*
+       z- index must be lower than pop up box
+      */
+    z-index: 99;
+    background-color: lightgrey;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+#swish {
+    position:absolute;
+    top: 50%;
+    left: 40%;
+    width:100%;
+    max-width: 20em;
+    height:30em;
+    margin-top: -5em; /*set to a negative number 1/2 of your height*/
+    margin-left: -5em; /*set to a negative number 1/2 of your width*/
+    border: 1px solid #ccc;
+    border:  2px solid deepskyblue;
+    z-index:100;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+#swishImage {
+    width: 15em;
+    height: auto;
+    margin-top: -1.4em;
+}
+
+#swishFooter {
+    z-index: 101;
+    position: relative;
+    margin-top: 2em;
+}
+
+#swishPhone {
+    position: absolute;
+}
+
+#swishContent {
+    z-index: 101;
+    margin-top: -1em;
+    width: 19.7em;
+    text-align: center;
+}
+
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-top: 1em;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#swishButton {
+    background-image: linear-gradient(#46e04a,#1a9c18 85%,#288208) !important;
+
+}
 
 .gift-information h3 {
     font-weight: normal;

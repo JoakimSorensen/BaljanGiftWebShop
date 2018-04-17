@@ -1,15 +1,40 @@
 <link href="/static/css/card.css" rel="stylesheet" type="text/css">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</head>
-<body>
+<div id="hider"></div>
+<div id="swish">
+    <div style="height: 25em">
+         <img id="swishImage" src="static/swish.png">
+    <div id="swishPayement">Betalning genomförd!</div>
+    <div id="swishContent">
+        <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
+        <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
+    </div>
+    <form id="swishPhone-form" style="width: 100%">
+        <div style="width: 100%; alignment: center" >
+            <input id="buyerPhone" type="text" placeholder="Ange ditt telefonnummer" style="font-size: 1.2vw;
+                     border: 0; width: 80%; white-space: nowrap; border-bottom: 2px solid black; text-align: center; border-radius: 0">
+        </div>
 
-<div class="row">
+        <div style="width: 13.5em; padding-top: 1em">
+        <input type="submit" value="Betala" style="background-color: #38A7E5; font-size: 1.5vw;
+                    color: #FFFFFF; border: 0;">
+        </div>
+    </form>
+    <div id="loaderMain">
+        <div id="loader"></div>
+        <p>Öppna Swish</p>
+    </div>
+
+    </div>
+
+    <div id="swishFooter">
+            <button id="closeSwish" style="background-color: #38A7E5; font-size: 1vw;
+                    color: #FFFFFF; border: 0; border-radius: 0.3vw">Stäng</button>
+    </div>
+</div>
+
+<div class="row" id="mainCard">
     <div class="col-md-6 gift-information">
         <div class="header">
             <h2><b>{{ gift_box.name }}</b></h2>
@@ -32,7 +57,7 @@
     <p>Fyll i följande formulär:</p>
 
     <div class="container">
-        <form action="/api/v1/payment_completed">
+        <form action="/api/v1/payment_completed" id="orderForm">
             <div hidden class="row">
                 <div class="col-75">
                     <input type="text" id="giftbox" name="giftbox" value={{gift_box.id}}>
@@ -69,6 +94,16 @@
                 </div>
             </div>
 
+             <div class="row">
+                <div class="col-25">
+                    <label for="email">Din epostadress</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="email" name="email"
+                           placeholder="Din email"> </input>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-25">
                     <label for="message">Meddelande</label>
@@ -79,7 +114,7 @@
                 </div>
             </div>
             <div class="row" float="right">
-                <form action="/api/v1/payment_completed" method="POST">
+                <form action="/api/v1/payment_completed" method="POST" id="stripeForm">
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -95,14 +130,13 @@
                 </form>
             </div>
         </form>
+        <button type="button" class="stripe-button-el" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">
+        <span style="display: block; min-height: 30px">Betala med Swish</span>
+        </button>
     </div>
 
 
 </div>
-
-
-</body>
-</html>
 
 <script src="/static/js/card.js"></script>
 

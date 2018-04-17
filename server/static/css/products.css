@@ -12,6 +12,10 @@
     font-size: 30px;
 }
 
+.container-fluid {
+    overflow-y: hidden;
+}
+
 .price-dot {
     z-index: 2;
     background-color: darkred;

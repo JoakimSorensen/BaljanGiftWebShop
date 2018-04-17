@@ -184,6 +184,10 @@ input[type=submit]:hover {
   margin-top: 1em;
 }
 
+input.swish-phone-input:focus {
+    outline-width: 0;
+}
+
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -193,11 +197,6 @@ input[type=submit]:hover {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-#swishButton {
-    background-image: linear-gradient(#46e04a,#1a9c18 85%,#288208) !important;
-
 }
 
 .gift-information h3 {

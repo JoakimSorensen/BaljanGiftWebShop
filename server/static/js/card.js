@@ -51,6 +51,11 @@ $(document).ready(function() {
 
     });
 
+    $("#closeSwish").on("click", function () {
+        $("#swish").fadeOut("slow");
+        $("#hider").fadeOut("slow");
+    });
+
 
       $("#swishPhone-form").submit(function(ev){
 

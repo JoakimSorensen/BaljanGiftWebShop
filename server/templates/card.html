@@ -4,32 +4,32 @@
 <div id="hider"></div>
 <div id="swish">
     <div style="height: 25em">
-         <img id="swishImage" src="static/swish.png">
-    <div id="swishPayement">Betalning genomförd!</div>
-    <div id="swishContent">
-        <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
-        <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
-    </div>
-    <form id="swishPhone-form" style="width: 100%">
-        <div style="width: 100%; alignment: center" >
-            <input id="buyerPhone" type="text" placeholder="Ange ditt telefonnummer" style="font-size: 1.2vw;
+        <img id="swishImage" src="static/swish.png">
+        <div id="swishPayement">Betalning genomförd!</div>
+        <div id="swishContent">
+            <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
+            <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
+        </div>
+        <form id="swishPhone-form" style="width: 100%">
+            <div style="width: 100%; alignment: center" >
+                <input id="buyerPhone" type="text" placeholder="Ange ditt telefonnummer" style="font-size: 1.2vw;
                      border: 0; width: 80%; white-space: nowrap; border-bottom: 2px solid black; text-align: center; border-radius: 0">
-        </div>
+            </div>
 
-        <div style="width: 13.5em; padding-top: 1em">
-        <input type="submit" value="Betala" style="background-color: #38A7E5; font-size: 1.5vw;
+            <div style="width: 13.5em; padding-top: 1em">
+                <input type="submit" value="Betala" style="background-color: #38A7E5; font-size: 1.5vw;
                     color: #FFFFFF; border: 0;">
+            </div>
+        </form>
+        <div id="loaderMain">
+            <div id="loader"></div>
+            <p>Öppna Swish</p>
         </div>
-    </form>
-    <div id="loaderMain">
-        <div id="loader"></div>
-        <p>Öppna Swish</p>
-    </div>
 
     </div>
 
     <div id="swishFooter">
-            <button id="closeSwish" style="background-color: #38A7E5; font-size: 1vw;
+        <button id="closeSwish" style="background-color: #38A7E5; font-size: 1vw;
                     color: #FFFFFF; border: 0; border-radius: 0.3vw">Stäng</button>
     </div>
 </div>
@@ -46,7 +46,7 @@
             <p>{{ product[0] }} {% if product[1] != "" %}(innehåller {{ product[1] }}) {% endif %}</p>
         {% endfor %}
         <p>Utöver produkterna ovan innehåller gåvan ett kort med ett personligt meddelande.
-        Gåvan slås in i ett fint paket.</p>
+            Gåvan slås in i ett fint paket.</p>
     </div>
 
     <div class="col-md-6">
@@ -68,7 +68,7 @@
                     <label for="name">Ditt namn</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="name" name="name" placeholder="Ditt namn">
+                    <input type="text" class="inputfield" id="name" name="name" placeholder="Ditt namn">
                     <div class="error-text" id="name-error">Du måste fylla i ditt namn.</div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     <label for="rec-name">Mottagarens namn</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="rec-name" name="rec-name" placeholder="Mottagarens namn">
+                    <input type="text" class="inputfield" id="rec-name" name="rec-name" placeholder="Mottagarens namn">
                     <div class="error-text" id="rec-name-error">Du måste fylla i mottagarens namn.</div>
                 </div>
             </div>
@@ -88,18 +88,18 @@
                     <label for="phonenumber">Mobilnummer till mottagare</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="phonenumber" name="phonenumber"
+                    <input type="text" class="inputfield" id="phonenumber" name="phonenumber"
                            placeholder="Mottagarens telefonnummer"> </input>
                     <div class="error-text" id="phonenumber-error">Du måste ange ett korrekt telefonnummmer.</div>
                 </div>
             </div>
 
-             <div class="row">
+            <div class="row">
                 <div class="col-25">
                     <label for="email">Din epostadress</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="email" name="email"
+                    <input type="text" class="inputfield" id="email" name="email"
                            placeholder="Din email"> </input>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                                   style="height:100px"></textarea>
                 </div>
             </div>
-            <div class="row" float="right">
+            <div class="row" id="stripeStuff" float="right">
                 <form action="/api/v1/payment_completed" method="POST" id="stripeForm">
                     <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -130,11 +130,10 @@
                 </form>
             </div>
         </form>
-        <button type="button" class="stripe-button-el" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">
-        <span style="display: block; min-height: 30px">Betala med Swish</span>
-        </button>
+        <button class="button button1" type="button" onclick="loadStripe()" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="stripeButton">
+            Betala med kort</button>
+        <button class="button button1" type="button" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">Betala med Swish</button>
     </div>
-
 
 </div>
 

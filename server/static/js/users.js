@@ -121,9 +121,15 @@ function addUser() {
     $( "#user-list" ).hide();
     $( "#add-user" ).hide();
     var items = [];
-	var keys = ["username", "email", "is_admin"]
+	var keys = ["username", "email", "is_admin"];
+
+	var localisedLabels = {
+	    "username": "Användarnamn",
+        "email": "E-post",
+        "is_admin": "Administratör"
+    };
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			if(key == "email") {
 				items.push("<input type=\"email\" class=\"form-control\" id=" + key + "-input>");
 			} else if(key == "is_admin") {

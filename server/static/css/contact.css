@@ -1,0 +1,35 @@
+.contact-site  {
+    margin-top: 100px;
+}
+
+.contact-wrapper {
+    height: auto;
+    width: 400px;
+    text-align: left;
+}
+
+.contact-top {
+    width: 400px;
+    height: 40px;
+    border: 2px solid #333;
+    text-align: center;
+    font-size: 25px;
+    background-color: #7FFFD4;
+}
+
+.contact-wrapper p {
+    max-width: 800px;
+    border-left: 2px solid #333;
+    border-right: 2px solid #333;
+    padding: 10px 15px;
+    margin: 0;
+}
+
+.contact-wrapper b {
+    line-height: 100%;
+}
+
+.contact-bottom {
+    width: 400px;
+    border: 1px solid #333;
+}

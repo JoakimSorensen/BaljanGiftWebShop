@@ -102,8 +102,12 @@ function addReceiver() {
     $( "#add-receiver" ).hide();
     var items = [];
 	var keys = ["name", "phone"]
+	var localisedLabels = {
+        "name": "Namn",
+        "phone": "Telefonnummer"
+    };
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
 		

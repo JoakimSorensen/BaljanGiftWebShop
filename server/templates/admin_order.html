@@ -1,7 +1,7 @@
 <script src="/static/js/admin_order.js"></script>
 <link href="/static/css/admin.css" rel="stylesheet" type="text/css">
 
-<input id="token-search" type="text" placeholder="Skriv in token...">
+<input id="token-search" type="text" placeholder="Skriv in ordernummer...">
 <button id="token-button" class="admin-button">Sök</button>
 <div id="order-list" class="list-group">
     {% for order in orders %}
@@ -12,7 +12,7 @@
 				<small>pris: {{ order.price }}</small><br>
                 <small>köpare: {{ order.buyer }}, </small>
 				<small>mottagare:{{ order.receiver }}</small><br><br>
-                <p>status: {{ order.status }}</p>
+                <p>status: {{ order.get_status_text(order.status) }}</p>
 				<button data-order-id="{{ order.id }}" class="status-button admin-button">Ändra status</button>
 				<button id="send-status-{{ order.id }}" data-order-id="{{ order.id }}" class="send-status-button admin-button">Notifiera status</button>
 				<p id="send-status-wait-{{ order.id }}" class="send-status-wait">Vänta en sekund..</p>

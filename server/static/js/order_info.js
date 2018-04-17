@@ -1,6 +1,7 @@
  $(document).ready(function() {
         $("#error-text").hide();
         $("#token-result").hide();
+	 	$("#status-container").hide();
     });
 
 
@@ -25,10 +26,30 @@
     });
 
     function retrieveData(data){
+		$("#status-container").show();
     	document.getElementById("name_info").innerText = data["giftbox_name"];
 		document.getElementById("receiver_name").innerText = data["receiver_name"];
         document.getElementById("receiver_phone").innerText = data["receiver_phone"];
        	document.getElementById("msg_id").innerText = data["message"];
         document.getElementById("status_id").innerText = data["status"];
         document.getElementById("price_id").innerText = data["price"];
+
+		switch(data["status"]) {
+			case $("#status-0").text():
+				$.setStatusSelect('status-0');
+				break;
+			case $("#status-1").text():
+				$.setStatusSelect('status-1');
+				break;
+			case $("#status-2").text():
+				$.setStatusSelect('status-2');
+				break;
+			default:
+				break;
+		}
     }
+
+$.setStatusSelect = function(id) {
+	document.getElementById(id).style.color = "green";
+	document.getElementById(id + "-circle").style.backgroundColor = "green";
+}

@@ -1,6 +1,7 @@
-from sqlalchemy import Table
+from sqlalchemy import select
 from server import db
 from server.models import Product, SharedModel
+
 
 class GiftBoxProduct(SharedModel):
 
@@ -47,3 +48,15 @@ class GiftBox(SharedModel):
     def set_image(self, image):
         self.image = image
         db.session.commit()
+
+    def get_product_information(self):
+        gift_box_info = db.session.query(Product.name, Product.allergen).\
+            join(GiftBoxProduct).\
+            join(GiftBox).\
+            filter(GiftBox.id == self).\
+            filter(Product.id == GiftBoxProduct.product_id).all()
+        return gift_box_info
+
+
+
+

@@ -102,8 +102,12 @@ function addBuyer() {
     $( "#add-buyer" ).hide();
     var items = [];
 	var keys = ["name", "email"]
+	var localisedLabels = {
+        "name": "Namn",
+        "email": "E-post"
+    };
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
 		

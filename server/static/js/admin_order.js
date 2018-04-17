@@ -185,8 +185,16 @@ function addOrder() {
     $( "#add-order" ).hide();
     var items = [];
 	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "message"]
+	var localisedLabels = {
+	    "buyer_id": "Köparens id",
+        "date": "Datum",
+        "giftbox_id": "Gåvoboxens id",
+        "receiver_id": "Mottagarens id",
+        "status_": "Status",
+        "message": "Meddelande"
+	};
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
 

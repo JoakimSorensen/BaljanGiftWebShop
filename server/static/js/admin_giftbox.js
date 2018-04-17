@@ -139,8 +139,14 @@ function addGiftBox() {
     $( "#add-giftbox" ).hide();
     var items = [];
 	var keys = ["description", "image", "price", "name"]
+	var localisedLabels = {
+        "description": "Beskrivning",
+        "image": "Bild",
+        "price": "Pris",
+        "name": "Namn"
+    };
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
 		

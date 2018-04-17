@@ -1,6 +1,28 @@
 
 $('[data-toggle="tooltip"]').tooltip();
 
+function swishData() {
+    console.log("Performing swish payment");
+    var name = $("#name").val();
+    var rec_name = $("#rec-name").val();
+    var number = $("#phonenumber").val();
+    var email = $("#email").val();
+    var message = $("#message").val();
+    var giftbox = $("#giftbox").val();
+
+    var data = {
+        "rec-name": rec_name,
+        "phonenumber": number,
+        "message": message,
+        "email": email,
+        "name": name,
+        "giftbox": giftbox
+    };
+
+    $.get("/api/v1/payment_completed/", data);
+
+}
+
 $(document).ready(function() {
     $("#name-error").hide();
     $("#rec-name-error").hide();
@@ -45,6 +67,7 @@ $(document).ready(function() {
         setTimeout(function () {
             $("#loaderMain").hide();
             $("#swishPayement").show();
+            swishData();
 
             setTimeout(function () {
                 $("#swish").hide();
@@ -66,31 +89,6 @@ function validateName() {
   }else{
     $("#name-error").hide();
   };
-};
-
-function swishData() {
-    $("#swishModal").showModal();
-
-    var name = $("#name").val();
-    var rec_name = $("#rec-name").val();
-    var number = $("#phonenumber").val();
-    var email = $("#email").val();
-    var message = $("#message").val();
-    var giftbox = $("#giftbox").val();
-
-    var data = {
-        receiver_name: rec_name,
-        receiver_phone: number,
-        message: message,
-        buyer_email: email,
-        buyer_name: name,
-        giftbox_in: giftbox
-    };
-
-    $.post("/api/v1/payment_completed", data, function (res) {
-            console.log('res', res);
-        });
-
 };
 
 function validateRecName() {

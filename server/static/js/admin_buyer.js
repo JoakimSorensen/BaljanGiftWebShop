@@ -134,6 +134,7 @@ function addBuyer() {
             e.preventDefault();
             $("#buyer-div").empty();
             $("#buyer-list").show();
+            $( "#add-buyer").show();
   		}).appendTo("#btn-div");
 }
 

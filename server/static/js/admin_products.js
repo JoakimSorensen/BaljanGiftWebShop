@@ -138,6 +138,7 @@ function addProduct() {
             e.preventDefault();
             $("#product-div").empty();
             $("#product-list").show();
+            $( "#add-product").show();
   		}).appendTo("#btn-div");
 }
 

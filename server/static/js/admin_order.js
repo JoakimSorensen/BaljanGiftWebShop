@@ -189,7 +189,7 @@ function addOrder() {
             items.push( "<label id=" + key + ">"+ key + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
-		
+
         $( "<ul/>", {
             "class": "order-info",
             html: items.join( "" )
@@ -219,12 +219,14 @@ function addOrder() {
 				document.getElementById("admin-orders").click();
             	$("#order-div").empty();
             	$("#order-list").show();
+            	$( "#add-order").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
         
 	$("<button>Avbryt</button>").on("click", function(e) {
             e.preventDefault();
             $("#order-div").empty();
             $("#order-list").show();
+            $( "#add-order").show();
   		}).appendTo("#btn-div");
 }
 

@@ -61,7 +61,6 @@ input[type=submit]:hover {
     }
 }
 
-
 /* Style the header */
 .header {
     padding: 10px;
@@ -75,7 +74,6 @@ input[type=submit]:hover {
     width: 50%;
     padding: 10px;
     font-size: 18px;
-
 }
 
 .stripe-button {
@@ -85,19 +83,11 @@ input[type=submit]:hover {
     top: 198px;
 }
 
-
 #fusk {
     position: absolute;
     transition: .5s ease;
     left: 202px;
     top: 198px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
 }
 
 /* Style the footer */
@@ -142,6 +132,7 @@ input[type=submit]:hover {
     opacity: 0.6;
     filter: alpha(opacity=60);
 }
+
 #swish {
     position:absolute;
     top: 50%;

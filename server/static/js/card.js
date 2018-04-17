@@ -19,7 +19,10 @@ function swishData() {
         "giftbox": giftbox
     };
 
-    $.get("/api/v1/payment_completed/", data);
+    $.get("/api/v1/swish_payment_completed/", data, function(res) {
+        var token = res["token"];
+        window.location.href = "/order?token=" + token;
+    });
 
 }
 

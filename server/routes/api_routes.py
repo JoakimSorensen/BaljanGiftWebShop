@@ -35,6 +35,25 @@ def all_orders():
 def payment_completed():
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
+
+    message = request.values['message']
+
+    receiver = Receiver.create_receiver(receiver_name, receiver_phone)
+    buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
+    giftbox = GiftBox.query.get(request.values["giftbox"])
+
+    order = Order.create_order(giftbox, buyer, receiver, message)
+
+    send_order_confirmation_email(order)
+    send_ready_for_delivery_sms(order)
+
+    return redirect("/order?token={token}".format(token=order.token))
+
+
+@app.route('/api/v1/swish_payment_completed/', methods=['GET', 'POST'])
+def swish_payment_completed():
+    receiver_name = request.values["rec-name"]
+    receiver_phone = request.values["phonenumber"]
     message = request.values['message']
     buyer_name = request.values["name"]
     buyer_email = request.values["email"]
@@ -48,8 +67,7 @@ def payment_completed():
 
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
-
-    return redirect("/order?token={token}".format(token=order.token))
+    return jsonify({"token": order.token})
 
 
 @app.route('/api/v1/users/<int:id_>')

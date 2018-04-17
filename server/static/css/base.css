@@ -1,11 +1,13 @@
 #main-container-wrapper {
     min-height: 100%;
+    width: 100%;
 }
 
 #main-container {
     overflow: auto;
     padding-bottom: -100px;
     margin-top: 80px;
+    width: 100%;
 }
 
 
@@ -13,7 +15,7 @@ footer {
     position: relative;
     height: auto;
     width: 100%;
-    background: #c5c3c5;
+    background-color: #969696;
     display: inline-block;
     clear: both;
     margin-top: 100px;
@@ -89,7 +91,7 @@ a {
 .logo-text{
     display: inline-block;
     float: left;
-    margin-left: 100px;
+    margin-left: 50px;
     color: #000000;
     font-size: 22pt;
 }
@@ -105,7 +107,7 @@ a {
 }
 
 header{
-    background: #c5c3c5;
+    background: white;
     height: 70px;
     padding-top: 15px;
     border-bottom: 1px solid #c5c3c5;

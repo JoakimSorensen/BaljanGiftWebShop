@@ -185,11 +185,19 @@ function addOrder() {
     $( "#add-order" ).hide();
     var items = [];
 	var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "message"]
+	var localisedLabels = {
+	    "buyer_id": "Köparens id",
+        "date": "Datum",
+        "giftbox_id": "Gåvoboxens id",
+        "receiver_id": "Mottagarens id",
+        "status_": "Status",
+        "message": "Meddelande"
+	};
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
-		
+
         $( "<ul/>", {
             "class": "order-info",
             html: items.join( "" )
@@ -219,12 +227,14 @@ function addOrder() {
 				document.getElementById("admin-orders").click();
             	$("#order-div").empty();
             	$("#order-list").show();
+            	$( "#add-order").show();
         }).wrap("<form><div id=btn-div></div></form>").closest("form").appendTo("#order-div");
         
 	$("<button>Avbryt</button>").on("click", function(e) {
             e.preventDefault();
             $("#order-div").empty();
             $("#order-list").show();
+            $( "#add-order").show();
   		}).appendTo("#btn-div");
 }
 

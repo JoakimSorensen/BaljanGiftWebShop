@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class AdminLoginForm(FlaskForm):
-    username = StringField('Username or Email', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+    username = StringField('Användarnamn eller e-post', validators=[DataRequired()])
+    password = PasswordField('Lösenord', validators=[DataRequired()])
+    remember_me = BooleanField('Kom ihåg')
+    submit = SubmitField('Logga in')

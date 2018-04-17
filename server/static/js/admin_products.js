@@ -104,8 +104,14 @@ function addProduct() {
     $( "#add-product" ).hide();
     var items = [];
 	var keys = ["allergen", "image", "price", "name"]
+	var localisedLabels = {
+        "allergen": "Allergen",
+        "image": "Bild",
+        "price": "Pris",
+        "name": "Namn"
+    };
         $.each( keys, function(ind, key) {
-            items.push( "<label id=" + key + ">"+ key + ": </label>" );
+            items.push( "<label id=" + key + ">"+ localisedLabels[key] + ": </label>" );
 			items.push("<input type=\"text\" class=\"form-control\" id=" + key + "-input" + ">");
         });
 		
@@ -138,6 +144,7 @@ function addProduct() {
             e.preventDefault();
             $("#product-div").empty();
             $("#product-list").show();
+            $( "#add-product").show();
   		}).appendTo("#btn-div");
 }
 

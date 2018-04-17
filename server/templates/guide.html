@@ -1,32 +1,75 @@
 <div class="container" id="list-container">
     <div class="row">
-        <div class="col-md-1" style="width: 4.16666667%"></div>
-        <div class="col-md-3">
-            <div class="a">
-                <img src="static/gift_box_icon.png" style="cursor: default;">
-                <p class="text-center">Välj vilken gåva du vill skicka </p>
-            </div>
-        </div>
-        <div class="col-md-1">
-            <img src="static/right_arrow_icon2.png" hspace="12" style="cursor: default;">
-        </div>
-        <div class="col-md-3">
-            <div class=" a">
-                <img src="static/credit_card_icon2.png" style="cursor: default;">
-                <p class="text-center">Fyll i mottagarens uppgifter och betala</p>
-            </div>
-        </div>
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-1 col-xs-1" style="width: 4.16666667%"></div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
             <div>
-                <img src="static/right_arrow_icon2.png" hspace="12" style="cursor: default;">
+                <img src="static/gift_box_icon.png" class="guide-img" id="step-1">
+                <p class="text-center guide-text-short">Välj gåva</p>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-1 col-sm-1 col-xs-1">
+            <div class="arrow-img">
+                <img src="static/right_arrow_icon2.png" hspace="12">
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
             <div>
-                <img src="static/phone_love.png" style="cursor: default;">
-                <p class="text-center">Mottagaren får ett unikt sms och kan hämta ut sin present i Baljan direkt </p>
+                <img src="static/credit_card_icon2.png" class="guide-img" id="step-2">
+                <p class="text-center guide-text-short">Betala</p>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+            <div class="arrow-img">
+                <img src="static/right_arrow_icon2.png" hspace="12">
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div>
+                <img src="static/phone_love.png" class="guide-img" id="step-3">
+                <p class="guide-text-short" id="surprise">Överraska</p>
             </div>
         </div>
     </div>
+     <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-1" style="width: 4.16666667%"></div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="centered explanation-wrapper" id="step-1-guide">
+                <div class="vl"></div>
+                <div class="guide-explanation">
+                    <p>Gå in på "GÅVOR" och välj vilken gåva du vill skicka. Är din vän allergisk? Oroa dig inte! Alla allergier är
+                    specificerade i gåvorna. </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="centered explanation-wrapper" id="step-2-guide">
+                <div class="vl"></div>
+                <div class="guide-explanation">
+                    <p>Fyll i dina uppgifter samt skriv ett meddelande till mottagaren. Meddelandet skrivs på ett kort som ligger i
+                    gåvan. Välj sedan betalmetod och betala för gåvan. Du kan välja mellan swish eller kortbetalning.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            <div class="centered explanation-wrapper" id="step-3-guide">
+                <div class="vl"></div>
+                <div class="guide-explanation">
+                    <p>Vi slår in gåvan i en fin förpackning tillsammans med ditt personliga meddelande.
+                    Mottagaren får ett sms när gåvan går att hämta i Baljan. du kan följa orderns status under fliken "orderstatus".</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<div class="get-started" id="get-started">
+    <a href="/products">Vad väntar du på? Börja skicka gåvor!</a>
+</div>
+
+
+<script src="/static/js/guide.js"></script>

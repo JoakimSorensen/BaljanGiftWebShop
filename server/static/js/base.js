@@ -118,7 +118,7 @@ $.delete = function(url, data, callback, type){
 page.start();
 
 $(document).ready(function () {
-    $('.clickable').on('click', function(event) {
+    $('.clickable').on('click', function() {
     	var id = this.id;
     	console.log(id);
     	if (id === 'logotype') {

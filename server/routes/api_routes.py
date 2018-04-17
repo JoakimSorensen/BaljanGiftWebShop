@@ -10,6 +10,12 @@ from server.models.custom_types import OrderStatus
 from server.notifications.email import send_order_confirmation_email, send_order_status_change_email
 from server.notifications.sms import send_ready_for_delivery_sms
 
+import stripe
+
+pub_key = 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm'
+secret_key = 'sk_test_4qrht4gf2vgrO3AeirBd7H7W'
+
+stripe.api_key = secret_key
 
 @app.route('/api/v1/users')
 def all_users():
@@ -34,6 +40,7 @@ def all_orders():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
+    _stripe_charge(request.values['stripeToken'])
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
 
@@ -543,4 +550,14 @@ def logout_admin():
     """
     logout_user()
     return redirect('/')
+
+
+def _stripe_charge(token):
+    stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
+    charge = stripe.Charge.create(
+        amount=3900,
+        currency='sek',
+        description='Baljangavan',
+        source=token,
+    )
 

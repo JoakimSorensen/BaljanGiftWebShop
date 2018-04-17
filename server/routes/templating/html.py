@@ -1,7 +1,7 @@
 from flask import render_template, request
 
 from server import app
-from server.models import Order, GiftBox
+from server.models import Order, GiftBox, GiftBoxProduct
 
 
 @app.route('/', defaults={'path': ''})
@@ -26,7 +26,8 @@ def index():
 @app.route('/html/card/<int:gift_box_id>')
 def card(gift_box_id):
     gift_box = GiftBox.query.get(gift_box_id)
-    return render_template('card.html', gift_box=gift_box)
+    products = GiftBox.get_product_information(gift_box_id)
+    return render_template('card.html', gift_box=gift_box, products=products)
 
 
 @app.route('/html/order/<int:order_id>')

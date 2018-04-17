@@ -6,12 +6,13 @@ from server.models import GiftBox
 from server.models.buyer import Buyer
 from server.models.receiver import Receiver
 from server.models.shared_model import SharedModel
+from server.models.custom_types import OrderStatus
 
 
 class Order(SharedModel):
     date = db.Column(db.TIMESTAMP, index=True)
     price = db.Column(db.Integer, index=True)
-    status = db.Column(db.String(120), default='processing', index=True)
+    status = db.Column(db.Enum(OrderStatus), default=OrderStatus.NOTIFIED, index=True)
     message = db.Column(db.Text)
     token = db.Column(db.String(128), index=True)
 
@@ -45,6 +46,17 @@ class Order(SharedModel):
                           token=token)
         return order
 
+    # use this for status text representation 
+    @classmethod
+    def get_status_text(self, status):
+        if isinstance(status, OrderStatus):
+            return {OrderStatus.NOTIFIED: "Ett sms har blivit skickat till mottagaren", 
+                    OrderStatus.PREPARING: "Gåvan håller på att packas av Baljan", 
+                    OrderStatus.RECEIVED: "Gåvan har blivit uthämtad av mottagaren", 
+                    OrderStatus.CANCELED: "Beställningen har blivit avbruten"}[status]
+        raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus,"\
+                " one of {}".format([str(st) for st in OrderStatus]))
+
     def check_token(self, token):
         return self.token == token
 
@@ -57,9 +69,10 @@ class Order(SharedModel):
         db.session.commit()
     
     def set_status(self, status):
-        statuses = ['processing', 'preparing', 'received']
-        if status not in statuses:
-            raise InvalidStatusException("Status need to be 'processing', 'preparing' or 'received'")
+        statuses = [st for st in OrderStatus]
+        if not isinstance(status, OrderStatus):
+            raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus,"\
+                    " one of {}".format([str(st) for st in OrderStatus]))
         self.status = status
         db.session.commit()
     

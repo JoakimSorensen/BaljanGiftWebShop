@@ -9,7 +9,7 @@ def order_confirmation_email(order):
 
 {name}, snart får {receiver_name} ett sms med information om gåvan och sin unika uthämtningskod, ordernumret. Vi mailar dig när hen har hämtat ut den.
 
-Du hittar mer information om din order på http://localhost:5000/order?token={token}.
+Du hittar mer information om din order, med ordernummer {token}, på http://localhost:5000/order_info.
 
 Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
 
@@ -40,9 +40,9 @@ def status_change_email(order):
 
     subject = "Baljangavan: status ändrad för order {}".format(order.token)
 
-    message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till {status}!
+    message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till "{status}"!
 
-För detaljer kring ordern, gå in på http://localhost:5000/order?token={token}.
+För detaljer kring ordern, fyll i ordernumret, {token}, på http://localhost:5000/order_info.
 
 Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
 

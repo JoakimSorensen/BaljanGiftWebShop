@@ -58,38 +58,38 @@ page('/order', function(context) {
 });
 
 page('/baljan/users', function() {
-	var url = "/admin-users";
-	loadURL(url);
+    var url = "/admin-users";
+    loadURL(url);
 });
 
 page('/baljan/orders', function() {
-	var url = "/admin-orders";
-	loadURL(url);
+    var url = "/admin-orders";
+    loadURL(url);
 });
 
 page('/baljan/giftboxs', function() {
-	var url = "/admin-giftboxs";
-	loadURL(url);
+    var url = "/admin-giftboxs";
+    loadURL(url);
 });
 
 page('/baljan/products', function() {
-	var url = "/admin-products";
-	loadURL(url);
+    var url = "/admin-products";
+    loadURL(url);
 });
 
 page('/baljan/buyers', function() {
-	var url = "/admin-buyers";
-	loadURL(url);
+    var url = "/admin-buyers";
+    loadURL(url);
 });
 
 page('/baljan/receivers', function() {
-	var url = "/admin-receivers";
-	loadURL(url);
+    var url = "/admin-receivers";
+    loadURL(url);
 });
 
 page('/logout', function() {
-	var url = "/api/v1/logout";
-	loadURL(url);
+    var url = "/api/v1/logout";
+    loadURL(url);
 });
 
 function loadURL(url) {
@@ -99,34 +99,49 @@ function loadURL(url) {
 }
 
 $.delete = function(url, data, callback, type){
-	 
-	  if ( $.isFunction(data) ){
-		      type = type || callback,
-			          callback = data,
-			          data = {}
-		    }
-	 
-	  return $.ajax({
-		      url: url,
-		      type: 'DELETE',
-		      success: callback,
-		      data: data,
-		      contentType: type
-		    });
+
+    if ( $.isFunction(data) ){
+        type = type || callback,
+            callback = data,
+            data = {}
+    }
+
+    return $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: callback,
+        data: data,
+        contentType: type
+    });
 }
 
 page.start();
 
 $(document).ready(function () {
-    $('.clickable').on('click', function() {
-    	var id = this.id;
-    	console.log(id);
-    	if (id === 'logotype') {
-    		$('.clickable').removeClass('active');
-		} else {
-    		$('.clickable').removeClass('active');
-    		$(this).addClass('active');
-		}
+    $('.clickable').on('click', handleNavbarClick);
 
-    });
 });
+
+function handleNavbarClick(event) {
+    if (event.target.id === 'logotype') {
+        $('.clickable').removeClass('active');
+    } else {
+        $('.clickable').removeClass('active');
+        var path = event.target.pathname
+        var target = $('.clickable[href="' + path + '"]');
+        target.addClass('active');
+    };
+}
+
+$(window).on('load', reloadNavbar);
+
+function reloadNavbar() {
+	if (window.location.pathname === '/') {
+	    $('.clickable').removeClass('active');
+	} else {
+	    $('.clickable').removeClass('active');
+	    var path = window.location.pathname;
+	    var target = $('.clickable[href="'+ path +'"]');
+	    target.addClass('active');
+	};
+};

@@ -3,6 +3,12 @@ from flask import render_template, request
 from server import app
 from server.models import Order, GiftBox, GiftBoxProduct
 
+import stripe
+
+pub_key = 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm'
+secret_key = 'sk_test_4qrht4gf2vgrO3AeirBd7H7W'
+
+stripe.api_key = secret_key
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -27,7 +33,7 @@ def index():
 def card(gift_box_id):
     gift_box = GiftBox.query.get(gift_box_id)
     products = GiftBox.get_product_information(gift_box_id)
-    return render_template('card.html', gift_box=gift_box, products=products)
+    return render_template('card.html', gift_box=gift_box, products=products, pub_key=pub_key)
 
 
 @app.route('/html/order/<int:order_id>')

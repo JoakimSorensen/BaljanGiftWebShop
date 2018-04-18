@@ -37,7 +37,7 @@
 <div class="row" id="mainCard">
     <div class="col-md-6 gift-information">
         <div class="header">
-            <h2><b>{{ gift_box.name }}</b></h2>
+            <h2 class="uppercase"><b>{{ gift_box.name }}</b></h2>
         </div>
         <p class="description" >{{ gift_box.description }}</p>
         <p> Pris: {{ gift_box.price }}kr </p>
@@ -53,8 +53,7 @@
         <img src="{{ gift_box.image }}" alt="Lights" class="image current-product">
     </div>
 
-    <h2>Skicka denna vara till din nära!</h2>
-    <p>Fyll i följande formulär:</p>
+    <h2>Skicka denna gåva till någon du tycker om</h2>
 
     <div class="container">
         <form action="/api/v1/payment_completed" id="orderForm">
@@ -115,17 +114,18 @@
             </div>
             <div class="row" float="right">
                 <form action="/api/v1/payment_completed" method="POST" id="stripeForm">
-                    <script
-                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-                            data-amount="{{ gift_box.price * 100 }}"
-                            data-currency="SEK"
-                            data-name="{{ gift_box.name }}"
-                            data-image="{{ gift_box.image }}"
-                            data-locale="sv"
-                            data-label="Betala med kort"
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_tA2Aq6pmnwXZvAwayRaPnFKm"
+                            data-amount={{ gift_box.price * 100 }}
+                            data-name={{ gift_box.name }}
+                            data-image={{ gift_box.image }}
+                            data-locale="auto"
+                            data-currency="sek"
+                            data-label="Betala med Kort"
                             data-panel-label="Betala"
-                            data-zip-code="false">
+                            data-email="customer@email.com"
+                            data-zip-code="false"
+                            id="stripe">
                     </script>
                 </form>
             </div>

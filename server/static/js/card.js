@@ -33,16 +33,15 @@ $(document).ready(function() {
     $("#hider").hide();
     $("#swish").hide();
 
+    $("#orderForm").submit(function () {
+       console.log("klickade")
+    });
 
     $("#name").on("focusout", validateName);
     $("#rec-name").on("focusout", validateRecName);
     $("#phonenumber").on("focusout", validateNumber);
 
-    // console.log(document.getElementsByClassName("stripe-button-el")[0]);
-    //$(".stripe-button-el")[0].disabled = true;
-
     $("#swishButton").on("click", function () {
-        /*swishData();*/
         $("#hider").fadeIn("slow");
         $("#swish").fadeIn("slow");
         $("#loaderMain").hide();
@@ -52,11 +51,11 @@ $(document).ready(function() {
 
     });
 
-     $("#closeSwish").on("click", function () {
-        /*swishData();*/
-        $("#hider").fadeOut("slow");
+    $("#closeSwish").on("click", function () {
         $("#swish").fadeOut("slow");
+        $("#hider").fadeOut("slow");
     });
+
 
       $("#swishPhone-form").submit(function(ev){
 
@@ -81,7 +80,6 @@ $(document).ready(function() {
         },5000);
 
     });
-
 
 });
 

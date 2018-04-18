@@ -4,12 +4,12 @@
 
 .contact-wrapper {
     height: auto;
-    width: 400px;
+    width: 500px;
     text-align: left;
 }
 
 .contact-top {
-    width: 400px;
+    width: 500px;
     height: 40px;
     border: 2px solid #333;
     text-align: center;
@@ -30,6 +30,6 @@
 }
 
 .contact-bottom {
-    width: 400px;
+    width: 500px;
     border: 1px solid #333;
 }

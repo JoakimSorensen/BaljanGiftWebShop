@@ -14,9 +14,10 @@
         <div id="input-wrapper">
             <input id="buyerPhone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer">
         </div>
+        <div class="error-text" id="swishNumber-error" style="font-size: 0.8vw">Du måste ange ett korrekt telefonnummmer.</div>
 
         <div id="submit-wrapper">
-        <input id="submit-input" type="submit" value="Betala">
+        <input class="disabled" id="submit-input" type="submit" value="Betala">
         </div>
     </form>
     <div id="loaderMain">
@@ -124,8 +125,6 @@
                             data-email="customer@email.com"
                             data-zip-code="false"
                             id="stripe">
-                            data-zip-code="false"
-                    >
                     </script>
                 </form>
             </div>

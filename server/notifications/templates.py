@@ -23,7 +23,7 @@ Mottagarens telefonnummer: {receiver_phone}
 Pris: {price}
 Gåva: {gift}
 Meddelande: {message}
-ordernummer: {token}
+Ordernummer: {token}
 
 
 """.format(name=buyer.name, receiver_name=receiver.name,
@@ -38,7 +38,7 @@ def status_change_email(order):
     buyer = order.buyer
     receiver = order.receiver
 
-    subject = "Baljangavan: order status {}".format(order.get_status_text(order.status))
+    subject = "Baljangavan: status ändrad för order {}".format(order.token)
 
     message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till {status}!
 

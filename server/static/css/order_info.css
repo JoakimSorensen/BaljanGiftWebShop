@@ -2,7 +2,11 @@
     font-family: "Century Gothic";
     font-size: 4vw;
     color: #38A7E5;
+}
 
+.order-info-container {
+    max-width: 800px;
+    text-align: center;
 }
 
 #token_form {
@@ -101,4 +105,29 @@ input.token-input:focus {
     50% { top: -0.2em }
     70% { top: -0.3em }
     100% { top: 0; }
+}
+
+.flex-form input {
+    font-family: 'Open sans', sans-serif;
+}
+
+#order_label {
+    margin-top: 100px;
+}
+
+.token-input {
+    font-size: 22pt;
+    border: 0;
+    width: 80%;
+    white-space: nowrap;
+    border-bottom: 2px solid black;
+}
+
+#submit_btn {
+    background-color: #468ca9;
+    font-size: 250%;
+    color: #FFFFFF;
+    border: 0;
+    height: 200%;
+    padding-bottom: 1%;
 }

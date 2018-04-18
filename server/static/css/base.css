@@ -5,6 +5,7 @@
 #main-container {
     overflow: auto;
     padding-bottom: -100px;
+    margin-top: 70px;
 }
 
 
@@ -12,11 +13,10 @@ footer {
     position: relative;
     height: auto;
     width: 100%;
-    background: #c5c3c5;
+    background-color: #969696;
     display: inline-block;
     clear: both;
     margin-top: 100px;
-
 }
 
 
@@ -49,37 +49,60 @@ ul {
 html, body {
     height: 100%;
     margin: 0;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 300;
-    background-color: #FFFFFF;
-
+    background-color: white;
 }
 
 footer h3 {
-    font-weight: normal;
-    font: 12pt Georgia;
-    text-transform: uppercase;
+    font-size: 13pt;
     color: #f2f2f2;
 }
 
-.above-nav h1 {
-    font: 36pt SansSerif;
-    color: black;
+h1 {
+    font-family:'Lato', sans-serif;
+    font-size: 44pt;
 }
 
-.above-nav {
-    text-align: center;
-    height: 100px;
-    margin-bottom: 20px;
+h2 {
+    font-family:'Lato', sans-serif;
+    font-size: 18pt;
+}
+
+h3 {
+    font-family:'Lato', sans-serif;
 }
 
 p {
+    font-family: 'Open sans', sans-serif ;
+    font-size: 11pt;
     color: black;
 }
 
+a {
+    font-family: 'Open sans', sans-serif ;
+    font-size: 11pt;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.logo-text{
+    display: inline-block;
+    float: left;
+    margin-left: 50px;
+    color: #000000;
+    font-size: 22pt;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+.logo-text:hover {
+    text-decoration: none;
+    color: black;
+}
+
+
 .nav-wrapper{
-    height: 30px;
-    background: white;
+    height: 50px;
 }
 
 .nav-wrapper::after{
@@ -88,18 +111,26 @@ p {
     clear: both;
 }
 
+header{
+    background: white;
+    height: 70px;
+    padding-top: 15px;
+    border-bottom: 1px solid #c5c3c5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:10
+}
 
 nav {
     width: 100%;
-    background-color: white;
-    font-weight: bold;
     letter-spacing: 0.025em;
-    text-align: center;
+    text-align: right;
 }
 
 nav ul {
     margin: 0;
-    padding: 0;
+    padding-top: 10px;
 }
 
 nav ul li {
@@ -107,12 +138,12 @@ nav ul li {
     position: relative;
     text-align: center;
     padding: 0 20px;
-    line-height: 0;
+    line-height: 15px;
 
 }
 
 nav ul li {
-    border-right: 2px solid #000;
+    border-right: 1px solid #000;
 }
 
 nav li:last-of-type {
@@ -121,16 +152,24 @@ nav li:last-of-type {
 
 nav a{
     color: #000000;
-    font: 12pt Georgia;
-    text-transform: uppercase;
-    font-size: 18px;
+    font-family: 'Lato', sans-serif;
 }
 
-.logo-text a{
-    color: black;
-    text-decoration: none;
+@media (min-width: 789px) {
+    nav a {
+        font-size: 1.2em;
+    }
 }
 
+@media (max-width: 788px) {
+    nav a {
+        font-size: 1em;
+    }
+
+    .logo-text {
+        font-size: 1.5em;
+    }
+}
 
 .image-with-caption {
     position: relative;

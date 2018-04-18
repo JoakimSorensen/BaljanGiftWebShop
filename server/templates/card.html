@@ -3,22 +3,20 @@
 
 <div id="hider"></div>
 <div id="swish">
-    <div style="height: 25em">
+    <div id="swish-image-wrapper">
          <img id="swishImage" src="static/swish.png">
     <div id="swishPayement">Betalning genomförd!</div>
     <div id="swishContent">
         <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
         <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
     </div>
-    <form id="swishPhone-form" style="width: 100%">
-        <div style="width: 100%; alignment: center" >
-            <input id="buyerPhone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer" style="font-size: 1.2vw;
-                     border: 0; width: 80%; white-space: nowrap; border-bottom: 2px solid black; text-align: center; border-radius: 0">
+    <form id="swishPhone-form">
+        <div id="input-wrapper">
+            <input id="buyerPhone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer">
         </div>
 
-        <div style="width: 13.5em; padding-top: 1em">
-        <input type="submit" value="Betala" style="background-color: #38A7E5; font-size: 1.5vw;
-                    color: #FFFFFF; border: 0;">
+        <div id="submit-wrapper">
+        <input id="submit-input" type="submit" value="Betala">
         </div>
     </form>
     <div id="loaderMain">
@@ -29,8 +27,7 @@
     </div>
 
     <div id="swishFooter">
-            <button id="closeSwish" style="background-color: #38A7E5; font-size: 1vw;
-                    color: #FFFFFF; border: 0; border-radius: 0.3vw">Stäng</button>
+            <button id="closeSwish">Stäng</button>
     </div>
 </div>
 
@@ -108,8 +105,7 @@
                     <label for="message">Meddelande</label>
                 </div>
                 <div class="col-75">
-                        <textarea id="message" name="message" placeholder="Skriv din hälsning"
-                                  style="height:100px"></textarea>
+                        <textarea id="message" name="message" placeholder="Skriv din hälsning"></textarea>
                 </div>
             </div>
             <div class="row" float="right">
@@ -130,8 +126,8 @@
                 </form>
             </div>
         </form>
-        <button type="button" class="stripe-button-el" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">
-        <span style="display: block; min-height: 30px">Betala med Swish</span>
+        <button type="button" class="stripe-button-el" id="swishButton">
+        <span class="swish-text">Betala med Swish</span>
         </button>
     </div>
 

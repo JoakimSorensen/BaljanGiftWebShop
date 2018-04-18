@@ -3,15 +3,14 @@
 <div class="container order-info-container">
     <h2 id="order_label">Skriv in ordernummer för att visa order</h2>
 
-    <form id="token-form"  class="flex-form" method="get">
-        <div align="center" style="margin-top: 10%">
-            <div align="center" style="width: 53%">
+    <form id="token-form" class="flex-form" method="get">
+        <div class="token-input-outer">
+            <div class="token-input-inner">
                 <input id="token_input" class="token-input" type="text" name="token" placeholder="Ordernummer">
                 <input id="submit_btn" type="submit" value="Sök">
                 <p id="error-text" style="color: crimson; font-size: 1.5vw; padding-left: 1vw" align="left">Ordernumret du angav existerar ej!</p>
             </div>
         </div>
-
     </form>
 
     <div id="token-result">

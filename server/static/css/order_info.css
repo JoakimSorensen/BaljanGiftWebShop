@@ -39,6 +39,10 @@ input.token-input:focus {
     margin-top: 10px;
 }
 
+.arrow-right {
+	margin-top: 70%;
+}
+
 .guide-icon {
     z-index: 2;
     height: 100%;
@@ -52,6 +56,10 @@ input.token-input:focus {
     padding-bottom: 100%;
     background-color: lightgray;
     border-radius: 50%;
+}
+
+.canceled {
+    background-color: red;
 }
 
 .bounce:hover {

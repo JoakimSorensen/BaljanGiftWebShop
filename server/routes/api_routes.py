@@ -554,7 +554,6 @@ def logout_admin():
 
 def _stripe_charge(token, price):
     stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
-    print(price)
     charge = stripe.Charge.create(
         amount=price,
         currency='sek',

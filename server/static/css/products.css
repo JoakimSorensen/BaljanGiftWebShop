@@ -86,6 +86,10 @@
     transform: scale(1);
 }
 
+.overlay {
+    position: center;
+}
+
 .hovereffect img {
     display: block;
     position: relative;
@@ -138,4 +142,9 @@
     filter: alpha(opacity=100);
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+}
+
+.modal-body {
+    margin-left: 7%;
+    margin-top: 3%;
 }

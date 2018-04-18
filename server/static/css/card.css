@@ -212,3 +212,64 @@ input.swish-phone-input:focus {
 .description {
     font-style: italic;
 }
+
+#swish-image-wrapper {
+    height: 25em;
+}
+
+#submit-wrapper {
+    width: 13.5em;
+    padding-top: 1em;
+}
+
+#swishPhone-form {
+    width: 100%;
+}
+
+#input-wrapper {
+    width: 100%;
+    alignment: center;
+}
+
+#buyerPhone {
+    font-size: 1.2vw;
+    border: 0;
+    width: 80%;
+    white-space: nowrap;
+    border-bottom: 2px solid black;
+    text-align: center;
+    border-radius: 0;
+}
+
+#submit-input {
+    background-color: #38A7E5;
+    font-size: 1.5vw;
+    color: #FFFFFF;
+    border: 0;
+}
+
+#swishFooter button {
+    background-color: #38A7E5;
+    font-size: 1vw;
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 0.3vw;
+}
+
+.stripe-button-el {
+    visibility: visible;
+    margin-top: 1em;
+}
+
+.swish-text {
+    display: block;
+    min-height: 30px;
+}
+
+#message {
+    height:100px
+}
+
+#swishButton {
+    margin-left: -1.1em;
+}

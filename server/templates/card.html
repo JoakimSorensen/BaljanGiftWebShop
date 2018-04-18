@@ -64,7 +64,7 @@
                     <label for="name">Ditt namn</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="name" name="name" placeholder="Ditt namn">
+                    <input type="text" class="inputfield" id="name" name="name" placeholder="Ditt namn">
                     <div class="error-text" id="name-error">Du måste fylla i ditt namn.</div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     <label for="rec-name">Mottagarens namn</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="rec-name" name="rec-name" placeholder="Mottagarens namn">
+                    <input type="text" class="inputfield" id="rec-name" name="rec-name" placeholder="Mottagarens namn">
                     <div class="error-text" id="rec-name-error">Du måste fylla i mottagarens namn.</div>
                 </div>
             </div>
@@ -84,19 +84,21 @@
                     <label for="phonenumber">Mobilnummer till mottagare</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="phonenumber" name="phonenumber"
+                    <input type="text" class="inputfield" id="phonenumber" name="phonenumber"
                            placeholder="Mottagarens telefonnummer"> </input>
                     <div class="error-text" id="phonenumber-error">Du måste ange ett korrekt telefonnummmer.</div>
                 </div>
             </div>
 
-             <div class="row">
+            <div class="row">
                 <div class="col-25">
                     <label for="email">Din epostadress</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="email" name="email"
+                    <input type="text" class="inputfield" id="email" name="email"
                            placeholder="Din email"> </input>
+                    <div class="error-text" id="email-error">Du måste ange en korrekt epostaddress.</div>
+
                 </div>
             </div>
 
@@ -108,7 +110,7 @@
                         <textarea id="message" name="message" placeholder="Skriv din hälsning"></textarea>
                 </div>
             </div>
-            <div class="row" float="right">
+            <div class="row" id="stripeStuff" float="right">
                 <form action="/api/v1/payment_completed" method="POST" id="stripeForm">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_tA2Aq6pmnwXZvAwayRaPnFKm"
@@ -122,15 +124,26 @@
                             data-email="customer@email.com"
                             data-zip-code="false"
                             id="stripe">
+                            data-zip-code="false"
+                    >
                     </script>
                 </form>
             </div>
         </form>
-        <button type="button" class="stripe-button-el" id="swishButton">
-        <span class="swish-text">Betala med Swish</span>
-        </button>
-    </div>
+        <div style="position: relative">
+            <button class="button button1 disabled" type="button" onclick="loadStripe()" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;" id="stripeButton">
+                Betala med kort
+            </button>
+            <img src="https://freeiconshop.com/wp-content/uploads/edd/creditcard-flat.png" style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;">
+        </div>
 
+        <div style="position: relative; padding-bottom: 6em">
+            <button class="button button1 disabled" type="button" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;" id="swishButton">Betala med Swish</button>
+            <img src="/static/swishicon2.png" style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;">
+        </div>
+
+
+    </div>
 
 </div>
 

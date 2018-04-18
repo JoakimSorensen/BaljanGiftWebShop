@@ -10,6 +10,80 @@ input[type=text], select, textarea {
     resize: vertical;
 }
 
+.button1{
+    background:#1AAB8A;
+    color:#fff;
+    border:none;
+    position:relative;
+    font-size:1em;
+    padding: 1em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    margin-right: 2em;
+    border-radius: 50%;
+    height: 6em;
+    width: 6em;
+
+}
+.button1:hover:not(.disabled){
+    background:#fff;
+    color:#1AAB8A;
+    opacity: 0;
+}
+.button1:before,button:after:not(.disabled){
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #1AAB8A;
+    transition:400ms ease all;
+}
+.button1:after:not(.disabled){
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+.button1:hover:before,button:hover:after:not(.disabled){
+    width:100%;
+    transition:800ms ease all;
+}
+
+.disabled{
+    cursor: not-allowed;
+}
+
+
+
+/*.button {
+    background-color: #008CBA; !* Green *!
+    background-image: linear-gradient(#46e04a,#1a9c18 85%,#288208) !important;
+
+    border: none;
+    color: white;
+    margin-right: 2em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 2%;
+}
+
+
+
+.button:active:enabled {
+    transform: translateY(4px);
+}
+
+.button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}*/
+
+
 label {
     padding: 12px 12px 12px 0;
     display: inline-block;
@@ -75,12 +149,12 @@ input[type=submit]:hover {
     font-size: 18px;
 }
 
-.stripe-button {
+/*.stripe-button {
     position: absolute;
     transition: .5s ease;
     left: 202px;
     top: 198px;
-}
+}*/
 
 #fusk {
     position: absolute;

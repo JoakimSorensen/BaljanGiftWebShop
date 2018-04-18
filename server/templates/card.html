@@ -133,9 +133,19 @@
                 </form>
             </div>
         </form>
-        <button class="button button1 disabled" type="button" onclick="loadStripe()" style="margin-left: -1.1em; margin-top: 1em" id="stripeButton">
-            Betala med kort</button>
-        <button class="button button1 disabled" type="button" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">Betala med Swish</button>
+        <div style="position: relative">
+            <button class="button button1 disabled" type="button" onclick="loadStripe()" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;" id="stripeButton">
+                Betala med kort
+            </button>
+            <img src="https://freeiconshop.com/wp-content/uploads/edd/creditcard-flat.png" style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;">
+        </div>
+
+        <div style="position: relative; padding-bottom: 6em">
+            <button class="button button1 disabled" type="button" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;" id="swishButton">Betala med Swish</button>
+            <img src="/static/swishicon2.png" style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;">
+        </div>
+
+
     </div>
 
 </div>

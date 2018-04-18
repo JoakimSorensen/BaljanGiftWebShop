@@ -26,7 +26,6 @@
     });
 
     function retrieveData(data){
-		$("#status-container").show();
     	document.getElementById("name_info").innerText = data["giftbox_name"];
 		document.getElementById("receiver_name").innerText = data["receiver_name"];
         document.getElementById("receiver_phone").innerText = data["receiver_phone"];
@@ -34,6 +33,7 @@
         document.getElementById("status_id").innerText = data["status"];
         document.getElementById("price_id").innerText = data["price"];
 
+		$("#status-container").show();
 		switch(data["status"]) {
 			case $("#status-0").text():
 				$.setStatusSelect('status-0');
@@ -44,6 +44,9 @@
 			case $("#status-2").text():
 				$.setStatusSelect('status-2');
 				break;
+			case $("#status-3").text():
+				$("#status-container").hide();
+				$("#status-container-canceled").show();
 			default:
 				break;
 		}

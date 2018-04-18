@@ -18,7 +18,8 @@
             }else{
             $("#token-result").show();
             $("#error-text").hide();
-
+			
+			
             retrieveData(data);
 
             }
@@ -36,13 +37,19 @@
 		$("#status-container").show();
 		switch(data["status"]) {
 			case $("#status-0").text():
-				$.setStatusSelect('status-0');
+				setStatusSelect('status-0');
+				resetStatusSelect('status-1')
+				resetStatusSelect('status-2')
 				break;
 			case $("#status-1").text():
-				$.setStatusSelect('status-1');
+				setStatusSelect('status-0');
+				setStatusSelect('status-1');
+				resetStatusSelect('status-2')
 				break;
 			case $("#status-2").text():
-				$.setStatusSelect('status-2');
+				setStatusSelect('status-0');
+				setStatusSelect('status-1');
+				setStatusSelect('status-2');
 				break;
 			case $("#status-3").text():
 				$("#status-container").hide();
@@ -52,7 +59,12 @@
 		}
     }
 
-$.setStatusSelect = function(id) {
+function setStatusSelect(id) {
 	document.getElementById(id).style.color = "green";
 	document.getElementById(id + "-circle").style.backgroundColor = "green";
+}
+
+function resetStatusSelect(id) {
+	document.getElementById(id).style.color = "";
+	document.getElementById(id + "-circle").style.backgroundColor = "";
 }

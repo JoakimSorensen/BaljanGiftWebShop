@@ -40,7 +40,7 @@ def status_change_email(order):
 
     subject = "Baljangavan: status ändrad för order {}".format(order.token)
 
-    message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till {status}!
+    message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till "{status}"!
 
 För detaljer kring ordern, gå in på http://localhost:5000/order?token={token}.
 

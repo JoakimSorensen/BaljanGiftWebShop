@@ -30,35 +30,41 @@ $(document).ready(function() {
     $("#name-error").hide();
     $("#rec-name-error").hide();
     $("#phonenumber-error").hide();
+    $("#email-error").hide();
+
     $("#hider").hide();
     $("#swish").hide();
 
 
-    $("#name").on("focusout", validateName);
-    $("#rec-name").on("focusout", validateRecName);
-    $("#phonenumber").on("focusout", validateNumber);
+
 
     // console.log(document.getElementsByClassName("stripe-button-el")[0]);
     //$(".stripe-button-el")[0].disabled = true;
 
     $("#swishButton").on("click", function () {
         /*swishData();*/
-        $("#hider").fadeIn("slow");
-        $("#swish").fadeIn("slow");
-        $("#loaderMain").hide();
-        $("#swishPayement").hide();
-
-        $("#swishPhone-form").show();
+        if ( document.getElementById("swishButton").classList.contains('disabled')) {
+            validateName();
+            validateNumber();
+            validateRecName();
+            validate();
+        }else{
+            $("#hider").fadeIn("slow");
+            $("#swish").fadeIn("slow");
+            $("#loaderMain").hide();
+            $("#swishPayement").hide();
+            $("#swishPhone-form").show();
+        }
 
     });
 
-     $("#closeSwish").on("click", function () {
+    $("#closeSwish").on("click", function () {
         /*swishData();*/
         $("#hider").fadeOut("slow");
         $("#swish").fadeOut("slow");
     });
 
-      $("#swishPhone-form").submit(function(ev){
+    $("#swishPhone-form").submit(function(ev){
 
         ev.preventDefault();
         $("#swishPayement").hide();
@@ -86,21 +92,21 @@ $(document).ready(function() {
 });
 
 function validateName() {
-  var name = $("#name").val();
-  if (name == "") {
-    $("#name-error").show();
-  }else{
-    $("#name-error").hide();
-  };
+    var name = $("#name").val();
+    if (name == "") {
+        $("#name-error").show();
+    }else{
+        $("#name-error").hide();
+    };
 };
 
 function validateRecName() {
-  var name = $("#rec-name").val();
-  if (name == "") {
-    $("#rec-name-error").show();
-  }else{
-    $("#rec-name-error").hide();
-  };
+    var name = $("#rec-name").val();
+    if (name == "") {
+        $("#rec-name-error").show();
+    }else{
+        $("#rec-name-error").hide();
+    };
 };
 
 function validateNumber() {
@@ -111,21 +117,47 @@ function validateNumber() {
         $("#phonenumber-error").show();
     }
 
+
+
 }
-        $('#stripeStuff').hide();
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+function validate() {
+    var email = $("#email").val();
+
+    if (validateEmail(email)) {
+        $("#email-error").hide();
+
+        return true;
+    } else {
+        $("#email-error").show();
+        return false;
+    }
+}
+
+
+$('#stripeStuff').hide();
 
 
 
 $('#myModal').ready(function () {
-    $('.button1').prop('disabled', true);
     $('.inputfield').keyup(function () {
-        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 )
-            $('.button1').prop('disabled', false);
+        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 && validate() )
+            $('.button1').removeClass('disabled');
         else
-            $('.button1').prop('disabled', true);
+            $('.button1').addClass('disabled');
     });
 });
 
 function loadStripe() {
-    $('.stripe-button-el').click();
-}
+    if ( document.getElementById("stripeButton").classList.contains('disabled')) {
+        validateName();
+        validateNumber();
+        validateRecName();
+        validate();
+    } else {
+        $('.stripe-button-el').click();
+    }}

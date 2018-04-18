@@ -101,6 +101,8 @@
                 <div class="col-75">
                     <input type="text" class="inputfield" id="email" name="email"
                            placeholder="Din email"> </input>
+                    <div class="error-text" id="email-error">Du måste ange en korrekt epostaddress.</div>
+
                 </div>
             </div>
 
@@ -125,14 +127,15 @@
                             data-locale="sv"
                             data-label="Betala med kort"
                             data-panel-label="Betala"
-                            data-zip-code="false">
+                            data-zip-code="false"
+                    >
                     </script>
                 </form>
             </div>
         </form>
-        <button class="button button1" type="button" onclick="loadStripe()" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="stripeButton">
+        <button class="button button1 disabled" type="button" onclick="loadStripe()" style="margin-left: -1.1em; margin-top: 1em" id="stripeButton">
             Betala med kort</button>
-        <button class="button button1" type="button" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">Betala med Swish</button>
+        <button class="button button1 disabled" type="button" style="visibility: visible; margin-left: -1.1em; margin-top: 1em" id="swishButton">Betala med Swish</button>
     </div>
 
 </div>

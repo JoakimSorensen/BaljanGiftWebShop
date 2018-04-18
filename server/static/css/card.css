@@ -27,8 +27,10 @@ input[type=text], select, textarea {
     padding: 2%;
 }
 
-button:disabled, button[disabled]{
+.disabled{
     opacity: 0.5;
+    cursor: not-allowed;
+
 }
 
 .button:active:enabled {

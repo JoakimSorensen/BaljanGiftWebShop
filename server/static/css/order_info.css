@@ -34,6 +34,7 @@ input.token-input:focus {
 
 .guide-text {
     border-bottom: 2px solid black;
+    min-height: 105px;
 }
 
 .guide-image {

@@ -1,4 +1,3 @@
-from sqlalchemy import select
 from server import db
 from server.models import Product, SharedModel
 

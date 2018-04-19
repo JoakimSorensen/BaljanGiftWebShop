@@ -1,7 +1,7 @@
 from flask import render_template, request
 
 from server import app
-from server.models import Order, GiftBox, GiftBoxProduct
+from server.models import Order, GiftBox
 
 import stripe
 
@@ -9,6 +9,7 @@ pub_key = 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm'
 secret_key = 'sk_test_4qrht4gf2vgrO3AeirBd7H7W'
 
 stripe.api_key = secret_key
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

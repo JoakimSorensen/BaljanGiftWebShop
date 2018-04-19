@@ -48,7 +48,7 @@ class Order(SharedModel):
 
     # use this for status text representation 
     @classmethod
-    def get_status_text(self, status):
+    def get_status_text(cls, status):
         if isinstance(status, OrderStatus):
             return {OrderStatus.NOTIFIED: "Ett sms har blivit skickat till mottagaren", 
                     OrderStatus.PREPARING: "Gåvan håller på att packas av Baljan", 
@@ -69,7 +69,6 @@ class Order(SharedModel):
         db.session.commit()
     
     def set_status(self, status):
-        statuses = [st for st in OrderStatus]
         if not isinstance(status, OrderStatus):
             raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus,"\
                     " one of {}".format([str(st) for st in OrderStatus]))

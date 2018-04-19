@@ -149,3 +149,7 @@ function reloadNavbar() {
 $('.clickable-footer').on('click', function(event){
     handleNavbarClick(event);
 });
+
+$('.no-underline').on('click', function() {
+    $('.clickable').removeClass('active');
+});

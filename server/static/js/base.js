@@ -145,3 +145,7 @@ function reloadNavbar() {
 	    target.addClass('active');
 	};
 };
+
+$('.clickable-footer').on('click', function(event){
+    handleNavbarClick(event);
+});

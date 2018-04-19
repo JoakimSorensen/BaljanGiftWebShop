@@ -195,3 +195,7 @@ nav a{
 .nav-item a:after {
     border-bottom: 2px solid black;
 }
+
+.social-media {
+    height: 70px;
+}

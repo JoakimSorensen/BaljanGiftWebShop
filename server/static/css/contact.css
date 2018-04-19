@@ -40,6 +40,7 @@
     cursor: pointer;
     width: 70px;
     margin-top: 20px;
+    text-align: center;
 }
 
 .contact-text-short {
@@ -60,5 +61,4 @@
     display: inline-block;
     padding: 20px;
     align-self: center;
-}
 }

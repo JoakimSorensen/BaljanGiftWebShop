@@ -1,7 +1,7 @@
  $(document).ready(function() {
-        //$("#error-text").hide();
+        $("#error-text").hide();
         $("#token-result, .vertical-line").hide();
-	 	//$("#status-container").hide();
+	 	$("#status-container").hide();
     });
 
 
@@ -61,10 +61,14 @@
 
 function setStatusSelect(id) {
 	document.getElementById(id).style.color = "green";
+	document.getElementById(id).style.opacity = "1";
 	document.getElementById(id + "-circle").style.backgroundColor = "green";
+	document.getElementById(id + "-circle").style.opacity = "1";
 }
 
 function resetStatusSelect(id) {
 	document.getElementById(id).style.color = "";
+	document.getElementById(id).style.opacity = "";
 	document.getElementById(id + "-circle").style.backgroundColor = "";
+	document.getElementById(id + "-circle").style.opacity = "";
 }

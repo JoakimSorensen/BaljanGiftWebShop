@@ -33,7 +33,7 @@ input.token-input:focus {
 }
 
 .guide-text {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid lightgray;
     min-height: 105px;
 }
 
@@ -162,3 +162,12 @@ input.token-input:focus {
     align-self: center;
 
 }
+
+#status-0-circle, #status-1-circle, #status-2-circle {
+    opacity: 0.4;
+}
+
+#status-0, #status-1, #status-2 {
+    opacity: 0.4;
+}
+

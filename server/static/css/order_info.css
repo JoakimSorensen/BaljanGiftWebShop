@@ -1,4 +1,4 @@
-#order_label {
+#order-label {
     font-family: "Century Gothic";
     font-size: 4vw;
     color: #38A7E5;
@@ -9,7 +9,7 @@
     text-align: center;
 }
 
-#token_form {
+#token-form {
     padding-top: 20%;
 }
 
@@ -111,7 +111,7 @@ input.token-input:focus {
     font-family: 'Open sans', sans-serif;
 }
 
-#order_label {
+#order-label {
     margin-top: 100px;
 }
 

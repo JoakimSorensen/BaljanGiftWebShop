@@ -222,23 +222,23 @@ input[type=submit]:hover {
     text-align: center;
 }
 
-#swishImage {
+#swish-image {
     width: 15em;
     height: auto;
     margin-top: -1.4em;
 }
 
-#swishFooter {
+#swish-footer {
     z-index: 101;
     position: relative;
     margin-top: 2em;
 }
 
-#swishPhone {
+#swish-phone {
     position: absolute;
 }
 
-#swishContent {
+#swish-content {
     z-index: 101;
     margin-top: -1em;
     width: 19.7em;
@@ -296,7 +296,7 @@ input.swish-phone-input:focus {
     padding-top: 1em;
 }
 
-#swishPhone-form {
+#swish-phone-form {
     width: 100%;
 }
 
@@ -305,7 +305,7 @@ input.swish-phone-input:focus {
     alignment: center;
 }
 
-#buyerPhone {
+#buyer-phone {
     font-size: 1.2vw;
     border: 0;
     width: 80%;
@@ -322,7 +322,7 @@ input.swish-phone-input:focus {
     border: 0;
 }
 
-#swishFooter button {
+#swish-footer button {
     background-color: #38A7E5;
     font-size: 1vw;
     color: #FFFFFF;
@@ -344,6 +344,6 @@ input.swish-phone-input:focus {
     height:100px
 }
 
-#swishButton {
+#swish-button {
     margin-left: -1.1em;
 }

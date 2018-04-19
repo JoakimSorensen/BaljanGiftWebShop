@@ -38,9 +38,9 @@ $(document).ready(function() {
     $("#swish").hide();
 
 
-    $("#swishButton").on("click", function () {
+    $("#swish-button").on("click", function () {
         /*swishData();*/
-        if ( document.getElementById("swishButton").classList.contains('disabled')) {
+        if ( document.getElementById("swish-button").classList.contains('disabled')) {
             validateName();
             validateNumber($("#phonenumber").val(),$("#phonenumber-error"));
             validateRecName();
@@ -50,7 +50,7 @@ $(document).ready(function() {
             $("#swish").fadeIn("slow");
             $("#loaderMain").hide();
             $("#swishPayement").hide();
-            $("#swishPhone-form").show();
+            $("#swish-phone-form").show();
 
         }
 
@@ -63,24 +63,24 @@ $(document).ready(function() {
 
 
     $("#submit-input").on("submit", function () {
-        console.log($("#buyerPhone").val());
+        console.log($("#buyer-phone").val());
         console.log("heeej");
 
     });
 
-    $("#swishPhone-form").submit(function(ev){
+    $("#swish-phone-form").submit(function(ev){
 
         ev.preventDefault();
 
-        var lengthOk = $("#buyerPhone").val().length == 10;
-        var numbersOk = /^[0-9]*$/.test($("#buyerPhone").val());
+        var lengthOk = $("#buyer-phone").val().length == 10;
+        var numbersOk = /^[0-9]*$/.test($("#buyer-phone").val());
         console.log(lengthOk);
         console.log(numbersOk);
 
-        validateNumber($("#buyerPhone").val(), $("#swishNumber-error"));
+        validateNumber($("#buyer-phone").val(), $("#swishNumber-error"));
 
         if (lengthOk && numbersOk){
-        $("#swishPhone-form").hide();
+        $("#swish-phone-form").hide();
         $("#loaderMain").show();
             setTimeout(function () {
             $("#loaderMain").hide();

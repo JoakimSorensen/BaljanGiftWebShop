@@ -4,15 +4,15 @@
 <div id="hider"></div>
 <div id="swish">
     <div id="swish-image-wrapper">
-         <img id="swishImage" src="static/swish.png">
+         <img id="swish-image" src="static/swish.png">
     <div id="swishPayement">Betalning genomförd!</div>
-    <div id="swishContent">
+    <div id="swish-content">
         <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
         <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
     </div>
-    <form id="swishPhone-form">
+    <form id="swish-phone-form">
         <div id="input-wrapper">
-            <input id="buyerPhone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer">
+            <input id="buyer-phone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer">
         </div>
         <div class="error-text" id="swishNumber-error" style="font-size: 0.8vw">Du måste ange ett korrekt telefonnummmer.</div>
 
@@ -27,7 +27,7 @@
 
     </div>
 
-    <div id="swishFooter">
+    <div id="swish-footer">
             <button id="closeSwish">Stäng</button>
     </div>
 </div>
@@ -137,7 +137,7 @@
         </div>
 
         <div style="position: relative; padding-bottom: 6em">
-            <button class="button button1 disabled" type="button" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;" id="swishButton">Betala med Swish</button>
+            <button class="button button1 disabled" type="button" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;" id="swish-button">Betala med Swish</button>
             <img alt="Betala med Swish" src="/static/swishicon2.png" style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;">
         </div>
 

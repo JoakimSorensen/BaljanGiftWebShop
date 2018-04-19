@@ -8,7 +8,6 @@
     margin-top: 70px;
 }
 
-
 footer {
     position: relative;
     height: auto;
@@ -18,7 +17,6 @@ footer {
     clear: both;
     margin-top: 100px;
 }
-
 
 .legality {
     margin: auto;
@@ -45,7 +43,6 @@ ul {
     text-align: center;
 }
 
-
 html, body {
     height: 100%;
     margin: 0;
@@ -58,27 +55,27 @@ footer h3 {
 }
 
 h1 {
-    font-family:'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 44pt;
 }
 
 h2 {
-    font-family:'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 18pt;
 }
 
 h3 {
-    font-family:'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 p {
-    font-family: 'Open sans', sans-serif ;
+    font-family: 'Open sans', sans-serif;
     font-size: 11pt;
     color: black;
 }
 
 a {
-    font-family: 'Open sans', sans-serif ;
+    font-family: 'Open sans', sans-serif;
     font-size: 11pt;
 }
 
@@ -86,7 +83,7 @@ a {
     text-transform: uppercase;
 }
 
-.logo-text{
+.logo-text {
     display: inline-block;
     float: left;
     margin-left: 50px;
@@ -100,18 +97,17 @@ a {
     color: black;
 }
 
-
-.nav-wrapper{
+.nav-wrapper {
     height: 50px;
 }
 
-.nav-wrapper::after{
+.nav-wrapper::after {
     content: '';
     display: table;
     clear: both;
 }
 
-header{
+header {
     background: white;
     height: 70px;
     padding-top: 15px;
@@ -119,7 +115,7 @@ header{
     position: fixed;
     top: 0;
     width: 100%;
-    z-index:10
+    z-index: 10
 }
 
 nav {
@@ -150,7 +146,7 @@ nav li:last-of-type {
     border-right: none;
 }
 
-nav a{
+nav a {
     color: #000000;
     font-family: 'Lato', sans-serif;
 }

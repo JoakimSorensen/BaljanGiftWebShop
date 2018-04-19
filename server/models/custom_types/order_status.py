@@ -6,4 +6,3 @@ class OrderStatus(enum.Enum):
     PREPARING = 1
     RECEIVED = 2
     CANCELED = 3
-

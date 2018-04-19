@@ -3,7 +3,6 @@ from server.models import Product, SharedModel
 
 
 class GiftBoxProduct(SharedModel):
-
     gift_box_id = db.Column(db.Integer, db.ForeignKey('gift_box.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     product = db.relationship("Product")
@@ -49,13 +48,9 @@ class GiftBox(SharedModel):
         db.session.commit()
 
     def get_product_information(self):
-        gift_box_info = db.session.query(Product.name, Product.allergen).\
-            join(GiftBoxProduct).\
-            join(GiftBox).\
-            filter(GiftBox.id == self).\
+        gift_box_info = db.session.query(Product.name, Product.allergen). \
+            join(GiftBoxProduct). \
+            join(GiftBox). \
+            filter(GiftBox.id == self). \
             filter(Product.id == GiftBoxProduct.product_id).all()
         return gift_box_info
-
-
-
-

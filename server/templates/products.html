@@ -2,7 +2,8 @@
 
 <div class="container-fluid">
     {% for giftbox in GiftBoxes %}
-        <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" id="{{ giftbox.id }}" data-toggle="modal" data-target="#myModal" style="position: center">
+        <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" id="{{ giftbox.id }}"
+             data-toggle="modal" data-target="#myModal" style="position: center">
             <div class="hovereffect">
                 <div class="product-view">
                     <img src={{ giftbox.image }} alt="Lights" class="image">
@@ -27,7 +28,8 @@
                 <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">
-                <button id="close-modal-button" type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                <button id="close-modal-button" type="button" class="btn btn-default" data-dismiss="modal">Stäng
+                </button>
             </div>
         </div>
     </div>

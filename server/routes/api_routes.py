@@ -174,7 +174,7 @@ def order_with_token_formatted_info(token):
                 "message": order.message,
                 "price": order.price,
                 "status": order.get_status_text(order.status)
-             }
+            }
         )
 
     return jsonify("error")
@@ -421,7 +421,7 @@ def add_user():
         if user:
             if password:
                 user.set_password(password)
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create user"}), 500
 
 
@@ -438,7 +438,7 @@ def add_giftbox():
         giftbox = GiftBox.add(description=description, price=price, name=name, image=image)
 
         if giftbox:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create giftbox"}), 500
 
 
@@ -455,7 +455,7 @@ def add_product():
         product = Product.add(allergen=allergen, price=price, name=name, image=image)
 
         if product:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create product"}), 500
 
 
@@ -470,7 +470,7 @@ def add_buyer():
         buyer = Buyer.add(name=name, email=email)
 
         if buyer:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create buyer"}), 500
 
 
@@ -485,7 +485,7 @@ def add_receiver():
         receiver = Receiver.add(name=name, phone=phone)
 
         if receiver:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create receiver"}), 500
 
 
@@ -501,13 +501,13 @@ def add_order():
         message = request.form.get('message')
 
         order = Order.create_order(giftbox, buyer, receiver, message)
-        
+
         if status:
             statuses = [st for st in OrderStatus]
             if int(status) in range(len(statuses) - 1):
                 order.set_status(statuses[int(status)])
         if order:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create order"}), 500
 
 
@@ -556,4 +556,3 @@ def _stripe_charge(token):
         description='Baljangavan',
         source=token,
     )
-

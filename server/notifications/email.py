@@ -23,4 +23,3 @@ def _send_email(email_body, subject, recipient):
         message = Message(subject, sender="baljangavan@gmail.com", recipients=[recipient])
         message.body = email_body
         mail.send(message)
-

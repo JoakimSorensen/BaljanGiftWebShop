@@ -40,7 +40,7 @@ def all_orders():
 
 @app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
 def payment_completed():
-    _stripe_charge(request.values['stripeToken'])
+    _stripe_charge(request.values['stripeToken'],request.values["giftbox-price"])
     receiver_name = request.values["rec-name"]
     receiver_phone = request.values["phonenumber"]
 
@@ -552,10 +552,10 @@ def logout_admin():
     return redirect('/')
 
 
-def _stripe_charge(token):
+def _stripe_charge(token, price):
     stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
     charge = stripe.Charge.create(
-        amount=3900,
+        amount=price,
         currency='sek',
         description='Baljangavan',
         source=token,

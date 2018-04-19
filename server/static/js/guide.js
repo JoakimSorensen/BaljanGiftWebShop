@@ -12,8 +12,6 @@ $(document).ready(function() {
         };
     });
 
-
-
 });
 
 $(window).on('resize', function() {
@@ -22,5 +20,11 @@ $(window).on('resize', function() {
     } else {
         $(".arrow-img").show();
     };
+});
+
+$('.get-started').on('click', function(event) {
+    $.getScript('/base.js', function () {
+        handleNavbarClick(event);
+    });
 });
 

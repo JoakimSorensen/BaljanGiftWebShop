@@ -1,36 +1,36 @@
 <link href="/static/css/order_info.css" rel="stylesheet" type="text/css">
 
 <div class="container order-info-container">
-    <h2 id="order_label">Skriv in ordernummer för att visa order</h2>
+    <h1 id="order_label">Skriv in ordernummer för att visa order</h1>
 
     <form id="token-form" class="flex-form" method="get">
         <div class="token-input-outer">
             <div class="token-input-inner">
                 <input id="token_input" class="token-input" type="text" name="token" placeholder="Ordernummer">
                 <input id="submit_btn" type="submit" value="Sök">
-                <p id="error-text" style="color: crimson; font-size: 1.5vw; padding-left: 1vw" align="left">Ordernumret du angav existerar ej!</p>
+                <p id="error-text">Ordernumret du angav existerar ej!</p>
             </div>
         </div>
     </form>
 
     <div id="token-result">
 
-        <h2 id="main_infp">
+        <p id="main_infp">
             Du skickade gåvan
-            <span id="name_info" style="color: crimson"></span>
+            <span id="name_info"></span>
             till
-            <span id="receiver_name" style="color: crimson"></span>
-            (<span id="receiver_phone" style="color: crimson"></span>)
+            <span id="receiver_name"></span>
+            (<span id="receiver_phone"></span>)
             med följande meddelande:
-            <span id="msg_id" style="color: crimson"></span>
-        </h2>
+            <span id="msg_id"></span>
+        </p>
 
-        <h2 id="main_info2">
+        <p id="main_info2">
             Nuvarande status på din order:
-            <span id="status_id" style="color: crimson"></span> <br />
+            <span id="status_id"></span> <br />
             Priset på din order:
-            <span id="price_id" style="color: crimson"></span> kr
-        </h2>
+            <span id="price_id"></span> kr
+        </p>
     </div>
 
 <div id='status-container' style="display:none;" class="row guide-text-container">

@@ -1,8 +1,4 @@
-#order_label {
-    font-family: "Century Gothic";
-    font-size: 4vw;
-    color: #38A7E5;
-}
+
 
 .order-info-container {
     max-width: 800px;
@@ -25,7 +21,6 @@ input.token-input:focus {
 }
 
 .guide-text-container {
-    font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: normal;
@@ -107,10 +102,6 @@ input.token-input:focus {
     100% { top: 0; }
 }
 
-.flex-form input {
-    font-family: 'Open sans', sans-serif;
-}
-
 #order_label {
     margin-top: 100px;
 }
@@ -125,11 +116,12 @@ input.token-input:focus {
 
 #submit_btn {
     background-color: #468ca9;
-    font-size: 250%;
+    font-size: 200%;
     color: #FFFFFF;
     border: 0;
     height: 200%;
     padding-bottom: 1%;
+    border-radius: 10px;
 }
 
 .token-input-inner {
@@ -143,5 +135,20 @@ input.token-input:focus {
     display: flex;
     flex-direction: column;
     margin-top: 10%;
+
+}
+
+#error-text {
+    color: crimson;
+    padding-top: 30px;
+}
+
+#token-result {
+    max-width: 400px;
+    text-align: left;
+    margin: auto;
+    padding: 30px;
+    border: 2px dashed #eb976f;
+    border-radius: 25px;
 
 }

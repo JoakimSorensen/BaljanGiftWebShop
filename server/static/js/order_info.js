@@ -1,7 +1,7 @@
  $(document).ready(function() {
-        $("#error-text").hide();
-        $("#token-result").hide();
-	 	$("#status-container").hide();
+       // $("#error-text").hide();
+       // $("#token-result").hide();
+	 	//$("#status-container").hide();
     });
 
 

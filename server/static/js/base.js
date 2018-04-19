@@ -153,3 +153,7 @@ $('.clickable-footer').on('click', function(event){
 $('.no-underline').on('click', function() {
     $('.clickable').removeClass('active');
 });
+
+$('.nav-button').on('click', function(){
+    window.scrollBy(0,-1000);
+});

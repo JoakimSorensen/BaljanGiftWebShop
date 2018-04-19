@@ -10,8 +10,8 @@ function handleReceiverClick(event) {
     fetchReceiver(receiver_id, presentReceiverData);
 }
 
-function fetchReceiver(receiver_id, completionHandler) {
-    var url = "api/v1/receiver/" + receiver_id;
+function fetchReceiver(receiverID, completionHandler) {
+    var url = "api/v1/receiver/" + receiverID;
     $.getJSON(url, function(data) {
         completionHandler(data)
     });

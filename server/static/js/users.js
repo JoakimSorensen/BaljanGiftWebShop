@@ -6,12 +6,12 @@ function bindUserClick() {
 }
 
 function handleUserClick(event) {
-    var user_id = $(this).data('user-id');
-    fetchUser(user_id, presentUserData);
+    var userId = $(this).data('user-id');
+    fetchUser(userId, presentUserData);
 }
 
-function fetchUser(user_id, completionHandler) {
-    var url = "api/v1/users/" + user_id;
+function fetchUser(userID, completionHandler) {
+    var url = "api/v1/users/" + userID;
     $.getJSON(url, function(data) {
         completionHandler(data)
     });

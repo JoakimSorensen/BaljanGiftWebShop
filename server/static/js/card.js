@@ -4,14 +4,14 @@ $('[data-toggle="tooltip"]').tooltip();
 function swishData() {
     console.log("Performing swish payment");
     var name = $("#name").val();
-    var rec_name = $("#rec-name").val();
+    var recName = $("#rec-name").val();
     var number = $("#phonenumber").val();
     var email = $("#email").val();
     var message = $("#message").val();
     var giftbox = $("#giftbox").val();
 
     var data = {
-        "rec-name": rec_name,
+        "rec-name": recName,
         "phonenumber": number,
         "message": message,
         "email": email,

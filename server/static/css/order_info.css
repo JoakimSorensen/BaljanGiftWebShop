@@ -3,6 +3,8 @@
 .order-info-container {
     max-width: 800px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #token_form {
@@ -150,5 +152,12 @@ input.token-input:focus {
     padding: 30px;
     border: 2px dashed #eb976f;
     border-radius: 25px;
+
+}
+
+.vertical-line {
+    border-left: 2px dashed #eb976f;
+    height: 50px;
+    align-self: center;
 
 }

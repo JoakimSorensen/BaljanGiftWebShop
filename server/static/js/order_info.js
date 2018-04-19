@@ -1,6 +1,6 @@
  $(document).ready(function() {
-       // $("#error-text").hide();
-       // $("#token-result").hide();
+        //$("#error-text").hide();
+        $("#token-result, .vertical-line").hide();
 	 	//$("#status-container").hide();
     });
 
@@ -14,9 +14,9 @@
         $.getJSON(url, function(data){
             if(data === "error"){
                 $("#error-text").show();
-                $("#token-result").hide();
+                $("#token-result, .vertical-line").hide();
             }else{
-            $("#token-result").show();
+            $("#token-result, .vertical-line").slideDown();
             $("#error-text").hide();
 			
 			

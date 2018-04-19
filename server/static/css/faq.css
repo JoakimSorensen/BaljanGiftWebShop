@@ -14,7 +14,7 @@
 }
 
 .faq-wrapper {
-    text-align: center;
+    text-align: left;
     width: 100%;
     padding: 30px 20px 30px 20px;
     background-color: white;
@@ -26,4 +26,27 @@
 
 .answer {
     font-style: italic;
+}
+
+.question-wrapper {
+    border-top: 2px solid black;
+    min-height: 3.5em;
+    padding: 10px;
+}
+
+.answer-wrapper {
+    padding: 10px;
+}
+
+.plus, .minus {
+    border-top: 2px solid black;
+    padding-top: 15px;
+    text-align: right;
+    cursor: pointer;
+
+}
+
+.plus, .minus p {
+    font-size: 16px;
+    margin-right: 0;
 }

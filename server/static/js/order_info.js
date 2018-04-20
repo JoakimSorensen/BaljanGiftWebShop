@@ -15,12 +15,11 @@
             if(data === "error"){
                 $("#error-text").show();
                 $("#token-result, .vertical-line").hide();
+	 			$("#status-container").hide();
             }else{
-            $("#token-result, .vertical-line").slideDown();
-            $("#error-text").hide();
-			
-			
-            retrieveData(data);
+            	$("#token-result, .vertical-line").slideDown();
+            	$("#error-text").hide();
+            	retrieveData(data);
 
             }
         });

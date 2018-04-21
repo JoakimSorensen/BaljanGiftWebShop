@@ -25,7 +25,6 @@ Gåva: {gift}
 Meddelande: {message}
 Ordernummer: {token}
 
-
 """.format(name=buyer.name, receiver_name=receiver.name,
            receiver_phone=receiver.phone,
            price=order.price, gift=giftbox.name, message=order.message,

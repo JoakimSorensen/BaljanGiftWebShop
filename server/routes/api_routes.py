@@ -558,6 +558,5 @@ def _stripe_charge(token, price):
         amount=price,
         currency='sek',
         description='Baljangavan',
-        source=token,
-    )
+        source=token)
 

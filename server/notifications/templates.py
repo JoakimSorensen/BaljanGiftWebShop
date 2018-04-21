@@ -5,25 +5,26 @@ def order_confirmation_email(order):
 
     subject = "Baljangavan: orderbekräftelse {}".format(order.date)
 
-    message = """Tack för din beställning!
+    message = """<p>Tack för din beställning {name}!
 
-{name}, snart får {receiver_name} ett sms med information om gåvan och sin unika uthämtningskod, ordernumret. Vi mailar dig när hen har hämtat ut den.
+<br><br>Snart får {receiver_name} ett sms med information om gåvan och sin unika uthämtningskod, ordernumret. Vi mailar dig när hen har hämtat ut den.
 
-Du hittar mer information om din order, med ordernummer {token}, på http://localhost:5000/order_info.
+<br><br>Du hittar mer information om din order, med ordernummer {token}, på http://localhost:5000/order_info.
 
-Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
+<br><br>Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
 
-Med vänliga hälsningar,
-Baljangåvan 🎁
+<br><br>Med vänliga hälsningar,</p>
     
+<img src='https://i.gyazo.com/e48febb2c8cc0180861242c7f8d15270.png' style='height: 50px; width: 150px'>
    
-Din beställning:
-Mottagarens namn: {receiver_name}
-Mottagarens telefonnummer: {receiver_phone}
-Pris: {price}
-Gåva: {gift}
-Meddelande: {message}
-Ordernummer: {token}
+<br><br><br><p>Din beställning:
+<br>Mottagarens namn: {receiver_name}
+<br>Mottagarens telefonnummer: {receiver_phone}
+<br>Pris: {price}
+<br>Gåva: {gift}
+<br>Meddelande: {message}
+<br>Ordernummer: {token}</p>
+
 
 """.format(name=buyer.name, receiver_name=receiver.name,
            receiver_phone=receiver.phone,
@@ -39,15 +40,16 @@ def status_change_email(order):
 
     subject = "Baljangavan: status ändrad för order {}".format(order.token)
 
-    message = """Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till "{status}"!
+    message = """<p>Hej {name}, den beställning du skickat till {receiver_name} har nu ändrat status till "{status}"!
 
-För detaljer kring ordern, fyll i ordernumret, {token}, på http://localhost:5000/order_info.
+<br><br>För detaljer kring ordern, fyll i ordernumret, {token}, på http://localhost:5000/order_info.
 
-Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
+<br><br>Du är alltid välkommen att kontakta oss på baljangavan@gmail.com.
 
 
-Med vänliga hälsningar,
-Baljangåvan 🎁
+<br><br><br>Med vänliga hälsningar,</p>
+
+<img src='https://i.gyazo.com/e48febb2c8cc0180861242c7f8d15270.png' style='height: 50px; width: 150px'>
 
 """.format(status=order.get_status_text(order.status), token=order.token, name=buyer.name, receiver_name=receiver.name)
     return subject, message

@@ -56,9 +56,13 @@
     background-color: #ead5cb;
     border-radius: 25px;
     width: 100%;
-    min-height: 200px;
+    min-height: 80px;
     text-align: center;
     display: inline-block;
     padding: 20px;
     align-self: center;
+}
+
+.center-div {
+    text-align: center;
 }

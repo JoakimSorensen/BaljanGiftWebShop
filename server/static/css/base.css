@@ -89,14 +89,14 @@ a {
     display: inline-block;
     float: left;
     margin-left: 50px;
-    color: #000000;
+    color: #FFFFFF;
     font-size: 22pt;
     font-family: 'Gloria Hallelujah', cursive;
 }
 
 .logo-text:hover {
     text-decoration: none;
-    color: black;
+    color: #FFFFFF;
 }
 
 
@@ -111,7 +111,7 @@ a {
 }
 
 header{
-    background: #F2A78B;
+    background: #8C2C2F;
     height: 70px;
     padding-top: 15px;
     border-bottom: 1px solid #c5c3c5;
@@ -142,7 +142,7 @@ nav ul li {
 }
 
 nav ul li {
-    border-right: 1px solid #000;
+    border-right: 1px solid #FFFFFF;
 }
 
 nav li:last-of-type {
@@ -150,7 +150,7 @@ nav li:last-of-type {
 }
 
 nav a{
-    color: #000000;
+    color: #FFFFFF;
     font-family: 'Lato', sans-serif;
 }
 
@@ -182,17 +182,17 @@ nav a{
 }
 
 .active {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #FFFFFF;
 }
 
 .nav-item a:hover {
-    color: black;
-    border-bottom: 2px solid black;
+    color: #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
     text-decoration: none;
 }
 
 .nav-item a:after {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #FFFFFF;
 }
 
 .social-media {

@@ -13,7 +13,7 @@ footer {
     position: relative;
     height: auto;
     width: 100%;
-    background-color: #969696;
+    background-color: #8C2C2F;
     display: inline-block;
     clear: both;
     margin-top: 100px;
@@ -49,7 +49,6 @@ ul {
 html, body {
     height: 100%;
     margin: 0;
-    background-color: white;
 }
 
 footer h3 {
@@ -112,7 +111,7 @@ a {
 }
 
 header{
-    background: white;
+    background: #F2A78B;
     height: 70px;
     padding-top: 15px;
     border-bottom: 1px solid #c5c3c5;
@@ -198,4 +197,8 @@ nav a{
 
 .social-media {
     height: 70px;
+}
+
+.color {
+    background-color: #FAEEEB;
 }

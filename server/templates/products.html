@@ -2,15 +2,16 @@
 
 <div class="container-fluid">
     {% for giftbox in GiftBoxes %}
-        <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" id="{{ giftbox.id }}" data-toggle="modal" data-target="#myModal" style="position: center">
+        <div class="col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-0" id="{{ giftbox.id }}"
+             data-toggle="modal" data-target="#myModal" style="position: center">
             <div class="hovereffect">
                 <div class="product-view">
                     <img src={{ giftbox.image }} alt="Lights" class="image">
                     <div class="price-dot">
-                        <h3 id="price_label" style="margin-left: 0.6vw; margin-top: 1.2vw">{{ giftbox.price }}:-</h3>
+                        <h3 id="price-label" style="margin-left: 0.6vw; margin-top: 1.2vw">{{ giftbox.price }}:-</h3>
                     </div>
                     <div class="overlay" onclick="return false">
-                        <h2 id="name_label">{{ giftbox.name }}</h2>
+                        <h2 id="name-label">{{ giftbox.name }}</h2>
                         <p><a></a></p>
                     </div>
                 </div>
@@ -27,7 +28,8 @@
                 <p>Some text in the modal.</p>
             </div>
             <div class="modal-footer">
-                <button id="close-modal-button" type="button" class="btn btn-default" data-dismiss="modal">Stäng</button>
+                <button id="close-modal-button" type="button" class="btn btn-default" data-dismiss="modal">Stäng
+                </button>
             </div>
         </div>
     </div>

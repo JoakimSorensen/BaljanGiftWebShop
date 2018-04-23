@@ -1,9 +1,9 @@
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config(object):
-
     # TODO: Never ever ever ever ever store secrets in source code
     SECRET_KEY = os.environ.get('SECRET_KEY') or \
                  '\xa9g\x83\x8b\x0b\x16\xb8\xde\x89L\xbb\x82\x1f\xe4\xae!\xbf\x8b\xecd\xfeC\xb3\x94'

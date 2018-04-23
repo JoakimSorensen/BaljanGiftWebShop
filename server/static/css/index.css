@@ -7,8 +7,7 @@
     font-size: 26px;
     text-align: center;
     color: white;
-    text-shadow: 0 4px 4px
-    rgba(0, 0, 0, 0.25);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .guide-text-container {
@@ -46,42 +45,86 @@
 }
 
 .bounce:hover {
-  display: inline-block;
-  position: relative;
-  -moz-animation: bounce 0.3s 0.0s infinite linear;
-  -o-animation: bounce 0.3s 0.0s infinite linear;
-  -webkit-animation: bounce 0.3s 0.0s infinite linear;
-  animation: bounce 0.3s 0.0s infinite linear;
-  colr:000;
+    display: inline-block;
+    position: relative;
+    -moz-animation: bounce 0.3s 0.0s infinite linear;
+    -o-animation: bounce 0.3s 0.0s infinite linear;
+    -webkit-animation: bounce 0.3s 0.0s infinite linear;
+    animation: bounce 0.3s 0.0s infinite linear;
+    colr: 000;
 }
 
 @-webkit-keyframes bounce {
-    0% { top: 0; }
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
 }
+
 @-moz-keyframes bounce {
-    0% { top:  0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
 }
+
 @-o-keyframes bounce {
-    0% { top: 0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
 }
+
 @-ms-keyframes bounce {
-    0% { top: 0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
 }
+
 @keyframes bounce {
-    0% { top: 0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
 }

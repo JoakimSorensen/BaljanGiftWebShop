@@ -5,7 +5,8 @@
 
 .title-wrapper{
     height: 80px;
-    padding: 80px;
+    margin-top: 40px;
+    text-align: center;
 
 }
 
@@ -13,7 +14,6 @@
     text-align: left;
     width: 100%;
     padding: 30px 20px 30px 20px;
-    background-color: white;
     margin-top: 60px;
 }
 

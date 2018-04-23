@@ -52,8 +52,8 @@
 
 .contact-info {
     margin: 0 auto;
-    border: 2px dashed #eb976f;
-    background-color: #ead5cb;
+    border: 2px dashed #8C2C2F;
+    background-color: #FFE1D1;
     border-radius: 25px;
     width: 100%;
     min-height: 80px;
@@ -65,4 +65,9 @@
 
 .center-div {
     text-align: center;
+}
+
+.title-wrapper {
+    text-align: center;
+    margin-top: 20px;
 }

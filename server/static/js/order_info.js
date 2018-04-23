@@ -19,8 +19,8 @@ $("#token-form").submit(function (ev) {
             }else{
             $("#token-result,.vertical-line").slideDown();
             $("#error-text").hide();
-			
-			
+
+
             retrieveData(data);
 
         }
@@ -61,9 +61,9 @@ function retrieveData(data) {
 }
 
 function setStatusSelect(id) {
-    document.getElementById(id).style.color = "green";
+    document.getElementById(id).style.color = "#000000";
     document.getElementById(id).style.opacity = "1";
-	document.getElementById(id + "-circle").style.backgroundColor = "green";
+	document.getElementById(id + "-circle").style.backgroundColor = "#73906A";
 	document.getElementById(id + "-circle").style.opacity = "1";
 }
 

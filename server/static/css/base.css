@@ -26,15 +26,20 @@ footer {
     font: 10pt verdana;
     line-height: 2em;
     padding: 20px 0 0 0;
+    color: #F2A78B;
+}
+
+footer p{
+    color: #FAEEEB;
 }
 
 footer a {
-    color: black;
+    color: hsl(13, 58%, 95%);
 }
 
 footer a:hover {
     cursor: pointer;
-    color: black;
+    color: hsl(13, 58%, 95%);
 }
 
 ul {
@@ -50,7 +55,7 @@ html, body {
 
 footer h3 {
     font-size: 13pt;
-    color: #f2f2f2;
+    color: #f2a78a;
 }
 
 h1 {
@@ -70,7 +75,7 @@ h3 {
 p {
     font-family: 'Open sans', sans-serif;
     font-size: 11pt;
-    color: black;
+    color: Black;
 }
 
 a {
@@ -115,7 +120,6 @@ header {
     background: #F2A78B;
     height: 70px;
     padding-top: 15px;
-    border-bottom: 1px solid #c5c3c5;
     position: fixed;
     top: 0;
     width: 100%;
@@ -183,12 +187,13 @@ nav a {
 }
 
 .active {
-    border-bottom: 2px solid #FFFFFF;
+    border-bottom: 2px solid #8C2C2F;
+    color: #8C2C2F;
 }
 
 .nav-item a:hover {
-    color: #FFFFFF;
-    border-bottom: 2px solid #FFFFFF;
+    color: #8C2C2F;
+    border-bottom: 2px solid #8C2C2F;
     text-decoration: none;
 }
 

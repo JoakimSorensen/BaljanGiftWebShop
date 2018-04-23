@@ -185,7 +185,7 @@ function addOrder() {
     $("#order-list").hide();
     $("#add-order").hide();
     var items = [];
-    var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "message"]
+    var keys = ["buyer_id", "date", "giftbox_id", "receiver_id", "status_", "message"];
     var localisedLabels = {
         "buyer_id": "Köparens id",
         "date": "Datum",

@@ -10,7 +10,6 @@ $(document).ready(function () {
             $("#" + id + "-guide").css({'visibility': 'hidden'});
             $("#" + id + "-guide").removeClass("active-text");
         }
-        ;
     });
 
 
@@ -22,7 +21,6 @@ $(window).on('resize', function () {
     } else {
         $(".arrow-img").show();
     }
-    ;
 });
 
 $('.get-started').on('click', function(event) {

@@ -104,7 +104,7 @@ function addProduct() {
     $("#product-list").hide();
     $("#add-product").hide();
     var items = [];
-    var keys = ["allergen", "image", "price", "name"]
+    var keys = ["allergen", "image", "price", "name"];
     var localisedLabels = {
         "allergen": "Allergen",
         "image": "Bild",

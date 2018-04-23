@@ -102,7 +102,7 @@ function addBuyer() {
     $("#buyer-list").hide();
     $("#add-buyer").hide();
     var items = [];
-    var keys = ["name", "email"]
+    var keys = ["name", "email"];
     var localisedLabels = {
         "name": "Namn",
         "email": "E-post"

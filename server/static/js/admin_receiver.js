@@ -102,7 +102,7 @@ function addReceiver() {
     $("#receiver-list").hide();
     $("#add-receiver").hide();
     var items = [];
-    var keys = ["name", "phone"]
+    var keys = ["name", "phone"];
     var localisedLabels = {
         "name": "Namn",
         "phone": "Telefonnummer"

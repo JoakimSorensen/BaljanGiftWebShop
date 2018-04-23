@@ -9,7 +9,7 @@ $(document).ready(function() {
         } else {
             $("#" + id + "-info").css({'visibility':'hidden'});
             $("#" + id + "-info").removeClass("active-text");
-        };
+        }
     });
 
 });

@@ -97,9 +97,6 @@ $(document).ready(function () {
         } else {
             console.log("failure");
         }
-        ;
-
-
     });
 
 });
@@ -111,9 +108,7 @@ function validateName() {
     } else {
         $("#name-error").hide();
     }
-    ;
-};
-
+}
 function validateRecName() {
     var name = $("#rec-name").val();
     if (name == "") {
@@ -121,9 +116,7 @@ function validateRecName() {
     } else {
         $("#rec-name-error").hide();
     }
-    ;
-};
-
+}
 function validateNumber(number, errorDiv) {
 
     if ((/^[0-9]*$/.test(number)) && (number.length == 10)) {

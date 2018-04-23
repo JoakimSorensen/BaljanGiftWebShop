@@ -39,13 +39,13 @@ function retrieveData(data) {
     switch (data["status"]) {
         case $("#status-0").text():
             setStatusSelect('status-0');
-            resetStatusSelect('status-1')
-            resetStatusSelect('status-2')
+            resetStatusSelect('status-1');
+            resetStatusSelect('status-2');
             break;
         case $("#status-1").text():
             setStatusSelect('status-0');
             setStatusSelect('status-1');
-            resetStatusSelect('status-2')
+            resetStatusSelect('status-2');
             break;
         case $("#status-2").text():
             setStatusSelect('status-0');

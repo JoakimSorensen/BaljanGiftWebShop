@@ -141,7 +141,7 @@ function addGiftBox() {
     $("#giftbox-list").hide();
     $("#add-giftbox").hide();
     var items = [];
-    var keys = ["description", "image", "price", "name"]
+    var keys = ["description", "image", "price", "name"];
     var localisedLabels = {
         "description": "Beskrivning",
         "image": "Bild",

@@ -113,7 +113,7 @@ $.delete = function (url, data, callback, type) {
         data: data,
         contentType: type
     });
-}
+};
 
 page.start();
 
@@ -127,10 +127,10 @@ function handleNavbarClick(event){
     		$('.clickable').removeClass('active');
 		} else {
     		$('.clickable').removeClass('active');
-    		var path = event.target.pathname
+    		var path = event.target.pathname;
         var target = $('.clickable[href="' + path + '"]');
         target.addClass('active');
-		};
+        }
 }
 
 $(window).on('load', reloadNavbar);
@@ -143,9 +143,8 @@ function reloadNavbar() {
 	    var path = window.location.pathname;
 	    var target = $('.clickable[href="'+ path +'"]');
 	    target.addClass('active');
-	};
-};
-
+    }
+}
 $('.clickable-footer').on('click', function(event){
     handleNavbarClick(event);
 });

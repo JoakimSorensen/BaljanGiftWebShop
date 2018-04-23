@@ -188,17 +188,13 @@ nav a {
 
 .active {
     border-bottom: 2px solid #8C2C2F;
-    color: #8C2C2F;
+    color: #8C2C2F !important;
 }
 
-.nav-item a:hover {
-    color: #8C2C2F;
+.nav-button:hover {
+    color: #8C2C2F !important;
     border-bottom: 2px solid #8C2C2F;
     text-decoration: none;
-}
-
-.nav-item a:after {
-    border-bottom: 2px solid #FFFFFF;
 }
 
 .social-media {

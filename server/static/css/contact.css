@@ -66,3 +66,8 @@
 .center-div {
     text-align: center;
 }
+
+.title-wrapper {
+    text-align: center;
+    margin-top: 20px;
+}

@@ -64,8 +64,6 @@ $(document).ready(function() {
 
     $("#submit-input").on("submit", function () {
         console.log($("#buyerPhone").val());
-        console.log("heeej");
-
     });
 
     $("#swishPhone-form").submit(function(ev){
@@ -74,8 +72,6 @@ $(document).ready(function() {
 
         var lengthOk = $("#buyerPhone").val().length == 10;
         var numbersOk = /^[0-9]*$/.test($("#buyerPhone").val());
-        console.log(lengthOk);
-        console.log(numbersOk);
 
         validateNumber($("#buyerPhone").val(), $("#swishNumber-error"));
 
@@ -173,5 +169,7 @@ function loadStripe() {
         validateRecName();
         validate();
     } else {
+        console.log($("#email").val());
+        console.log("clicks on stripe button");
         $('.stripe-button-el').click();
     }}

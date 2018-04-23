@@ -89,7 +89,7 @@ a {
     display: inline-block;
     float: left;
     margin-left: 50px;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-size: 22pt;
     font-family: 'Gloria Hallelujah', cursive;
 }
@@ -97,6 +97,10 @@ a {
 .logo-text:hover {
     text-decoration: none;
     color: #FFFFFF;
+}
+
+.nav-button {
+    color: #FFFFFF !important;
 }
 
 

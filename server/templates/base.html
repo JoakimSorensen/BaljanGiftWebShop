@@ -42,7 +42,7 @@
          Multiple lines will require custom code not provided by Bootstrap. -->
     <header>
     <div class="container">
-        <a class="nav-button logo-text clickable" id="logotype" href="/">Baljangåvan</a>
+        <a class="nav-button logo-text clickable" id="logotype" style="text-decoration: none" href="/">Baljangåvan</a>
         <nav>
             <ul>
 				{% if not current_user.is_anonymous %}
@@ -70,13 +70,13 @@
 				</li>
 				{% else %}
 				<li class="nav-item">
-                    <a href="/products" class="nav-button clickable uppercase" id="products">Gåvor</a>
+                    <a href="/products" class="nav-button clickable uppercase" id="products" style="text-decoration: none">Gåvor</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/guide" class="nav-button clickable uppercase" id="guide">Så funkar det</a>
+                    <a href="/guide" class="nav-button clickable uppercase" id="guide" style="text-decoration: none">Så funkar det</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/order_info" class="nav-button clickable uppercase" id="order_status">Orderstatus</a>
+                    <a href="/order_info" class="nav-button clickable uppercase" id="order_status" style="text-decoration: none">Orderstatus</a>
                 </li>
 
 				{% endif %}

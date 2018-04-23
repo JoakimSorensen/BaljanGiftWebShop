@@ -42,6 +42,7 @@ $(document).ready(function () {
         panelLabel: "Betala med kort",
         currency: "sek",
         zipCode: false,
+        allowRememberMe: false,
         token: function(token) {
             var data = {
                 "stripeToken": token.id,

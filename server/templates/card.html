@@ -57,12 +57,11 @@
 
     <div class="card-container">
         <form action="/api/v1/payment_completed" id="orderForm">
-            <div hidden class="row">
-                <div class="col-75">
-                    <input type="text" id="giftbox" name="giftbox" value={{ gift_box.id }}>
-                    <input type="text" id="giftbox-price" name="giftbox-price" value={{gift_box.price*100}}>
-                </div>
-            </div>
+            <input id="stripe-data-amount" type="hidden" value={{ gift_box.price * 100 }}>
+            <input id="stripe-data-name" type="hidden"  value="{{ gift_box.name }}">
+            <input id="stripe-data-image" type="hidden"  value="{{ gift_box.image }}">
+            <input id="giftbox" type="hidden" value={{ gift_box.id }}>
+            <input id="giftbox-price" type="hidden" value={{gift_box.price*100}}>
             <div class="row">
                 <div class="col-25">
                     <label for="name">Ditt namn</label>
@@ -114,26 +113,9 @@
                     <textarea id="message" name="message" placeholder="Skriv din hälsning"></textarea>
                 </div>
             </div>
-            <div class="row" id="stripeStuff" float="right">
-                <form action="/api/v1/payment_completed" method="POST" id="stripeForm">
-                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="pk_test_tA2Aq6pmnwXZvAwayRaPnFKm"
-                            data-amount={{ gift_box.price * 100 }}
-                                    data-name={{ gift_box.name }}
-                            data-image={{ gift_box.image }}
-                                    data-locale="auto"
-                            data-currency="sek"
-                            data-label="Betala med Kort"
-                            data-panel-label="Betala"
-                            data-email="customer@email.com"
-                            data-zip-code="false"
-                            id="stripe">
-                    </script>
-                </form>
-            </div>
         </form>
         <div style="position: relative">
-            <button class="button button1 disabled" type="button" onclick="loadStripe()"
+            <button class="button button1 disabled" type="button"
                     style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;"
                     id="stripeButton">
                 Betala med kort

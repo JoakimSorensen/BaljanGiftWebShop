@@ -38,24 +38,25 @@ def all_orders():
     return jsonify(orders_dicts)
 
 
-@app.route('/api/v1/payment_completed/', methods=['GET', 'POST'])
+@app.route('/api/v1/payment_completed/', methods=['POST'])
 def payment_completed():
-    _stripe_charge(request.values['stripeToken'],request.values["giftbox-price"])
-    receiver_name = request.values["rec-name"]
-    receiver_phone = request.values["phonenumber"]
+    _stripe_charge(request.form['stripeToken'], request.form['giftbox-price'])
+    receiver_name = request.form["rec-name"]
+    receiver_phone = request.form["phonenumber"]
 
-    message = request.values['message']
+    message = request.form['message']
 
     receiver = Receiver.create_receiver(receiver_name, receiver_phone)
-    buyer = Buyer.add(name=request.values["name"], email=request.values["email"])
-    giftbox = GiftBox.query.get(request.values["giftbox"])
+    buyer = Buyer.add(name=request.form["name"], email=request.form["email"])
+    giftbox = GiftBox.query.get(request.form["giftbox"])
 
     order = Order.create_order(giftbox, buyer, receiver, message)
 
     send_order_confirmation_email(order)
     send_ready_for_delivery_sms(order)
 
-    return redirect("/order?token={token}".format(token=order.token))
+    return jsonify({"status": "OK", "token": order.token})
+
 
 
 @app.route('/api/v1/swish_payment_completed/', methods=['GET', 'POST'])

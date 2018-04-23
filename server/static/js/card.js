@@ -36,6 +36,31 @@ $(document).ready(function () {
     $("#hider").hide();
     $("#swish").hide();
 
+    var handler = StripeCheckout.configure({
+        key: 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm',
+        locale: 'auto',
+        panelLabel: "Betala med kort",
+        currency: "sek",
+        zipCode: false,
+        token: function(token) {
+            var data = {
+                "stripeToken": token.id,
+                "rec-name": $("#rec-name").val(),
+                "phonenumber": $("#phonenumber").val(),
+                "message": $("#message").val(),
+                "name": $("#name").val(),
+                "email": $("#email").val(),
+                "giftbox": $("#giftbox").val(),
+                "giftbox-price": $("#giftbox-price").val()
+            };
+            $.post("/api/v1/payment_completed/", data, function(res) {
+                var token = res["token"];
+                window.location.href = "/order?token=" + token;
+            });
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+        }
+    });
 
     $("#swish-button").on("click", function () {
         /*swishData();*/
@@ -92,6 +117,25 @@ $(document).ready(function () {
 
         } else {
             console.log("failure");
+        }
+    });
+
+    $("#stripeButton").on("click", function(e) {
+        console.log("Clicked stripe button");
+        if (document.getElementById("stripeButton").classList.contains('disabled')) {
+            validateName();
+            validateNumber($("#phonenumber").val(), $("#phonenumber-error"));
+            validateRecName();
+            validate();
+        } else {
+            console.log("'Breakpoint'");
+            handler.open({
+                name: $("#stripe-data-name").val(),
+                image: $("#stripe-data-image").val(),
+                amount: Number($("#stripe-data-amount").val()),
+                email: $("#email").val()
+            });
+            e.preventDefault();
         }
     });
 
@@ -154,16 +198,3 @@ $('#myModal').ready(function () {
             $('.button1').addClass('disabled');
     });
 });
-
-function loadStripe() {
-    if (document.getElementById("stripeButton").classList.contains('disabled')) {
-        validateName();
-        validateNumber($("#phonenumber").val(), $("#phonenumber-error"));
-        validateRecName();
-        validate();
-    } else {
-        console.log($("#email").val());
-        console.log("clicks on stripe button");
-        $('.stripe-button-el').click();
-    }
-}

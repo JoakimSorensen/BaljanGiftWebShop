@@ -50,16 +50,51 @@
     text-align: center;
 }
 
-.contact-info {
+.contact-info-phone {
     margin: 0 auto;
     border: 2px dashed #8C2C2F;
     background-color: #FFE1D1;
     border-radius: 25px;
-    width: 100%;
-    min-height: 80px;
+    max-width: 100%;
+    min-height: 35px;
+    min-width: 120px;
     text-align: center;
+    vertical-align: middle;
     display: inline-block;
-    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-self: center;
+}
+
+.contact-info-email {
+    margin: 0 auto;
+    border: 2px dashed #8C2C2F;
+    background-color: #FFE1D1;
+    border-radius: 25px;
+    max-width: 100%;
+    min-height: 35px;
+    min-width: 140px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    align-self: center;
+}
+
+.contact-info-post {
+    margin: 0 auto;
+    border: 2px dashed #8C2C2F;
+    background-color: #FFE1D1;
+    border-radius: 25px;
+    max-width: 100%;
+    min-height: 35px;
+    min-width: 130px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
     align-self: center;
 }
 

@@ -104,7 +104,7 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
-.container {
+.card-container {
     border-radius: 5px;
     padding: 20px;
 }

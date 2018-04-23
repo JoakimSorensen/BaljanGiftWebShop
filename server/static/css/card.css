@@ -10,53 +10,55 @@ input[type=text], select, textarea {
     resize: vertical;
 }
 
-.button1{
-    background:#1AAB8A;
-    color:#fff;
-    border:none;
-    position:relative;
-    font-size:1em;
+.button1 {
+    background: #1AAB8A;
+    color: #fff;
+    border: none;
+    position: relative;
+    font-size: 1em;
     padding: 1em;
-    cursor:pointer;
-    transition:800ms ease all;
-    outline:none;
+    cursor: pointer;
+    transition: 800ms ease all;
+    outline: none;
     margin-right: 2em;
     border-radius: 50%;
     height: 6em;
     width: 6em;
 
 }
-.button1:hover:not(.disabled){
-    background:#fff;
-    color:#1AAB8A;
+
+.button1:hover:not(.disabled) {
+    background: #fff;
+    color: #1AAB8A;
     opacity: 0;
 }
-.button1:before,button:after:not(.disabled){
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
+
+.button1:before, button:after:not(.disabled) {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
     background: #1AAB8A;
-    transition:400ms ease all;
-}
-.button1:after:not(.disabled){
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-}
-.button1:hover:before,button:hover:after:not(.disabled){
-    width:100%;
-    transition:800ms ease all;
+    transition: 400ms ease all;
 }
 
-.disabled{
+.button1:after:not(.disabled) {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.button1:hover:before, button:hover:after:not(.disabled) {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+.disabled {
     cursor: not-allowed;
 }
-
-
 
 /*.button {
     background-color: #008CBA; !* Green *!
@@ -82,7 +84,6 @@ input[type=text], select, textarea {
 .button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }*/
-
 
 label {
     padding: 12px 12px 12px 0;
@@ -186,15 +187,15 @@ input[type=submit]:hover {
     height: 350px;
     margin-bottom: 30px;
     border-radius: 25px;
-    padding-right: 0px"
+    padding-right: 0px "
 }
 
 #hider {
-    position:absolute;
+    position: absolute;
     top: 0%;
     left: 0%;
-    width:1600px;
-    height:2000px;
+    width: 1600px;
+    height: 2000px;
     margin-top: -800px; /*set to a negative number 1/2 of your height*/
     margin-left: -500px; /*set to a negative number 1/2 of your width*/
     /*
@@ -207,38 +208,38 @@ input[type=submit]:hover {
 }
 
 #swish {
-    position:absolute;
+    position: absolute;
     top: 50%;
     left: 40%;
-    width:100%;
+    width: 100%;
     max-width: 20em;
-    height:30em;
+    height: 30em;
     margin-top: -5em; /*set to a negative number 1/2 of your height*/
     margin-left: -5em; /*set to a negative number 1/2 of your width*/
     border: 1px solid #ccc;
-    border:  2px solid deepskyblue;
-    z-index:100;
+    border: 2px solid deepskyblue;
+    z-index: 100;
     background-color: #FFFFFF;
     text-align: center;
 }
 
-#swishImage {
+#swish-image {
     width: 15em;
     height: auto;
     margin-top: -1.4em;
 }
 
-#swishFooter {
+#swish-footer {
     z-index: 101;
     position: relative;
     margin-top: 2em;
 }
 
-#swishPhone {
+#swish-phone {
     position: absolute;
 }
 
-#swishContent {
+#swish-content {
     z-index: 101;
     margin-top: -1em;
     width: 19.7em;
@@ -246,15 +247,15 @@ input[type=submit]:hover {
 }
 
 #loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 1s linear infinite; /* Safari */
-  animation: spin 1s linear infinite;
-  display: inline-block;
-  margin-top: 1em;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 1s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-top: 1em;
 }
 
 input.swish-phone-input:focus {
@@ -263,13 +264,21 @@ input.swish-phone-input:focus {
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .gift-information h3 {
@@ -296,7 +305,7 @@ input.swish-phone-input:focus {
     padding-top: 1em;
 }
 
-#swishPhone-form {
+#swish-phone-form {
     width: 100%;
 }
 
@@ -305,7 +314,7 @@ input.swish-phone-input:focus {
     alignment: center;
 }
 
-#buyerPhone {
+#buyer-phone {
     font-size: 1.2vw;
     border: 0;
     width: 80%;
@@ -322,7 +331,7 @@ input.swish-phone-input:focus {
     border: 0;
 }
 
-#swishFooter button {
+#swish-footer button {
     background-color: #38A7E5;
     font-size: 1vw;
     color: #FFFFFF;
@@ -341,9 +350,9 @@ input.swish-phone-input:focus {
 }
 
 #message {
-    height:100px
+    height: 100px
 }
 
-#swishButton {
+#swish-button {
     margin-left: -1.1em;
 }

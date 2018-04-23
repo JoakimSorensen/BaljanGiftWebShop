@@ -4,31 +4,33 @@
 <div id="hider"></div>
 <div id="swish">
     <div id="swish-image-wrapper">
-         <img id="swishImage" src="static/swish.png">
-    <div id="swishPayement">Betalning genomförd!</div>
-    <div id="swishContent">
-        <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
-        <p id="swishPrice"> Pris: {{gift_box.price}}kr </p>
-    </div>
-    <form id="swishPhone-form">
-        <div id="input-wrapper">
-            <input id="buyerPhone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer">
+        <img id="swish-image" src="static/swish.png">
+        <div id="swishPayement">Betalning genomförd!</div>
+        <div id="swish-content">
+            <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
+            <p id="swishPrice"> Pris: {{gift_box.price}}kr </p>
         </div>
-        <div class="error-text" id="swishNumber-error" style="font-size: 0.8vw">Du måste ange ett korrekt telefonnummmer.</div>
+        <form id="swish-phone-form">
+            <div id="input-wrapper">
+                <input id="buyer-phone" type="text" class="swish-phone-input" placeholder="Ange ditt telefonnummer">
+            </div>
+            <div class="error-text" id="swishNumber-error" style="font-size: 0.8vw">Du måste ange ett korrekt
+                telefonnummmer.
+            </div>
 
-        <div id="submit-wrapper">
-        <input class="disabled" id="submit-input" type="submit" value="Betala">
+            <div id="submit-wrapper">
+                <input class="disabled" id="submit-input" type="submit" value="Betala">
+            </div>
+        </form>
+        <div id="loaderMain">
+            <div id="loader"></div>
+            <p>Öppna Swish</p>
         </div>
-    </form>
-    <div id="loaderMain">
-        <div id="loader"></div>
-        <p>Öppna Swish</p>
-    </div>
 
     </div>
 
-    <div id="swishFooter">
-            <button id="closeSwish">Stäng</button>
+    <div id="swish-footer">
+        <button id="closeSwish">Stäng</button>
     </div>
 </div>
 
@@ -37,14 +39,14 @@
         <div class="header">
             <h2 class="uppercase"><b>{{ gift_box.name }}</b></h2>
         </div>
-        <p class="description" >{{ gift_box.description }}</p>
+        <p class="description">{{ gift_box.description }}</p>
         <p> Pris: {{ gift_box.price }}kr </p>
         <p> Gåvan innehåller: </p>
         {% for product in products %}
             <p>{{ product[0] }} {% if product[1] != "" %}(innehåller {{ product[1] }}) {% endif %}</p>
         {% endfor %}
         <p>Utöver produkterna ovan innehåller gåvan ett kort med ett personligt meddelande.
-        Gåvan slås in i ett fint paket.</p>
+            Gåvan slås in i ett fint paket.</p>
     </div>
 
     <div class="col-md-6">
@@ -57,7 +59,7 @@
         <form action="/api/v1/payment_completed" id="orderForm">
             <div hidden class="row">
                 <div class="col-75">
-                    <input type="text" id="giftbox" name="giftbox" value={{gift_box.id}}>
+                    <input type="text" id="giftbox" name="giftbox" value={{ gift_box.id }}>
                     <input type="text" id="giftbox-price" name="giftbox-price" value={{gift_box.price*100}}>
                 </div>
             </div>
@@ -109,7 +111,7 @@
                     <label for="message">Meddelande</label>
                 </div>
                 <div class="col-75">
-                        <textarea id="message" name="message" placeholder="Skriv din hälsning"></textarea>
+                    <textarea id="message" name="message" placeholder="Skriv din hälsning"></textarea>
                 </div>
             </div>
             <div class="row" id="stripeStuff" float="right">
@@ -117,9 +119,9 @@
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="pk_test_tA2Aq6pmnwXZvAwayRaPnFKm"
                             data-amount={{ gift_box.price * 100 }}
-                            data-name={{ gift_box.name }}
+                                    data-name={{ gift_box.name }}
                             data-image={{ gift_box.image }}
-                            data-locale="auto"
+                                    data-locale="auto"
                             data-currency="sek"
                             data-label="Betala med Kort"
                             data-panel-label="Betala"
@@ -131,15 +133,22 @@
             </div>
         </form>
         <div style="position: relative">
-            <button class="button button1 disabled" type="button" onclick="loadStripe()" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;" id="stripeButton">
+            <button class="button button1 disabled" type="button" onclick="loadStripe()"
+                    style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;"
+                    id="stripeButton">
                 Betala med kort
             </button>
-            <img src="static/credit_card_icon.png" style="height: 5em; width: 5em; position: absolute; z-index: 0; top: 0em; left: 0em; margin-left: -0.7em; margin-top: 1em;">
+            <img alt="Betala med Stripe" src="static/credit_card_icon.png"
+                 style="height: 5em; width: 5em; position: absolute; z-index: 0; top: 0em; left: 0em; margin-left: -0.7em; margin-top: 1em;">
         </div>
 
         <div style="position: relative; padding-bottom: 6em">
-            <button class="button button1 disabled" type="button" style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;" id="swishButton">Betala med Swish</button>
-            <img src="/static/swishicon2.png" style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;">
+            <button class="button button1 disabled" type="button"
+                    style="height: 6em; width: 6em; position: absolute; z-index: 1; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;"
+                    id="swish-button">Betala med Swish
+            </button>
+            <img alt="Betala med Swish" src="/static/swishicon2.png"
+                 style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 8em; margin-left: -1.1em; margin-top: 1em;">
         </div>
 
 

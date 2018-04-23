@@ -1,7 +1,6 @@
 import datetime
-from threading import Thread
 
-from flask import abort, jsonify, redirect, request, url_for, render_template
+from flask import abort, jsonify, redirect, request, url_for
 from flask_login import current_user, logout_user, login_required
 
 from server import app, db
@@ -16,6 +15,7 @@ pub_key = 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm'
 secret_key = 'sk_test_4qrht4gf2vgrO3AeirBd7H7W'
 
 stripe.api_key = secret_key
+
 
 @app.route('/api/v1/users')
 def all_users():
@@ -92,16 +92,18 @@ def user_with_id(id_):
 @app.route('/baljan/api/v1/giftbox/<int:id_>')
 def giftbox_with_id(id_):
     giftbox = GiftBox.query.get(id_)
-    products = db.session.query(Product.name
-            ).filter(GiftBoxProduct.gift_box_id==giftbox.id, Product.id==GiftBoxProduct.product_id
-                    ).all()
+    products = db.session.query(Product.name).filter(
+        GiftBoxProduct.gift_box_id == giftbox.id,
+        Product.id == GiftBoxProduct.product_id
+    ).all()
     if giftbox is not None:
         giftbox_dict = giftbox.to_dict()
         print("Products = ", products)
-        giftbox_dict["products"]  = products
+        giftbox_dict["products"] = products
         return jsonify(giftbox_dict)
 
     return jsonify({"error": "No giftbox with ID: {id_}".format(id_=id_)}), 404
+
 
 @app.route('/api/v1/order/<int:id_>')
 @app.route('/baljan/api/v1/order/<int:id_>')
@@ -164,12 +166,16 @@ def order_with_token_formatted_info(token):
         giftbox = GiftBox.query.filter_by(id=order.giftbox_id).first()
         receiver = Receiver.query.filter_by(id=order.receiver_id).first()
 
-        return jsonify({"giftbox_name": giftbox.name, 
-            "receiver_name": receiver.name,
-            "receiver_phone": receiver.phone,
-            "message": order.message,
-            "price": order.price,
-            "status": order.get_status_text(order.status)})
+        return jsonify(
+            {
+                "giftbox_name": giftbox.name,
+                "receiver_name": receiver.name,
+                "receiver_phone": receiver.phone,
+                "message": order.message,
+                "price": order.price,
+                "status": order.get_status_text(order.status)
+            }
+        )
 
     return jsonify("error")
 
@@ -228,7 +234,7 @@ def add_product_to_giftbox():
     product = Product.query.filter_by(name=product_name).first()
     if not product:
         return jsonify("No product with name {}".format(product_name)), 404
-    giftbox = GiftBoxProduct.add(gift_box_id=giftbox_id, product_id=product.id)
+    GiftBoxProduct.add(gift_box_id=giftbox_id, product_id=product.id)
     return "success"
 
 
@@ -372,14 +378,11 @@ def edit_receiver():
 def edit_order():
     if request.method == "POST":
         order_id = request.form.get('id')
-        buyer = request.form.get('buyer')
         buyer_id = request.form.get('buyer_id')
         price = request.form.get('price')
         date = datetime.datetime.strptime(request.form.get('date'), "%a %b %d %H:%M:%S %Y")
         status = request.form.get('status_')
-        receiver = request.form.get('receiver')
         receiver_id = request.form.get('receiver_id')
-        giftbox = request.form.get('giftbox')
         giftbox_id = request.form.get('giftbox_id')
         message = request.form.get('message')
 
@@ -418,7 +421,7 @@ def add_user():
         if user:
             if password:
                 user.set_password(password)
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create user"}), 500
 
 
@@ -435,7 +438,7 @@ def add_giftbox():
         giftbox = GiftBox.add(description=description, price=price, name=name, image=image)
 
         if giftbox:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create giftbox"}), 500
 
 
@@ -452,7 +455,7 @@ def add_product():
         product = Product.add(allergen=allergen, price=price, name=name, image=image)
 
         if product:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create product"}), 500
 
 
@@ -467,7 +470,7 @@ def add_buyer():
         buyer = Buyer.add(name=name, email=email)
 
         if buyer:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create buyer"}), 500
 
 
@@ -482,7 +485,7 @@ def add_receiver():
         receiver = Receiver.add(name=name, phone=phone)
 
         if receiver:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create receiver"}), 500
 
 
@@ -492,26 +495,19 @@ def add_receiver():
 def add_order():
     if request.method == "POST":
         buyer = Buyer.query.filter_by(id=request.form.get('buyer_id')).first()
-        price = request.form.get('price')
-        date = request.form.get('date')
         status = request.form.get('status_')
         receiver = Receiver.query.filter_by(id=request.form.get('receiver_id')).first()
         giftbox = GiftBox.query.filter_by(id=request.form.get('giftbox_id')).first()
         message = request.form.get('message')
 
-        if not date:
-            date = datetime.datetime.now()
-        else:
-            date = datetime.datetime.strptime(date, "%a %b %d %H:%M:%S %Y")
-
         order = Order.create_order(giftbox, buyer, receiver, message)
-        
+
         if status:
             statuses = [st for st in OrderStatus]
             if int(status) in range(len(statuses) - 1):
                 order.set_status(statuses[int(status)])
         if order:
-            return jsonify("success"), 200 
+            return jsonify("success"), 200
         return jsonify({"error": "Could not create order"}), 500
 
 
@@ -554,9 +550,8 @@ def logout_admin():
 
 def _stripe_charge(token, price):
     stripe.api_key = "sk_test_4qrht4gf2vgrO3AeirBd7H7W"
-    charge = stripe.Charge.create(
+    stripe.Charge.create(
         amount=price,
         currency='sek',
         description='Baljangavan',
         source=token)
-

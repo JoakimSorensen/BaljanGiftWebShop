@@ -28,4 +28,3 @@ class Product(SharedModel):
     def set_image(self, image):
         self.image = image
         db.session.commit()
-

@@ -1,4 +1,8 @@
-
+#order_label {
+    font-family: "Century Gothic";
+    font-size: 4vw;
+    color: #38A7E5;
+}
 
 .order-info-container {
     max-width: 800px;
@@ -7,16 +11,15 @@
     flex-direction: column;
 }
 
-#token_form {
+#token-form {
     padding-top: 20%;
 }
 
-input{
+input {
     box-sizing: border-box;
     position: relative;
     width: fit-content;
 }
-
 
 input.token-input:focus {
     outline-width: 0;
@@ -42,7 +45,7 @@ input.token-input:focus {
 }
 
 .arrow-right {
-	margin-top: 70%;
+    margin-top: 70%;
 }
 
 .guide-icon {
@@ -65,47 +68,91 @@ input.token-input:focus {
 }
 
 .bounce:hover {
-  display: inline-block;
-  position: relative;
-  -moz-animation: bounce 0.3s 0.0s infinite linear;
-  -o-animation: bounce 0.3s 0.0s infinite linear;
-  -webkit-animation: bounce 0.3s 0.0s infinite linear;
-  animation: bounce 0.3s 0.0s infinite linear;
-  colr:000;
+    display: inline-block;
+    position: relative;
+    -moz-animation: bounce 0.3s 0.0s infinite linear;
+    -o-animation: bounce 0.3s 0.0s infinite linear;
+    -webkit-animation: bounce 0.3s 0.0s infinite linear;
+    animation: bounce 0.3s 0.0s infinite linear;
+    colr: 000;
 }
 
 @-webkit-keyframes bounce {
-    0% { top: 0; }
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
-}
-@-moz-keyframes bounce {
-    0% { top:  0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
-}
-@-o-keyframes bounce {
-    0% { top: 0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
-}
-@-ms-keyframes bounce {
-    0% { top: 0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
-}
-@keyframes bounce {
-    0% { top: 0;}
-    50% { top: -0.2em }
-    70% { top: -0.3em }
-    100% { top: 0; }
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
 }
 
-#order_label {
+@-moz-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@-o-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@-ms-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em
+    }
+    70% {
+        top: -0.3em
+    }
+    100% {
+        top: 0;
+    }
+}
+
+#order-label {
     margin-top: 100px;
 }
 

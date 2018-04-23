@@ -12,12 +12,14 @@ class RegistrationForm(FlaskForm):
     is_admin = BooleanField('Admin')
     submit = SubmitField('Register')
 
-    def validate_username(self, username):
+    @staticmethod
+    def validate_username(username):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email):
+    @staticmethod
+    def validate_email(email):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Please use a different email.')

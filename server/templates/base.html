@@ -13,14 +13,15 @@
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
     <link rel="stylesheet" type="text/css" href="/static/css/products.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/guide.css" >
+    <link rel="stylesheet" type="text/css" href="/static/css/guide.css">
     <link rel="stylesheet" type="text/css" href="/static/css/index.css">
     <link rel="stylesheet" type="text/css" href="/static/css/admin_giftbox.css">
     <link rel="stylesheet" type="text/css" href="/static/css/about.css">
     <link rel="stylesheet" type="text/css" href="/static/css/faq.css">
     <link rel="stylesheet" type="text/css" href="/static/css/contact.css">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+          integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
@@ -30,8 +31,8 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]-->
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
     <!--[endif]-->
 </head>
@@ -41,48 +42,55 @@
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
     <header>
-    <div class="container">
-        <a class="nav-button logo-text clickable" id="logotype" href="/">Baljangåvan</a>
-        <nav>
-            <ul>
-				{% if not current_user.is_anonymous %}
-                <li>
-                    <a data-toggle="tooltip" title="Redigera admin användare" href="/baljan/users" class="nav-button clickable uppercase" id="admin-users">Baljörer</a>
-				</li>
-                <li>
-                    <a data-toggle="tooltip" title="Redigera ordrar" href="/baljan/orders" class="nav-button clickable uppercase" id="admin-orders">Ordrar</a>
-				</li>
-                <li>
-                    <a data-toggle="tooltip" title="Redigera gåvor" href="/baljan/giftboxs" class="nav-button clickable uppercase" id="admin-giftboxs">Gåvor</a>
-				</li>
-				<li>
-                    <a data-toggle="tooltip" title="Redigera produkter" href="/baljan/products" class="nav-button clickable uppercase" id="admin-products">Produkter</a>
-				</li>
-				<li>
-                    <a data-toggle="tooltip" title="Redigera köpare" href="/baljan/buyers" class="nav-button clickable uppercase" id="admin-buyers">Köpare</a>
-				</li>
-				<li>
-                    <a data-toggle="tooltip" title="Redigera mottagare" href="/baljan/receivers" class="nav-button clickable uppercase" id="admin-receivers">Mottagare</a>
-				</li>
-                <li>
-					<a data-toggle="tooltip" title="Tillbaka till start" href="{{url_for('logout_admin')}}"
-						class="nav-button" id="logout">Tillbaka</a>
-				</li>
-				{% else %}
-				<li class="nav-item">
-                    <a href="/products" class="nav-button clickable uppercase" id="products">Gåvor</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/guide" class="nav-button clickable uppercase" id="guide">Så funkar det</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/order_info" class="nav-button clickable uppercase" id="order_status">Orderstatus</a>
-                </li>
+        <div class="container">
+            <a class="nav-button logo-text clickable" id="logotype" href="/">Baljangåvan</a>
+            <nav>
+                <ul>
+                    {% if not current_user.is_anonymous %}
+                        <li>
+                            <a data-toggle="tooltip" title="Redigera admin användare" href="/baljan/users"
+                               class="nav-button clickable uppercase" id="admin-users">Baljörer</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="Redigera ordrar" href="/baljan/orders"
+                               class="nav-button clickable uppercase" id="admin-orders">Ordrar</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="Redigera gåvor" href="/baljan/giftboxs"
+                               class="nav-button clickable uppercase" id="admin-giftboxs">Gåvor</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="Redigera produkter" href="/baljan/products"
+                               class="nav-button clickable uppercase" id="admin-products">Produkter</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="Redigera köpare" href="/baljan/buyers"
+                               class="nav-button clickable uppercase" id="admin-buyers">Köpare</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="Redigera mottagare" href="/baljan/receivers"
+                               class="nav-button clickable uppercase" id="admin-receivers">Mottagare</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tooltip" title="Tillbaka till start" href="{{ url_for('logout_admin') }}"
+                               class="nav-button" id="logout">Tillbaka</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="/products" class="nav-button clickable uppercase" id="products">Gåvor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/guide" class="nav-button clickable uppercase" id="guide">Så funkar det</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/order_info" class="nav-button clickable uppercase"
+                               id="order_status">Orderstatus</a>
+                        </li>
 
-				{% endif %}
-            </ul>
-        </nav>
-    </div>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </header>
 
 {% endblock %}
@@ -97,7 +105,7 @@
 <footer>
     <div class="container">
         <div class="row">
-             <div class="col-md-3" align="center">
+            <div class="col-md-3" align="center">
                 <h3>Handla</h3>
                 <a href="/products" class="nav-button clickable-footer" id="products">Gåvor</a><br>
                 <a href="/guide" class="nav-button clickable-footer" id="guide">Så funkar det</a><br>
@@ -111,16 +119,18 @@
             </div>
             <div class="col-md-6" align="center">
                 <h3 class="uppercase">Om Baljangåvan</h3>
-                <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver göra är att skriva mottagarens nummer så löser vi resten.</p>
+                <p>Med Baljangåvan kan du enkelt skicka en fika till nära och kära på universitetet. Allt du behöver
+                    göra är att skriva mottagarens nummer så löser vi resten.</p>
                 <div>
-                    <a target="_blank" title="Följ oss på Facebook" href="https://www.facebook.com/Baljangåvan-1041546605997965/">
+                    <a target="_blank" title="Följ oss på Facebook"
+                       href="https://www.facebook.com/Baljangåvan-1041546605997965/">
                         <img class="social-media" alt="Följ oss på Facebook" src="static/socialMedia/facebook_icon.png">
                     </a>
                     <a target="_blank" title="Följ oss på Snapchat" href="https://www.snapchat.com/add/baljangavan">
                         <img class="social-media" alt="Följ oss på Snapchat" src="static/socialMedia/snapchat_icon.png">
                     </a>
                     <a target="_blank" title="Följ oss på Instagram" href="https://www.instagram.com/baljangavan/">
-                        <img  class="social-media" alt="Följ oss på Instagram" src="static/socialMedia/instagram_icon.png">
+                        <img class="social-media"alt="Följ oss på Instagram" src="static/socialMedia/instagram_icon.png" >
                     </a>
                 </div>
             </div>
@@ -128,7 +138,6 @@
         <div class="legality">©Baljangåvan 2018</div>
     </div>
 </footer>
-
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -186,12 +186,13 @@ nav a{
 }
 
 .active {
-    border-bottom: 2px solid #FFFFFF;
+    border-bottom: 2px solid #8C2C2F;
+    color: #8C2C2F;
 }
 
 .nav-item a:hover {
-    color: #FFFFFF;
-    border-bottom: 2px solid #FFFFFF;
+    color: #8C2C2F;
+    border-bottom: 2px solid #8C2C2F;
     text-decoration: none;
 }
 

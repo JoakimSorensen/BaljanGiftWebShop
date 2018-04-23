@@ -48,14 +48,14 @@ class Order(SharedModel):
 
     # use this for status text representation 
     @classmethod
-    def get_status_text(self, status):
+    def get_status_text(cls, status):
         if isinstance(status, OrderStatus):
-            return {OrderStatus.NOTIFIED: "Ett sms har blivit skickat till mottagaren", 
-                    OrderStatus.PREPARING: "Gåvan håller på att packas av Baljan", 
-                    OrderStatus.RECEIVED: "Gåvan har blivit uthämtad av mottagaren", 
+            return {OrderStatus.NOTIFIED: "Ett sms har blivit skickat till mottagaren",
+                    OrderStatus.PREPARING: "Gåvan håller på att packas av Baljan",
+                    OrderStatus.RECEIVED: "Gåvan har blivit uthämtad av mottagaren",
                     OrderStatus.CANCELED: "Beställningen har blivit avbruten"}[status]
-        raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus,"\
-                " one of {}".format([str(st) for st in OrderStatus]))
+        raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus," \
+                                     " one of {}".format([str(st) for st in OrderStatus]))
 
     def check_token(self, token):
         return self.token == token
@@ -63,27 +63,26 @@ class Order(SharedModel):
     def set_date(self, date):
         self.date = date
         db.session.commit()
-    
+
     def set_price(self, price):
         self.price = price
         db.session.commit()
-    
+
     def set_status(self, status):
-        statuses = [st for st in OrderStatus]
         if not isinstance(status, OrderStatus):
-            raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus,"\
-                    " one of {}".format([str(st) for st in OrderStatus]))
+            raise InvalidStatusException("Status need to be of type server.models.custom_types.OrderStatus," \
+                                         " one of {}".format([str(st) for st in OrderStatus]))
         self.status = status
         db.session.commit()
-    
+
     def set_buyer(self, buyer_id):
         self.buyer_id = buyer_id
         db.session.commit()
-    
+
     def set_receiver(self, receiver_id):
         self.receiver_id = receiver_id
         db.session.commit()
-    
+
     def set_giftbox(self, giftbox_id):
         self.giftbox_id = giftbox_id
         db.session.commit()

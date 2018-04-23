@@ -2,10 +2,12 @@
 <link href="/static/css/admin.css" rel="stylesheet" type="text/css">
 <div id="product-list" class="list-group">
     {% for product in products %}
-        <a data-product-id="{{ product.id }}" class="list-group-item list-group-item-action flex-column align-items-start product">
+        <a data-product-id="{{ product.id }}"
+           class="list-group-item list-group-item-action flex-column align-items-start product">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ product.name }}</h5>
-				<small>Allergen: {{ product.allergen }}</small><br>
+                <small>Allergen: {{ product.allergen }}</small>
+                <br>
                 <small>Pris: {{ product.price }} kr</small>
             </div>
         </a>

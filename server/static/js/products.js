@@ -11,7 +11,7 @@ function handleColClick(event) {
 }
 
 $('#myModal').on('show.bs.modal', function (e) {
-     ide = e.relatedTarget.id;
+    ide = e.relatedTarget.id;
     $('.modal-body').load('/html/card/' + ide);
 });
 

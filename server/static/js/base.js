@@ -27,6 +27,13 @@ page.exit('/products', function (ctx, next) {
     next();
 });
 
+page.exit('*', function(ctx, next) {
+    console.log("Going to next page");
+    next();
+    window.scrollBy(0,-1000);
+
+});
+
 page('/guide', function () {
     var url = "/html/guide";
     loadURL(url);
@@ -151,8 +158,4 @@ $('.clickable-footer').on('click', function(event){
 
 $('.no-underline').on('click', function() {
     $('.clickable').removeClass('active');
-});
-
-$('.nav-button').on('click', function(){
-    window.scrollBy(0,-1000);
 });

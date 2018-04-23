@@ -47,7 +47,7 @@ def payment_completed():
     message = request.values['message']
 
     receiver = Receiver.create_receiver(receiver_name, receiver_phone)
-    buyer = Buyer.add(name=request.values["name"], email=request.values["stripeEmail"])
+    buyer = Buyer.add(name=request.values["name"], email=request.values["email"])
     giftbox = GiftBox.query.get(request.values["giftbox"])
 
     order = Order.create_order(giftbox, buyer, receiver, message)

@@ -21,5 +21,5 @@ def send_order_status_change_email(order):
 def _send_email(email_body, subject, recipient):
     with app.app_context():
         message = Message(subject, sender="baljangavan@gmail.com", recipients=[recipient])
-        message.body = email_body
+        message.html = email_body
         mail.send(message)

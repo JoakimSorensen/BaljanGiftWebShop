@@ -1,4 +1,4 @@
-#order-label {
+#order_label {
     font-family: "Century Gothic";
     font-size: 4vw;
     color: #38A7E5;
@@ -7,6 +7,8 @@
 .order-info-container {
     max-width: 800px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #token-form {
@@ -24,7 +26,6 @@ input.token-input:focus {
 }
 
 .guide-text-container {
-    font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: normal;
@@ -35,7 +36,8 @@ input.token-input:focus {
 }
 
 .guide-text {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid lightgray;
+    min-height: 105px;
 }
 
 .guide-image {
@@ -62,7 +64,7 @@ input.token-input:focus {
 }
 
 .canceled {
-    background-color: red;
+    background-color: #8C2C2F;
 }
 
 .bounce:hover {
@@ -150,10 +152,6 @@ input.token-input:focus {
     }
 }
 
-.flex-form input {
-    font-family: 'Open sans', sans-serif;
-}
-
 #order-label {
     margin-top: 100px;
 }
@@ -167,12 +165,13 @@ input.token-input:focus {
 }
 
 #submit_btn {
-    background-color: #468ca9;
-    font-size: 250%;
+    background-color: #F2A78B;
+    font-size: 200%;
     color: #FFFFFF;
     border: 0;
     height: 200%;
     padding-bottom: 1%;
+    border-radius: 10px;
 }
 
 .token-input-inner {
@@ -188,3 +187,34 @@ input.token-input:focus {
     margin-top: 10%;
 
 }
+
+#error-text {
+    color: #8C2C2F;
+    padding-top: 30px;
+}
+
+#token-result {
+    max-width: 400px;
+    text-align: left;
+    margin: auto;
+    padding: 30px;
+    border: 2px dashed #8C2C2F;
+    border-radius: 25px;
+
+}
+
+.vertical-line {
+    border-left: 2px dashed #8C2C2F;
+    height: 50px;
+    align-self: center;
+
+}
+
+#status-0-circle, #status-1-circle, #status-2-circle {
+    opacity: 0.4;
+}
+
+#status-0, #status-1, #status-2 {
+    opacity: 0.4;
+}
+

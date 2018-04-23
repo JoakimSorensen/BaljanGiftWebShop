@@ -4,20 +4,17 @@
 }
 
 .title-wrapper {
+    height: 80px;
+    margin-top: 40px;
     text-align: center;
-    height: 200px;
 
-}
-
-.title-wrapper h1 {
-    margin-top: 80px;
 }
 
 .faq-wrapper {
-    text-align: center;
+    text-align: left;
     width: 100%;
     padding: 30px 20px 30px 20px;
-    background-color: white;
+    margin-top: 60px;
 }
 
 .question {
@@ -27,3 +24,29 @@
 .answer {
     font-style: italic;
 }
+
+.question-wrapper {
+    border-top: 2px solid black;
+    min-height: 3.5em;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.answer-wrapper {
+    padding: 10px;
+}
+
+.plus, .minus {
+    border-top: 2px solid black;
+    padding-top: 15px;
+    text-align: right;
+    cursor: pointer;
+
+}
+
+.plus, .minus p {
+    font-size: 16px;
+    margin-right: 0;
+}
+
+

@@ -118,15 +118,42 @@ $.delete = function (url, data, callback, type) {
 page.start();
 
 $(document).ready(function () {
-    $('.clickable').on('click', function () {
-        var id = this.id;
-        console.log(id);
-        if (id === 'logotype') {
-            $('.clickable').removeClass('active');
-        } else {
-            $('.clickable').removeClass('active');
-            $(this).addClass('active');
-        }
+    $('.clickable').on('click', handleNavbarClick) ;
 
-    });
+    	});
+
+function handleNavbarClick(event){
+    	if (event.target.id === 'logotype') {
+    		$('.clickable').removeClass('active');
+		} else {
+    		$('.clickable').removeClass('active');
+    		var path = event.target.pathname
+        var target = $('.clickable[href="' + path + '"]');
+        target.addClass('active');
+		};
+}
+
+$(window).on('load', reloadNavbar);
+
+function reloadNavbar() {
+	if (window.location.pathname === '/') {
+	    $('.clickable').removeClass('active');
+	} else {
+	    $('.clickable').removeClass('active');
+	    var path = window.location.pathname;
+	    var target = $('.clickable[href="'+ path +'"]');
+	    target.addClass('active');
+	};
+};
+
+$('.clickable-footer').on('click', function(event){
+    handleNavbarClick(event);
+});
+
+$('.no-underline').on('click', function() {
+    $('.clickable').removeClass('active');
+});
+
+$('.nav-button').on('click', function(){
+    window.scrollBy(0,-1000);
 });

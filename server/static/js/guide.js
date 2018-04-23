@@ -25,3 +25,9 @@ $(window).on('resize', function () {
     ;
 });
 
+$('.get-started').on('click', function(event) {
+    $.getScript('/base.js', function () {
+        handleNavbarClick(event);
+    });
+});
+

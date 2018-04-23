@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#error-text").hide();
-    $("#token-result").hide();
+    $("#token-result, .vertical-line").hide();
     $("#status-container").hide();
 });
 
@@ -11,15 +11,16 @@ $("#token-form").submit(function (ev) {
     var token_from_input = $("#token_input").val();
     var url = "api/v1/order_token_formatted_info/" + token_from_input;
 
-    $.getJSON(url, function (data) {
-        if (data === "error") {
-            $("#error-text").show();
-            $("#token-result").hide();
-        } else {
-            $("#token-result").show();
+        $.getJSON(url, function(data){
+            if(data === "error"){
+                $("#error-text").show();
+                $("#token-result, .vertical-line").hide();
+	 			$("#status-container").hide();
+            }else{
+            $("#token-result,.vertical-line").slideDown();
             $("#error-text").hide();
-
-
+			
+			
             retrieveData(data);
 
         }
@@ -61,10 +62,14 @@ function retrieveData(data) {
 
 function setStatusSelect(id) {
     document.getElementById(id).style.color = "green";
-    document.getElementById(id + "-circle").style.backgroundColor = "green";
+    document.getElementById(id).style.opacity = "1";
+	document.getElementById(id + "-circle").style.backgroundColor = "green";
+	document.getElementById(id + "-circle").style.opacity = "1";
 }
 
 function resetStatusSelect(id) {
     document.getElementById(id).style.color = "";
-    document.getElementById(id + "-circle").style.backgroundColor = "";
+    document.getElementById(id).style.opacity = "";
+	document.getElementById(id + "-circle").style.backgroundColor = "";
+	document.getElementById(id + "-circle").style.opacity = "";
 }

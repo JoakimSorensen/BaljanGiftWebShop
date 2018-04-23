@@ -77,3 +77,4 @@ def guide():
 @app.route('/html/order_info')
 def order_info():
     return render_template('order_info.html')
+

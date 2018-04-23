@@ -24,6 +24,7 @@
           integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
 
@@ -35,14 +36,14 @@
 
     <!--[endif]-->
 </head>
-<body style="background-color: #FFFFFF">
+<body class="color">
 
 {% block nav %}
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
     <header>
         <div class="container">
-            <a class="logo-text" href="/">Baljangåvan</a>
+            <a class="nav-button logo-text clickable" id="logotype" href="/">Baljangåvan</a>
             <nav>
                 <ul>
                     {% if not current_user.is_anonymous %}
@@ -106,15 +107,15 @@
         <div class="row">
             <div class="col-md-3" align="center">
                 <h3>Handla</h3>
-                <a href="/products" class="nav-button" id="products">Gåvor</a><br>
-                <a href="/guide" class="nav-button" id="guide">Så funkar det</a><br>
+                <a href="/products" class="nav-button clickable-footer" id="products">Gåvor</a><br>
+                <a href="/guide" class="nav-button clickable-footer" id="guide">Så funkar det</a><br>
             </div>
             <div class="col-md-3" align="center">
                 <h3>Mer info</h3>
-                <a href="/order_info" class="nav-button" id="order_status">Orderstatus</a><br>
-                <a href="/about" class="nav-button" id="about">Vilka är vi?</a><br>
-                <a href="/faq" class="nav-button" id="faq">Vanliga frågor</a><br>
-                <a href="/contact" class="nav-button" id="contact">Kontakt</a><br>
+                <a href="/order_info" class="nav-button clickable-footer" id="order_status">Orderstatus</a><br>
+                <a href="/about" class="nav-button no-underline" id="about">Vilka är vi?</a><br>
+                <a href="/faq" class="nav-button no-underline" id="faq">Vanliga frågor</a><br>
+                <a href="/contact" class="nav-button no-underline" id="contact">Kontakt</a><br>
             </div>
             <div class="col-md-6" align="center">
                 <h3 class="uppercase">Om Baljangåvan</h3>
@@ -123,14 +124,13 @@
                 <div>
                     <a target="_blank" title="Följ oss på Facebook"
                        href="https://www.facebook.com/Baljangåvan-1041546605997965/">
-                        <img alt="Följ oss på Facebook" src="static/socialMedia/facebook_icon.png" style="height: 70px">
+                        <img class="social-media" alt="Följ oss på Facebook" src="static/socialMedia/facebook_icon.png">
                     </a>
                     <a target="_blank" title="Följ oss på Snapchat" href="https://www.snapchat.com/add/baljangavan">
-                        <img alt="Följ oss på Snapchat" src="static/socialMedia/snapchat_icon.png" style="height: 70px">
+                        <img class="social-media" alt="Följ oss på Snapchat" src="static/socialMedia/snapchat_icon.png">
                     </a>
                     <a target="_blank" title="Följ oss på Instagram" href="https://www.instagram.com/baljangavan/">
-                        <img alt="Följ oss på Instagram" src="static/socialMedia/instagram_icon.png"
-                             style="height: 70px">
+                        <img class="social-media"alt="Följ oss på Instagram" src="static/socialMedia/instagram_icon.png" >
                     </a>
                 </div>
             </div>

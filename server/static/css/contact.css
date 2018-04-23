@@ -3,9 +3,11 @@
 }
 
 .contact-wrapper {
-    height: auto;
-    width: 500px;
     text-align: left;
+    height: auto;
+    padding: 30px 20px 30px 20px;
+    width: 100%;
+    margin-top: 60px;
 }
 
 .contact-top {
@@ -32,4 +34,40 @@
 .contact-bottom {
     width: 500px;
     border: 1px solid #333;
+}
+
+.contact-img {
+    cursor: pointer;
+    width: 70px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.contact-text-short {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 16px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact-info {
+    margin: 0 auto;
+    border: 2px dashed #8C2C2F;
+    background-color: #FFE1D1;
+    border-radius: 25px;
+    width: 100%;
+    min-height: 80px;
+    text-align: center;
+    display: inline-block;
+    padding: 20px;
+    align-self: center;
+}
+
+.center-div {
+    text-align: center;
+}
+
+.title-wrapper {
+    text-align: center;
+    margin-top: 20px;
 }

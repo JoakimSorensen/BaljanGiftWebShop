@@ -8,7 +8,7 @@
         <div id="swishPayement">Betalning genomförd!</div>
         <div id="swish-content">
             <h2 id="swishGiftbox"><b>{{ gift_box.name }}</b></h2>
-            <p id="swishPrice"> Pris: {{ gift_box.price }}kr </p>
+            <p id="swishPrice"> Pris: {{gift_box.price}}kr </p>
         </div>
         <form id="swish-phone-form">
             <div id="input-wrapper">
@@ -60,6 +60,7 @@
             <div hidden class="row">
                 <div class="col-75">
                     <input type="text" id="giftbox" name="giftbox" value={{ gift_box.id }}>
+                    <input type="text" id="giftbox-price" name="giftbox-price" value={{gift_box.price*100}}>
                 </div>
             </div>
             <div class="row">
@@ -137,8 +138,8 @@
                     id="stripeButton">
                 Betala med kort
             </button>
-            <img alt="Betala med Stripe" src="static/creditcard.png"
-                 style="height: 6em; width: 6em; position: absolute; z-index: 0; top: 0em; left: 0em; margin-left: -1.1em; margin-top: 1em;">
+            <img alt="Betala med Stripe" src="static/credit_card_icon.png"
+                 style="height: 5em; width: 5em; position: absolute; z-index: 0; top: 0em; left: 0em; margin-left: -0.7em; margin-top: 1em;">
         </div>
 
         <div style="position: relative; padding-bottom: 6em">

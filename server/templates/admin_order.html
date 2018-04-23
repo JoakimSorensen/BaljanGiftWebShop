@@ -5,18 +5,23 @@
 <button id="token-button" class="admin-button">Sök</button>
 <div id="order-list" class="list-group">
     {% for order in orders %}
-	<a data-order-id="{{ order.id }}" class="list-group-item list-group-item-action flex-column align-items-start order">
+        <a data-order-id="{{ order.id }}"
+           class="list-group-item list-group-item-action flex-column align-items-start order">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ order.date }}</h5>
-				<small>id: {{ order.id }}</small><br>
+                <small>id: {{ order.id }}</small><br>
 				<small>token: {{ order.token }}, </small>
-				<small>pris: {{ order.price }}</small><br>
-                <small>köpare: {{ order.buyer }}, </small>
-				<small>mottagare:{{ order.receiver }}</small><br><br>
+                <small>pris: {{ order.price }}</small>
+                <br>
+                <small>köpare: {{ order.buyer }},</small>
+                <small>mottagare:{{ order.receiver }}</small>
+                <br><br>
                 <p>status: {{ order.get_status_text(order.status) }}</p>
-				<button data-order-id="{{ order.id }}" class="status-button admin-button">Ändra status</button>
-				<button id="send-status-{{ order.id }}" data-order-id="{{ order.id }}" class="send-status-button admin-button">Notifiera status</button>
-				<p id="send-status-wait-{{ order.id }}" class="send-status-wait">Vänta en sekund..</p>
+                <button data-order-id="{{ order.id }}" class="status-button admin-button">Ändra status</button>
+                <button id="send-status-{{ order.id }}" data-order-id="{{ order.id }}"
+                        class="send-status-button admin-button">Notifiera status
+                </button>
+                <p id="send-status-wait-{{ order.id }}" class="send-status-wait">Vänta en sekund..</p>
             </div>
         </a>
     {% endfor %}

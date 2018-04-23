@@ -1,17 +1,16 @@
-
 $('[data-toggle="tooltip"]').tooltip();
 
 function swishData() {
     console.log("Performing swish payment");
     var name = $("#name").val();
-    var rec_name = $("#rec-name").val();
+    var recName = $("#rec-name").val();
     var number = $("#phonenumber").val();
     var email = $("#email").val();
     var message = $("#message").val();
     var giftbox = $("#giftbox").val();
 
     var data = {
-        "rec-name": rec_name,
+        "rec-name": recName,
         "phonenumber": number,
         "message": message,
         "email": email,
@@ -19,14 +18,14 @@ function swishData() {
         "giftbox": giftbox
     };
 
-    $.get("/api/v1/swish_payment_completed/", data, function(res) {
+    $.get("/api/v1/swish_payment_completed/", data, function (res) {
         var token = res["token"];
         window.location.href = "/order?token=" + token;
     });
 
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     $("#name-error").hide();
     $("#rec-name-error").hide();
     $("#phonenumber-error").hide();
@@ -38,19 +37,19 @@ $(document).ready(function() {
     $("#swish").hide();
 
 
-    $("#swishButton").on("click", function () {
+    $("#swish-button").on("click", function () {
         /*swishData();*/
-        if ( document.getElementById("swishButton").classList.contains('disabled')) {
+        if (document.getElementById("swish-button").classList.contains('disabled')) {
             validateName();
-            validateNumber($("#phonenumber").val(),$("#phonenumber-error"));
+            validateNumber($("#phonenumber").val(), $("#phonenumber-error"));
             validateRecName();
             validate();
-        }else{
+        } else {
             $("#hider").fadeIn("slow");
             $("#swish").fadeIn("slow");
             $("#loaderMain").hide();
             $("#swishPayement").hide();
-            $("#swishPhone-form").show();
+            $("#swish-phone-form").show();
 
         }
 
@@ -63,40 +62,37 @@ $(document).ready(function() {
 
 
     $("#submit-input").on("submit", function () {
-        console.log($("#buyerPhone").val());
+        console.log($("#buyer-phone").val());
     });
 
-    $("#swishPhone-form").submit(function(ev){
+    $("#swish-phone-form").submit(function (ev) {
 
         ev.preventDefault();
 
-        var lengthOk = $("#buyerPhone").val().length == 10;
-        var numbersOk = /^[0-9]*$/.test($("#buyerPhone").val());
+        var lengthOk = $("#buyer-phone").val().length == 10;
+        var numbersOk = /^[0-9]*$/.test($("#buyer-phone").val());
 
-        validateNumber($("#buyerPhone").val(), $("#swishNumber-error"));
+        validateNumber($("#buyer-phone").val(), $("#swishNumber-error"));
 
-        if (lengthOk && numbersOk){
-        $("#swishPhone-form").hide();
-        $("#loaderMain").show();
+        if (lengthOk && numbersOk) {
+            $("#swish-phone-form").hide();
+            $("#loaderMain").show();
             setTimeout(function () {
-            $("#loaderMain").hide();
-            $("#swishPayement").show();
-            swishData();
+                $("#loaderMain").hide();
+                $("#swishPayement").show();
+                swishData();
 
-            setTimeout(function () {
-                $("#swish").hide();
-                $("#hider").hide();
+                setTimeout(function () {
+                    $("#swish").hide();
+                    $("#hider").hide();
 
-            },1500);
+                }, 1500);
 
-        },5000);
+            }, 5000);
 
-        }else{
+        } else {
             console.log("failure");
-        };
-
-
-
+        }
     });
 
 });
@@ -105,20 +101,18 @@ function validateName() {
     var name = $("#name").val();
     if (name == "") {
         $("#name-error").show();
-    }else{
+    } else {
         $("#name-error").hide();
-    };
-};
-
+    }
+}
 function validateRecName() {
     var name = $("#rec-name").val();
     if (name == "") {
         $("#rec-name-error").show();
-    }else{
+    } else {
         $("#rec-name-error").hide();
-    };
-};
-
+    }
+}
 function validateNumber(number, errorDiv) {
 
     if ((/^[0-9]*$/.test(number)) && (number.length == 10)) {
@@ -128,8 +122,8 @@ function validateNumber(number, errorDiv) {
     }
 
 
-
 }
+
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
@@ -152,10 +146,9 @@ function validate() {
 $('#stripeStuff').hide();
 
 
-
 $('#myModal').ready(function () {
     $('.inputfield').keyup(function () {
-        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 && validate() )
+        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 && validate())
             $('.button1').removeClass('disabled');
         else
             $('.button1').addClass('disabled');
@@ -163,7 +156,7 @@ $('#myModal').ready(function () {
 });
 
 function loadStripe() {
-    if ( document.getElementById("stripeButton").classList.contains('disabled')) {
+    if (document.getElementById("stripeButton").classList.contains('disabled')) {
         validateName();
         validateNumber($("#phonenumber").val(), $("#phonenumber-error"));
         validateRecName();
@@ -172,4 +165,5 @@ function loadStripe() {
         console.log($("#email").val());
         console.log("clicks on stripe button");
         $('.stripe-button-el').click();
-    }}
+    }
+}

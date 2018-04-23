@@ -7,8 +7,8 @@ from server import app
 # --–---------------------
 # Templating routes
 # --–---------------------
-from server.forms import AdminLoginForm, RegistrationForm
-from server.models import User, Order, GiftBox, GiftBoxProduct, Product, Receiver, Buyer
+from server.forms import AdminLoginForm
+from server.models import User, Order, GiftBox, Product, Receiver, Buyer
 
 
 @app.route('/baljan', defaults={'path': ''})

@@ -3,11 +3,11 @@
     height: 100%;
 }
 
-#price_label {
+#price-label {
     color: #FFFFFF;
 }
 
-#name_label {
+#name-label {
     color: #FFFFFF;
     font-size: 18pt;
     margin-top: 30%;
@@ -109,7 +109,6 @@
     -webkit-transition: all 0.35s;
     transition: all 0.35s;
 }
-
 
 .hovereffect h2 {
     text-transform: uppercase;

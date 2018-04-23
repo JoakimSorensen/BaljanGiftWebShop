@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError
-from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.validators import Email, EqualTo
 from server.models import User
 
 
@@ -12,12 +12,14 @@ class EditUserForm(FlaskForm):
     is_admin = BooleanField('Admin')
     submit = SubmitField('Spara')
 
-    def validate_username(self, username):
+    @staticmethod
+    def validate_username(username):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email):
+    @staticmethod
+    def validate_email(email):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Please use a different email.')

@@ -39,7 +39,7 @@ $(document).ready(function () {
     var handler = StripeCheckout.configure({
         key: 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm',
         locale: 'auto',
-        panelLabel: "Betala med kort",
+        panelLabel: "Betala",
         currency: "sek",
         zipCode: false,
         allowRememberMe: false,

@@ -11,7 +11,7 @@ input[type=text], select, textarea {
 }
 
 .button1 {
-    background: #1AAB8A;
+    background: #73906A;
     color: #fff;
     border: none;
     position: relative;
@@ -21,7 +21,7 @@ input[type=text], select, textarea {
     transition: 800ms ease all;
     outline: none;
     margin-right: 2em;
-    border-radius: 50%;
+    border-radius: 20px;
     height: 6em;
     width: 6em;
 
@@ -98,6 +98,7 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     float: right;
+    opacity: 0.5;
 }
 
 input[type=submit]:hover {
@@ -288,7 +289,6 @@ input.swish-phone-input:focus {
 }
 
 .gift-information h2 {
-    font: 18pt Georgia;
     text-transform: uppercase;
 }
 
@@ -355,4 +355,8 @@ input.swish-phone-input:focus {
 
 #swish-button {
     margin-left: -1.1em;
+}
+
+.input-background {
+    background-color: #fef2ef;
 }

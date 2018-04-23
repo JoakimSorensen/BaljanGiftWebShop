@@ -1,18 +1,28 @@
-<div>
-    <h1>Tack för din order!</h1>
-    Vi har mottagit din order och kommer börja packa den direkt. Du bör få en orderbekräftelse i din
-    mail, {{ order.buyer.email }}, snart.
-    Mottagaren kommer nu få ett sms med information kring uthämtning samt sin unika uthämtningskod.
-</div>
-<div>
-    <h3> Ordersummering </h3>
-    <p>Datum: {{ order.date }}</p>
-    <p>Pris: {{ order.price }}</p>
-    <p>Orderstatus: {{ order.get_status_text(order.status) }}</p>
-    <p>Mottagare namn: {{ order.receiver.name }}</p>
-    <p>Mottagarens telefonnummer: {{ order.receiver.phone }}</p>
-    <p>Meddelande: {{ order.message }}</p>
-    <p>Ordernummer: {{ order.token }}</p>
-</div>
+<div class="container wrapper">
+    <div class="order-title">
+        <h1>Tack för din order!</h1>
+        <p>Vi har mottagit din order och kommer börja packa den direkt. Du bör få en orderbekräftelse i din
+            mail, {{ order.buyer.email }}, snart.
+            Mottagaren kommer nu få ett sms med information kring uthämtning samt sin unika uthämtningskod.</p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3> Ordersummering </h3>
+            <p>Datum: {{ order.date }}</p>
+            <p>Pris: {{ order.price }}</p>
+            <p>Orderstatus: {{ order.get_status_text(order.status) }}</p>
+            <p>Mottagare namn: {{ order.receiver.name }}</p>
+            <p>Mottagarens telefonnummer: {{ order.receiver.phone }}</p>
+            <p>Meddelande: {{ order.message }}</p>
+            <p>Ordernummer: {{ order.token }}</p>
 
+        </div>
+        <div class="col-md-6">
+            <div>
+                <img alt="Gåva: {{ gift_box.name }}" src={{ gift_box.image }} class="order-image">
+            </div>
+        </div>
+    </div>
+
+</div>
 

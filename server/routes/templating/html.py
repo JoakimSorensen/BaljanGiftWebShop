@@ -40,7 +40,8 @@ def card(gift_box_id):
 @app.route('/html/order/<int:order_id>')
 def order_view(order_id):
     order = Order.query.get(order_id)
-    return render_template('order.html', order=order)
+    gift_box = order.giftbox
+    return render_template('order.html', order=order, giftbox=gift_box)
 
 
 @app.route('/html/order')
@@ -50,8 +51,8 @@ def order_view_from_hash():
     order = Order.query.filter_by(token=token).first()
     if order is None:
         return render_template('token_not_found.html')
-
-    return render_template('order.html', order=order)
+    gift_box = order.giftbox
+    return render_template('order.html', order=order, gift_box=gift_box)
 
 
 @app.route('/html/faq')

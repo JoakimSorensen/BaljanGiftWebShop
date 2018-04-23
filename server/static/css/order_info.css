@@ -61,7 +61,7 @@ input.token-input:focus {
 }
 
 .canceled {
-    background-color: red;
+    background-color: #8C2C2F;
 }
 
 .bounce:hover {
@@ -118,7 +118,7 @@ input.token-input:focus {
 }
 
 #submit_btn {
-    background-color: #468ca9;
+    background-color: #F2A78B;
     font-size: 200%;
     color: #FFFFFF;
     border: 0;
@@ -142,7 +142,7 @@ input.token-input:focus {
 }
 
 #error-text {
-    color: crimson;
+    color: #8C2C2F;
     padding-top: 30px;
 }
 
@@ -151,13 +151,13 @@ input.token-input:focus {
     text-align: left;
     margin: auto;
     padding: 30px;
-    border: 2px dashed #eb976f;
+    border: 2px dashed #8C2C2F;
     border-radius: 25px;
 
 }
 
 .vertical-line {
-    border-left: 2px dashed #eb976f;
+    border-left: 2px dashed #8C2C2F;
     height: 50px;
     align-self: center;
 

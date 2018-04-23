@@ -56,9 +56,6 @@
 
 }
 
-#surprise {
-    margin-left: 30px;
-}
 
 .vl {
     margin-top: 20px;
@@ -104,6 +101,11 @@
 
 .first-col {
     width: 4.16666667%;
+}
+
+.guide-header {
+    text-align: center;
+    margin-top: 100px;
 }
 
 

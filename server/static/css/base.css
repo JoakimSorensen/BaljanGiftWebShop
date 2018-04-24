@@ -90,7 +90,7 @@ a {
 .logo-text {
     display: inline-block;
     float: left;
-    margin-left: 50px;
+    margin-left: 5px;
     color: #FFFFFF !important;
     font-size: 22pt;
     font-family: 'Gloria Hallelujah', cursive;
@@ -167,7 +167,7 @@ nav a {
 
 @media (max-width: 788px) {
     nav a {
-        font-size: 1em;
+        font-size: 0.8em;
     }
 
     .logo-text {

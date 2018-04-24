@@ -35,7 +35,6 @@ $(document).ready(function () {
 
     $("#hider").hide();
     $("#swish").hide();
-
     var handler = StripeCheckout.configure({
         key: 'pk_test_tA2Aq6pmnwXZvAwayRaPnFKm',
         locale: 'auto',
@@ -44,6 +43,8 @@ $(document).ready(function () {
         zipCode: false,
         allowRememberMe: false,
         token: function(token) {
+            $('#myModal').modal('hide');
+            $('.modal-backdrop').remove();
             var data = {
                 "stripeToken": token.id,
                 "rec-name": $("#rec-name").val(),
@@ -54,7 +55,9 @@ $(document).ready(function () {
                 "giftbox": $("#giftbox").val(),
                 "giftbox-price": $("#giftbox-price").val()
             };
+            $.blockUI({ message: '<h1>Vänta ett ögonblick...</h1>' });
             $.post("/api/v1/payment_completed/", data, function(res) {
+                $.unblockUI();
                 var token = res["token"];
                 window.location.href = "/order?token=" + token;
             });

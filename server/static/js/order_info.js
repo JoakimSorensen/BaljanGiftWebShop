@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#error-text").hide();
     $("#token-result, .vertical-line").hide();
     $("#status-container").hide();
+    $("#status-container-canceled").hide();
 });
 
 
@@ -12,10 +13,11 @@ $("#token-form").submit(function (ev) {
     var url = "api/v1/order_token_formatted_info/" + token_from_input;
 
         $.getJSON(url, function(data){
+	 		$("#status-container").hide();
+    		$("#status-container-canceled").hide();
             if(data === "error"){
                 $("#error-text").show();
                 $("#token-result, .vertical-line").hide();
-	 			$("#status-container").hide();
             }else{
             $("#token-result,.vertical-line").slideDown();
             $("#error-text").hide();

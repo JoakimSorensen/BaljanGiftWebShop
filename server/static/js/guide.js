@@ -15,13 +15,6 @@ $(document).ready(function () {
 
 });
 
-$(window).on('resize', function () {
-    if ($(window).width() < 1000) {
-        $(".arrow-img").hide();
-    } else {
-        $(".arrow-img").show();
-    }
-});
 
 $('.get-started').on('click', function(event) {
     $.getScript('/base.js', function () {

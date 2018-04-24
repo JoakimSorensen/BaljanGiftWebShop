@@ -74,7 +74,7 @@
     }
 
     .arrow-img {
-        width: 90%;
+        display: none;
     }
 }
 
@@ -111,4 +111,6 @@
 #step-3 {
     margin-left: 20%;
 }
+
+
 

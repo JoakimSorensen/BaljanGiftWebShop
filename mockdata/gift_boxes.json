@@ -1,44 +1,44 @@
 [
   {
-    "name": "Afternoon Tea",
-    "price": "29",
+    "name": "Klassiker",
+    "price": "19",
     "description": "Det självklara valet",
-    "image": "static/products/afternoon_tea.jpeg",
-    "products": ["Te"]
+    "image": "static/products/produkt1.jpg",
+    "products": ["Kaffe", "Chokladboll"]
   },
   {
-    "name": "Klassiker",
-    "price": "39",
+    "name": "Klassiker+",
+    "price": "29",
     "description": "När det ska vara extra allt",
-    "image": "static/products/klassiker.jpeg",
-    "products": ["Dammsugare", "Kaffe"]
+    "image": "static/products/produkt2.jpg",
+    "products": ["Mazarin", "Kaffe", "Chokladboll"]
   },
   {
     "name": "Freddes favorit",
-    "price": "39",
-    "description": "När man är sötsugen",
-    "image": "static/products/freddes_favvo.jpeg",
-    "products": ["Dammsugare", "Chokladboll"]
+    "price": "29",
+    "description": "När man är ordentligt sötsugen",
+    "image": "static/products/produkt3.jpg",
+    "products": ["Hallongrotta", "Chokladboll", "Mazarin"]
   },
   {
     "name": "Hjärtegull",
-    "price": "49",
+    "price": "29",
     "description": "Den perfekta kärlekshälsningen",
-    "image": "static/products/dejt.jpeg",
-    "products": ["Chokladboll", "Biskvi"]
+    "image": "static/products/produkt4.jpg",
+    "products": ["Chokladboll", "Mazarin"]
   },
   {
-    "name": "Tentapluggaren",
-    "price": "49",
-    "description": "Håll ut",
-    "image": "static/products/tentapluggaren.jpeg",
-    "products": ["Te", "Biskvi"]
+    "name": "Dejten",
+    "price": "39",
+    "description": "Den perfekta kombinationen",
+    "image": "static/products/produkt5.jpg",
+    "products": ["Te", "Kaffe", "Hallongrotta", "Mazarin"]
   },
   {
     "name": "Inga gränser",
-    "price": "59",
-    "description": "Biskvier och te, bara bokklubben som saknas",
-    "image": "http://media.renewmag.se/2014/03/semla-.jpg",
-    "products": ["Te", "Biskvi"]
+    "price": "49",
+    "description": "Mycket av allt till någon du tycker om",
+    "image": "static/products/produkt6.jpg",
+    "products": ["Mazarin", "Hallongrotta", "Chokladboll", "Kaffe", "Te"]
   }
 ]

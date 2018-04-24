@@ -50,31 +50,31 @@
             <nav>
                 <ul>
                     {% if not current_user.is_anonymous %}
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Redigera admin användare" href="/baljan/users"
                                class="nav-button clickable uppercase" id="admin-users">Baljörer</a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Redigera ordrar" href="/baljan/orders"
                                class="nav-button clickable uppercase" id="admin-orders">Ordrar</a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Redigera gåvor" href="/baljan/giftboxs"
                                class="nav-button clickable uppercase" id="admin-giftboxs">Gåvor</a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Redigera produkter" href="/baljan/products"
                                class="nav-button clickable uppercase" id="admin-products">Produkter</a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Redigera köpare" href="/baljan/buyers"
                                class="nav-button clickable uppercase" id="admin-buyers">Köpare</a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Redigera mottagare" href="/baljan/receivers"
                                class="nav-button clickable uppercase" id="admin-receivers">Mottagare</a>
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a data-toggle="tooltip" title="Tillbaka till start" href="{{ url_for('logout_admin') }}"
                                class="nav-button" id="logout">Tillbaka</a>
                         </li>

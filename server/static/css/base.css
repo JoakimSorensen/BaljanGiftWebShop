@@ -191,7 +191,7 @@ nav a {
     color: #8C2C2F !important;
 }
 
-.nav-button:hover {
+.nav-item a:hover {
     color: #8C2C2F !important;
     border-bottom: 2px solid #8C2C2F;
     text-decoration: none;

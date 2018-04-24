@@ -125,14 +125,17 @@ $(document).ready(function () {
     });
 
     $("#stripeButton").on("click", function(e) {
-        console.log("Clicked stripe button");
         if (document.getElementById("stripeButton").classList.contains('disabled')) {
             validateName();
             validateNumber($("#phonenumber").val(), $("#phonenumber-error"));
             validateRecName();
             validate();
         } else {
-            console.log("'Breakpoint'");
+            $("#name-error").hide();
+            $("#rec-name-error").hide();
+            $("#phonenumber-error").hide();
+            $("#email-error").hide();
+            $("#swishNumber-error").hide();
             handler.open({
                 name: $("#stripe-data-name").val(),
                 image: $("#stripe-data-image").val(),
@@ -196,7 +199,7 @@ $('#stripeStuff').hide();
 
 $('#myModal').ready(function () {
     $('.inputfield').keyup(function () {
-        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 && validate())
+        if ($('#email').val().length != 0 && $('#name').val().length != 0 && (/^[0-9]*$/.test($("#phonenumber").val())) && ($("#phonenumber").val().length == 10) && $('#rec-name').val().length != 0 && validateEmail($("#email").val()))
             $('.button1').removeClass('disabled');
         else
             $('.button1').addClass('disabled');

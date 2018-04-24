@@ -45,9 +45,12 @@
     <!-- The justified navigation menu is meant for single line per list item.
          Multiple lines will require custom code not provided by Bootstrap. -->
     <header>
-        <div class="container">
-            <a class="logo-text clickable" id="logotype" style="text-decoration: none" href="/">Baljangåvan</a>
-            <nav>
+        <div>
+            <div class="col-md-1 col-sm-1 col-xs-1">
+                <a class="logo-text clickable" id="logotype" style="text-decoration: none" href="/">Baljangåvan</a>
+            </div>
+            <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+                <nav>
                 <ul>
                     {% if not current_user.is_anonymous %}
                         <li class="nav-item">
@@ -93,6 +96,7 @@
                     {% endif %}
                 </ul>
             </nav>
+            </div>
         </div>
     </header>
 

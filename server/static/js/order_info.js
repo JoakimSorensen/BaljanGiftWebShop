@@ -63,6 +63,7 @@ function retrieveData(data) {
 }
 
 function setStatusSelect(id) {
+	document.getElementById(id + "-icon").classList.add("bounce");
     document.getElementById(id).style.color = "#000000";
     document.getElementById(id).style.opacity = "1";
 	document.getElementById(id + "-circle").style.backgroundColor = "#73906A";
@@ -74,4 +75,5 @@ function resetStatusSelect(id) {
     document.getElementById(id).style.opacity = "";
 	document.getElementById(id + "-circle").style.backgroundColor = "";
 	document.getElementById(id + "-circle").style.opacity = "";
+	document.getElementById(id + "-icon").classList.remove("bounce");
 }
